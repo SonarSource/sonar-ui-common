@@ -1,0 +1,21 @@
+## Build
+build/
+
+## NPM
+node_modules/
+npm-debug.log*
+npm.tar.gz
+yarn-debug.log*
+yarn-error.log*
+
+## VSCode
+.vscode/
+*.code-workspace
+
+## Mac OS X
+.DS_Store
+Icon?
+
+## SonarQube
+.sonar/
+.scannerwork/
