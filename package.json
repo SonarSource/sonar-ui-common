@@ -30,7 +30,7 @@
     "eslint-plugin-react": "7.12.4",
     "eslint-plugin-sonarjs": "0.3.0",
     "jest": "24.8.0",
-    "prettier": "1.17.1",
+    "prettier": "1.18.2",
     "react-test-renderer": "16.8.6",
     "ts-jest": "24.0.2",
     "typescript": "3.5.1"
@@ -39,7 +39,7 @@
     "clean": "rm -rf build/dist",
     "build": "npm run clean && tsc",
     "prepublishOnly": "npm run build && git stash && rm -rf components helpers && cp -r ./build/dist/* .",
-    "postpublish": "git clean -fd && git checkout . && git stash pop",
+    "postpublish": "git clean -fd && git checkout .",
     "test": "jest",
     "format": "prettier --write --list-different '{,!(build|node_modules)/**/}*.{ts,tsx,css}'",
     "format-check": "prettier --list-different '{,!(build|node_modules)/**/}*.{ts,tsx,css}'",
