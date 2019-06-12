@@ -14,7 +14,6 @@ yarn-error.log*
 
 ## Mac OS X
 .DS_Store
-Icon?
 
 ## SonarQube
 .sonar/
