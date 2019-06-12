@@ -20,9 +20,23 @@
 import * as React from 'react';
 
 export interface ThemeContextType {
-  theme: T.Dict<string>;
+  theme: {
+    colors: T.Dict<string>;
+    sizes: T.Dict<string>;
+    rawSizes: T.Dict<number>;
+    fonts: T.Dict<string>;
+    zIndexes: T.Dict<string>;
+    others: T.Dict<string>;
+  };
 }
 
 export default React.createContext<ThemeContextType>({
-  theme: {}
+  theme: {
+    colors: {},
+    sizes: {},
+    rawSizes: {},
+    fonts: {},
+    zIndexes: {},
+    others: {}
+  }
 });

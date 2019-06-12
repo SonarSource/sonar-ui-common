@@ -23,7 +23,7 @@ import ThemeContext from '../ThemeContext';
 
 export default class AlertErrorIcon extends React.PureComponent<IconProps> {
   render() {
-    const { className, fill = this.context.theme.red, size } = this.props;
+    const { className, fill = this.context.theme.colors.red, size } = this.props;
     return (
       <Icon className={className} size={size}>
         <path
