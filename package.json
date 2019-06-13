@@ -50,7 +50,8 @@
     "validate-ci": "npm run lint-report && npm run format-check && npm run test --coverage"
   },
   "engines": {
-    "node": ">=8.6"
+    "node": ">=8.6",
+    "npm": ">=6.9.0"
   },
   "jest": {
     "coverageDirectory": "<rootDir>/build/coverage",

@@ -5,9 +5,11 @@ jdk: oraclejdk11
 node_js: 10.16.0
 dist: trusty
 
+before_install: if [[ `npm -v` != 6.9* ]]; then npm i -g npm@6.9; fi
+
 env:
   - TARGET=BUILD
-  - TARGET=WEB_TESTS
+  - TARGET=ANALYZE
 
 matrix:
   fast_finish: true

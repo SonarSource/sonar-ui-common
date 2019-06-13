@@ -21,40 +21,43 @@ configureTravis
 # @TravisCI please provide the feature natively, like at AppVeyor or CircleCI ;-)
 cancel_branch_build_with_pr || if [[ $? -eq 1 ]]; then exit 0; fi
 
-# Install sonar-scanner
-pushd ~ > /dev/null
-if [ ! -d "sonar-scanner-3.0.3.778-linux/bin" ]; then
-  wget -O sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.0.3.778-linux.zip
-  unzip sonar-scanner.zip
-  rm sonar-scanner.zip
-fi
-export PATH=$PATH:~/sonar-scanner-3.0.3.778-linux/bin
-popd > /dev/null
-
-# Install node_modules
+# Install node modules
 npm ci
 
 case "$TARGET" in
 
 BUILD)
+  echo '======= Run Build'
   npm run build
   ;;
 
-WEB_TESTS)
-  npm run validate-ci
-  ;;
-
 ANALYZE)
+
+  # Fetch all commit history so that SonarQube has exact blame information
+  # for issue auto-assignment
+  # This command can fail with "fatal: --unshallow on a complete repository does not make sense" 
+  # if there are not enough commits in the Git repository (even if Travis executed git clone --depth 50).
+  # For this reason errors are ignored with "|| true"
+  git fetch --unshallow || true
+
+
+  echo '======= Run Validate CI'
+  npm run validate-ci
+
+  # Install sonar-scanner
+  pushd ~ > /dev/null
+  if [ ! -d "sonar-scanner-3.0.3.778-linux/bin" ]; then
+    echo '======= Download sonar-scanner'
+    wget -O sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.0.3.778-linux.zip
+    unzip sonar-scanner.zip
+    rm sonar-scanner.zip
+  fi
+  export PATH=$PATH:~/sonar-scanner-3.0.3.778-linux/bin
+  popd > /dev/null
+
   if [ "${TRAVIS_BRANCH}" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     echo '======= Analyze master'
   
-    # Fetch all commit history so that SonarQube has exact blame information
-    # for issue auto-assignment
-    # This command can fail with "fatal: --unshallow on a complete repository does not make sense" 
-    # if there are not enough commits in the Git repository (even if Travis executed git clone --depth 50).
-    # For this reason errors are ignored with "|| true"
-    git fetch --unshallow || true
-
     sonar-scanner \
         -Dsonar.host.url=$SONAR_HOST_URL \
         -Dsonar.login=$SONAR_TOKEN \
@@ -65,9 +68,6 @@ ANALYZE)
 
   elif [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ -n "${GITHUB_TOKEN:-}" ]; then
     echo '======= Analyze pull request'
-    
-    git fetch --unshallow || true
-
     sonar-scanner \
       -Dsonar.host.url=$SONAR_HOST_URL \
       -Dsonar.login=$SONAR_TOKEN \
@@ -84,6 +84,7 @@ ANALYZE)
     echo '======= No analysis'
   fi
   ;;
+
 *)
   echo "Unexpected TARGET value: $TARGET"
   exit 1
