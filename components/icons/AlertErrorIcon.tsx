@@ -18,21 +18,17 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import * as React from 'react';
-import Icon, { IconProps } from './Icon';
-import ThemeContext from '../ThemeContext';
+import { IconProps, ThemedIcon } from './Icon';
 
-export default class AlertErrorIcon extends React.PureComponent<IconProps> {
-  render() {
-    const { className, fill = this.context.theme.colors.red, size } = this.props;
-    return (
-      <Icon className={className} size={size}>
+export default function AlertErrorIcon({ className, fill, size }: IconProps) {
+  return (
+    <ThemedIcon className={className} size={size}>
+      {({ theme }) => (
         <path
           d="M11.402 10.018q0-0.232-0.17-0.402l-1.616-1.616 1.616-1.616q0.17-0.17 0.17-0.402 0-0.241-0.17-0.411l-0.804-0.804q-0.17-0.17-0.411-0.17-0.232 0-0.402 0.17l-1.616 1.616-1.616-1.616q-0.17-0.17-0.402-0.17-0.241 0-0.411 0.17l-0.804 0.804q-0.17 0.17-0.17 0.411 0 0.232 0.17 0.402l1.616 1.616-1.616 1.616q-0.17 0.17-0.17 0.402 0 0.241 0.17 0.411l0.804 0.804q0.17 0.17 0.411 0.17 0.232 0 0.402-0.17l1.616-1.616 1.616 1.616q0.17 0.17 0.402 0.17 0.241 0 0.411-0.17l0.804-0.804q0.17-0.17 0.17-0.411zM14.857 8q0 1.866-0.92 3.442t-2.496 2.496-3.442 0.92-3.442-0.92-2.496-2.496-0.92-3.442 0.92-3.442 2.496-2.496 3.442-0.92 3.442 0.92 2.496 2.496 0.92 3.442z"
-          style={{ fill }}
+          style={{ fill: fill || theme.colors.red }}
         />
-      </Icon>
-    );
-  }
+      )}
+    </ThemedIcon>
+  );
 }
-
-AlertErrorIcon.contextType = ThemeContext;
