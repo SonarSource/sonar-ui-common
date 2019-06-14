@@ -38,7 +38,8 @@
   "scripts": {
     "clean": "rm -rf build/dist",
     "build": "npm run clean && tsc",
-    "prepublishOnly": "npm run build && git stash && rm -rf components helpers && cp -r ./build/dist/* .",
+    "prepack": "npm run build && git stash && rm -rf components helpers && cp -r ./build/dist/* .",
+    "postpack": "cp ./sonar-ui-common-*.tgz ./build && npm run postpublish",
     "postpublish": "git clean -fd && git checkout .",
     "test": "jest",
     "format": "prettier --write --list-different \"{,!(build|node_modules)/**/}*.{ts,tsx,css}\"",
