@@ -20,7 +20,7 @@
 import * as React from 'react';
 import { ThemedIcon, IconProps } from './Icon';
 
-const qualifierIcons: T.Dict<(props: IconProps) => React.ReactElement<any>> = {
+const qualifierIcons: T.Dict<(props: IconProps) => React.ReactElement> = {
   app: ApplicationIcon,
   brc: SubProjectIcon,
   dev: DeveloperIcon,
