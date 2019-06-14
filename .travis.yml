@@ -20,3 +20,9 @@ cache:
   directories:
     - $HOME/.sonar/cache
     - $HOME/sonar-scanner-3.0.3.778-linux
+
+notifications:
+  email: false
+  webhooks:
+    - secure: 'ZYOCmvWRzia/V+ChC2tg8DegMPsl/x1QpAW/T2zT3qJx0VdRnV4SF0WbpDULtdxpdfVLKIuC00m5qoFWd64t/uBCziLDceFm7yfgKUkmTomhNKJmFXfVt9PXUlkCqP9Pb06rOJA5LcnhtyX8/pnNkoCkWW+sOpZTXZSydUJIRW9JaG3XeyM5g4YuxY2WvEvb1KCQl0r2B49NFezs1w8e1+XEYcUYAUM6GkrcRAnIzI7TD6bfKc8yiJrD5Gq90L8+mqUGwvUPEez1Y1q/D5/Q5kyO0Fuyi7qbr6wyB5HnOhqIKSkLh4kmmCWBduPOr2CYJz94BoMGf57H+s4a4J8S183fS/v8JdYf0YHwbQgX5nc6BYH8xu1tJ+er/PZy5wd5s2EJaRwDcrnIuMxeiQPGlX4xpX/gdn6PNzrB6UZ4+xIX0rasns/mwWuw4O5PmDIHfYUP1D89/9/ZT56STt+1v6YxEKRBDH//F2/ySHQSTwOzlfw7uOtT/UmCNz09wFPrfPtQytU+ko+BEqoffGMJuDqMTK09xpZh5sgQFceAqQQr3v2oeGKssQ3ui/6txwHnsuWoaXdcUKC509JvbePqQJsjAt5y9fa12O5vhJNAdV/TJiA0cS0ygwCvvZyV1pvMspEF53IhvoMEZufDQHj6MriJkNFA12dDfJ6qPT6Iqjs='
+  on_start: always
