@@ -24,4 +24,6 @@ declare namespace T {
   // Type ordered alphabetically to prevent merge conflicts
 
   export type IssueType = 'BUG' | 'VULNERABILITY' | 'CODE_SMELL' | 'SECURITY_HOTSPOT';
+
+  export type RawQuery = T.Dict<any>;
 }

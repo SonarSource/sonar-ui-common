@@ -17,32 +17,31 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import * as React from 'react';
-import Icon, { IconProps } from './Icon';
+import * as parse from 'date-fns/parse';
 
-export interface ClearIconProps extends IconProps {
-  thin?: boolean;
+function pad(number: number) {
+  if (number < 10) {
+    return '0' + number.toString();
+  }
+  return number;
 }
 
-export default function ClearIcon({
-  className,
-  fill = 'currentColor',
-  size,
-  thin
-}: ClearIconProps) {
-  return (
-    <Icon className={className} size={size}>
-      {thin ? (
-        <path
-          d="M14 3.209l-1.209-1.209-4.791 4.791-4.791-4.791-1.209 1.209 4.791 4.791-4.791 4.791 1.209 1.209 4.791-4.791 4.791 4.791 1.209-1.209-4.791-4.791z"
-          style={{ fill }}
-        />
-      ) : (
-        <path
-          d="M14 4.242L11.758 2l-3.76 3.76L4.242 2 2 4.242l3.756 3.756L2 11.758 4.242 14l3.756-3.76 3.76 3.76L14 11.758l-3.76-3.76L14 4.242z"
-          style={{ fill }}
-        />
-      )}
-    </Icon>
-  );
+type ParsableDate = string | number | Date;
+
+export function parseDate(rawDate: ParsableDate): Date {
+  return parse(rawDate);
+}
+
+export function toShortNotSoISOString(rawDate: ParsableDate): string {
+  const date = parseDate(rawDate);
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+}
+
+export function toNotSoISOString(rawDate: ParsableDate): string {
+  const date = parseDate(rawDate);
+  return date.toISOString().replace(/\..+Z$/, '+0000');
+}
+
+export function isValidDate(date: Date): boolean {
+  return !isNaN(date.getTime());
 }
