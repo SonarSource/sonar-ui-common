@@ -17,32 +17,28 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import * as React from 'react';
-import Icon, { IconProps } from './Icon';
+const CLASS_SIDEBAR_PAGE = 'sidebar-page';
+const CLASS_WHITE_PAGE = 'white-page';
 
-export interface ClearIconProps extends IconProps {
-  thin?: boolean;
+export function addSideBarClass() {
+  toggleBodyClass(CLASS_SIDEBAR_PAGE, true);
 }
 
-export default function ClearIcon({
-  className,
-  fill = 'currentColor',
-  size,
-  thin
-}: ClearIconProps) {
-  return (
-    <Icon className={className} size={size}>
-      {thin ? (
-        <path
-          d="M14 3.209l-1.209-1.209-4.791 4.791-4.791-4.791-1.209 1.209 4.791 4.791-4.791 4.791 1.209 1.209 4.791-4.791 4.791 4.791 1.209-1.209-4.791-4.791z"
-          style={{ fill }}
-        />
-      ) : (
-        <path
-          d="M14 4.242L11.758 2l-3.76 3.76L4.242 2 2 4.242l3.756 3.756L2 11.758 4.242 14l3.756-3.76 3.76 3.76L14 11.758l-3.76-3.76L14 4.242z"
-          style={{ fill }}
-        />
-      )}
-    </Icon>
-  );
+export function addWhitePageClass() {
+  toggleBodyClass(CLASS_WHITE_PAGE, true);
+}
+
+export function removeSideBarClass() {
+  toggleBodyClass(CLASS_SIDEBAR_PAGE, false);
+}
+
+export function removeWhitePageClass() {
+  toggleBodyClass(CLASS_WHITE_PAGE, false);
+}
+
+function toggleBodyClass(className: string, force?: boolean) {
+  document.body.classList.toggle(className, force);
+  if (document.documentElement) {
+    document.documentElement.classList.toggle(className, force);
+  }
 }

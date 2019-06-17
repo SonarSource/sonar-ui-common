@@ -17,32 +17,20 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import * as React from 'react';
-import Icon, { IconProps } from './Icon';
+import { memoize } from 'lodash';
 
-export interface ClearIconProps extends IconProps {
-  thin?: boolean;
-}
+const parseCookies = memoize(
+  (documentCookie: string): T.Dict<string> => {
+    const rawCookies = documentCookie.split('; ');
+    const cookies: T.Dict<string> = {};
+    rawCookies.forEach(candidate => {
+      const [key, value] = candidate.split('=');
+      cookies[key] = value;
+    });
+    return cookies;
+  }
+);
 
-export default function ClearIcon({
-  className,
-  fill = 'currentColor',
-  size,
-  thin
-}: ClearIconProps) {
-  return (
-    <Icon className={className} size={size}>
-      {thin ? (
-        <path
-          d="M14 3.209l-1.209-1.209-4.791 4.791-4.791-4.791-1.209 1.209 4.791 4.791-4.791 4.791 1.209 1.209 4.791-4.791 4.791 4.791 1.209-1.209-4.791-4.791z"
-          style={{ fill }}
-        />
-      ) : (
-        <path
-          d="M14 4.242L11.758 2l-3.76 3.76L4.242 2 2 4.242l3.756 3.756L2 11.758 4.242 14l3.756-3.76 3.76 3.76L14 11.758l-3.76-3.76L14 4.242z"
-          style={{ fill }}
-        />
-      )}
-    </Icon>
-  );
+export function getCookie(name: string): string | undefined {
+  return parseCookies(document.cookie)[name];
 }
