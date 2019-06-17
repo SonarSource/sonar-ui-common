@@ -37,4 +37,4 @@ Ambients types are available in the `types.d.ts`, to benefit from them in your p
 2. Update versions in `package.json` and `sonar-project.properties`
 3. `npm install` to update `package-lock.json`
 4. `npm pack` to create the published package
-5. `npm publish build/sonar-ui-common-*.tgz`
+5. `npm publish ./build/sonar-ui-common-x.y.z.tgz`
