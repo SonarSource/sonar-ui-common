@@ -30,6 +30,7 @@
     "eslint-plugin-react": "7.12.4",
     "eslint-plugin-sonarjs": "0.3.0",
     "jest": "24.8.0",
+    "license-check": "1.1.5",
     "prettier": "1.18.2",
     "react-test-renderer": "16.8.6",
     "ts-jest": "24.0.2",
@@ -46,11 +47,12 @@
     "test-watch": "jest --watch",
     "format": "prettier --write --list-different \"{,!(build|node_modules)/**/}*.{ts,tsx,css}\"",
     "format-check": "prettier --list-different \"{,!(build|node_modules)/**/}*.{ts,tsx,css}\"",
+    "license-check": "license-check",
     "lint": "eslint --ext ts,tsx --quiet \"{,!(build|node_modules)/**/}*.{ts,tsx,css}\"",
     "lint-report": "eslint --ext ts,tsx -f json -o build/eslint-report.json \"{,!(build|node_modules)/**/}*.{ts,tsx,css}\"",
     "ts-check": "tsc --noEmit",
-    "validate": "npm run ts-check && npm run lint && npm run format-check && npm run test",
-    "validate-ci": "npm run lint-report && npm run format-check && npm run test-coverage"
+    "validate": "npm run ts-check && npm run license-check && npm run lint && npm run format-check && npm run test",
+    "validate-ci": "npm run lint-report && npm run license-check && npm run format-check && npm run test-coverage"
   },
   "engines": {
     "node": ">=8.6",
@@ -104,5 +106,18 @@
     "jsxBracketSameLine": true,
     "printWidth": 100,
     "singleQuote": true
+  },
+  "license-check-config": {
+    "src": [
+      "**/*.js",
+      "**/*.ts",
+      "**/*.tsx",
+      "!node_modules/**/*",
+      "!build/**/*"
+    ],
+    "path": "HEADER",
+    "blocking": true,
+    "logInfo": false,
+    "logError": true
   }
 }
