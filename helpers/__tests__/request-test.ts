@@ -18,7 +18,14 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { parseError, requestTryAndRepeatUntil } from '../request';
+import { checkStatus, parseError, requestTryAndRepeatUntil } from '../request';
+import handleRequiredAuthentication from '../handleRequiredAuthentication';
+
+jest.mock('../handleRequiredAuthentication', () => ({ default: jest.fn() }));
+
+beforeEach(() => {
+  jest.clearAllMocks();
+});
 
 describe('parseError', () => {
   it('should parse error and return the message', () => {
@@ -158,4 +165,42 @@ describe('requestTryAndRepeatUntil', () => {
     jest.advanceTimersByTime(3000);
     expect(apiCall).toBeCalledTimes(4);
   });
+});
+
+describe('checkStatus', () => {
+  it('should resolve with the response', () => {
+    const response = mockResponse();
+    return expect(checkStatus(response)).resolves.toBe(response);
+  });
+
+  it('should reject with the response', () => {
+    const response = mockResponse({}, 500);
+    return expect(checkStatus(response)).rejects.toEqual({ response });
+  });
+
+  it('should handle required authentication', () => {
+    return checkStatus(mockResponse({}, 401)).catch(() => {
+      expect(handleRequiredAuthentication).toBeCalled();
+    });
+  });
+
+  it('should reload the page when version is changing', async () => {
+    const reload = jest.fn();
+    delete window.location;
+    (window as any).location = { reload };
+
+    await checkStatus(mockResponse({ 'Sonar-Version': '6.7' }));
+    expect(reload).not.toBeCalled();
+    await checkStatus(mockResponse({ 'Sonar-Version': '6.7' }));
+    expect(reload).not.toBeCalled();
+    checkStatus(mockResponse({ 'Sonar-Version': '7.9' }));
+    expect(reload).toBeCalled();
+  });
+
+  function mockResponse(headers: T.Dict<string> = {}, status = 200): any {
+    return {
+      headers: { get: (prop: string) => headers[prop] },
+      status
+    };
+  }
 });
