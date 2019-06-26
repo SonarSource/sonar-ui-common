@@ -23,6 +23,7 @@ import { createHistory, History } from 'history';
 let history: History;
 
 function ensureHistory() {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   history = useRouterHistory(createHistory)({
     basename: (window as any).baseUrl
   });

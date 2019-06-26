@@ -212,12 +212,11 @@ export function getCorsJSON(url: string, data?: RequestData): Promise<any> {
     .submit()
     .then(response => {
       if (response.status >= 200 && response.status < 300) {
-        return Promise.resolve(response);
+        return parseJSON(response);
       } else {
         return Promise.reject({ response });
       }
-    })
-    .then(parseJSON);
+    });
 }
 
 /**
@@ -293,7 +292,7 @@ export function requestTryAndRepeatUntil<T>(
   return repeatAPICall().then(
     r => {
       if (stopRepeat(r)) {
-        return Promise.resolve(r);
+        return r;
       }
       return tryRequestAgain(repeatAPICall, tries, stopRepeat, repeatErrors);
     },
