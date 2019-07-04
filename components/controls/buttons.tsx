@@ -19,13 +19,13 @@
  */
 import * as React from 'react';
 import * as classNames from 'classnames';
+import Tooltip from './Tooltip';
 import { IconProps } from '../icons/Icon';
 import ChevronRightIcon from '../icons/ChevronRightIcon';
 import ClearIcon, { ClearIconProps } from '../icons/ClearIcon';
 import DeleteIcon from '../icons/DeleteIcon';
 import EditIcon from '../icons/EditIcon';
 import ThemeContext from '../ThemeContext';
-import Tooltip from './Tooltip';
 import './buttons.css';
 
 type AllowedButtonAttributes = Pick<

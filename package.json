@@ -12,6 +12,7 @@
     "lodash": "4.17.11",
     "react": "16.8.6",
     "react-dom": "16.8.6",
+    "react-modal": "3.8.2",
     "react-router": "3.2.1"
   },
   "devDependencies": {
@@ -21,6 +22,7 @@
     "@types/lodash": "4.14.134",
     "@types/react": "16.8.22",
     "@types/react-dom": "16.8.4",
+    "@types/react-modal": "3.8.2",
     "@types/react-router": "3.0.20",
     "@typescript-eslint/parser": "1.11.0",
     "enzyme": "3.10.0",
@@ -53,8 +55,8 @@
     "format": "prettier --write --list-different \"{,!(build|node_modules)/**/}*.{ts,tsx,css}\"",
     "format-check": "prettier --list-different \"{,!(build|node_modules)/**/}*.{ts,tsx,css}\"",
     "license-check": "license-check",
-    "lint": "eslint --ext ts,tsx --quiet \"{,!(build|node_modules)/**/}*.{ts,tsx,css}\"",
-    "lint-report": "eslint --ext ts,tsx -f json -o build/eslint-report.json \"{,!(build|node_modules)/**/}*.{ts,tsx,css}\"",
+    "lint": "eslint --ext ts,tsx --quiet \"{,!(build|node_modules)/**/}*.{ts,tsx}\"",
+    "lint-report": "eslint --ext ts,tsx -f json -o build/eslint-report.json \"{,!(build|node_modules)/**/}*.{ts,tsx}\"",
     "ts-check": "tsc --noEmit",
     "validate": "npm run ts-check && npm run license-check && npm run lint && npm run format-check && npm run test",
     "validate-ci": "npm run lint-report && npm run license-check && npm run format-check && npm run test-coverage"
