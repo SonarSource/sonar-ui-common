@@ -1,6 +1,6 @@
 /*
- * Sonar UI Common
- * Copyright (C) 2019-2019 SonarSource SA
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
  * mailto:info AT sonarsource DOT com
  *
  * This program is free software; you can redistribute it and/or
@@ -17,27 +17,12 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-declare namespace T {
-  export type Dict<T> = { [key: string]: T };
-  export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+.bar-chart-bar {
+  fill: var(--blue);
+}
 
-  // Type ordered alphabetically to prevent merge conflicts
-
-  export type IssueType = 'BUG' | 'VULNERABILITY' | 'CODE_SMELL' | 'SECURITY_HOTSPOT';
-
-  export type RawQuery = T.Dict<any>;
-
-  export namespace Chart {
-    export interface Point {
-      x: Date;
-      y: number | string | undefined;
-    }
-
-    export interface Serie {
-      data: Point[];
-      name: string;
-      translatedName: string;
-      type: string;
-    }
-  }
+.bar-chart-tick {
+  fill: var(--secondFontColor);
+  font-size: var(--smallFontSize);
+  text-anchor: middle;
 }
