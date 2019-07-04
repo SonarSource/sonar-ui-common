@@ -1,6 +1,6 @@
 /*
- * Sonar UI Common
- * Copyright (C) 2019-2019 SonarSource SA
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
  * mailto:info AT sonarsource DOT com
  *
  * This program is free software; you can redistribute it and/or
@@ -17,27 +17,40 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-declare namespace T {
-  export type Dict<T> = { [key: string]: T };
-  export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+.bubble-chart text {
+  user-select: none;
+}
 
-  // Type ordered alphabetically to prevent merge conflicts
+.bubble-chart-bubble {
+  fill: var(--blue);
+  fill-opacity: 0.2;
+  stroke: var(--blue);
+  cursor: pointer;
+  transition: fill-opacity 0.2s ease;
+}
 
-  export type IssueType = 'BUG' | 'VULNERABILITY' | 'CODE_SMELL' | 'SECURITY_HOTSPOT';
+.bubble-chart-bubble:hover {
+  fill-opacity: 0.8;
+}
 
-  export type RawQuery = T.Dict<any>;
+.bubble-chart-grid {
+  shape-rendering: crispedges;
+  stroke: #eee;
+}
 
-  export namespace Chart {
-    export interface Point {
-      x: Date;
-      y: number | string | undefined;
-    }
+.bubble-chart-tick {
+  fill: var(--secondFontColor);
+  font-size: var(--smallFontSize);
+  text-anchor: middle;
+}
 
-    export interface Serie {
-      data: Point[];
-      name: string;
-      translatedName: string;
-      type: string;
-    }
-  }
+.bubble-chart-tick-y {
+  text-anchor: end;
+}
+
+.bubble-chart-zoom {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  z-index: var(--aboveNormalZIndex);
 }

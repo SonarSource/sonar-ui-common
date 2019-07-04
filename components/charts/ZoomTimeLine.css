@@ -1,6 +1,6 @@
 /*
- * Sonar UI Common
- * Copyright (C) 2019-2019 SonarSource SA
+ * SonarQube
+ * Copyright (C) 2009-2019 SonarSource SA
  * mailto:info AT sonarsource DOT com
  *
  * This program is free software; you can redistribute it and/or
@@ -17,27 +17,30 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-declare namespace T {
-  export type Dict<T> = { [key: string]: T };
-  export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
+.chart-zoom-tick {
+  fill: var(--secondFontColor);
+  font-size: 10px;
+  text-anchor: middle;
+  user-select: none;
+}
 
-  // Type ordered alphabetically to prevent merge conflicts
+.chart-zoom .zoom-overlay {
+  fill: none;
+  stroke: none;
+  cursor: crosshair;
+  pointer-events: all;
+}
 
-  export type IssueType = 'BUG' | 'VULNERABILITY' | 'CODE_SMELL' | 'SECURITY_HOTSPOT';
+.chart-zoom .zoom-selection {
+  fill: var(--secondFontColor);
+  fill-opacity: 0.2;
+  stroke: var(--secondFontColor);
+  shape-rendering: crispEdges;
+  cursor: move;
+}
 
-  export type RawQuery = T.Dict<any>;
-
-  export namespace Chart {
-    export interface Point {
-      x: Date;
-      y: number | string | undefined;
-    }
-
-    export interface Serie {
-      data: Point[];
-      name: string;
-      translatedName: string;
-      type: string;
-    }
-  }
+.chart-zoom .zoom-selection-handle {
+  cursor: ew-resize;
+  fill-opacity: 0;
+  stroke: none;
 }
