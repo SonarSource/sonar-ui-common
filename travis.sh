@@ -55,12 +55,16 @@ ANALYZE)
   export PATH=$PATH:~/sonar-scanner-3.0.3.778-linux/bin
   popd > /dev/null
 
+  # Get project version
+  SONAR_PROJECT_VERSION=$(node -p -e "require('./package.json').version")
+
   if [ "${TRAVIS_BRANCH}" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     echo '======= Analyze master'
   
     sonar-scanner \
         -Dsonar.host.url=$SONAR_HOST_URL \
         -Dsonar.login=$SONAR_TOKEN \
+        -Dsonar.projectVersion=$SONAR_PROJECT_VERSION \
         -Dsonar.analysis.buildNumber=$TRAVIS_BUILD_NUMBER \
         -Dsonar.analysis.pipeline=$TRAVIS_BUILD_NUMBER \
         -Dsonar.analysis.sha1=$TRAVIS_COMMIT  \
@@ -71,6 +75,7 @@ ANALYZE)
     sonar-scanner \
       -Dsonar.host.url=$SONAR_HOST_URL \
       -Dsonar.login=$SONAR_TOKEN \
+      -Dsonar.projectVersion=$SONAR_PROJECT_VERSION \
       -Dsonar.pullrequest.branch=$TRAVIS_PULL_REQUEST_BRANCH \
       -Dsonar.pullrequest.base=$TRAVIS_BRANCH \
       -Dsonar.analysis.buildNumber=$TRAVIS_BUILD_NUMBER \
