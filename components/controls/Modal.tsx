@@ -30,9 +30,34 @@ export interface ModalProps {
   noBackdrop?: boolean;
 }
 
-type MandatoryProps = Pick<ReactModal.Props, 'contentLabel'>;
+interface Props extends ModalProps {
+  /* String or object className to be applied to the modal content. */
+  className?: string;
 
-type Props = Partial<ReactModal.Props> & MandatoryProps & ModalProps;
+  /* String or object className to be applied to the overlay. */
+  overlayClassName?: string;
+
+  /* Function that will be run after the modal has opened. */
+  onAfterOpen?(): void;
+
+  /* Function that will be run after the modal has closed. */
+  onAfterClose?(): void;
+
+  /* Function that will be run when the modal is requested to be closed, prior to actually closing. */
+  onRequestClose?(event: React.MouseEvent | React.KeyboardEvent): void;
+
+  /* Boolean indicating if the modal should be focused after render */
+  shouldFocusAfterRender?: boolean;
+
+  /* Boolean indicating if the overlay should close the modal. Defaults to true. */
+  shouldCloseOnOverlayClick?: boolean;
+
+  /* Boolean indicating if pressing the esc key should close the modal */
+  shouldCloseOnEsc?: boolean;
+
+  /* String indicating how the content container should be announced to screenreaders. */
+  contentLabel: string;
+}
 
 export default function Modal(props: Props) {
   return (

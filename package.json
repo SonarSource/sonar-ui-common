@@ -1,11 +1,11 @@
 {
   "name": "sonar-ui-common",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Common UI lib for SonarQube and SonarCloud",
   "repository": "SonarSource/sonar-ui-common",
   "license": "LGPL-3.0",
   "types": "types.d.ts",
-  "peerDependencies": {
+  "dependencies": {
     "classnames": "2.2.6",
     "d3-array": "1.2.4",
     "d3-hierarchy": "1.1.8",
@@ -13,15 +13,17 @@
     "d3-selection": "1.4.0",
     "d3-shape": "1.2.2",
     "d3-zoom": "1.7.3",
-    "date-fns": "1.30.1",
     "history": "3.3.0",
     "lodash": "4.17.11",
-    "react": "16.8.6",
-    "react-dom": "16.8.6",
     "react-draggable": "3.2.1",
     "react-modal": "3.8.2",
     "react-router": "3.2.1",
     "react-virtualized": "9.21.0"
+  },
+  "peerDependencies": {
+    "date-fns": "1.30.1",
+    "react": "16.8.6",
+    "react-dom": "16.8.6"
   },
   "devDependencies": {
     "@types/classnames": "2.2.8",
@@ -40,11 +42,7 @@
     "@types/react-router": "3.0.20",
     "@types/react-virtualized": "9.21.0",
     "@typescript-eslint/parser": "1.11.0",
-    "d3-array": "1.2.4",
-    "d3-hierarchy": "1.1.8",
-    "d3-scale": "2.1.2",
-    "d3-shape": "1.2.2",
-    "d3-zoom": "1.7.3",
+    "cpy-cli": "2.0.0",
     "date-fns": "1.30.1",
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.14.0",
@@ -62,20 +60,15 @@
     "prettier": "1.18.2",
     "react": "16.8.6",
     "react-dom": "16.8.6",
-    "react-draggable": "3.2.1",
-    "react-modal": "3.8.2",
     "react-router": "3.2.1",
     "react-test-renderer": "16.8.6",
-    "react-virtualized": "9.21.0",
     "ts-jest": "24.0.2",
     "typescript": "3.5.2"
   },
   "scripts": {
     "clean": "rm -rf build/dist",
     "build": "npm run clean && tsc",
-    "prepack": "npm run build && git stash && rm -rf components helpers && cp -r ./build/dist/* .",
-    "postpack": "cp ./sonar-ui-common-*.tgz ./build && npm run postpublish",
-    "postpublish": "git clean -fd && git checkout .",
+    "package": "./scripts/pack.sh",
     "test": "jest",
     "test-coverage": "jest --coverage",
     "test-watch": "jest --watch",
@@ -98,7 +91,8 @@
       "{components,helpers}/**/*.{ts,tsx,js}"
     ],
     "coverageReporters": [
-      "lcovonly"
+      "lcovonly",
+      "text"
     ],
     "globals": {
       "ts-jest": {
