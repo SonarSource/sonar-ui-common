@@ -80,7 +80,7 @@ function getFormatter(type: string): Formatter {
 }
 
 function numberFormatter(
-  value: number,
+  value: string | number,
   minimumFractionDigits = 0,
   maximumFractionDigits = minimumFractionDigits
 ) {
@@ -88,6 +88,9 @@ function numberFormatter(
     minimumFractionDigits,
     maximumFractionDigits
   });
+  if (typeof value === 'string') {
+    return format(parseFloat(value));
+  }
   return format(value);
 }
 
@@ -95,7 +98,7 @@ function noFormatter(value: string | number): string | number {
   return value;
 }
 
-function intFormatter(value: number): string {
+function intFormatter(value: string | number): string {
   return numberFormatter(value);
 }
 
@@ -109,10 +112,13 @@ const shortIntFormats = [
 ];
 
 function shortIntFormatter(
-  value: number,
+  value: string | number,
   option?: { roundingFunc?: (x: number) => number }
 ): string {
   const roundingFunc = (option && option.roundingFunc) || undefined;
+  if (typeof value === 'string') {
+    value = parseFloat(value);
+  }
   for (let i = 0; i < shortIntFormats.length; i++) {
     const { unit, formatUnit, fraction, suffix } = shortIntFormats[i];
     const nextFraction = unit / (shortIntFormats[i + 1] ? shortIntFormats[i + 1].unit / 10 : 1);
@@ -139,7 +145,7 @@ function numberRound(
   return roundingFunc(value * fraction) / fraction;
 }
 
-function floatFormatter(value: number): string {
+function floatFormatter(value: string | number): string {
   return numberFormatter(value, 1, 5);
 }
 
@@ -160,7 +166,10 @@ function ratingFormatter(value: string | number): string {
   return String.fromCharCode(97 + value - 1).toUpperCase();
 }
 
-function levelFormatter(value: string): string {
+function levelFormatter(value: string | number): string {
+  if (typeof value === 'number') {
+    value = value.toString();
+  }
   const l10nKey = 'metric.level.' + value;
   const result = translate(l10nKey);
 
@@ -168,7 +177,10 @@ function levelFormatter(value: string): string {
   return l10nKey !== result ? result : value;
 }
 
-function millisecondsFormatter(value: number): string {
+function millisecondsFormatter(value: string | number): string {
+  if (typeof value === 'string') {
+    value = parseInt(value, 10);
+  }
   const ONE_SECOND = 1000;
   const ONE_MINUTE = 60 * ONE_SECOND;
   if (value >= ONE_MINUTE) {
