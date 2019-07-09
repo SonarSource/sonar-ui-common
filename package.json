@@ -41,13 +41,14 @@
     "@types/lodash": "4.14.134",
     "@types/react": "16.8.23",
     "@types/react-dom": "16.8.4",
-    "@types/react-modal": "3.8.2",
     "@types/react-intl": "2.3.17",
+    "@types/react-modal": "3.8.2",
     "@types/react-router": "3.0.20",
     "@types/react-virtualized": "9.21.0",
     "@typescript-eslint/parser": "1.11.0",
     "cpy-cli": "2.0.0",
     "date-fns": "1.30.1",
+    "diff": "^4.0.1",
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.14.0",
     "enzyme-to-json": "3.3.5",
@@ -59,8 +60,8 @@
     "eslint-plugin-react": "7.14.2",
     "eslint-plugin-react-hooks": "1.6.1",
     "eslint-plugin-sonarjs": "0.4.0",
+    "globby": "^10.0.1",
     "jest": "24.8.0",
-    "license-check": "1.1.5",
     "prettier": "1.18.2",
     "react": "16.8.6",
     "react-dom": "16.8.6",
@@ -78,7 +79,7 @@
     "test-watch": "jest --watch",
     "format": "prettier --write --list-different \"{,!(build|node_modules)/**/}*.{ts,tsx,css}\"",
     "format-check": "prettier --list-different \"{,!(build|node_modules)/**/}*.{ts,tsx,css}\"",
-    "license-check": "license-check",
+    "license-check": "node scripts/license-check",
     "lint": "eslint --ext ts,tsx --quiet \"{,!(build|node_modules)/**/}*.{ts,tsx}\"",
     "lint-report": "eslint --ext ts,tsx -f json -o build/eslint-report.json \"{,!(build|node_modules)/**/}*.{ts,tsx}\"",
     "ts-check": "tsc --noEmit",
@@ -138,17 +139,5 @@
     "jsxBracketSameLine": true,
     "printWidth": 100,
     "singleQuote": true
-  },
-  "license-check-config": {
-    "src": [
-      "**/*.ts",
-      "**/*.tsx",
-      "!node_modules/**/*",
-      "!build/**/*"
-    ],
-    "path": "HEADER",
-    "blocking": true,
-    "logInfo": false,
-    "logError": true
   }
 }
