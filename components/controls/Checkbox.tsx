@@ -20,6 +20,7 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 import DeferredSpinner from '../ui/DeferredSpinner';
+import './Checkbox.css';
 
 interface Props {
   checked: boolean;
