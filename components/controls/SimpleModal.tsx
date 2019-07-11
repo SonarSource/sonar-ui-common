@@ -31,7 +31,7 @@ interface Props extends ModalProps {
   children: (props: ChildrenProps) => React.ReactNode;
   header: string;
   onClose: () => void;
-  onSubmit: () => void | Promise<void>;
+  onSubmit: () => void | Promise<void | Response>;
 }
 
 interface State {
