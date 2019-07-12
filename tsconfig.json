@@ -7,7 +7,7 @@
     "strict": true,
     "strictFunctionTypes": false,
     "module": "commonjs",
-    "target": "es2018",
+    "target": "es5",
     "lib": ["es2018", "dom"],
     "outDir": "build/dist",
     "jsx": "react",
