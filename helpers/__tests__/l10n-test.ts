@@ -19,11 +19,11 @@
  */
 import { resetBundle, translate, translateWithParameters } from '../l10n';
 
+const MSG = 'my_message';
+
 afterEach(() => {
   resetBundle({});
 });
-
-const MSG = 'my_message';
 
 describe('#translate', () => {
   it('should translate simple message', () => {
@@ -43,6 +43,11 @@ describe('#translate', () => {
     expect(translate('random')).toBe('random');
     expect(translate('random', 'key')).toBe('random.key');
     expect(translate('composite.random', 'key')).toBe('composite.random.key');
+  });
+
+  it('should use pre-existing global bundle', () => {
+    (window as any).SonarMessages = { test: MSG };
+    expect(translate('test')).toBe(MSG);
   });
 });
 

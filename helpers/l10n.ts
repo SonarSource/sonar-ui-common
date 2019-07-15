@@ -39,24 +39,27 @@ interface BundleRequestResponse {
   messages: LanguageBundle;
 }
 
-let messages: LanguageBundle = {};
+declare let window: Window & { SonarMessages: LanguageBundle };
+if (!window.SonarMessages) {
+  window.SonarMessages = {};
+}
 
 export const DEFAULT_LANGUAGE = 'en';
 
 export function translate(...keys: string[]): string {
   const messageKey = keys.join('.');
-  if (process.env.NODE_ENV === 'development' && !messages[messageKey]) {
+  if (process.env.NODE_ENV === 'development' && !window.SonarMessages[messageKey]) {
     // eslint-disable-next-line
     console.error(`No message for: ${messageKey}`);
   }
-  return messages[messageKey] || messageKey;
+  return window.SonarMessages[messageKey] || messageKey;
 }
 
 export function translateWithParameters(
   messageKey: string,
   ...parameters: Array<string | number>
 ): string {
-  const message = messages[messageKey];
+  const message = window.SonarMessages[messageKey];
   if (message) {
     return parameters
       .map(parameter => String(parameter))
@@ -72,7 +75,7 @@ export function translateWithParameters(
 
 export function hasMessage(...keys: string[]): boolean {
   const messageKey = keys.join('.');
-  return messages[messageKey] != null;
+  return window.SonarMessages[messageKey] != null;
 }
 
 function getPreferredLanguage(): string | undefined {
@@ -136,13 +139,12 @@ export function requestMessages(): Promise<string> {
 }
 
 export function resetBundle(bundle: LanguageBundle) {
-  messages = bundle;
+  window.SonarMessages = bundle;
 }
 
 export function installGlobal() {
   (window as any).t = translate;
   (window as any).tp = translateWithParameters;
-  (window as any).requestMessages = requestMessages;
 }
 
 export function getLocalizedMetricName(
