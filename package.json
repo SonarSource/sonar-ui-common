@@ -76,7 +76,7 @@
   "scripts": {
     "clean": "rm -rf build/dist",
     "build": "scripts/build.sh",
-    "package": "cd build/dist && npm pack",
+    "package": "npm run build && cd build/dist && npm pack",
     "test": "jest",
     "test-coverage": "jest --coverage",
     "test-watch": "jest --watch",
