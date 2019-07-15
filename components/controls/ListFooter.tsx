@@ -54,13 +54,13 @@ export default function ListFooter({ ready = true, ...props }: Props) {
   const hasMore = props.total && props.total > props.count;
 
   const loadMoreLink = (
-    <a className="spacer-left" href="#" onClick={handleLoadMore}>
+    <a className="spacer-left" data-test="show-more" href="#" onClick={handleLoadMore}>
       {translate('show_more')}
     </a>
   );
 
   const reloadLink = (
-    <a className="spacer-left" href="#" onClick={handleReload}>
+    <a className="spacer-left" data-test="reload" href="#" onClick={handleReload}>
       {translate('reload')}
     </a>
   );

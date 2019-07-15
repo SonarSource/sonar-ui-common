@@ -7,6 +7,7 @@ exports[`should render "3 of 5 shown" 1`] = `
   x_of_y_shown.3.5
   <a
     className="spacer-left"
+    data-test="show-more"
     href="#"
     onClick={[Function]}
   >
@@ -22,6 +23,7 @@ exports[`should render "reload" properly 1`] = `
   x_of_y_shown.3.5
   <a
     className="spacer-left"
+    data-test="show-more"
     href="#"
     onClick={[Function]}
   >
@@ -37,6 +39,7 @@ exports[`should render "reload" properly 2`] = `
   x_of_y_shown.3.5
   <a
     className="spacer-left"
+    data-test="reload"
     href="#"
     onClick={[Function]}
   >
