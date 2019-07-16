@@ -30,39 +30,31 @@ beforeEach(() => {
 describe('parseError', () => {
   it('should parse error and return the message', () => {
     return expect(
-      parseError({
-        response: { json: jest.fn().mockResolvedValue({ errors: [{ msg: 'Error1' }] }) } as any
-      })
+      parseError({ json: jest.fn().mockResolvedValue({ errors: [{ msg: 'Error1' }] }) } as any)
     ).resolves.toBe('Error1');
   });
 
   it('should parse error and return concatenated messages', () => {
     return expect(
       parseError({
-        response: {
-          json: jest.fn().mockResolvedValue({ errors: [{ msg: 'Error1' }, { msg: 'Error2' }] })
-        } as any
-      })
+        json: jest.fn().mockResolvedValue({ errors: [{ msg: 'Error1' }, { msg: 'Error2' }] })
+      } as any)
     ).resolves.toBe('Error1. Error2');
   });
 
   it('should parse error and return default message', () => {
     return expect(
       parseError({
-        response: {
-          json: jest.fn().mockResolvedValue({})
-        } as any
-      })
+        json: jest.fn().mockResolvedValue({})
+      } as any)
     ).resolves.toBe('default_error_message');
   });
 
   it('should parse error and return default message', () => {
     return expect(
       parseError({
-        response: {
-          json: jest.fn().mockRejectedValue(undefined)
-        } as any
-      })
+        json: jest.fn().mockRejectedValue(undefined)
+      } as any)
     ).resolves.toBe('default_error_message');
   });
 });
@@ -175,7 +167,7 @@ describe('checkStatus', () => {
 
   it('should reject with the response', () => {
     const response = mockResponse({}, 500);
-    return expect(checkStatus(response)).rejects.toEqual({ response });
+    return expect(checkStatus(response)).rejects.toEqual(response);
   });
 
   it('should handle required authentication', () => {

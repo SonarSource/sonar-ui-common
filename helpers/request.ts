@@ -169,7 +169,7 @@ export function checkStatus(response: Response): Promise<Response> {
       } else if (response.status >= 200 && response.status < 300) {
         resolve(response);
       } else {
-        reject({ response });
+        reject(response);
       }
     }
   });
@@ -185,9 +185,9 @@ export function parseJSON(response: Response): Promise<any> {
 /**
  * Parse response of failed request
  */
-export function parseError(error: { response: Response }): Promise<string> {
+export function parseError(response: Response): Promise<string> {
   const DEFAULT_MESSAGE = translate('default_error_message');
-  return parseJSON(error.response)
+  return parseJSON(response)
     .then(({ errors }) => errors.map((error: any) => error.msg).join('. '))
     .catch(() => DEFAULT_MESSAGE);
 }
@@ -214,7 +214,7 @@ export function getCorsJSON(url: string, data?: RequestData): Promise<any> {
       if (response.status >= 200 && response.status < 300) {
         return parseJSON(response);
       } else {
-        return Promise.reject({ response });
+        return Promise.reject(response);
       }
     });
 }
