@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-npm run clean
-npx tsc
+yarn clean
+yarn tsc
 cp package.json README.md types.d.ts build/dist
-npx cpy 'components/**/*.css' 'build/dist' --parents
+yarn cpy 'components/**/*.css' 'build/dist' --parents

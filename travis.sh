@@ -22,13 +22,14 @@ configureTravis
 cancel_branch_build_with_pr || if [[ $? -eq 1 ]]; then exit 0; fi
 
 # Install node modules
-npm ci
+echo '======= Install node modules'
+yarn install --frozen-lockfile
 
 case "$TARGET" in
 
 BUILD)
   echo '======= Run Build'
-  npm run build
+  yarn build
   ;;
 
 ANALYZE)
@@ -42,7 +43,7 @@ ANALYZE)
 
 
   echo '======= Run Validate CI'
-  npm run validate-ci
+  yarn validate-ci
 
   # Install sonar-scanner
   pushd ~ > /dev/null

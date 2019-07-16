@@ -18,7 +18,8 @@
     "date-fns": "1.30.1",
     "formik": "1.2.0",
     "history": "3.3.0",
-    "lodash": "4.17.11",
+    "lodash": "4.17.14",
+    "prop-types": "15.7.2",
     "react-draggable": "3.2.1",
     "react-intl": "2.8.0",
     "react-modal": "3.8.2",
@@ -41,7 +42,7 @@
     "@types/d3-zoom": "^1.7.3",
     "@types/enzyme": "3.10.1",
     "@types/jest": "24.0.15",
-    "@types/lodash": "4.14.134",
+    "@types/lodash": "4.14.136",
     "@types/react": "16.8.23",
     "@types/react-dom": "16.8.4",
     "@types/react-intl": "2.3.17",
@@ -76,22 +77,21 @@
   "scripts": {
     "clean": "rm -rf build/dist",
     "build": "scripts/build.sh",
-    "package": "npm run build && cd build/dist && npm pack",
+    "package": "yarn build && cd build/dist && yarn pack",
     "test": "jest",
     "test-coverage": "jest --coverage",
-    "test-watch": "jest --watch",
     "format": "prettier --write --list-different \"{,!(build|node_modules)/**/}*.{ts,tsx,css}\"",
     "format-check": "prettier --list-different \"{,!(build|node_modules)/**/}*.{ts,tsx,css}\"",
     "license-check": "node scripts/license-check",
     "lint": "eslint --ext ts,tsx --quiet \"{,!(build|node_modules)/**/}*.{ts,tsx}\"",
     "lint-report": "eslint --ext ts,tsx -f json -o build/eslint-report.json \"{,!(build|node_modules)/**/}*.{ts,tsx}\"",
     "ts-check": "tsc --noEmit",
-    "validate": "npm run ts-check && npm run license-check && npm run lint && npm run format-check && npm run test",
-    "validate-ci": "npm run lint-report && npm run license-check && npm run format-check && npm run test-coverage"
+    "validate": "yarn ts-check && yarn license-check && yarn lint && yarn format-check && yarn test",
+    "validate-ci": "yarn lint-report && yarn license-check && yarn format-check && yarn test --coverage"
   },
   "engines": {
     "node": ">=8.6",
-    "npm": ">=6.9.0"
+    "yarn": ">=1.17.0"
   },
   "jest": {
     "coverageDirectory": "<rootDir>/build/coverage",
