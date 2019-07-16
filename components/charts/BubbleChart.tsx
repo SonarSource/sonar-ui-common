@@ -24,7 +24,7 @@ import { Link } from 'react-router';
 import { min, max } from 'd3-array';
 import { scaleLinear, ScaleLinear } from 'd3-scale';
 import { zoom, zoomIdentity, ZoomBehavior } from 'd3-zoom';
-import { event, select, Selection } from 'd3-selection';
+import { event, select } from 'd3-selection';
 import { sortBy, uniq } from 'lodash';
 import { translate } from '../../helpers/l10n';
 import { Location } from '../../helpers/urls';
@@ -68,9 +68,8 @@ interface State {
 type Scale = ScaleLinear<number, number>;
 
 export default class BubbleChart<T> extends React.PureComponent<Props<T>, State> {
-  node?: Element;
-  selection?: Selection<Element, unknown, null, undefined>;
-  zoom?: ZoomBehavior<Element, unknown>;
+  private node?: Element;
+  private zoom?: ZoomBehavior<Element, unknown>;
 
   static defaultProps = {
     displayXGrid: true,
@@ -100,7 +99,7 @@ export default class BubbleChart<T> extends React.PureComponent<Props<T>, State>
     this.zoom = zoom()
       .scaleExtent([1, 10])
       .on('zoom', this.zoomed);
-    this.selection = select(this.node).call(this.zoom);
+    select(this.node).call(this.zoom);
   };
 
   zoomed = () => {
