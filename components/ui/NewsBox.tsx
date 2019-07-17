@@ -35,7 +35,7 @@ export default function NewsBox({ children, className, onClose, title }: Props) 
     <div className={classNames('news-box', className)} role="alert">
       <div className="news-box-header">
         <div className="display-flex-center">
-          <span className="badge badge-new spacer-right">{translate('new')}</span>
+          <span className="badge badge-info spacer-right">{translate('new')}</span>
           <strong>{title}</strong>
         </div>
         <ClearButton
