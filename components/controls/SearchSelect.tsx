@@ -19,39 +19,40 @@
  */
 import * as React from 'react';
 import { debounce } from 'lodash';
+import { OptionValues, Option } from 'react-select';
 import Select, { Creatable } from './Select';
 import { translate, translateWithParameters } from '../../helpers/l10n';
 
-interface Props<T> {
+interface Props<TValue> {
   autofocus?: boolean;
   canCreate?: boolean;
   className?: string;
   clearable?: boolean;
-  defaultOptions?: T[];
+  defaultOptions?: Option<TValue>[];
   minimumQueryLength?: number;
   multi?: boolean;
-  onSearch: (query: string) => Promise<T[]>;
-  onSelect?: (option: T) => void;
-  onMultiSelect?: (options: T[]) => void;
+  onSearch: (query: string) => Promise<Option<TValue>[]>;
+  onSelect?: (option: Option<TValue>) => void;
+  onMultiSelect?: (options: Option<TValue>[]) => void;
   promptTextCreator?: (label: string) => string;
-  renderOption?: (option: T) => JSX.Element;
+  renderOption?: (option: Option<TValue>) => JSX.Element;
   resetOnBlur?: boolean;
-  value?: T | T[];
+  value?: Option<TValue> | Option<TValue>[];
 }
 
-interface State<T> {
+interface State<TValue> {
   loading: boolean;
-  options: T[];
+  options: Option<TValue>[];
   query: string;
 }
 
-export default class SearchSelect<T extends { value: string }> extends React.PureComponent<
-  Props<T>,
-  State<T>
+export default class SearchSelect<TValue = OptionValues> extends React.PureComponent<
+  Props<TValue>,
+  State<TValue>
 > {
   mounted = false;
 
-  constructor(props: Props<T>) {
+  constructor(props: Props<TValue>) {
     super(props);
     this.state = { loading: false, options: props.defaultOptions || [], query: '' };
     this.handleSearch = debounce(this.handleSearch, 250);
@@ -97,7 +98,7 @@ export default class SearchSelect<T extends { value: string }> extends React.Pur
     );
   };
 
-  handleChange = (option: T | T[]) => {
+  handleChange = (option: TValue | TValue[]) => {
     if (Array.isArray(option)) {
       if (this.props.onMultiSelect) {
         this.props.onMultiSelect(option);
@@ -123,32 +124,33 @@ export default class SearchSelect<T extends { value: string }> extends React.Pur
   handleFilterOption = () => true;
 
   render() {
-    const Component = this.props.canCreate ? Creatable : Select;
-    return (
-      <Component
-        autoFocus={this.autofocus}
-        className={this.props.className}
-        clearable={this.props.clearable}
-        escapeClearsValue={false}
-        filterOption={this.handleFilterOption}
-        isLoading={this.state.loading}
-        multi={this.props.multi}
-        noResultsText={
-          this.state.query.length < this.minimumQueryLength
-            ? translateWithParameters('select2.tooShort', this.minimumQueryLength)
-            : translate('select2.noMatches')
-        }
-        onBlurResetsInput={this.resetOnBlur}
-        onChange={this.handleChange}
-        onInputChange={this.handleInputChange}
-        optionRenderer={this.props.renderOption}
-        options={this.state.options}
-        placeholder={translate('search_verb')}
-        promptTextCreator={this.props.promptTextCreator}
-        searchable={true}
-        value={this.props.value}
-        valueRenderer={this.props.renderOption}
-      />
-    );
+    const commonProps = {
+      autoFocus: this.autofocus,
+      className: this.props.className,
+      clearable: this.props.clearable,
+      escapeClearsValue: false,
+      filterOption: this.handleFilterOption,
+      isLoading: this.state.loading,
+      multi: this.props.multi,
+      noResultsText:
+        this.state.query.length < this.minimumQueryLength
+          ? translateWithParameters('select2.tooShort', this.minimumQueryLength)
+          : translate('select2.noMatches'),
+      onBlurResetsInput: this.resetOnBlur,
+      onChange: this.handleChange,
+      onInputChange: this.handleInputChange,
+      optionRenderer: this.props.renderOption,
+      options: this.state.options,
+      placeholder: translate('search_verb'),
+      promptTextCreator: this.props.promptTextCreator,
+      searchable: true,
+      value: this.props.value,
+      valueRenderer: this.props.renderOption
+    };
+    if (this.props.canCreate) {
+      return <Creatable promptTextCreator={this.props.promptTextCreator} {...commonProps} />;
+    }
+
+    return <Select {...commonProps} />;
   }
 }

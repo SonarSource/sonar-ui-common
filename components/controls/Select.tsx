@@ -18,15 +18,26 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import * as React from 'react';
-import { ReactSelectProps, ReactCreatableSelectProps, ReactAsyncSelectProps } from 'react-select';
+import {
+  ReactSelectProps,
+  ReactCreatableSelectProps,
+  ReactAsyncSelectProps,
+  OptionValues
+} from 'react-select';
 import { ClearButton } from './buttons';
 import { lazyLoad } from '../lazyLoad';
 import './Select.css';
 
 const ReactSelectLib = import('react-select');
-const ReactSelect = lazyLoad(() => ReactSelectLib);
-const ReactCreatable = lazyLoad(() => ReactSelectLib.then(lib => ({ default: lib.Creatable })));
-const ReactAsync = lazyLoad(() => ReactSelectLib.then(lib => ({ default: lib.Async })));
+const ReactSelect = lazyLoad(() => ReactSelectLib, 'ReactSelect');
+const ReactCreatable = lazyLoad(
+  () => ReactSelectLib.then(lib => ({ default: lib.Creatable })),
+  'ReactCreatable'
+);
+const ReactAsync = lazyLoad(
+  () => ReactSelectLib.then(lib => ({ default: lib.Async })),
+  'ReactAsync'
+);
 
 function renderInput() {
   return <ClearButton className="button-tiny spacer-left text-middle" iconProps={{ size: 12 }} />;
@@ -36,24 +47,35 @@ interface WithInnerRef {
   innerRef?: (element: React.Component) => void;
 }
 
-export default function Select({ innerRef, ...props }: WithInnerRef & ReactSelectProps) {
+export default function Select<TValue = OptionValues>({
+  innerRef,
+  ...props
+}: WithInnerRef & ReactSelectProps<TValue>) {
   // TODO try to define good defaults, if any
   // ReactSelect doesn't declare `clearRenderer` prop
   const ReactSelectAny = ReactSelect as any;
   // hide the "x" icon when select is empty
   const clearable = props.clearable ? Boolean(props.value) : false;
   return (
-    <ReactSelectAny {...props} clearRenderer={renderInput} clearable={clearable} ref={innerRef} />
+    <ReactSelectAny<TValue>
+      {...props}
+      clearRenderer={renderInput}
+      clearable={clearable}
+      ref={innerRef}
+    />
   );
 }
 
-export function Creatable(props: ReactCreatableSelectProps) {
+export function Creatable<TValue = OptionValues>(props: ReactCreatableSelectProps<TValue>) {
   // ReactSelect doesn't declare `clearRenderer` prop
   const ReactCreatableAny = ReactCreatable as any;
-  return <ReactCreatableAny {...props} clearRenderer={renderInput} />;
+  return <ReactCreatableAny<TValue> {...props} clearRenderer={renderInput} />;
 }
 
 // TODO figure out why `ref` prop is incompatible
-export function AsyncSelect(props: ReactAsyncSelectProps & { ref?: any }) {
-  return <ReactAsync {...props} />;
+export function AsyncSelect<TValue = OptionValues>(
+  props: ReactAsyncSelectProps<TValue> & { ref?: any }
+) {
+  const ReactAsyncAny = ReactAsync as any;
+  return <ReactAsyncAny<TValue> {...props} />;
 }
