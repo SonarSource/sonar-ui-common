@@ -8,6 +8,14 @@ npm.tar.gz
 yarn-debug.log*
 yarn-error.log*
 
+## IntelliJ IDEA
+*.iws
+*.iml
+*.ipr
+.idea/
+.attach_pid*
+out/
+
 ## VSCode
 .vscode/
 *.code-workspace
