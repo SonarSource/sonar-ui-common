@@ -12,7 +12,7 @@ exports[`should render correctly 1`] = `
       className="display-flex-center"
     >
       <span
-        className="badge badge-new spacer-right"
+        className="badge badge-info spacer-right"
       >
         new
       </span>
