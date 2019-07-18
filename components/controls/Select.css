@@ -119,13 +119,6 @@
   padding-top: 4px;
 }
 
-.Select-value .badge,
-.Select-option .badge {
-  height: 20px;
-  line-height: 19px;
-  margin-top: 1px;
-}
-
 .Select-option svg,
 .Select-option img,
 .Select-option [class^='icon-'] {
