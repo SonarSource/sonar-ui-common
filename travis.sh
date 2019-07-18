@@ -25,11 +25,32 @@ cancel_branch_build_with_pr || if [[ $? -eq 1 ]]; then exit 0; fi
 echo '======= Install node modules'
 yarn install --frozen-lockfile
 
+# Get project version
+SONAR_PROJECT_VERSION=$(node -p -e "require('./package.json').version")
+
 case "$TARGET" in
 
 BUILD)
   echo '======= Run Build'
-  yarn build
+  yarn package
+
+  if [ "${TRAVIS_BRANCH}" == "master" ] && [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
+    
+    BRANCH=$TRAVIS_BRANCH
+    if [ "$TRAVIS_PULL_REQUEST" != "false" ]; then
+      BRANCH=$TRAVIS_PULL_REQUEST_BRANCH
+    fi
+    
+    echo '======= Upload artifact'
+    jfrog rt c rt-sonarsource --url="$ARTIFACTORY_URL" --user="$ARTIFACTORY_DEPLOY_USERNAME" --password="$ARTIFACTORY_DEPLOY_PASSWORD"
+    jfrog rt u \
+      "build/dist/sonar-ui-common-v$SONAR_PROJECT_VERSION.tgz" \
+      "$ARTIFACTORY_DEPLOY_REPO/org/sonarsource/sonar-ui-common/sonar-ui-common-v$SONAR_PROJECT_VERSION-$TRAVIS_BUILD_NUMBER.tgz" \
+      --server-id="rt-sonarsource" \
+      --build-name="sonar-ui-common" \
+      --build-number="$TRAVIS_BUILD_NUMBER" \
+      --props="vcs.revision=$TRAVIS_COMMIT;vcs.branch=$BRANCH"
+  fi
   ;;
 
 ANALYZE)
@@ -56,20 +77,16 @@ ANALYZE)
   export PATH=$PATH:~/sonar-scanner-3.0.3.778-linux/bin
   popd > /dev/null
 
-  # Get project version
-  SONAR_PROJECT_VERSION=$(node -p -e "require('./package.json').version")
-
   if [ "${TRAVIS_BRANCH}" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
     echo '======= Analyze master'
-  
     sonar-scanner \
-        -Dsonar.host.url=$SONAR_HOST_URL \
-        -Dsonar.login=$SONAR_TOKEN \
-        -Dsonar.projectVersion=$SONAR_PROJECT_VERSION \
-        -Dsonar.analysis.buildNumber=$TRAVIS_BUILD_NUMBER \
-        -Dsonar.analysis.pipeline=$TRAVIS_BUILD_NUMBER \
-        -Dsonar.analysis.sha1=$TRAVIS_COMMIT  \
-        -Dsonar.analysis.repository=$TRAVIS_REPO_SLUG \
+      -Dsonar.host.url=$SONAR_HOST_URL \
+      -Dsonar.login=$SONAR_TOKEN \
+      -Dsonar.projectVersion=$SONAR_PROJECT_VERSION \
+      -Dsonar.analysis.buildNumber=$TRAVIS_BUILD_NUMBER \
+      -Dsonar.analysis.pipeline=$TRAVIS_BUILD_NUMBER \
+      -Dsonar.analysis.sha1=$TRAVIS_COMMIT  \
+      -Dsonar.analysis.repository=$TRAVIS_REPO_SLUG \
 
   elif [ "$TRAVIS_PULL_REQUEST" != "false" ] && [ -n "${GITHUB_TOKEN:-}" ]; then
     echo '======= Analyze pull request'
