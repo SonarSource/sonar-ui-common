@@ -90,8 +90,8 @@
     "validate-ci": "yarn lint-report && yarn license-check && yarn format-check && yarn test --coverage"
   },
   "engines": {
-    "node": ">=8.6",
-    "yarn": ">=1.17.0"
+    "node": ">=10.15.3",
+    "yarn": ">=1.15.2"
   },
   "jest": {
     "coverageDirectory": "<rootDir>/build/coverage",
