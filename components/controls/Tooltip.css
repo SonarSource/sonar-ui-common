@@ -136,6 +136,11 @@
   border-bottom-color: #475760;
 }
 
+/* Workaround for react issue with onMouseLeave in disabled buttons: https://github.com/facebook/react/issues/4251 */
+.tooltip button[disabled] {
+  pointer-events: none;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
