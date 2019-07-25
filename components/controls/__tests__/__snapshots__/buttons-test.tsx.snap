@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ButtonIcon should render correctly 1`] = `
+<Tooltip
+  mouseEnterDelay={0.4}
+  overlay="my tooltip"
+  visible={true}
+>
+  <Button
+    className="button-icon"
+    stopPropagation={true}
+    style={
+      Object {
+        "color": undefined,
+      }
+    }
+  >
+    <i />
+  </Button>
+</Tooltip>
+`;

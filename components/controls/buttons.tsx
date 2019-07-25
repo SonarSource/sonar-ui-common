@@ -26,7 +26,7 @@ import EditIcon from '../icons/EditIcon';
 import { IconProps } from '../icons/Icon';
 import ThemeContext from '../ThemeContext';
 import './buttons.css';
-import Tooltip from './Tooltip';
+import Tooltip, { TooltipProps } from './Tooltip';
 
 type AllowedButtonAttributes = Pick<
   React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -98,35 +98,30 @@ export function ResetButtonLink(props: T.Omit<ButtonProps, 'type'>) {
   return <ButtonLink {...props} type="reset" />;
 }
 
-interface ButtonIconProps extends ButtonProps {
+export interface ButtonIconProps extends ButtonProps {
   className?: string;
   color?: string;
   onClick?: () => void;
-  tooltip?: string;
+  tooltip?: React.ReactNode;
+  tooltipProps?: Partial<TooltipProps>;
 }
 
 export function ButtonIcon(props: ButtonIconProps) {
-  const { className, color, tooltip, ...other } = props;
-  const buttonComponent = (
+  const { className, color, tooltip, tooltipProps, ...other } = props;
+  return (
     <ThemeContext.Consumer>
       {({ theme }) => (
-        <Button
-          className={classNames(className, 'button-icon')}
-          stopPropagation={true}
-          style={{ color: color || theme.colors.darkBlue }}
-          {...other}
-        />
+        <Tooltip mouseEnterDelay={0.4} overlay={tooltip} {...tooltipProps}>
+          <Button
+            className={classNames(className, 'button-icon')}
+            stopPropagation={true}
+            style={{ color: color || theme.colors.darkBlue }}
+            {...other}
+          />
+        </Tooltip>
       )}
     </ThemeContext.Consumer>
   );
-  if (tooltip) {
-    return (
-      <Tooltip mouseEnterDelay={0.4} overlay={tooltip}>
-        {buttonComponent}
-      </Tooltip>
-    );
-  }
-  return buttonComponent;
 }
 
 interface ClearButtonProps extends ButtonIconProps {
