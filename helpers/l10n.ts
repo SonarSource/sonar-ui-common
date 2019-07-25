@@ -127,7 +127,7 @@ export function requestMessages(): Promise<string> {
       resetBundle(messages);
       return effectiveLocale;
     },
-    ({ response }) => {
+    response => {
       if (response && response.status === 304) {
         resetBundle(JSON.parse(get(L10_BUNDLE) || '{}') as LanguageBundle);
       } else {

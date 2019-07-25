@@ -17,12 +17,22 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { resetBundle, translate, translateWithParameters } from '../l10n';
+// require a "parent object" for spying
+import { resetBundle, translate, translateWithParameters, requestMessages } from '../l10n';
+import { getJSON } from '../request';
+
+jest.mock('../request', () => ({
+  getJSON: jest.fn()
+}));
 
 const MSG = 'my_message';
 
 afterEach(() => {
   resetBundle({});
+});
+
+beforeEach(() => {
+  jest.clearAllMocks();
 });
 
 describe('#translate', () => {
@@ -78,5 +88,27 @@ describe('#translateWithParameters', () => {
     expect(translateWithParameters('random', 5)).toBe('random.5');
     expect(translateWithParameters('random', 1, 2, 3)).toBe('random.1.2.3');
     expect(translateWithParameters('composite.random', 1, 2)).toBe('composite.random.1.2');
+  });
+});
+
+describe('requestMessages', () => {
+  it('should handle 304', () => {
+    (getJSON as jest.Mock).mockRejectedValue({ status: 304 });
+
+    resetBundle({ foo: 'bar' });
+
+    return requestMessages().then(() => {
+      expect((window as any).SonarMessages).toEqual({});
+    });
+  });
+
+  it('should forward unexpected errors', () => {
+    (getJSON as jest.Mock).mockRejectedValue({ status: 401 });
+
+    return requestMessages()
+      .then(() => {
+        fail('should throw');
+      })
+      .catch((error: any) => expect(error.message).toBe('Unexpected status code: 401'));
   });
 });
