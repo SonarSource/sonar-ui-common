@@ -96,7 +96,7 @@ export class TooltipInner extends React.Component<Props, State> {
   componentDidUpdate(prevProps: Props, prevState: State) {
     if (
       // opens
-      (this.props.visible === true && prevProps.visible === false) ||
+      (this.props.visible === true && !prevProps.visible) ||
       (this.props.visible === undefined &&
         this.state.visible === true &&
         prevState.visible === false)
@@ -105,7 +105,7 @@ export class TooltipInner extends React.Component<Props, State> {
       this.addEventListeners();
     } else if (
       // closes
-      (this.props.visible === false && prevProps.visible === true) ||
+      (!this.props.visible && prevProps.visible === true) ||
       (this.props.visible === undefined &&
         this.state.visible === false &&
         prevState.visible === true)
