@@ -25,7 +25,7 @@ import './Tooltip.css';
 
 export type Placement = 'bottom' | 'right' | 'left' | 'top';
 
-interface Props {
+export interface TooltipProps {
   classNameSpace?: string;
   children: React.ReactElement<{}>;
   mouseEnterDelay?: number;
@@ -54,7 +54,7 @@ function isMeasured(state: State): state is OwnState & Measurements {
   return state.height !== undefined;
 }
 
-export default function Tooltip(props: Props) {
+export default function Tooltip(props: TooltipProps) {
   // overlay is a ReactNode, so it can be `undefined` or `null`
   // this allows to easily render a tooltip conditionally
   // more generaly we avoid rendering empty tooltips
@@ -65,7 +65,7 @@ export default function Tooltip(props: Props) {
   );
 }
 
-export class TooltipInner extends React.Component<Props, State> {
+export class TooltipInner extends React.Component<TooltipProps, State> {
   throttledPositionTooltip: () => void;
   mouseEnterTimeout?: number;
   mouseLeaveTimeout?: number;
@@ -77,7 +77,7 @@ export class TooltipInner extends React.Component<Props, State> {
     mouseEnterDelay: 0.1
   };
 
-  constructor(props: Props) {
+  constructor(props: TooltipProps) {
     super(props);
     this.state = {
       visible: props.visible !== undefined ? props.visible : false
@@ -93,7 +93,7 @@ export class TooltipInner extends React.Component<Props, State> {
     }
   }
 
-  componentDidUpdate(prevProps: Props, prevState: State) {
+  componentDidUpdate(prevProps: TooltipProps, prevState: State) {
     if (
       // opens
       (this.props.visible === true && !prevProps.visible) ||

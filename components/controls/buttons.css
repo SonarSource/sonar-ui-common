@@ -314,3 +314,7 @@
   border-color: var(--blue);
   color: var(--darkBlue);
 }
+
+.no-select {
+  user-select: none !important;
+}

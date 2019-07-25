@@ -104,11 +104,7 @@
     ],
     "globals": {
       "ts-jest": {
-        "diagnostics": {
-          "ignoreCodes": [
-            151001
-          ]
-        }
+        "diagnostics": false
       }
     },
     "moduleFileExtensions": [
