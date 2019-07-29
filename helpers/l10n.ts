@@ -149,9 +149,10 @@ export function installGlobal() {
 
 export function getLocalizedMetricName(
   metric: { key: string; name?: string },
-  short = false
+  short = false,
+  ignoreNew = false
 ): string {
-  const bundleKey = `metric.${metric.key}.${short ? 'short_name' : 'name'}`;
+  const bundleKey = `metric.${ignoreNew ? metric.key.replace('new_', '') : metric.key}.${short ? 'short_name' : 'name'}`;
   if (hasMessage(bundleKey)) {
     return translate(bundleKey);
   } else if (short) {
