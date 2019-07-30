@@ -17,10 +17,10 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import * as React from 'react';
 import { shallow } from 'enzyme';
-import Checkbox from '../Checkbox';
+import * as React from 'react';
 import { click } from '../../../helpers/testUtils';
+import Checkbox from '../Checkbox';
 
 it('should render', () => {
   const checkbox = shallow(<Checkbox checked={true} onCheck={() => {}} title="Title value" />);

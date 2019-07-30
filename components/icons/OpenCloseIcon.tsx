@@ -18,9 +18,9 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import * as React from 'react';
-import { IconProps } from './Icon';
 import ChevronDownIcon from './ChevronDownIcon';
 import ChevronRightIcon from './ChevronRightIcon';
+import { IconProps } from './Icon';
 
 interface Props extends IconProps {
   open: boolean;

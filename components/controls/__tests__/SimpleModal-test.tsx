@@ -17,11 +17,11 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import * as React from 'react';
 import { shallow } from 'enzyme';
+import * as React from 'react';
+import { click, waitAndUpdate } from '../../../helpers/testUtils';
 import { Button } from '../buttons';
 import SimpleModal, { ChildrenProps } from '../SimpleModal';
-import { click, waitAndUpdate } from '../../../helpers/testUtils';
 
 it('renders', () => {
   expect(shallowRender()).toMatchSnapshot();

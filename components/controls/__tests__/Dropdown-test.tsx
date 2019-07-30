@@ -17,12 +17,12 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+import { mount, shallow, ShallowWrapper } from 'enzyme';
 import * as React from 'react';
-import { shallow, mount, ShallowWrapper } from 'enzyme';
-import Dropdown, { DropdownOverlay } from '../Dropdown';
-import { Button } from '../buttons';
 import { click } from '../../../helpers/testUtils';
 import { PopupPlacement } from '../../ui/popups';
+import { Button } from '../buttons';
+import Dropdown, { DropdownOverlay } from '../Dropdown';
 
 describe('Dropdown', () => {
   it('renders', () => {

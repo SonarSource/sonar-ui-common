@@ -17,15 +17,15 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import * as React from 'react';
 import * as classNames from 'classnames';
-import { AutoSizer } from 'react-virtualized/dist/commonjs/AutoSizer';
-import { Link } from 'react-router';
-import { min, max } from 'd3-array';
+import { max, min } from 'd3-array';
 import { scaleLinear, ScaleLinear } from 'd3-scale';
-import { zoom, zoomIdentity, ZoomBehavior } from 'd3-zoom';
 import { event, select } from 'd3-selection';
+import { zoom, ZoomBehavior, zoomIdentity } from 'd3-zoom';
 import { sortBy, uniq } from 'lodash';
+import * as React from 'react';
+import { Link } from 'react-router';
+import { AutoSizer } from 'react-virtualized/dist/commonjs/AutoSizer';
 import { translate } from '../../helpers/l10n';
 import { Location } from '../../helpers/urls';
 import Tooltip from '../controls/Tooltip';

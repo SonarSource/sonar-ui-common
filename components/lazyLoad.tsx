@@ -18,9 +18,9 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import * as React from 'react';
-import { Alert } from './ui/Alert';
-import { get, save } from '../helpers/storage';
 import { translate } from '../helpers/l10n';
+import { get, save } from '../helpers/storage';
+import { Alert } from './ui/Alert';
 
 interface Loader<P> {
   (): Promise<{ default: React.ComponentType<P> }>;

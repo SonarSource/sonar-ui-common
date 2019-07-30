@@ -17,13 +17,13 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import * as React from 'react';
 import * as classNames from 'classnames';
-import { flatten, sortBy, throttle } from 'lodash';
 import { extent, max } from 'd3-array';
 import { scaleLinear, scalePoint, scaleTime, ScaleTime } from 'd3-scale';
-import { line as d3Line, area, curveBasis } from 'd3-shape';
-import Draggable, { DraggableCore, DraggableBounds, DraggableData } from 'react-draggable';
+import { area, curveBasis, line as d3Line } from 'd3-shape';
+import { flatten, sortBy, throttle } from 'lodash';
+import * as React from 'react';
+import Draggable, { DraggableBounds, DraggableCore, DraggableData } from 'react-draggable';
 import ThemeContext from '../ThemeContext';
 import './LineChart.css';
 import './ZoomTimeLine.css';

@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 // require a "parent object" for spying
-import { resetBundle, translate, translateWithParameters, requestMessages } from '../l10n';
+import { requestMessages, resetBundle, translate, translateWithParameters } from '../l10n';
 import { getJSON } from '../request';
 
 jest.mock('../request', () => ({

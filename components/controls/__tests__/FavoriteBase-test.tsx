@@ -17,10 +17,10 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import * as React from 'react';
 import { shallow } from 'enzyme';
-import FavoriteBase, { Props } from '../FavoriteBase';
+import * as React from 'react';
 import { click } from '../../../helpers/testUtils';
+import FavoriteBase, { Props } from '../FavoriteBase';
 
 it('should render favorite', () => {
   const favorite = renderFavoriteBase({ favorite: true });

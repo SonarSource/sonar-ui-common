@@ -17,9 +17,9 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import * as React from 'react';
 import { max } from 'd3-array';
-import { scaleLinear, scaleBand, ScaleLinear, ScaleBand } from 'd3-scale';
+import { scaleBand, ScaleBand, scaleLinear, ScaleLinear } from 'd3-scale';
+import * as React from 'react';
 import Tooltip from '../controls/Tooltip';
 import './BarChart.css';
 import './Histogram.css';

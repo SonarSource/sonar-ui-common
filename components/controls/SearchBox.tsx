@@ -17,13 +17,13 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import * as React from 'react';
 import * as classNames from 'classnames';
-import { debounce, Cancelable } from 'lodash';
-import { ClearButton } from './buttons';
-import DeferredSpinner from '../ui/DeferredSpinner';
+import { Cancelable, debounce } from 'lodash';
+import * as React from 'react';
+import { translate, translateWithParameters } from '../../helpers/l10n';
 import SearchIcon from '../icons/SearchIcon';
-import { translateWithParameters, translate } from '../../helpers/l10n';
+import DeferredSpinner from '../ui/DeferredSpinner';
+import { ClearButton } from './buttons';
 import './SearchBox.css';
 
 interface Props {

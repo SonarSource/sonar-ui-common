@@ -17,8 +17,8 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import * as query from '../query';
 import { parseDate } from '../dates';
+import * as query from '../query';
 
 describe('queriesEqual', () => {
   it('should correctly test equality of two queries', () => {

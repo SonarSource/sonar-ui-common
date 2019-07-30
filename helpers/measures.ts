@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { translate, translateWithParameters, getCurrentLocale } from './l10n';
+import { getCurrentLocale, translate, translateWithParameters } from './l10n';
 
 const HOURS_IN_DAY = 8;
 

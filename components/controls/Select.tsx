@@ -18,9 +18,9 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import * as React from 'react';
-import { ReactSelectProps, ReactCreatableSelectProps, ReactAsyncSelectProps } from 'react-select';
-import { ClearButton } from './buttons';
+import { ReactAsyncSelectProps, ReactCreatableSelectProps, ReactSelectProps } from 'react-select';
 import { lazyLoad } from '../lazyLoad';
+import { ClearButton } from './buttons';
 import './Select.css';
 
 const ReactSelectLib = import('react-select');
