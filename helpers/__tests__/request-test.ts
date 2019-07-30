@@ -92,12 +92,13 @@ describe('requestTryAndRepeatUntil', () => {
   });
 
   it('should repeat call as long as there is an error', async () => {
-    const apiCall = jest.fn().mockRejectedValue({ response: { status: 504 } });
+    const apiCall = jest.fn().mockRejectedValue({ status: 504 });
     const stopRepeat = jest.fn().mockReturnValue(true);
     const promiseResult = requestTryAndRepeatUntil(
       apiCall,
       { max: -1, slowThreshold: -20 },
-      stopRepeat
+      stopRepeat,
+      [504]
     );
 
     for (let i = 1; i < 5; i++) {
