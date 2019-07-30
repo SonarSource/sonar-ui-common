@@ -296,8 +296,8 @@ export function requestTryAndRepeatUntil<T>(
       }
       return tryRequestAgain(repeatAPICall, tries, stopRepeat, repeatErrors);
     },
-    (error: { response: Response }) => {
-      if (repeatErrors.length === 0 || repeatErrors.includes(error.response.status)) {
+    (error: Response) => {
+      if (repeatErrors.length === 0 || repeatErrors.includes(error.status)) {
         return tryRequestAgain(repeatAPICall, tries, stopRepeat, repeatErrors);
       }
       return Promise.reject(error);
