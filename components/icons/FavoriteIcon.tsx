@@ -17,10 +17,10 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import * as React from 'react';
 import * as classNames from 'classnames';
-import Icon, { IconProps } from './Icon';
+import * as React from 'react';
 import ThemeContext from '../ThemeContext';
+import Icon, { IconProps } from './Icon';
 
 interface Props extends IconProps {
   favorite: boolean;

@@ -17,14 +17,14 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import * as React from 'react';
 import * as classNames from 'classnames';
-import { Link } from 'react-router';
 import { LocationDescriptor } from 'history';
-import { Button } from './buttons';
-import Dropdown from './Dropdown';
+import * as React from 'react';
+import { Link } from 'react-router';
 import DropdownIcon from '../icons/DropdownIcon';
 import SettingsIcon from '../icons/SettingsIcon';
+import { Button } from './buttons';
+import Dropdown from './Dropdown';
 
 interface Props {
   className?: string;

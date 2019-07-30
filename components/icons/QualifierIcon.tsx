@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import * as React from 'react';
-import { ThemedIcon, IconProps } from './Icon';
+import { IconProps, ThemedIcon } from './Icon';
 
 const qualifierIcons: T.Dict<(props: IconProps) => React.ReactElement> = {
   app: ApplicationIcon,

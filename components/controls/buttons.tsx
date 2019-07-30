@@ -17,16 +17,16 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import * as React from 'react';
 import * as classNames from 'classnames';
-import Tooltip from './Tooltip';
-import { IconProps } from '../icons/Icon';
+import * as React from 'react';
 import ChevronRightIcon from '../icons/ChevronRightIcon';
 import ClearIcon, { ClearIconProps } from '../icons/ClearIcon';
 import DeleteIcon from '../icons/DeleteIcon';
 import EditIcon from '../icons/EditIcon';
+import { IconProps } from '../icons/Icon';
 import ThemeContext from '../ThemeContext';
 import './buttons.css';
+import Tooltip from './Tooltip';
 
 type AllowedButtonAttributes = Pick<
   React.ButtonHTMLAttributes<HTMLButtonElement>,

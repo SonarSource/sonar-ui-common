@@ -17,10 +17,10 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import * as React from 'react';
 import { shallow } from 'enzyme';
-import Toggler from '../Toggler';
+import * as React from 'react';
 import { keydown } from '../../../helpers/testUtils';
+import Toggler from '../Toggler';
 
 it('should render only children', () => {
   expect(shallowRender({ open: false })).toMatchSnapshot();

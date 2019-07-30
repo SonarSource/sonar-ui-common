@@ -17,10 +17,10 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import * as React from 'react';
 import { extent, max } from 'd3-array';
 import { scaleLinear, ScaleLinear } from 'd3-scale';
-import { area as d3Area, line as d3Line, curveBasis } from 'd3-shape';
+import { area as d3Area, curveBasis, line as d3Line } from 'd3-shape';
+import * as React from 'react';
 import { AutoSizer } from 'react-virtualized/dist/commonjs/AutoSizer';
 import './LineChart.css';
 

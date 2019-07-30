@@ -18,11 +18,11 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import * as React from 'react';
-import { SubmitButton, ResetButtonLink } from './buttons';
+import { translate } from '../../helpers/l10n';
+import DeferredSpinner from '../ui/DeferredSpinner';
+import { ResetButtonLink, SubmitButton } from './buttons';
 import Modal, { ModalProps } from './Modal';
 import ValidationForm, { ChildrenProps } from './ValidationForm';
-import DeferredSpinner from '../ui/DeferredSpinner';
-import { translate } from '../../helpers/l10n';
 
 interface Props<V> extends ModalProps {
   children: (props: ChildrenProps<V>) => React.ReactNode;

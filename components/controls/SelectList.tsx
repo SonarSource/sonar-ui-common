@@ -18,12 +18,12 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import * as React from 'react';
-import SelectListListContainer from './SelectListListContainer';
-import SearchBox from './SearchBox';
-import RadioToggle from './RadioToggle';
-import ListFooter from './ListFooter';
 import { translate } from '../../helpers/l10n';
+import ListFooter from './ListFooter';
+import RadioToggle from './RadioToggle';
+import SearchBox from './SearchBox';
 import './SelectList.css';
+import SelectListListContainer from './SelectListListContainer';
 
 export enum SelectListFilter {
   All = 'all',

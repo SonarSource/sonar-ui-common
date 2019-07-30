@@ -17,15 +17,15 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import * as React from 'react';
 import * as classNames from 'classnames';
+import * as React from 'react';
+import { translate } from '../../helpers/l10n';
+import Tooltip from '../controls/Tooltip';
 import AlertErrorIcon from '../icons/AlertErrorIcon';
-import AlertWarnIcon from '../icons/AlertWarnIcon';
 import AlertSuccessIcon from '../icons/AlertSuccessIcon';
+import AlertWarnIcon from '../icons/AlertWarnIcon';
 import InfoIcon from '../icons/InfoIcon';
 import ThemeContext from '../ThemeContext';
-import Tooltip from '../controls/Tooltip';
-import { translate } from '../../helpers/l10n';
 import './Alert.css';
 
 type AlertDisplay = 'banner' | 'block' | 'inline';

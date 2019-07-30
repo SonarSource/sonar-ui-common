@@ -17,13 +17,13 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import * as React from 'react';
 import * as classNames from 'classnames';
+import * as React from 'react';
+import { translate } from '../../helpers/l10n';
+import DeferredSpinner from '../ui/DeferredSpinner';
 import Checkbox from './Checkbox';
 import { SelectListFilter } from './SelectList';
 import SelectListListElement from './SelectListListElement';
-import { translate } from '../../helpers/l10n';
-import DeferredSpinner from '../ui/DeferredSpinner';
 
 interface Props {
   allowBulkSelection?: boolean;

@@ -18,9 +18,9 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import * as React from 'react';
-import HelpTooltip from './HelpTooltip';
 import AlertErrorIcon from '../icons/AlertErrorIcon';
 import AlertSuccessIcon from '../icons/AlertSuccessIcon';
+import HelpTooltip from './HelpTooltip';
 
 interface Props {
   description?: string;

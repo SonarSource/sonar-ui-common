@@ -17,13 +17,13 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import * as React from 'react';
-import { Link } from 'react-router';
 import * as classNames from 'classnames';
 import { scaleLinear } from 'd3-scale';
+import * as React from 'react';
+import { Link } from 'react-router';
+import { Location } from '../../helpers/urls';
 import Tooltip, { Placement } from '../controls/Tooltip';
 import LinkIcon from '../icons/LinkIcon';
-import { Location } from '../../helpers/urls';
 
 const SIZE_SCALE = scaleLinear()
   .domain([3, 15])

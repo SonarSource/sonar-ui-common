@@ -18,11 +18,11 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import * as React from 'react';
-import { IconProps } from './Icon';
 import BugTrackerIcon from './BugTrackerIcon';
 import ContinuousIntegrationIcon from './ContinuousIntegrationIcon';
 import DetachIcon from './DetachIcon';
 import HouseIcon from './HouseIcon';
+import { IconProps } from './Icon';
 import SCMIcon from './SCMIcon';
 
 interface ProjectLinkIconProps {

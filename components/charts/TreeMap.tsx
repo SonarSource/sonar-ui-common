@@ -17,11 +17,11 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+import { hierarchy as d3Hierarchy, treemap as d3Treemap } from 'd3-hierarchy';
 import * as React from 'react';
-import { treemap as d3Treemap, hierarchy as d3Hierarchy } from 'd3-hierarchy';
-import TreeMapRect from './TreeMapRect';
 import { Location } from '../../helpers/urls';
 import './TreeMap.css';
+import TreeMapRect from './TreeMapRect';
 
 export interface TreeMapItem {
   color: string;

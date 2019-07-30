@@ -17,16 +17,16 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import * as React from 'react';
 import * as classNames from 'classnames';
-import { flatten, isEqual, sortBy, throttle, uniq } from 'lodash';
 import { bisector, extent, max } from 'd3-array';
 import { scaleLinear, scalePoint, scaleTime, ScaleTime } from 'd3-scale';
-import { line as d3Line, area, curveBasis } from 'd3-shape';
-import ThemeContext from '../ThemeContext';
+import { area, curveBasis, line as d3Line } from 'd3-shape';
+import { flatten, isEqual, sortBy, throttle, uniq } from 'lodash';
+import * as React from 'react';
 import { isDefined } from '../../helpers/types';
-import './LineChart.css';
+import ThemeContext from '../ThemeContext';
 import './AdvancedTimeline.css';
+import './LineChart.css';
 
 export interface Props {
   basisCurve?: boolean;

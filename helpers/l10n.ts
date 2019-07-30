@@ -18,8 +18,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import { toNotSoISOString } from './dates';
-import { save, get } from './storage';
 import { getJSON } from './request';
+import { get, save } from './storage';
 
 const L10_TIMESTAMP = 'l10n.timestamp';
 const L10_LOCALE = 'l10n.locale';

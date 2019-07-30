@@ -17,12 +17,12 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import * as React from 'react';
 import * as classNames from 'classnames';
-import Tooltip from './Tooltip';
-import { ButtonLink } from './buttons';
-import FavoriteIcon from '../icons/FavoriteIcon';
+import * as React from 'react';
 import { translate } from '../../helpers/l10n';
+import FavoriteIcon from '../icons/FavoriteIcon';
+import { ButtonLink } from './buttons';
+import Tooltip from './Tooltip';
 
 export interface Props {
   addFavorite: () => Promise<void>;

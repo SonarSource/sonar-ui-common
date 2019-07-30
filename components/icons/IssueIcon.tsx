@@ -19,9 +19,9 @@
  */
 import * as React from 'react';
 import BugIcon from './BugIcon';
-import VulnerabilityIcon from './VulnerabilityIcon';
 import CodeSmellIcon from './CodeSmellIcon';
 import SecurityHotspotIcon from './SecurityHotspotIcon';
+import VulnerabilityIcon from './VulnerabilityIcon';
 
 interface Props {
   className?: string;
