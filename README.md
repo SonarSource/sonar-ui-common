@@ -2,6 +2,8 @@
 
 Library containing all common components, helpers and types for both SonarQube and SonarCloud.
 
+It is available on the npm registry: https://www.npmjs.com/package/sonar-ui-common
+
 ## How to use
 
 There is no index file so you have to import components with their path like this :
