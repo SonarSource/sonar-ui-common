@@ -48,5 +48,6 @@ Ambients types are available in the `types.d.ts`, to benefit from them in your p
 1. If everything is green, QG and travis jobs
 2. Bump versions in `package.json`
 3. `yarn` to update the `yarn.lock` file
-4. `yarn package` to create the package to be published
-5. `yarn publish ./build/dist/sonar-ui-common-x.y.z.tgz` to actually publish it to npm registry (you might want to check your .npmrc file to make sure you are not targeting repox)
+4. Update the [changelog](./CHANGELOG.md) (leave the `Unreleased` part which will be filled for the next version)
+5. `yarn package` to create the package to be published
+6. `yarn publish ./build/dist/sonar-ui-common-x.y.z.tgz` to actually publish it to npm registry (you might want to check your .npmrc file to make sure you are not targeting repox)
