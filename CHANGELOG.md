@@ -2,7 +2,10 @@
 
 ## Unreleased
 
+## 0.0.20
 
+- SONAR-12322 Project Mark/Unmark as favorite button is not refreshing properly when switching of project
+- SONAR-11742 UI glitch with H2 DB footer warning on Edge
 
 ## 0.0.19
 
