@@ -20,7 +20,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { click } from '../../../helpers/testUtils';
-import FavoriteBase, { Props } from '../FavoriteBase';
+import FavoriteButton, { Props } from '../FavoriteButton';
 
 it('should render favorite', () => {
   const favorite = renderFavoriteBase({ favorite: true });
@@ -32,28 +32,23 @@ it('should render not favorite', () => {
   expect(favorite).toMatchSnapshot();
 });
 
-it('should add favorite', () => {
-  const addFavorite = jest.fn(() => Promise.resolve());
-  const favorite = renderFavoriteBase({ favorite: false, addFavorite });
-  click(favorite.find('ButtonLink'));
-  expect(addFavorite).toBeCalled();
+it('should update properly', () => {
+  const favorite = renderFavoriteBase({ favorite: false });
+  expect(favorite).toMatchSnapshot();
+
+  favorite.setProps({ favorite: true });
+  expect(favorite).toMatchSnapshot();
 });
 
-it('should remove favorite', () => {
-  const removeFavorite = jest.fn(() => Promise.resolve());
-  const favorite = renderFavoriteBase({ favorite: true, removeFavorite });
+it('should toggle favorite', () => {
+  const toggleFavorite = jest.fn();
+  const favorite = renderFavoriteBase({ toggleFavorite });
   click(favorite.find('ButtonLink'));
-  expect(removeFavorite).toBeCalled();
+  expect(toggleFavorite).toBeCalled();
 });
 
 function renderFavoriteBase(props: Partial<Props> = {}) {
   return shallow(
-    <FavoriteBase
-      addFavorite={jest.fn()}
-      favorite={true}
-      qualifier="TRK"
-      removeFavorite={jest.fn()}
-      {...props}
-    />
+    <FavoriteButton favorite={true} qualifier="TRK" toggleFavorite={jest.fn()} {...props} />
   );
 }

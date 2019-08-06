@@ -25,75 +25,26 @@ import { ButtonLink } from './buttons';
 import Tooltip from './Tooltip';
 
 export interface Props {
-  addFavorite: () => Promise<void>;
   className?: string;
   favorite: boolean;
   qualifier: string;
-  removeFavorite: () => Promise<void>;
+  toggleFavorite: () => void;
 }
 
-interface State {
-  favorite: boolean;
-}
-
-export default class FavoriteBase extends React.PureComponent<Props, State> {
-  mounted = false;
-
-  constructor(props: Props) {
-    super(props);
-    this.state = { favorite: this.props.favorite };
-  }
-
-  componentDidMount() {
-    this.mounted = true;
-  }
-
-  componentWillUnmount() {
-    this.mounted = false;
-  }
-
-  toggleFavorite = () => {
-    if (this.state.favorite) {
-      this.removeFavorite();
-    } else {
-      this.addFavorite();
-    }
-  };
-
-  addFavorite() {
-    this.props.addFavorite().then(
-      () => {
-        if (this.mounted) {
-          this.setState({ favorite: true });
-        }
-      },
-      () => {}
-    );
-  }
-
-  removeFavorite() {
-    this.props.removeFavorite().then(
-      () => {
-        if (this.mounted) {
-          this.setState({ favorite: false });
-        }
-      },
-      () => {}
-    );
-  }
-
+export default class FavoriteButton extends React.PureComponent<Props> {
   render() {
-    const { favorite } = this.state;
+    const { className, favorite, qualifier, toggleFavorite } = this.props;
     const tooltip = favorite
-      ? translate('favorite.current', this.props.qualifier)
-      : translate('favorite.check', this.props.qualifier);
+      ? translate('favorite.current', qualifier)
+      : translate('favorite.check', qualifier);
     const ariaLabel = translate('favorite.action', favorite ? 'remove' : 'add');
+
     return (
       <Tooltip overlay={tooltip}>
         <ButtonLink
           aria-label={ariaLabel}
-          className={classNames('favorite-link', 'link-no-underline', this.props.className)}
-          onClick={this.toggleFavorite}>
+          className={classNames('favorite-link', 'link-no-underline', className)}
+          onClick={toggleFavorite}>
           <FavoriteIcon favorite={favorite} />
         </ButtonLink>
       </Tooltip>
