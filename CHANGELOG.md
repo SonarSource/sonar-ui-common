@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Export new request methods: get, getText, parseText
+
 ## 0.0.20
 
 - SONAR-12322 Project Mark/Unmark as favorite button is not refreshing properly when switching of project
