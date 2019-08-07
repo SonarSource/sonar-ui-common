@@ -19,7 +19,13 @@
  */
 
 import handleRequiredAuthentication from '../handleRequiredAuthentication';
-import { checkStatus, parseError, requestTryAndRepeatUntil } from '../request';
+import {
+  checkStatus,
+  parseError,
+  parseJSON,
+  parseText,
+  requestTryAndRepeatUntil
+} from '../request';
 
 jest.mock('../handleRequiredAuthentication', () => ({ default: jest.fn() }));
 
@@ -56,6 +62,28 @@ describe('parseError', () => {
         json: jest.fn().mockRejectedValue(undefined)
       } as any)
     ).resolves.toBe('default_error_message');
+  });
+});
+
+describe('parseJSON', () => {
+  it('should return a json response', () => {
+    const body = { test: 2 };
+    const response = new Response(JSON.stringify(body), { status: 200 });
+    const json = jest.spyOn(response, 'json');
+    const jsonResponse = parseJSON(response);
+    expect(json).toBeCalled();
+    return expect(jsonResponse).resolves.toEqual(body);
+  });
+});
+
+describe('parseText', () => {
+  it('should return a text response', () => {
+    const body = 'test';
+    const response = new Response(body, { status: 200 });
+    const text = jest.spyOn(response, 'text');
+    const textResponse = parseText(response);
+    expect(text).toBeCalled();
+    return expect(textResponse).resolves.toBe(body);
   });
 });
 

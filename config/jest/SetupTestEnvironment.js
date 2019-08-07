@@ -17,6 +17,9 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
+require('whatwg-fetch');
+
 window.baseUrl = '';
 window.t = window.tp = function() {
   const args = Array.prototype.slice.call(arguments, 0);

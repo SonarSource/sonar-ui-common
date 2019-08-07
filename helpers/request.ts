@@ -183,6 +183,13 @@ export function parseJSON(response: Response): Promise<any> {
 }
 
 /**
+ * Parse response as Text
+ */
+export function parseText(response: Response): Promise<string> {
+  return response.text();
+}
+
+/**
  * Parse response of failed request
  */
 export function parseError(response: Response): Promise<string> {
@@ -193,18 +200,31 @@ export function parseError(response: Response): Promise<string> {
 }
 
 /**
- * Shortcut to do a GET request and return response json
+ * Shortcut to do a GET request and return a Response
  */
-export function getJSON(url: string, data?: RequestData): Promise<any> {
+export function get(url: string, data?: RequestData): Promise<Response> {
   return request(url)
     .setData(data)
     .submit()
-    .then(checkStatus)
-    .then(parseJSON);
+    .then(checkStatus);
 }
 
 /**
- * Shortcut to do a CORS GET request and return responsejson
+ * Shortcut to do a GET request and return response json
+ */
+export function getJSON(url: string, data?: RequestData): Promise<any> {
+  return get(url, data).then(parseJSON);
+}
+
+/**
+ * Shortcut to do a GET request and return response text
+ */
+export function getText(url: string, data?: RequestData): Promise<string> {
+  return get(url, data).then(parseText);
+}
+
+/**
+ * Shortcut to do a CORS GET request and return response json
  */
 export function getCorsJSON(url: string, data?: RequestData): Promise<any> {
   return corsRequest(url)
