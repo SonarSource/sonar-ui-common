@@ -61,7 +61,7 @@
 }
 
 .alert-content {
-  flex: 1 0 0;
+  flex: 1 1 auto;
   padding: var(--gridSize) calc(2 * var(--gridSize));
   overflow: auto;
   text-align: left;
