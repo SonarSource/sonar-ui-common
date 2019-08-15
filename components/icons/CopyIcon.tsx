@@ -23,11 +23,11 @@ import Icon, { IconProps } from './Icon';
 export default function CopyIcon({ className, fill = 'currentColor', size }: IconProps) {
   return (
     <Icon className={className} size={size}>
-      <path
-        d="M11.002 1.002h-8a.945.945 0 0 0-1 1v9h1v-9h8zm-6 2a.945.945 0 0 0-1 1v10c0 .733.267 1 1 1h8c.733 0 1-.267 1-1v-10c0-.733-.267-1-1-1zm0 11h8v-10h-8z"
-        fillRule="evenodd"
-        style={{ fill }}
-      />
+      <g fill={fill} fillRule="nonzero">
+        <path d="M2.931 15.005V3H2v13h9v-.995z" />
+        <path d="M10 4.015h3V14H4V1h6v3.015zM9 8V6H8v2H6v1h2v2h1V9h2V8H9z" />
+        <path d="M11 1v2h2a2.151 2.151 0 0 0-2-2z" />
+      </g>
     </Icon>
   );
 }
