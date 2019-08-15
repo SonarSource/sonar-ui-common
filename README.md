@@ -23,11 +23,18 @@ Ambients types are available in the `types.d.ts`, to benefit from them in your p
 }
 ```
 
+## Styled-components
+
+While developing styled components, you should seriously consider adding one of those extension to your IDE : https://github.com/Microsoft/typescript-styled-plugin#usage
+
+It will provide syntax highlighting, quick-fix and intellisense.
+
 ## What to improve
 
 - [ ] CSS of component based on theme (we currently rely on the fact that all usage of sonar-ui-common also compile CSS of components with the correct CSS custom properties setup)
 - [ ] Better management of theming (currently all extensions needs to reference the theme file from sonar-web in their build)
 - [ ] Embbed translations in the lib (currently we rely on the fact that the translation bundle will be made available by sonar-web, the lib can't be started in standalone mode, there would be not translations)
+- [ ] Add a global index file
 - [ ] Expose sonar-ui-common from sonar-web to reduce bundle size from extensions, currently it's duplicated in every extensions
 - [ ] Add release button in burgr
 - [ ] Display failing jobs in burgr

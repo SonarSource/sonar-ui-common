@@ -20,7 +20,7 @@
 import { throttle } from 'lodash';
 import * as React from 'react';
 import { findDOMNode } from 'react-dom';
-import ThemeContext from '../ThemeContext';
+import ThemeContext from '../theme';
 
 interface Props {
   /**
@@ -45,6 +45,8 @@ interface Fixes {
 
 export default class ScreenPositionFixer extends React.Component<Props, Fixes> {
   throttledPosition: () => void;
+
+  static contextType = ThemeContext;
 
   constructor(props: Props) {
     super(props);
@@ -82,7 +84,7 @@ export default class ScreenPositionFixer extends React.Component<Props, Fixes> {
   };
 
   position = () => {
-    const edgeMargin = 0.5 * this.context.theme.rawSizes.grid;
+    const edgeMargin = 0.5 * this.context.rawSizes.grid;
 
     // eslint-disable-next-line react/no-find-dom-node
     const node = findDOMNode(this);
@@ -112,5 +114,3 @@ export default class ScreenPositionFixer extends React.Component<Props, Fixes> {
     return this.props.children(this.state);
   }
 }
-
-ScreenPositionFixer.contextType = ThemeContext;

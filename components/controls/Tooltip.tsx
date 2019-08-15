@@ -20,7 +20,7 @@
 import { throttle } from 'lodash';
 import * as React from 'react';
 import { createPortal, findDOMNode } from 'react-dom';
-import ThemeContext from '../ThemeContext';
+import ThemeContext from '../theme';
 import ScreenPositionFixer from './ScreenPositionFixer';
 import './Tooltip.css';
 

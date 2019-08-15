@@ -24,7 +24,7 @@ import ClearIcon, { ClearIconProps } from '../icons/ClearIcon';
 import DeleteIcon from '../icons/DeleteIcon';
 import EditIcon from '../icons/EditIcon';
 import { IconProps } from '../icons/Icon';
-import ThemeContext from '../ThemeContext';
+import { ThemeConsumer } from '../theme';
 import './buttons.css';
 import Tooltip, { TooltipProps } from './Tooltip';
 
@@ -109,8 +109,8 @@ export interface ButtonIconProps extends ButtonProps {
 export function ButtonIcon(props: ButtonIconProps) {
   const { className, color, tooltip, tooltipProps, ...other } = props;
   return (
-    <ThemeContext.Consumer>
-      {({ theme }) => (
+    <ThemeConsumer>
+      {theme => (
         <Tooltip mouseEnterDelay={0.4} overlay={tooltip} {...tooltipProps}>
           <Button
             className={classNames(className, 'button-icon')}
@@ -120,7 +120,7 @@ export function ButtonIcon(props: ButtonIconProps) {
           />
         </Tooltip>
       )}
-    </ThemeContext.Consumer>
+    </ThemeConsumer>
   );
 }
 
@@ -132,13 +132,13 @@ interface ClearButtonProps extends ButtonIconProps {
 
 export function ClearButton({ color, iconProps = {}, ...props }: ClearButtonProps) {
   return (
-    <ThemeContext.Consumer>
-      {({ theme }) => (
+    <ThemeConsumer>
+      {theme => (
         <ButtonIcon color={color || theme.colors.gray60} {...props}>
           <ClearIcon {...iconProps} />
         </ButtonIcon>
       )}
-    </ThemeContext.Consumer>
+    </ThemeConsumer>
   );
 }
 
@@ -150,13 +150,13 @@ interface ActionButtonProps extends ButtonIconProps {
 
 export function DeleteButton({ iconProps = {}, ...props }: ActionButtonProps) {
   return (
-    <ThemeContext.Consumer>
-      {({ theme }) => (
+    <ThemeConsumer>
+      {theme => (
         <ButtonIcon color={theme.colors.red} {...props}>
           <DeleteIcon {...iconProps} />
         </ButtonIcon>
       )}
-    </ThemeContext.Consumer>
+    </ThemeConsumer>
   );
 }
 

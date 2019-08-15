@@ -20,7 +20,7 @@
 import * as classNames from 'classnames';
 import * as React from 'react';
 import HelpIcon from '../icons/HelpIcon';
-import ThemeContext from '../ThemeContext';
+import { ThemeConsumer } from '../theme';
 import './HelpTooltip.css';
 import Tooltip, { Placement } from './Tooltip';
 
@@ -46,9 +46,9 @@ export default function HelpTooltip(props: Props) {
       placement={props.placement}>
       <span className="display-inline-flex-center">
         {props.children || (
-          <ThemeContext.Consumer>
-            {({ theme }) => <HelpIcon fill={theme.colors.gray71} size={12} />}
-          </ThemeContext.Consumer>
+          <ThemeConsumer>
+            {theme => <HelpIcon fill={theme.colors.gray71} size={12} />}
+          </ThemeConsumer>
         )}
       </span>
     </Tooltip>

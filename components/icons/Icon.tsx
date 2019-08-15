@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import * as React from 'react';
-import ThemeContext, { ThemeContextType } from '../ThemeContext';
+import { Theme, ThemeConsumer } from '../theme';
 
 export interface IconProps {
   className?: string;
@@ -71,13 +71,9 @@ export default function Icon({
 }
 
 interface ThemedProps extends Props {
-  children: (themeContext: ThemeContextType) => React.ReactNode;
+  children: (themeContext: { theme: Theme }) => React.ReactNode;
 }
 
 export function ThemedIcon({ children, ...other }: ThemedProps) {
-  return (
-    <ThemeContext.Consumer>
-      {themeContext => <Icon {...other}>{children(themeContext)}</Icon>}
-    </ThemeContext.Consumer>
-  );
+  return <ThemeConsumer>{theme => <Icon {...other}>{children({ theme })}</Icon>}</ThemeConsumer>;
 }

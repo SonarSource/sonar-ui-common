@@ -19,7 +19,7 @@
  */
 import * as classNames from 'classnames';
 import * as React from 'react';
-import ThemeContext from '../ThemeContext';
+import { ThemeConsumer } from '../theme';
 import Icon, { IconProps } from './Icon';
 
 interface Props extends IconProps {
@@ -28,8 +28,8 @@ interface Props extends IconProps {
 
 export default function HomeIcon({ className, fill, filled = false, size }: Props) {
   return (
-    <ThemeContext.Consumer>
-      {({ theme }) => (
+    <ThemeConsumer>
+      {theme => (
         <Icon
           className={classNames(className, 'icon-outline', { 'is-filled': filled })}
           size={size}
@@ -39,6 +39,6 @@ export default function HomeIcon({ className, fill, filled = false, size }: Prop
           </g>
         </Icon>
       )}
-    </ThemeContext.Consumer>
+    </ThemeConsumer>
   );
 }
