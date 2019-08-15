@@ -19,7 +19,7 @@
  */
 import * as classNames from 'classnames';
 import * as React from 'react';
-import ThemeContext from '../ThemeContext';
+import { ThemeConsumer } from '../theme';
 import Icon, { IconProps } from './Icon';
 
 interface Props extends IconProps {
@@ -28,8 +28,8 @@ interface Props extends IconProps {
 
 export default function FavoriteIcon({ className, favorite, fill, size }: Props) {
   return (
-    <ThemeContext.Consumer>
-      {({ theme }) => (
+    <ThemeConsumer>
+      {theme => (
         <Icon
           className={classNames('icon-outline', { 'is-filled': favorite }, className)}
           size={size}
@@ -39,6 +39,6 @@ export default function FavoriteIcon({ className, favorite, fill, size }: Props)
           </g>
         </Icon>
       )}
-    </ThemeContext.Consumer>
+    </ThemeConsumer>
   );
 }

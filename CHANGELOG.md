@@ -2,9 +2,14 @@
 
 ## Unreleased
 
+## 0.0.22
+
 - Fix positioning logic in ScreenPositionFixer
 - SONAR-12380 A Tooltip should be flipped if too close to the viewport's edge
 - SONAR-12414 Add new ClickEventBoundary component, to support catching click events and preventing their bubbling up the component tree
+- Add styled-components
+- Move lodash as peer-dependency/dev-dependency
+- Migrate Alert component to styled-components
 
 ## 0.0.21
 

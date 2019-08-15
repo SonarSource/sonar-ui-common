@@ -32,8 +32,8 @@ jest.mock('react-dom', () => ({
   findDOMNode: jest.fn()
 }));
 
-jest.mock('../../ThemeContext', () => ({
-  default: React.createContext({ theme: { rawSizes: { grid: 8 } } })
+jest.mock('../../theme', () => ({
+  default: React.createContext({ rawSizes: { grid: 8 } })
 }));
 
 beforeEach(() => {

@@ -24,7 +24,7 @@ import { area, curveBasis, line as d3Line } from 'd3-shape';
 import { flatten, isEqual, sortBy, throttle, uniq } from 'lodash';
 import * as React from 'react';
 import { isDefined } from '../../helpers/types';
-import ThemeContext from '../ThemeContext';
+import { ThemeConsumer } from '../theme';
 import './AdvancedTimeline.css';
 import './LineChart.css';
 
@@ -359,8 +359,8 @@ export default class AdvancedTimeline extends React.PureComponent<Props, State> 
       return null;
     }
     return (
-      <ThemeContext.Consumer>
-        {({ theme }) => (
+      <ThemeConsumer>
+        {theme => (
           <rect
             className="leak-chart-rect"
             fill={theme.colors.leakColor}
@@ -370,7 +370,7 @@ export default class AdvancedTimeline extends React.PureComponent<Props, State> 
             y={yRange[yRange.length - 1]}
           />
         )}
-      </ThemeContext.Consumer>
+      </ThemeConsumer>
     );
   };
 

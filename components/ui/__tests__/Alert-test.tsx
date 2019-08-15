@@ -17,16 +17,29 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { shallow } from 'enzyme';
-import * as React from 'react';
-import { Alert } from '../Alert';
 
-it('should render', () => {
-  const wrapper = shallow(
-    <Alert id="error-message" variant="error">
+import * as React from 'react';
+import { renderWithTheme } from '../../../helpers/testUtils';
+import { Alert, AlertProps } from '../Alert';
+
+it('should render basic alert', () => {
+  ['error', 'warning', 'success', 'info'].forEach(variant => {
+    expect(render({ variant })).toMatchSnapshot();
+  });
+});
+
+it('should render inline alert', () => {
+  expect(render({ display: 'inline' })).toMatchSnapshot();
+});
+
+it('should render banner alert', () => {
+  expect(render({ display: 'banner' })).toMatchSnapshot();
+});
+
+function render(props: Partial<AlertProps>) {
+  return renderWithTheme(
+    <Alert className="alert-test" id="error-message" variant="error" {...props}>
       This is an error!
     </Alert>
   );
-  expect(wrapper).toMatchSnapshot();
-  expect(wrapper.find('ContextConsumer').dive()).toMatchSnapshot();
-});
+}
