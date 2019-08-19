@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.0.21
+
 - Export new request methods: get, getText, parseText
 - Update the icon for ClipboardIconButton
 
