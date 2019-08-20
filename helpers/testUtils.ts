@@ -108,13 +108,20 @@ export function elementKeydown(element: ShallowWrapper, keyCode: number): void {
 }
 
 export function resizeWindowTo(width?: number, height?: number) {
-  // `document.body.clientWidth/clientHeight` are getters by default, so we need to redefine them
-  // pass `configurable: true` to allow to redefine the properties multiple times
+  // `document.documentElement.clientHeight/clientWidth` are getters by default,
+  // so we need to redefine them. Pass `configurable: true` to allow to redefine
+  // the properties multiple times.
   if (width) {
-    Object.defineProperty(document.body, 'clientWidth', { configurable: true, value: width });
+    Object.defineProperty(document.documentElement, 'clientWidth', {
+      configurable: true,
+      value: width
+    });
   }
   if (height) {
-    Object.defineProperty(document.body, 'clientHeight', { configurable: true, value: height });
+    Object.defineProperty(document.documentElement, 'clientHeight', {
+      configurable: true,
+      value: height
+    });
   }
 
   const resizeEvent = new Event('resize');
