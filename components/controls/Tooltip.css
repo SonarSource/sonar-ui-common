@@ -94,9 +94,6 @@
   left: 50%;
   border-width: 5px 5px 0;
   transform: translateX(-5px);
-}
-
-.tooltip.top .tooltip-arrow {
   border-top-color: #475760;
 }
 
@@ -108,10 +105,6 @@
   border-right-color: #475760;
 }
 
-.tooltip.right .tooltip-arrow {
-  border-right-color: #475760;
-}
-
 .tooltip.left .tooltip-arrow {
   top: 50%;
   right: 0;
@@ -120,19 +113,11 @@
   border-left-color: #475760;
 }
 
-.tooltip.left .tooltip-arrow {
-  border-left-color: #475760;
-}
-
 .tooltip.bottom .tooltip-arrow {
   top: 0;
   left: 50%;
   transform: translateX(-5px);
   border-width: 0 5px 5px;
-  border-bottom-color: #475760;
-}
-
-.tooltip.bottom .tooltip-arrow {
   border-bottom-color: #475760;
 }
 

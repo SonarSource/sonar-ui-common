@@ -20,7 +20,8 @@
 import { throttle } from 'lodash';
 import * as React from 'react';
 import { createPortal, findDOMNode } from 'react-dom';
-import ScreePositionFixer from './ScreenPositionFixer';
+import ThemeContext from '../ThemeContext';
+import ScreenPositionFixer from './ScreenPositionFixer';
 import './Tooltip.css';
 
 export type Placement = 'bottom' | 'right' | 'left' | 'top';
@@ -45,10 +46,19 @@ interface Measurements {
 }
 
 interface OwnState {
+  flipped: boolean;
+  placement?: Placement;
   visible: boolean;
 }
 
 type State = OwnState & Partial<Measurements>;
+
+const FLIP_MAP: { [key in Placement]: Placement } = {
+  left: 'right',
+  right: 'left',
+  top: 'bottom',
+  bottom: 'top'
+};
 
 function isMeasured(state: State): state is OwnState & Measurements {
   return state.height !== undefined;
@@ -77,9 +87,13 @@ export class TooltipInner extends React.Component<TooltipProps, State> {
     mouseEnterDelay: 0.1
   };
 
+  static contextType = ThemeContext;
+
   constructor(props: TooltipProps) {
     super(props);
     this.state = {
+      flipped: false,
+      placement: props.placement,
       visible: props.visible !== undefined ? props.visible : false
     };
     this.throttledPositionTooltip = throttle(this.positionTooltip, 10);
@@ -94,6 +108,14 @@ export class TooltipInner extends React.Component<TooltipProps, State> {
   }
 
   componentDidUpdate(prevProps: TooltipProps, prevState: State) {
+    if (this.props.placement !== prevProps.placement) {
+      this.setState({ placement: this.props.placement });
+      // Break. This will trigger a new componentDidUpdate() call, so the below
+      // positionTooltip() call will be correct. Otherwise, it might not use
+      // the new state.placement value.
+      return;
+    }
+
     if (
       // opens
       (this.props.visible === true && !prevProps.visible) ||
@@ -141,11 +163,24 @@ export class TooltipInner extends React.Component<TooltipProps, State> {
   };
 
   getPlacement = (): Placement => {
-    return this.props.placement || 'bottom';
+    return this.state.placement || 'bottom';
   };
 
   tooltipNodeRef = (node: HTMLElement | null) => {
     this.tooltipNode = node;
+  };
+
+  adjustArrowPosition = (
+    placement: Placement,
+    { leftFix, topFix }: { leftFix: number; topFix: number }
+  ) => {
+    switch (placement) {
+      case 'left':
+      case 'right':
+        return { marginTop: -topFix };
+      default:
+        return { marginLeft: -leftFix };
+    }
   };
 
   positionTooltip = () => {
@@ -186,22 +221,23 @@ export class TooltipInner extends React.Component<TooltipProps, State> {
 
       // save width and height (and later set in `render`) to avoid resizing the tooltip element,
       // when it's placed close to the window edge
-      const measurements: Measurements = {
+      this.setState({
         left: window.pageXOffset + left,
         top: window.pageYOffset + top,
         width,
         height
-      };
-      this.setState(measurements);
+      });
     }
   };
 
   clearPosition = () => {
     this.setState({
+      flipped: false,
       left: undefined,
       top: undefined,
       width: undefined,
-      height: undefined
+      height: undefined,
+      placement: this.props.placement
     });
   };
 
@@ -252,8 +288,85 @@ export class TooltipInner extends React.Component<TooltipProps, State> {
     this.handleMouseLeave();
   };
 
-  render() {
+  needsFlipping = (leftFix: number, topFix: number) => {
+    // We can live with a tooltip that's slightly positioned over the toggle
+    // node. Only trigger if it really starts overlapping, as the re-positioning
+    // is quite expensive, needing 2 re-renders.
+    const threshold = this.context.theme.rawSizes.grid;
+    switch (this.getPlacement()) {
+      case 'left':
+      case 'right':
+        return Math.abs(leftFix) > threshold;
+      case 'top':
+      case 'bottom':
+        return Math.abs(topFix) > threshold;
+    }
+    return false;
+  };
+
+  renderActual = ({ leftFix = 0, topFix = 0 }) => {
+    if (
+      !this.state.flipped &&
+      (leftFix !== 0 || topFix !== 0) &&
+      this.needsFlipping(leftFix, topFix)
+    ) {
+      // Update state in a render function... Not a good idea, but we need to
+      // render in order to know if we need to flip... To prevent React from
+      // complaining, we update the state using a setTimeout() call.
+      setTimeout(() => {
+        this.setState(
+          ({ placement = 'bottom' }) => ({
+            flipped: true,
+            // Set height to undefined to force ScreenPositionFixer to
+            // re-compute our positioning.
+            height: undefined,
+            placement: FLIP_MAP[placement]
+          }),
+          () => {
+            if (this.state.visible) {
+              // Force a re-positioning, as "only" updating the state doesn't
+              // recompute the position, only re-renders with the previous
+              // position (which is no longer correct).
+              this.positionTooltip();
+            }
+          }
+        );
+      }, 1);
+      return null;
+    }
+
     const { classNameSpace = 'tooltip' } = this.props;
+    const placement = this.getPlacement();
+    const style = isMeasured(this.state)
+      ? {
+          left: this.state.left + leftFix,
+          top: this.state.top + topFix,
+          width: this.state.width,
+          height: this.state.height
+        }
+      : undefined;
+
+    return (
+      <div
+        className={`${classNameSpace} ${placement}`}
+        onMouseEnter={this.handleOverlayMouseEnter}
+        onMouseLeave={this.handleOverlayMouseLeave}
+        ref={this.tooltipNodeRef}
+        style={style}>
+        <div className={`${classNameSpace}-inner`}>{this.props.overlay}</div>
+        <div
+          className={`${classNameSpace}-arrow`}
+          style={
+            isMeasured(this.state)
+              ? this.adjustArrowPosition(placement, { leftFix, topFix })
+              : undefined
+          }
+        />
+      </div>
+    );
+  };
+
+  render() {
     return (
       <>
         {React.cloneElement(this.props.children, {
@@ -262,35 +375,9 @@ export class TooltipInner extends React.Component<TooltipProps, State> {
         })}
         {this.isVisible() && (
           <TooltipPortal>
-            <ScreePositionFixer ready={isMeasured(this.state)}>
-              {({ leftFix = 0, topFix = 0 }) => (
-                <div
-                  className={`${classNameSpace} ${this.getPlacement()}`}
-                  onMouseEnter={this.handleOverlayMouseEnter}
-                  onMouseLeave={this.handleOverlayMouseLeave}
-                  ref={this.tooltipNodeRef}
-                  style={
-                    isMeasured(this.state)
-                      ? {
-                          left: this.state.left + leftFix,
-                          top: this.state.top + topFix,
-                          width: this.state.width,
-                          height: this.state.height
-                        }
-                      : undefined
-                  }>
-                  <div className={`${classNameSpace}-inner`}>{this.props.overlay}</div>
-                  <div
-                    className={`${classNameSpace}-arrow`}
-                    style={
-                      isMeasured(this.state)
-                        ? { marginLeft: -leftFix, marginTop: -topFix }
-                        : undefined
-                    }
-                  />
-                </div>
-              )}
-            </ScreePositionFixer>
+            <ScreenPositionFixer ready={isMeasured(this.state)}>
+              {this.renderActual}
+            </ScreenPositionFixer>
           </TooltipPortal>
         )}
       </>

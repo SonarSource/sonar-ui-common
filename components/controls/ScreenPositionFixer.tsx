@@ -60,6 +60,8 @@ export default class ScreenPositionFixer extends React.Component<Props, Fixes> {
   componentDidUpdate(prevProps: Props) {
     if (!prevProps.ready && this.props.ready) {
       this.position();
+    } else if (prevProps.ready && !this.props.ready) {
+      this.reset();
     }
   }
 
@@ -73,6 +75,10 @@ export default class ScreenPositionFixer extends React.Component<Props, Fixes> {
 
   removeEventListeners = () => {
     window.removeEventListener('resize', this.throttledPosition);
+  };
+
+  reset = () => {
+    this.setState({ leftFix: undefined, topFix: undefined });
   };
 
   position = () => {
