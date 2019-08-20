@@ -82,7 +82,7 @@ export default class ScreenPositionFixer extends React.Component<Props, Fixes> {
     const node = findDOMNode(this);
     if (node && node instanceof Element) {
       const { width, height, left, top } = node.getBoundingClientRect();
-      const { clientHeight, clientWidth } = document.body;
+      const { clientHeight, clientWidth } = document.documentElement;
 
       let leftFix = 0;
       if (left < edgeMargin) {
