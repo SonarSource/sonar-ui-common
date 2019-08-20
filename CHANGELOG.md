@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Fix positioning logic in ScreenPositionFixer
+- SONAR-12380 A Tooltip should be flipped if too close to the viewport's edge
 
 ## 0.0.21
 
