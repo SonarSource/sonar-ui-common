@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- SONAR-12372 Fix Radio preventing a Modal from closing using the Esc key
+
 ## 0.0.22
 
 - Fix positioning logic in ScreenPositionFixer
