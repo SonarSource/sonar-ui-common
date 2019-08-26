@@ -4,6 +4,7 @@
 
 - Fix positioning logic in ScreenPositionFixer
 - SONAR-12380 A Tooltip should be flipped if too close to the viewport's edge
+- SONAR-12414 Add new ClickEventBoundary component, to support catching click events and preventing their bubbling up the component tree
 
 ## 0.0.21
 
