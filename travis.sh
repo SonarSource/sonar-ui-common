@@ -84,7 +84,8 @@ ANALYZE)
       -Dsonar.analysis.sha1=$TRAVIS_PULL_REQUEST_SHA \
       -Dsonar.analysis.repository=$TRAVIS_REPO_SLUG \
       -Dsonar.analysis.prNumber=$TRAVIS_PULL_REQUEST \
-      -Dsonar.pullrequest.key=$TRAVIS_PULL_REQUEST
+      -Dsonar.pullrequest.key=$TRAVIS_PULL_REQUEST \
+      -Dsonar.pullrequest.github.repository=$TRAVIS_REPO_SLUG
 
   else
     echo '======= No analysis'
