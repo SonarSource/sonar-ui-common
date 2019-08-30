@@ -91,7 +91,6 @@ const StyledAlert = styled.div<{ isInline: boolean; variantInfo: AlertVariantInf
   a,
   .button-link {
     border-color: ${props => props.theme.colors.darkBlue};
-    display: none;
   }
 `;
 
