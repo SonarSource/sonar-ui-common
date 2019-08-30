@@ -2,7 +2,10 @@
 
 ## Unreleased
 
+## 0.0.23
+
 - SONAR-12372 Fix Radio preventing a Modal from closing using the Esc key
+- Fix bug introduced by Alert migration to styled-component
 
 ## 0.0.22
 
