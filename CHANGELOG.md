@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 0.0.24
+
+- Fix tooltip theme issue
+
 ## 0.0.23
 
 - SONAR-12372 Fix Radio preventing a Modal from closing using the Esc key

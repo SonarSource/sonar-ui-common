@@ -292,7 +292,7 @@ export class TooltipInner extends React.Component<TooltipProps, State> {
     // We can live with a tooltip that's slightly positioned over the toggle
     // node. Only trigger if it really starts overlapping, as the re-positioning
     // is quite expensive, needing 2 re-renders.
-    const threshold = this.context.theme.rawSizes.grid;
+    const threshold = this.context.rawSizes.grid;
     switch (this.getPlacement()) {
       case 'left':
       case 'right':
