@@ -19,7 +19,6 @@
  */
 
 import { ReactWrapper, shallow, ShallowWrapper } from 'enzyme';
-import 'jest-styled-components';
 import * as React from 'react';
 import { Theme, ThemeProvider } from '../components/theme';
 import { mockedTheme } from '../components/__mocks__/mockedTheme';

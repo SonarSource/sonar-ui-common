@@ -18,6 +18,8 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
+// TODO : https://github.com/styled-components/jest-styled-components#global-installation
+import 'jest-styled-components';
 import * as React from 'react';
 import { renderWithTheme } from '../../../helpers/testUtils';
 import { Alert, AlertProps } from '../Alert';
