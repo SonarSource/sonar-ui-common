@@ -18,10 +18,19 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import * as React from 'react';
-import { ReactAsyncSelectProps, ReactCreatableSelectProps, ReactSelectProps } from 'react-select';
+import {
+  defaultFilterOptions as reactSelectDefaultFilterOptions,
+  ReactAsyncSelectProps,
+  ReactCreatableSelectProps,
+  ReactSelectProps
+} from 'react-select';
 import { lazyLoad } from '../lazyLoad';
 import { ClearButton } from './buttons';
 import './Select.css';
+
+declare module 'react-select' {
+  export function defaultFilterOptions(...args: any[]): any;
+}
 
 const ReactSelectLib = import('react-select');
 const ReactSelect = lazyLoad(() => ReactSelectLib);
@@ -46,6 +55,8 @@ export default function Select({ innerRef, ...props }: WithInnerRef & ReactSelec
     <ReactSelectAny {...props} clearRenderer={renderInput} clearable={clearable} ref={innerRef} />
   );
 }
+
+export const defaultFilterOptions = reactSelectDefaultFilterOptions;
 
 export function Creatable(props: ReactCreatableSelectProps) {
   // ReactSelect doesn't declare `clearRenderer` prop
