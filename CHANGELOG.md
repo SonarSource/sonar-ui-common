@@ -5,6 +5,7 @@
 ## 0.0.27
 
 - Add `lazyLoadComponent`, a new lazy loading component based on React.lazy, Suspense and ErrorBoundaries. It has a better handling of component typings than our old `lazyLoad` component.
+- SONAR-12443 Fix Lodash Vulnerability
 
 ## 0.0.26
 
