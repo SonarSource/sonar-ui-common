@@ -587,10 +587,10 @@
   dependencies:
     "@types/jest-diff" "*"
 
-"@types/lodash@4.14.136":
-  version "4.14.136"
-  resolved "https://repox.jfrog.io/repox/api/npm/npm/@types/lodash/-/lodash-4.14.136.tgz#413e85089046b865d960c9ff1d400e04c31ab60f"
-  integrity sha1-QT6FCJBGuGXZYMn/HUAOBMMatg8=
+"@types/lodash@4.14.138":
+  version "4.14.138"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/@types/lodash/-/lodash-4.14.138.tgz#34f52640d7358230308344e579c15b378d91989e"
+  integrity sha1-NPUmQNc1gjAwg0TlecFbN42RmJ4=
 
 "@types/minimatch@*":
   version "3.0.3"
@@ -3745,12 +3745,7 @@ lodash@4.17.11:
   resolved "https://repox.jfrog.io/repox/api/npm/npm/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
   integrity sha1-s56mIp72B+zYniyN8SU2iRysm40=
 
-lodash@^4.15.0, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.14:
-  version "4.17.14"
-  resolved "https://repox.jfrog.io/repox/api/npm/npm/lodash/-/lodash-4.17.14.tgz#9ce487ae66c96254fe20b599f21b6816028078ba"
-  integrity sha1-nOSHrmbJYlT+ILWZ8htoFgKAeLo=
-
-lodash@^4.17.13:
+lodash@^4.15.0, lodash@^4.17.11, lodash@^4.17.12, lodash@^4.17.13, lodash@^4.17.14:
   version "4.17.15"
   resolved "https://repox.jfrog.io/repox/api/npm/npm/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
   integrity sha1-tEf2ZwoEVbv+7dETku/zMOoJdUg=
