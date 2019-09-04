@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 0.0.26
+
+- Expose defaultFilterOptions from react-select
+
 ## 0.0.25
 
 - Fix jest-styled-component import
