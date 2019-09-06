@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 0.0.27
+
+- Add `lazyLoadComponent`, a new lazy loading component based on React.lazy, Suspense and ErrorBoundaries. It has a better handling of component typings than our old `lazyLoad` component.
+
 ## 0.0.26
 
 - Expose defaultFilterOptions from react-select
