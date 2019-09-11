@@ -29,7 +29,8 @@ interface Props {
 }
 
 export default class Radio extends React.PureComponent<Props> {
-  handleClick = () => {
+  handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
     this.props.onCheck(this.props.value);
   };
 

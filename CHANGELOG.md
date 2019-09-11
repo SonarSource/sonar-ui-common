@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- SONAR-12372 Add back prevent default in Radio click
+
 ## 0.0.27
 
 - Add `lazyLoadComponent`, a new lazy loading component based on React.lazy, Suspense and ErrorBoundaries. It has a better handling of component typings than our old `lazyLoad` component.
