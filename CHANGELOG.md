@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- SC-937 Add new loading variant for Alert messages
 - SONAR-12372 Add back prevent default in Radio click
 
 ## 0.0.27

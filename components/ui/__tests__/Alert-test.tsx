@@ -25,7 +25,7 @@ import { renderWithTheme } from '../../../helpers/testUtils';
 import { Alert, AlertProps } from '../Alert';
 
 it('should render basic alert', () => {
-  ['error', 'warning', 'success', 'info'].forEach(variant => {
+  ['error', 'warning', 'success', 'info', 'loading'].forEach(variant => {
     expect(render({ variant })).toMatchSnapshot();
   });
 });
