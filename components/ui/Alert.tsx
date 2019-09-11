@@ -26,9 +26,10 @@ import AlertSuccessIcon from '../icons/AlertSuccessIcon';
 import AlertWarnIcon from '../icons/AlertWarnIcon';
 import InfoIcon from '../icons/InfoIcon';
 import { css, styled, Theme, ThemeConsumer } from '../theme';
+import DeferredSpinner from './DeferredSpinner';
 
 type AlertDisplay = 'banner' | 'inline' | 'block';
-type AlertVariant = 'error' | 'warning' | 'success' | 'info';
+type AlertVariant = 'error' | 'warning' | 'success' | 'info' | 'loading';
 
 export interface AlertProps {
   display?: AlertDisplay;
@@ -116,6 +117,12 @@ function getAlertVariantInfo({ colors }: Theme, variant: AlertVariant): AlertVar
     },
     info: {
       icon: <InfoIcon fill={colors.alertIconInfo} />,
+      color: colors.alertTextInfo,
+      borderColor: colors.alertBorderInfo,
+      backGroundColor: colors.alertBackgroundInfo
+    },
+    loading: {
+      icon: <DeferredSpinner timeout={0} />,
       color: colors.alertTextInfo,
       borderColor: colors.alertBorderInfo,
       backGroundColor: colors.alertBackgroundInfo

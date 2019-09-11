@@ -429,6 +429,77 @@ exports[`should render basic alert 4`] = `
 </div>
 `;
 
+exports[`should render basic alert 5`] = `
+.c2 {
+  -webkit-flex: 0 0 auto;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: calc(4 * );
+  border-right: 1px solid;
+}
+
+.c3 {
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  overflow: auto;
+  text-align: left;
+  padding: calc(2 * );
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+}
+
+.c0 {
+  border: 1px solid;
+  border-radius: 2px;
+  display: block;
+}
+
+.c0:empty {
+  display: none;
+}
+
+<div
+  class="alert alert-test c0"
+  id="error-message"
+  role="alert"
+>
+  <div
+    class="c1"
+  >
+    <div
+      class="c2"
+    />
+    <div
+      class="alert-content c3"
+    >
+      This is an error!
+    </div>
+  </div>
+</div>
+`;
+
 exports[`should render inline alert 1`] = `
 .c2 {
   -webkit-flex: 0 0 auto;
