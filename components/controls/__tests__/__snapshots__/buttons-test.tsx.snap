@@ -11,7 +11,7 @@ exports[`ButtonIcon should render correctly 1`] = `
     stopPropagation={true}
     style={
       Object {
-        "color": undefined,
+        "color": "#236a97",
       }
     }
   >

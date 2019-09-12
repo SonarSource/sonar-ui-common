@@ -18,10 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { ReactWrapper, shallow, ShallowWrapper } from 'enzyme';
-import * as React from 'react';
-import { Theme, ThemeProvider } from '../components/theme';
-import { mockedTheme } from '../components/__mocks__/mockedTheme';
+import { ReactWrapper, ShallowWrapper } from 'enzyme';
 
 export function mockEvent(overrides = {}) {
   return {
@@ -162,13 +159,4 @@ export function doAsync(fn?: Function): Promise<void> {
 export async function waitAndUpdate(wrapper: ShallowWrapper<any, any> | ReactWrapper<any, any>) {
   await new Promise(setImmediate);
   wrapper.update();
-}
-
-export function renderWithTheme(toRender: JSX.Element, theme?: Theme) {
-  return shallow(<ThemeProvider theme={{ ...mockedTheme, ...theme }}>{toRender}</ThemeProvider>)
-    .find('ContextConsumer')
-    .dive()
-    .find('ContextProvider')
-    .dive()
-    .render();
 }

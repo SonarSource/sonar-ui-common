@@ -26,6 +26,7 @@ import styled, {
   ThemeProvider,
   ThemeProviderComponent
 } from 'styled-components';
+import { mockedTheme } from './__mocks__/mockedTheme';
 
 export interface Theme {
   colors: T.Dict<string>;
@@ -36,20 +37,14 @@ export interface Theme {
   others: T.Dict<string>;
 }
 
-const defaultTheme: Theme = {
-  colors: {},
-  sizes: {},
-  rawSizes: {},
-  fonts: {},
-  zIndexes: {},
-  others: {}
-};
-
 // Hack : override the default value of the context used for theme by styled-component
 // As we can't pass a default value when it is constructed
-// This allows outside tests to get the default theme value without specifiying a theme provider
-(ThemeContext as any)['_currentValue'] = defaultTheme;
-(ThemeContext as any)['_currentValue2'] = defaultTheme;
+// This allows outside tests to get the mocked theme value without specifiying a theme provider
+if (process.env.NODE_ENV === 'test') {
+  (ThemeContext as any)['_currentValue'] = mockedTheme;
+  (ThemeContext as any)['_currentValue2'] = mockedTheme;
+}
+
 const typedStyled = styled as ThemedBaseStyledInterface<Theme>;
 const typedCss = css as BaseThemedCssFunction<Theme>;
 const typedContext = ThemeContext as React.Context<Theme>;
