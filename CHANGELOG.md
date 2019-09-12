@@ -2,7 +2,11 @@
 
 ## Unreleased
 
+## 0.0.29
+
+- Fix button-link transitions
 - Provide an enum with keycodes, to simplify handling keyboard events.
+- SC-1098 Switch to @emotion instead of styled-components
 
 ## 0.0.28
 
