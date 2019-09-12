@@ -32,10 +32,6 @@ jest.mock('react-dom', () => ({
   findDOMNode: jest.fn()
 }));
 
-jest.mock('../../theme', () => ({
-  default: React.createContext({ rawSizes: { grid: 8 } })
-}));
-
 beforeEach(() => {
   setNodeRect({ left: 50, top: 50 });
   resizeWindowTo(1000, 1000);

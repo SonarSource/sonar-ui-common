@@ -17,15 +17,15 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import styled, {
-  BaseThemedCssFunction,
-  css,
-  ThemeConsumer,
-  ThemeContext,
-  ThemedBaseStyledInterface,
-  ThemeProvider,
-  ThemeProviderComponent
-} from 'styled-components';
+import { css, ThemeContext as EmotionThemeContext } from '@emotion/core';
+import emotionStyled, { CreateStyled } from '@emotion/styled';
+import {
+  ThemeProvider as EmotionThemeProvider,
+  ThemeProviderProps,
+  useTheme as emotionUseTheme,
+  withTheme
+} from 'emotion-theming';
+import * as React from 'react';
 import { mockedTheme } from './__mocks__/mockedTheme';
 
 export interface Theme {
@@ -37,7 +37,13 @@ export interface Theme {
   others: T.Dict<string>;
 }
 
-// Hack : override the default value of the context used for theme by styled-component
+export interface ThemedProps {
+  theme: Theme;
+}
+
+const ThemeContext = EmotionThemeContext as React.Context<Theme>;
+
+// Hack : override the default value of the context used for theme by emotion
 // As we can't pass a default value when it is constructed
 // This allows outside tests to get the mocked theme value without specifiying a theme provider
 if (process.env.NODE_ENV === 'test') {
@@ -45,16 +51,12 @@ if (process.env.NODE_ENV === 'test') {
   (ThemeContext as any)['_currentValue2'] = mockedTheme;
 }
 
-const typedStyled = styled as ThemedBaseStyledInterface<Theme>;
-const typedCss = css as BaseThemedCssFunction<Theme>;
-const typedContext = ThemeContext as React.Context<Theme>;
-const typedProvider = ThemeProvider as ThemeProviderComponent<Theme>;
-const typedConsumer = ThemeConsumer as React.Consumer<Theme>;
+export const styled = emotionStyled as CreateStyled<Theme>;
+export const ThemeConsumer = ThemeContext.Consumer;
+export const ThemeProvider = EmotionThemeProvider as React.ProviderExoticComponent<
+  ThemeProviderProps<Theme>
+>;
+export const useTheme = emotionUseTheme as () => Theme;
 
-export {
-  typedProvider as ThemeProvider,
-  typedConsumer as ThemeConsumer,
-  typedStyled as styled,
-  typedCss as css
-};
-export default typedContext;
+export { css, withTheme };
+export default ThemeContext;

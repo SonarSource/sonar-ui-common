@@ -17,29 +17,40 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-
-// TODO : https://github.com/styled-components/jest-styled-components#global-installation
-import 'jest-styled-components';
+import { shallow } from 'enzyme';
 import * as React from 'react';
-import { renderWithTheme } from '../../../helpers/testUtils';
 import { Alert, AlertProps } from '../Alert';
 
-it('should render basic alert', () => {
-  ['error', 'warning', 'success', 'info', 'loading'].forEach(variant => {
-    expect(render({ variant })).toMatchSnapshot();
+it('verification of all variants of alert', () => {
+  const variants: AlertProps['variant'][] = ['error', 'warning', 'success', 'info', 'loading'];
+  variants.forEach(variant => {
+    const wrapper = shallowRender({ variant });
+    expect(wrapper.prop('variantInfo')).toMatchSnapshot();
   });
 });
 
 it('should render inline alert', () => {
-  expect(render({ display: 'inline' })).toMatchSnapshot();
+  expect(
+    shallowRender({ display: 'inline' })
+      .find('Styled(div)[isInline=true]')
+      .exists()
+  ).toBe(true);
 });
 
 it('should render banner alert', () => {
-  expect(render({ display: 'banner' })).toMatchSnapshot();
+  expect(
+    shallowRender({ display: 'banner' })
+      .find('Styled(div)[isBanner=true]')
+      .exists()
+  ).toBe(true);
 });
 
-function render(props: Partial<AlertProps>) {
-  return renderWithTheme(
+it('should render banner alert with correct css', () => {
+  expect(shallowRender({ display: 'banner' }).render()).toMatchSnapshot();
+});
+
+function shallowRender(props: Partial<AlertProps>) {
+  return shallow(
     <Alert className="alert-test" id="error-message" variant="error" {...props}>
       This is an error!
     </Alert>

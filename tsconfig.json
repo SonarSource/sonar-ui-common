@@ -16,12 +16,7 @@
     "sourceMap": true,
     "declaration": true,
     "rootDir": "./",
-    "baseUrl": ".",
-    "plugins": [
-      {
-        "name": "typescript-styled-plugin"
-      }
-    ]
+    "baseUrl": "."
   },
   "include": ["components", "helpers", "index.ts", "types.d.ts"],
   "exclude": ["**/*-test.*"]
