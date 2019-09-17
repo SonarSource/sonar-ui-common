@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Provide an enum with keycodes, to simplify handling keyboard events.
+
 ## 0.0.28
 
 - SC-937 Add new loading variant for Alert messages
