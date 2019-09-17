@@ -133,7 +133,7 @@
   border-bottom: 1px solid var(--lightBlue);
   font-weight: 400;
   font-size: inherit;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease, border-bottom 0.2s ease;
 }
 
 .dropdown .button-link {
