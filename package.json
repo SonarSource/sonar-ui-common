@@ -103,7 +103,8 @@
   "jest": {
     "coverageDirectory": "<rootDir>/build/coverage",
     "collectCoverageFrom": [
-      "{components,helpers}/**/*.{ts,tsx,js}"
+      "{components,helpers}/**/*.{ts,tsx,js}",
+      "!helpers/{keycodes,testUtils}.{ts,tsx}"
     ],
     "coverageReporters": [
       "lcovonly",
