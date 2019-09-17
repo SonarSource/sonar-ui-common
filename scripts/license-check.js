@@ -15,8 +15,10 @@ return readFile('./HEADER')
   .then(checkFiles)
   .then(errors => {
     if (errors) {
-      console.error(errors, 'files have an invalid license');
+      console.error(errors, 'files have an invalid license header');
       process.exit(1);
+    } else {
+      console.log('✓ All files have valid license headers');
     }
   })
   .catch(e => {
@@ -26,16 +28,14 @@ return readFile('./HEADER')
 
 function checkFiles(files) {
   return files.reduce((errors, { path, text }) => {
-    if (text.slice(0, header.length) === header) {
-      console.log('✓ ', path);
-      return errors;
-    } else {
+    if (text.slice(0, header.length) !== header) {
       console.error('❌ ', path);
       console.error(
         diff.createPatch(path, header + '\n', text.slice(0, header.length) + '\n', '', '')
       );
       return errors + 1;
     }
+    return errors;
   }, 0);
 }
 
