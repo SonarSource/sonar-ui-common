@@ -52,6 +52,7 @@
   color: var(--darkBlue);
   height: calc(var(--controlHeight) - 2px);
   line-height: calc(var(--controlHeight) - 2px);
+  cursor: pointer;
 }
 
 .radio-toggle input[type='radio'] {
