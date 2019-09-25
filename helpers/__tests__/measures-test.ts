@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import { resetBundle } from '../l10n';
-import { formatMeasure } from '../measures';
+import { formatMeasure, getMinDecimalsCountToBeDistinctFromThreshold } from '../measures';
 
 const HOURS_IN_DAY = 8;
 const ONE_MINUTE = 1;
@@ -173,5 +173,37 @@ describe('#formatMeasure()', () => {
 
   it('should not fail with undefined', () => {
     expect(formatMeasure(undefined, 'INT')).toBe('');
+  });
+});
+
+describe('getMinDecimalsCountToBeDistinctFromThreshold', () => {
+  it('should return default if no threshold', () => {
+    expect(getMinDecimalsCountToBeDistinctFromThreshold(2.67, undefined)).toBe(1);
+  });
+
+  it('should return 1 if delta is 0', () => {
+    expect(getMinDecimalsCountToBeDistinctFromThreshold(2.5, 2.5)).toBe(1);
+  });
+
+  it('should return 1 if the delta is larger than 0.1', () => {
+    [0.1, 0.15, 0.2, 0.5, 0.8, 1].forEach(delta => {
+      expect(getMinDecimalsCountToBeDistinctFromThreshold(2.5 + delta, 2.5)).toBe(1);
+      expect(getMinDecimalsCountToBeDistinctFromThreshold(2.5 - delta, 2.5)).toBe(1);
+    });
+  });
+
+  it('should return enough precision to see the delta', () => {
+    expect(getMinDecimalsCountToBeDistinctFromThreshold(2.55, 2.5)).toBe(2);
+    expect(getMinDecimalsCountToBeDistinctFromThreshold(2.505, 2.5)).toBe(3);
+    expect(getMinDecimalsCountToBeDistinctFromThreshold(2.5005, 2.5)).toBe(4);
+    expect(getMinDecimalsCountToBeDistinctFromThreshold(85.01, 85)).toBe(2);
+    expect(getMinDecimalsCountToBeDistinctFromThreshold(84.95, 85)).toBe(2);
+    expect(getMinDecimalsCountToBeDistinctFromThreshold(84.999999999999554, 85)).toBe(
+      '9999999999995'.length
+    );
+    expect(getMinDecimalsCountToBeDistinctFromThreshold(85.0000000000000954, 85)).toBe(
+      '00000000000009'.length
+    );
+    expect(getMinDecimalsCountToBeDistinctFromThreshold(85.00000000000000009, 85)).toBe(1);
   });
 });
