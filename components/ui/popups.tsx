@@ -19,6 +19,7 @@
  */
 import * as classNames from 'classnames';
 import * as React from 'react';
+import ClickEventBoundary from '../controls/ClickEventBoundary';
 import './popups.css';
 
 export enum PopupPlacement {
@@ -41,17 +42,19 @@ interface PopupProps {
 export function Popup(props: PopupProps) {
   const { placement = PopupPlacement.Bottom } = props;
   return (
-    <div
-      className={classNames(
-        'popup',
-        `is-${placement}`,
-        { 'no-padding': props.noPadding },
-        props.className
-      )}
-      style={props.style}>
-      {props.children}
-      <PopupArrow style={props.arrowStyle} />
-    </div>
+    <ClickEventBoundary>
+      <div
+        className={classNames(
+          'popup',
+          `is-${placement}`,
+          { 'no-padding': props.noPadding },
+          props.className
+        )}
+        style={props.style}>
+        {props.children}
+        <PopupArrow style={props.arrowStyle} />
+      </div>
+    </ClickEventBoundary>
   );
 }
 

@@ -1,22 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render Popup 1`] = `
-<div
-  className="popup is-left-top foo"
-  style={
-    Object {
-      "left": -5,
-    }
-  }
->
-  <PopupArrow
+<ClickEventBoundary>
+  <div
+    className="popup is-left-top foo"
     style={
       Object {
-        "top": -5,
+        "left": -5,
       }
     }
-  />
-</div>
+  >
+    <PopupArrow
+      style={
+        Object {
+          "top": -5,
+        }
+      }
+    />
+  </div>
+</ClickEventBoundary>
 `;
 
 exports[`should render PopupArrow 1`] = `
