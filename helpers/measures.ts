@@ -56,6 +56,30 @@ export function isDiffMetric(metricKey: string): boolean {
   return metricKey.indexOf('new_') === 0;
 }
 
+/*
+ * Conditional decimal count for QualityGate-impacting measures
+ * (e.g. Coverage %)
+ * Increase the number of decimals if the value is close to the threshold
+ * We count the precision (number of 0's, i.e. log10 and round down) needed to show the difference
+ * E.g. threshold 85, value 84.9993 -> delta = 0.0007, we need 4 decimals to see the difference
+ * otherwise rounding will make it look like they are equal.
+ */
+const DEFAULT_DECIMALS = 1;
+export function getMinDecimalsCountToBeDistinctFromThreshold(
+  value: number,
+  threshold: number | undefined
+): number {
+  if (!threshold) {
+    return DEFAULT_DECIMALS;
+  }
+  const delta = Math.abs(threshold - value);
+  if (delta < 0.1 && delta > 0) {
+    return -Math.floor(Math.log10(delta));
+  } else {
+    return DEFAULT_DECIMALS;
+  }
+}
+
 function useFormatter(
   value: string | number | undefined,
   formatter: Formatter,
@@ -154,9 +178,9 @@ function percentFormatter(value: string | number, options: { decimals?: number }
     value = parseFloat(value);
   }
   if (options.decimals) {
-    return numberFormatter(value, options.decimals) + '%';
+    return `${numberFormatter(value, options.decimals)}%`;
   }
-  return value === 100 ? '100%' : numberFormatter(value, 1) + '%';
+  return value === 100 ? '100%' : `${numberFormatter(value, 1)}%`;
 }
 
 function ratingFormatter(value: string | number): string {
@@ -170,7 +194,7 @@ function levelFormatter(value: string | number): string {
   if (typeof value === 'number') {
     value = value.toString();
   }
-  const l10nKey = 'metric.level.' + value;
+  const l10nKey = `metric.level.${value}`;
   const result = translate(l10nKey);
 
   // if couldn't translate, return the initial value
@@ -219,7 +243,7 @@ function shouldDisplayMinutes(days: number, hours: number, minutes: number): boo
 }
 
 function addSpaceIfNeeded(value: string): string {
-  return value.length > 0 ? value + ' ' : value;
+  return value.length > 0 ? `${value} ` : value;
 }
 
 function formatDuration(isNegative: boolean, days: number, hours: number, minutes: number): string {
