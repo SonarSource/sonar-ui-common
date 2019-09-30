@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.0.30
+
 - SONAR-12414 Prevent click event from bubbling outside of popup
 - SONAR-12256 Add utility for consistent rounding in project overview
 
