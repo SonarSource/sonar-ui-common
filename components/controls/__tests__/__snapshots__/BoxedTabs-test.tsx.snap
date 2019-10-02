@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render correctly 1`] = `
+.emotion-1 {
+  position: relative;
+  background-color: white;
+  border-top: 1px solid #e6e6e6;
+  border-left: 1px solid #e6e6e6;
+  border-right: none;
+  border-bottom: none;
+  margin-bottom: -1px;
+  width: 128px;
+  height: 56px;
+  cursor: pointer;
+  outline: 0;
+}
+
+.emotion-1:last-child {
+  border-right: 1px solid #e6e6e6;
+}
+
+.emotion-0 {
+  display: block;
+  background-color: #4b9fd5;
+  height: 3px;
+  width: 100%;
+  position: absolute;
+  top: -1px;
+}
+
+.emotion-3 {
+  position: relative;
+  background-color: #f3f3f3;
+  border-top: 1px solid #e6e6e6;
+  border-left: 1px solid #e6e6e6;
+  border-right: none;
+  border-bottom: none;
+  margin-bottom: -1px;
+  width: 128px;
+  height: 56px;
+  cursor: pointer;
+  outline: 0;
+}
+
+.emotion-3:last-child {
+  border-right: 1px solid #e6e6e6;
+}
+
+.emotion-2 {
+  display: none;
+  background-color: #4b9fd5;
+  height: 3px;
+  width: 100%;
+  position: absolute;
+  top: -1px;
+}
+
+<BoxedTabs
+  onSelect={[MockFunction]}
+  selected="a"
+  tabs={
+    Array [
+      Object {
+        "key": "a",
+        "label": "labela",
+      },
+      Object {
+        "key": "b",
+        "label": "labelb",
+      },
+    ]
+  }
+>
+  <div>
+    <Styled(button)
+      active={true}
+      key="0"
+      onClick={[Function]}
+      type="button"
+    >
+      <button
+        className="emotion-1"
+        onClick={[Function]}
+        type="button"
+      >
+        <Styled(div)
+          active={true}
+        >
+          <div
+            className="emotion-0"
+          />
+        </Styled(div)>
+        labela
+      </button>
+    </Styled(button)>
+    <Styled(button)
+      active={false}
+      key="1"
+      onClick={[Function]}
+      type="button"
+    >
+      <button
+        className="emotion-3"
+        onClick={[Function]}
+        type="button"
+      >
+        <Styled(div)
+          active={false}
+        >
+          <div
+            className="emotion-2"
+          />
+        </Styled(div)>
+        labelb
+      </button>
+    </Styled(button)>
+  </div>
+</BoxedTabs>
+`;
