@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add BoxedTabs component
+
 ## 0.0.30
 
 - SONAR-12414 Prevent click event from bubbling outside of popup
