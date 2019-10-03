@@ -3,6 +3,9 @@
 ## Unreleased
 
 - Add BoxedTabs component
+- Update red colors usage
+  - SONAR-12503 E rating
+  - SONAR-12506 Error Alerts borders
 
 ## 0.0.30
 
