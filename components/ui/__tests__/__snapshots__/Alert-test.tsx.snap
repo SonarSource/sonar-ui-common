@@ -5,7 +5,7 @@ exports[`should render banner alert with correct css 1`] = `
   border: 1px solid;
   border-radius: 2px;
   margin-bottom: 8px;
-  border-color: #ebccd1;
+  border-color: #f4b1b0;
   background-color: #f2dede;
   color: #862422;
   display: block;
@@ -56,7 +56,7 @@ exports[`should render banner alert with correct css 1`] = `
   align-items: center;
   width: calc(2 * 8px);
   border-right: none;
-  border-color: #ebccd1;
+  border-color: #f4b1b0;
 }
 
 .emotion-1 {
@@ -106,7 +106,7 @@ exports[`should render banner alert with correct css 1`] = `
 exports[`verification of all variants of alert 1`] = `
 Object {
   "backGroundColor": "#f2dede",
-  "borderColor": "#ebccd1",
+  "borderColor": "#f4b1b0",
   "color": "#862422",
   "icon": <AlertErrorIcon
     fill="#a4030f"

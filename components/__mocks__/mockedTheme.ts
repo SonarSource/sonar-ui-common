@@ -72,11 +72,13 @@ export const mockedTheme = {
     //issues
     issueBgColor: '#f2dede',
     hotspotBgColor: '#eeeff4',
+    issueLocationSelected: '#f4b1b0',
+    issueLocationHighlighted: '#e1e1f2',
 
     // alerts
     warningIconColor: '#e2bf41',
 
-    alertBorderError: '#ebccd1',
+    alertBorderError: '#f4b1b0',
     alertBackgroundError: '#f2dede',
     alertTextError: '#862422',
     alertIconError: '#a4030f',
