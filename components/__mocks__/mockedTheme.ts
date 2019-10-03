@@ -78,7 +78,7 @@ export const mockedTheme = {
     alertBorderError: '#ebccd1',
     alertBackgroundError: '#f2dede',
     alertTextError: '#862422',
-    alertIconError: '#b81723',
+    alertIconError: '#a4030f',
 
     alertBorderWarning: '#faebcc',
     alertBackgroundWarning: '#fcf8e3',

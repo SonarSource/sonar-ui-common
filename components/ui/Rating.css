@@ -81,11 +81,11 @@ a .rating-D {
 }
 
 .rating-E {
-  background-color: #e00;
+  background-color: var(--red);
 }
 
 a .rating-E {
-  border-bottom-color: #e00;
+  border-bottom-color: var(--red);
 }
 
 .rating-small {
