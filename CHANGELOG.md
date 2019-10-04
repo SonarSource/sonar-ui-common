@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.0.31
+
 - Add BoxedTabs component
 - Update red colors usage
   - SONAR-12503 E rating
