@@ -75,5 +75,6 @@ A good practice before publishing the package is to make sure everything work we
 2. Bump versions in `package.json`
 3. `yarn` to update the `yarn.lock` file if needed
 4. Update the [changelog](./CHANGELOG.md) (leave the `Unreleased` part which will be filled for the next version)
-5. `yarn package` to create the package to be published
-6. `yarn publish ./build/dist/sonar-ui-common-x.y.z.tgz` to actually publish it to npm registry (you might want to check your .npmrc file to make sure you are not targeting repox)
+5. Push and tag the release commit
+6. `yarn package` to create the package to be published
+7. `yarn publish ./build/dist/sonar-ui-common-x.y.z.tgz` to actually publish it to npm registry (you might want to check your .npmrc file to make sure you are not targeting repox)
