@@ -100,24 +100,6 @@
 
 /* #endregion */
 
-/* #region .button-grey */
-.button-grey {
-  border-color: var(--gray71);
-  color: var(--secondFontColor);
-}
-
-.button-grey:hover,
-.button-grey.active {
-  background: var(--gray71);
-  color: #fff;
-}
-
-.button-grey:focus {
-  box-shadow: 0 0 0 3px rgba(180, 180, 180, 0.25);
-}
-
-/* #endregion */
-
 /* #region .button-link */
 .button-link {
   display: inline-flex;
