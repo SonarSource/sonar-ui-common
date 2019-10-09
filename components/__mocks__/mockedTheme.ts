@@ -29,17 +29,12 @@ export const mockedTheme = {
     darkBlue: '#236a97',
     veryDarkBlue: '#0E516F',
     green: '#00aa00',
-    lineCoverageGreen: '#b4dd78',
     lightGreen: '#b0d513',
     veryLightGreen: '#f5f9fc',
     yellow: '#eabe06',
     orange: '#ed7d20',
     red: '#d4333f',
-    lineCoverageRed: '#a4030f',
     purple: '#9139d4',
-
-    conciseIssueRed: '#d18582',
-    conciseIssueRedSelected: '#a4030f',
 
     gray94: '#efefef',
     gray80: '#cdcdcd',
@@ -58,22 +53,31 @@ export const mockedTheme = {
     barBackgroundColor: '#f3f3f3',
     barBorderColor: '#e6e6e6',
 
+    globalNavBarBg: '#262626',
+
+    // fonts
     baseFontColor: '#444',
     secondFontColor: '#777',
 
+    // forms
+    mandatoryFieldColor: '#a4030f',
+
+    // leak
     leakColor: '#fbf3d5',
     leakColorHover: '#f0e7c4',
     leakBorderColor: '#eae3c7',
 
-    globalNavBarBg: '#262626',
-
-    snippetFontColor: '#f0f0f0',
-
-    //issues
+    // issues
     issueBgColor: '#f2dede',
     hotspotBgColor: '#eeeff4',
     issueLocationSelected: '#f4b1b0',
     issueLocationHighlighted: '#e1e1f2',
+    conciseIssueRed: '#d18582',
+    conciseIssueRedSelected: '#a4030f',
+
+    // codeviewer
+    lineCoverageRed: '#a4030f',
+    lineCoverageGreen: '#b4dd78',
 
     // alerts
     warningIconColor: '#e2bf41',
@@ -96,27 +100,7 @@ export const mockedTheme = {
     alertBorderInfo: '#b1dff3',
     alertBackgroundInfo: '#d9edf7',
     alertTextInfo: '#0e516f',
-    alertIconInfo: '#0271b9',
-
-    // sonarcloud
-    sonarcloudOrange500: '#fd6a00',
-    sonarcloudOrange600: '#e26003',
-    sonarcloudOrange700: '#db5700',
-
-    sonarcloudBlack100: '#ffffff',
-    sonarcloudBlack200: '#f9f9fb',
-    sonarcloudBlack250: '#e6e8ea',
-    sonarcloudBlack300: '#cfd3d7',
-    sonarcloudBlack500: '#8a8c8f',
-    sonarcloudBlack700: '#434447',
-    sonarcloudBlack800: '#2d3032',
-    sonarcloudBlack900: '#070706',
-
-    sonarcloudBlue500: '#4c9bd6',
-    sonarcloudBlue600: '#327bb3',
-    sonarcloudBlue900: '#0b3c62',
-
-    sonarcloudBorderGray: 'rgba(207, 211, 215, 0.5)'
+    alertIconInfo: '#0271b9'
   },
 
   sizes: {
