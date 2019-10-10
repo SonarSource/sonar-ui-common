@@ -17,11 +17,11 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import * as classNames from 'classnames';
+import { keyframes } from '@emotion/core';
 import * as React from 'react';
 import { cutLongWords } from '../../helpers/path';
+import { styled } from '../theme';
 import { ClearButton } from './buttons';
-import './GlobalMessages.css';
 
 interface Message {
   id: string;
@@ -29,24 +29,72 @@ interface Message {
   message: string;
 }
 
-export interface Props {
+export interface GlobalMessagesProps {
   closeGlobalMessage: (id: string) => void;
   messages: Message[];
 }
 
-export default function GlobalMessages({ closeGlobalMessage, messages }: Props) {
+const MessagesContainer = styled.div`
+  position: fixed;
+  z-index: ${({ theme }) => theme.zIndexes.processContainerZIndex};
+  top: 0;
+  left: 50%;
+  width: 350px;
+  margin-left: -175px;
+`;
+
+export default function GlobalMessages({ closeGlobalMessage, messages }: GlobalMessagesProps) {
   if (messages.length === 0) {
     return null;
   }
 
   return (
-    <div className="processes-container">
+    <MessagesContainer>
       {messages.map(message => (
         <GlobalMessage closeGlobalMessage={closeGlobalMessage} key={message.id} message={message} />
       ))}
-    </div>
+    </MessagesContainer>
   );
 }
+
+const appearAnim = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const Message = styled.div<Pick<Message, 'level'>>`
+  position: relative;
+  padding: 0 30px 0 10px;
+  line-height: ${({ theme }) => theme.sizes.controlHeight};
+  border-radius: 0 0 3px 3px;
+  box-sizing: border-box;
+  color: #ffffff;
+  background-color: ${({ level, theme }) =>
+    level === 'SUCCESS' ? theme.colors.green : theme.colors.red};
+  text-align: center;
+  opacity: 0;
+  animation: ${appearAnim} 0.2s ease forwards;
+
+  & + & {
+    margin-top: calc(${({ theme }) => theme.sizes.gridSize} / 2);
+    border-radius: 3px;
+  }
+`;
+
+const CloseButton = styled(ClearButton)<Pick<Message, 'level'>>`
+  position: absolute;
+  top: calc(${({ theme }) => theme.sizes.gridSize} / 4);
+  right: calc(${({ theme }) => theme.sizes.gridSize} / 4);
+
+  &:hover svg,
+  &:focus svg {
+    color: ${({ level, theme }) => (level === 'SUCCESS' ? theme.colors.green : theme.colors.red)};
+  }
+`;
 
 export class GlobalMessage extends React.PureComponent<{
   closeGlobalMessage: (id: string) => void;
@@ -59,19 +107,15 @@ export class GlobalMessage extends React.PureComponent<{
   render() {
     const { message } = this.props;
     return (
-      <div
-        className={classNames('process-spinner', 'shown', {
-          'process-spinner-failed': message.level === 'ERROR',
-          'process-spinner-success': message.level === 'SUCCESS'
-        })}
-        key={message.id}>
+      <Message data-test={`global-message__${message.level}`} level={message.level}>
         {cutLongWords(message.message)}
-        <ClearButton
-          className="button-small process-spinner-close"
+        <CloseButton
+          className="button-small"
           color="#fff"
+          level={message.level}
           onClick={this.handleClose}
         />
-      </div>
+      </Message>
     );
   }
 }

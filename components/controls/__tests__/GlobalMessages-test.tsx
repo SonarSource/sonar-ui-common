@@ -18,8 +18,12 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import { shallow } from 'enzyme';
+import { matchers } from 'jest-emotion';
 import * as React from 'react';
-import GlobalMessages, { Props } from '../GlobalMessages';
+import { mockedTheme } from '../../__mocks__/mockedTheme';
+import GlobalMessages, { GlobalMessagesProps } from '../GlobalMessages';
+
+expect.extend(matchers);
 
 it('should not render when no message', () => {
   expect(shallowRender({ messages: [] }).type()).toBeNull();
@@ -36,13 +40,31 @@ it('should render correctly with a message', () => {
   ).toMatchSnapshot();
 });
 
-function shallowRender(props: Partial<Props> = {}) {
+it('should render with correct css', () => {
+  const wrapper = shallowRender();
+  expect(wrapper.render()).toMatchSnapshot();
+  expect(
+    wrapper
+      .find('GlobalMessage')
+      .first()
+      .render()
+  ).toHaveStyleRule('background-color', mockedTheme.colors.red);
+
+  expect(
+    wrapper
+      .find('GlobalMessage')
+      .last()
+      .render()
+  ).toHaveStyleRule('background-color', mockedTheme.colors.green);
+});
+
+function shallowRender(props: Partial<GlobalMessagesProps> = {}) {
   return shallow(
     <GlobalMessages
       closeGlobalMessage={jest.fn()}
       messages={[
         { id: '1', level: 'ERROR', message: 'Test' },
-        { id: '2', level: 'ERROR', message: 'Test 2' }
+        { id: '2', level: 'SUCCESS', message: 'Test 2' }
       ]}
       {...props}
     />
