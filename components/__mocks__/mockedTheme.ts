@@ -64,7 +64,6 @@ export const mockedTheme = {
 
     // leak
     leakColor: '#fbf3d5',
-    leakColorHover: '#f0e7c4',
     leakBorderColor: '#eae3c7',
 
     // issues
