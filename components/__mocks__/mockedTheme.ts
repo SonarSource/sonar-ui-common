@@ -79,7 +79,7 @@ export const mockedTheme = {
     lineCoverageGreen: '#b4dd78',
 
     // alerts
-    warningIconColor: '#e2bf41',
+    warningIconColor: '#eabe06',
 
     alertBorderError: '#f4b1b0',
     alertBackgroundError: '#f2dede',
