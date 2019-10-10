@@ -3,6 +3,8 @@
 ## Unreleased
 
 - Fix BoxedTabs style
+- Update some color usage
+  - SONAR-12539 Update leak color of timeline
 
 ## 0.0.31
 

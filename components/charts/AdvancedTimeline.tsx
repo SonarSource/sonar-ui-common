@@ -363,7 +363,7 @@ export default class AdvancedTimeline extends React.PureComponent<Props, State> 
         {theme => (
           <rect
             className="leak-chart-rect"
-            fill={theme.colors.leakColor}
+            fill={theme.colors.leakPrimaryColor}
             height={yRange[0] - yRange[yRange.length - 1]}
             width={leakWidth}
             x={xScale(leakPeriodDate)}
