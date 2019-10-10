@@ -224,7 +224,7 @@ export default class ZoomTimeLine extends React.PureComponent<Props, State> {
       <ThemeConsumer>
         {theme => (
           <rect
-            fill={theme.colors.leakColor}
+            fill={theme.colors.leakPrimaryColor}
             height={yRange[0] - yRange[yRange.length - 1]}
             width={xScale.range()[1] - xScale(leakPeriodDate)}
             x={xScale(leakPeriodDate)}

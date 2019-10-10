@@ -63,8 +63,8 @@ export const mockedTheme = {
     mandatoryFieldColor: '#a4030f',
 
     // leak
-    leakColor: '#fbf3d5',
-    leakBorderColor: '#eae3c7',
+    leakPrimaryColor: '#fbf3d5',
+    leakSecondaryColor: '#f1e8cb',
 
     // issues
     issueBgColor: '#f2dede',
