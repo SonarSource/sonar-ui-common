@@ -25,15 +25,16 @@ interface DataPoint {
   value: number;
 }
 
-interface Props {
+export interface DonutChartProps {
   data: DataPoint[];
   height: number;
-  thickness: number;
+  padAngle?: number;
   padding?: [number, number, number, number];
+  thickness: number;
   width: number;
 }
 
-export default function DonutChart(props: Props) {
+export default function DonutChart(props: DonutChartProps) {
   const { height, padding = [0, 0, 0, 0], width } = props;
 
   const availableWidth = width - padding[1] - padding[3];
@@ -45,6 +46,10 @@ export default function DonutChart(props: Props) {
   const pie = d3Pie<any, DataPoint>()
     .sort(null)
     .value(d => d.value);
+
+  if (props.padAngle !== undefined) {
+    pie.padAngle(props.padAngle);
+  }
 
   const sectors = pie(props.data).map((d, i) => {
     return (
@@ -67,14 +72,14 @@ export default function DonutChart(props: Props) {
   );
 }
 
-interface SectorProps {
+export interface SectorProps {
   data: PieArcDatum<DataPoint>;
   fill: string;
   radius: number;
   thickness: number;
 }
 
-function Sector(props: SectorProps) {
+export function Sector(props: SectorProps) {
   const arc = d3Arc<any, PieArcDatum<DataPoint>>()
     .outerRadius(props.radius)
     .innerRadius(props.radius - props.thickness);
