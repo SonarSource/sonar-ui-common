@@ -36,10 +36,11 @@ const StyledTab = styled.button<{ active: boolean }>`
   border-right: none;
   border-bottom: none;
   margin-bottom: -1px;
-  width: 128px;
+  min-width: 128px;
   height: 56px;
   cursor: pointer;
   outline: 0;
+  padding: 0 calc(2 * ${props => props.theme.sizes.gridSize});
 
   &:hover {
     background-color: ${props => props.theme.colors.barBackgroundColorHighlight};
@@ -56,6 +57,7 @@ const ActiveBorder = styled.div<{ active: boolean }>`
   height: 3px;
   width: 100%;
   position: absolute;
+  left: 0;
   top: -1px;
 `;
 

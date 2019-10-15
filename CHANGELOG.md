@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Fix BoxedTabs style
+
 ## 0.0.31
 
 - Add BoxedTabs component

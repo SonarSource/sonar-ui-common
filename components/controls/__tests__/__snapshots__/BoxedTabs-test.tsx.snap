@@ -9,10 +9,11 @@ exports[`should render correctly 1`] = `
   border-right: none;
   border-bottom: none;
   margin-bottom: -1px;
-  width: 128px;
+  min-width: 128px;
   height: 56px;
   cursor: pointer;
   outline: 0;
+  padding: 0 calc(2 * 8px);
 }
 
 .emotion-1:last-child {
@@ -25,6 +26,7 @@ exports[`should render correctly 1`] = `
   height: 3px;
   width: 100%;
   position: absolute;
+  left: 0;
   top: -1px;
 }
 
@@ -36,10 +38,11 @@ exports[`should render correctly 1`] = `
   border-right: none;
   border-bottom: none;
   margin-bottom: -1px;
-  width: 128px;
+  min-width: 128px;
   height: 56px;
   cursor: pointer;
   outline: 0;
+  padding: 0 calc(2 * 8px);
 }
 
 .emotion-3:last-child {
@@ -52,6 +55,7 @@ exports[`should render correctly 1`] = `
   height: 3px;
   width: 100%;
   position: absolute;
+  left: 0;
   top: -1px;
 }
 
