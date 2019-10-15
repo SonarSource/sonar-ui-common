@@ -18,16 +18,23 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import * as React from 'react';
-import Icon, { IconProps } from './Icon';
+import { IconProps, ThemedIcon } from './Icon';
 
-export default function BugIcon({ className, fill = 'currentColor', size }: IconProps) {
+export default function BugIcon({ className, fill, size }: IconProps) {
   return (
-    <Icon className={className} size={size}>
-      <path
-        d="M8.01 10.9885h1v-5h-1v5zm3-2h1.265l.46.771.775-.543-.733-1.228H11.01v-.316l2-2.343v-2.341h-1v1.972l-1 1.172v-1.144h-.029c-.101-.826-.658-1.52-1.436-1.853l1.472-1.349-.676-.736-1.831 1.678-1.831-1.678-.676.736 1.472 1.349c-.778.333-1.335 1.027-1.436 1.853H6.01v1.144l-1-1.172v-1.972h-1v2.341l2 2.343v.316H4.243l-.733 1.228.775.543.46-.771H6.01v.287l-2 1.912v2.801h1v-2.374l1.003-.959c.018 1.289 1.07 2.333 2.363 2.333h.768c.741 0 1.418-.347 1.767-.907.258-.411.304-.887.16-1.365l.939.898v2.374h1v-2.801l-2-1.912v-.287z"
-        fillRule="evenodd"
-        style={{ fill }}
-      />
-    </Icon>
+    <ThemedIcon className={className} size={size}>
+      {({ theme }) => (
+        <>
+          <path
+            d="M10.09,1.88A2.86,2.86,0,0,0,8,1a2.87,2.87,0,0,0-2.11.87A2.93,2.93,0,0,0,5,4h6A2.93,2.93,0,0,0,10.09,1.88Z"
+            style={{ fill: fill || theme.colors.baseFontColor }}
+          />
+          <path
+            d="M14.54,9H13V5.6L14.3,4.42a.5.5,0,0,0,0-.71.49.49,0,0,0-.7,0L12.17,5H3.82L2.34,3.66a.5.5,0,0,0-.67.74L2.94,5.55V9H1.46a.5.5,0,0,0,0,1H3a5.2,5.2,0,0,0,1.05,2.32l-2,1.81a.5.5,0,1,0,.67.74l2-1.82A4.62,4.62,0,0,0,7,14.1V8A1,1,0,0,1,8,7a.94.94,0,0,1,1,.9v6.17A4.55,4.55,0,0,0,11.18,13l2,1.83a.51.51,0,0,0,.33.13.48.48,0,0,0,.37-.17.49.49,0,0,0,0-.7l-2-1.8a5.34,5.34,0,0,0,1-2.29h1.64a.5.5,0,0,0,0-1Z"
+            style={{ fill: fill || theme.colors.baseFontColor }}
+          />
+        </>
+      )}
+    </ThemedIcon>
   );
 }

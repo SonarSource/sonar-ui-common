@@ -7,6 +7,7 @@
   - SONAR-12539 Update leak color of timeline
   - SONAR-12541 Rewrite GlobalMessages to @emotion and clean colors and css
   - SONAR-11601 More colorblind friendly coverage indicators
+- SC-1242 Update issue types icons
 
 ## 0.0.31
 

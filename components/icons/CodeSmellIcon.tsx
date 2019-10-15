@@ -18,15 +18,17 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import * as React from 'react';
-import Icon, { IconProps } from './Icon';
+import { IconProps, ThemedIcon } from './Icon';
 
-export default function CodeSmellIcon({ className, fill = 'currentColor', size }: IconProps) {
+export default function CodeSmellIcon({ className, fill, size }: IconProps) {
   return (
-    <Icon className={className} size={size}>
-      <path
-        d="M8 2C4.7 2 2 4.7 2 8s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6zm-.5 5.5h.9v.9h-.9v-.9zm-3.8.2c-.1 0-.2-.1-.2-.2 0-.4.1-1.2.6-2S5.3 4.2 5.6 4c.2 0 .3 0 .3.1l1.3 2.3c0 .1 0 .2-.1.2-.1.2-.2.3-.3.5-.1.2-.2.4-.2.5 0 .1-.1.2-.2.2l-2.7-.1zM9.9 12c-.3.2-1.1.5-2 .5-.9 0-1.7-.3-2-.5-.1 0-.1-.2-.1-.3l1.3-2.3c0-.1.1-.1.2-.1.2.1.3.1.5.1s.4 0 .5-.1c.1 0 .2 0 .2.1l1.3 2.3c.2.2.2.3.1.3zm2.5-4.1L9.7 8c-.1 0-.2-.1-.2-.2 0-.2-.1-.4-.2-.5 0-.1-.2-.3-.3-.4-.1 0-.1-.1-.1-.2l1.3-2.3c.1-.1.2-.1.3-.1.3.2 1 .7 1.5 1.5s.6 1.6.6 2c0 0-.1.1-.2.1z"
-        style={{ fill }}
-      />
-    </Icon>
+    <ThemedIcon className={className} size={size}>
+      {({ theme }) => (
+        <path
+          d="M8 1a7.05 7.05 0 107.05 7.05A7 7 0 008 1zm-.72 8.9l-1.46 2.52a.3.3 0 01-.26.14.44.44 0 01-.15-.05A5.28 5.28 0 012.8 8a.29.29 0 01.29-.29H6a.28.28 0 01.29.29 1.74 1.74 0 00.89 1.51.31.31 0 01.1.39zm-.12-3.44A.25.25 0 017 6.5a.29.29 0 01-.26-.14L5.31 3.84a.33.33 0 010-.14.31.31 0 01.16-.26 5.28 5.28 0 015.22 0 .29.29 0 01.1.4l-1.5 2.52A.29.29 0 019 6.5a.33.33 0 01-.14 0 1.79 1.79 0 00-1.7-.04zm3.53 6.05a.3.3 0 01-.4-.1L8.83 9.89a.29.29 0 01.1-.41A1.76 1.76 0 009.8 8a.28.28 0 01.29-.29H13a.32.32 0 01.31.29 5.27 5.27 0 01-2.62 4.51z"
+          style={{ fill: fill || theme.colors.baseFontColor }}
+        />
+      )}
+    </ThemedIcon>
   );
 }
