@@ -72,14 +72,14 @@ export default function DonutChart(props: DonutChartProps) {
   );
 }
 
-export interface SectorProps {
+interface SectorProps {
   data: PieArcDatum<DataPoint>;
   fill: string;
   radius: number;
   thickness: number;
 }
 
-export function Sector(props: SectorProps) {
+function Sector(props: SectorProps) {
   const arc = d3Arc<any, PieArcDatum<DataPoint>>()
     .outerRadius(props.radius)
     .innerRadius(props.radius - props.thickness);
