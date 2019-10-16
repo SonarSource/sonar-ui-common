@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 0.0.33
+
+- SONAR-11601 Prevent DonutChart from exporting d3 stuff
+
 ## 0.0.32
 
 - Fix BoxedTabs style
