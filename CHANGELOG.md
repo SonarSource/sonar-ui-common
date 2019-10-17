@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- SC-1242 Add back currentColor as default fill value for issue type icons
+
 ## 0.0.33
 
 - SONAR-11601 Prevent DonutChart from exporting d3 stuff

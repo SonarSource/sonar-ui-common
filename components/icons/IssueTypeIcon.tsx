@@ -18,15 +18,14 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import * as React from 'react';
+import { IconProps } from './Icon';
 import IssueIcon from './IssueIcon';
 
-export interface Props {
-  className?: string;
+export interface Props extends IconProps {
   query: string;
-  size?: number;
 }
 
-export default function IssueTypeIcon({ className, query, size }: Props) {
+export default function IssueTypeIcon({ query, ...iconProps }: Props) {
   let type: T.IssueType;
 
   switch (query.toLowerCase()) {
@@ -53,6 +52,5 @@ export default function IssueTypeIcon({ className, query, size }: Props) {
       return null;
   }
 
-  const icon = <IssueIcon size={size} type={type} />;
-  return className ? <span className={className}>{icon}</span> : icon;
+  return <IssueIcon type={type} {...iconProps} />;
 }

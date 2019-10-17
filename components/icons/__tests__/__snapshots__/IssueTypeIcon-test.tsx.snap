@@ -7,13 +7,10 @@ exports[`should render correctly 1`] = `
 `;
 
 exports[`should render correctly 2`] = `
-<span
+<IssueIcon
   className="my-class"
->
-  <IssueIcon
-    type="SECURITY_HOTSPOT"
-  />
-</span>
+  type="SECURITY_HOTSPOT"
+/>
 `;
 
 exports[`should render correctly 3`] = `

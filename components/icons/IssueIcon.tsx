@@ -20,25 +20,24 @@
 import * as React from 'react';
 import BugIcon from './BugIcon';
 import CodeSmellIcon from './CodeSmellIcon';
+import { IconProps } from './Icon';
 import SecurityHotspotIcon from './SecurityHotspotIcon';
 import VulnerabilityIcon from './VulnerabilityIcon';
 
-interface Props {
-  className?: string;
+interface Props extends IconProps {
   type: T.IssueType;
-  size?: number;
 }
 
-export default function IssueIcon({ className, type, size }: Props) {
+export default function IssueIcon({ type, ...iconProps }: Props) {
   switch (type) {
     case 'BUG':
-      return <BugIcon className={className} size={size} />;
+      return <BugIcon {...iconProps} />;
     case 'VULNERABILITY':
-      return <VulnerabilityIcon className={className} size={size} />;
+      return <VulnerabilityIcon {...iconProps} />;
     case 'CODE_SMELL':
-      return <CodeSmellIcon className={className} size={size} />;
+      return <CodeSmellIcon {...iconProps} />;
     case 'SECURITY_HOTSPOT':
-      return <SecurityHotspotIcon className={className} size={size} />;
+      return <SecurityHotspotIcon {...iconProps} />;
     default:
       return null;
   }
