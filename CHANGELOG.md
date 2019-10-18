@@ -4,6 +4,7 @@
 
 - SC-1242 Invert code smell icon
 - SONAR-12610 Modal should not always display scrollbar
+- SC-1059 Fix styling of disabled options in Select
 
 ## 0.0.34
 

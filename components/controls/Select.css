@@ -338,13 +338,13 @@
 }
 
 .Select-option.is-disabled {
-  font-weight: 600;
   cursor: default;
+  opacity: 0.5;
 }
 
 .Select-noresults {
   box-sizing: border-box;
-  color: #999;
+  color: var(--gray60);
   cursor: default;
   display: block;
   padding: 8px 10px;
