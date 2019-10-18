@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- SC-1242 Invert code smell icon
+
 ## 0.0.34
 
 - SC-1242 Add back currentColor as default fill value for issue type icons
