@@ -108,10 +108,10 @@
 .modal-container {
   max-height: 60vh;
   box-sizing: border-box;
-  overflow-y: scroll;
+  overflow-y: auto;
   border-top: 1px solid var(--barBorderColor);
   margin-top: var(--pagePadding);
-  padding-right: calc(4 * var(--gridSize) - var(--sbw));
+  padding-right: calc(4 * var(--gridSize));
 }
 
 .modal-container > :last-child {
