@@ -6,15 +6,24 @@ if [ $# -eq 0 ]
     exit 1
 fi
 
+if [ ! $(which npmrc) ]
+  then
+    echo "You need to install npmrc and configure it correctly, check the readme. Call:"
+    echo "  npm install -g npmrc"
+    exit 1
+fi
+
 git stash
-sed -i "s/## Unreleased/## Unreleased\n\r## $1/g" CHANGELOG.md
-sed -i "s/\"version\": \".*\",/\"version\": \"$1\",/g" package.json
+sed "s/## Unreleased/## Unreleased__NEW_LINE__## $1/g" CHANGELOG.md | awk '{ sub(/__NEW_LINE__/,"\n\n"); print }' > CHANGELOG.md.back
+mv CHANGELOG.md.back CHANGELOG.md
+sed "s/\"version\": \".*\",/\"version\": \"$1\",/g" package.json > package.json.back
+mv package.json.back package.json
 yarn
 yarn package
+npmrc npm
 git add CHANGELOG.md package.json
 git commit -m "Prepare version $1"
 git tag $1
-npmrc npm
 yarn publish ./build/dist/sonar-ui-common-v$1.tgz
 npmrc default
 git push

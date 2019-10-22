@@ -73,7 +73,7 @@ A good practice before publishing the package is to make sure everything work we
 
 ### Automated way
 
-It's possible to use the release script. There is one requirements though: globally install [npmrc](https://www.npmjs.com/package/npmrc) to manage your `.npmrc` profiles. You will also need two profiles defined (check the package readme to know how to set them up): 
+It's possible to use the release script. There is one requirements though: globally install [npmrc](https://www.npmjs.com/package/npmrc) (`npm install -g npmrc`) to manage your `.npmrc` profiles. You will also need two profiles defined (check the package readme to know how to set them up): 
 * One named `npm` that should target npm registry and that contain your npm auth token
 * And one named `default` that targets repox
 
