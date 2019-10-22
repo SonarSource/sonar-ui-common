@@ -72,6 +72,15 @@ exports[`should render correctly 1`] = `
         "key": "b",
         "label": "labelb",
       },
+      Object {
+        "key": "c",
+        "label": <span>
+          Complex label 
+          <strong>
+            !!!
+          </strong>
+        </span>,
+      },
     ]
   }
 >
@@ -116,6 +125,32 @@ exports[`should render correctly 1`] = `
           />
         </Styled(div)>
         labelb
+      </button>
+    </Styled(button)>
+    <Styled(button)
+      active={false}
+      key="2"
+      onClick={[Function]}
+      type="button"
+    >
+      <button
+        className="emotion-3"
+        onClick={[Function]}
+        type="button"
+      >
+        <Styled(div)
+          active={false}
+        >
+          <div
+            className="emotion-2"
+          />
+        </Styled(div)>
+        <span>
+          Complex label 
+          <strong>
+            !!!
+          </strong>
+        </span>
       </button>
     </Styled(button)>
   </div>

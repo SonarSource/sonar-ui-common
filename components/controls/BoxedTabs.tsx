@@ -23,7 +23,7 @@ import { styled, ThemedProps } from '../theme';
 export interface BoxedTabsProps<K> {
   onSelect: (key: K) => void;
   selected?: K;
-  tabs: Array<{ key: K; label: string }>;
+  tabs: Array<{ key: K; label: React.ReactNode }>;
 }
 
 const baseBorder = ({ theme }: ThemedProps) => `1px solid ${theme.colors.barBorderColor}`;
