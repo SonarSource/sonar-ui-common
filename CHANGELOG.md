@@ -1,6 +1,7 @@
 # sonar-ui-common changelog
 
 ## Unreleased
+## 0.0.35
 
 - SC-1242 Invert code smell icon
 - SONAR-12610 Modal should not always display scrollbar
