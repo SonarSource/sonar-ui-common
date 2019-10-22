@@ -79,13 +79,13 @@ ANALYZE)
       -Dsonar.projectVersion=$SONAR_PROJECT_VERSION \
       -Dsonar.pullrequest.branch=$TRAVIS_PULL_REQUEST_BRANCH \
       -Dsonar.pullrequest.base=$TRAVIS_BRANCH \
+      -Dsonar.pullrequest.key=$TRAVIS_PULL_REQUEST \
+      -Dsonar.pullrequest.github.repository=$TRAVIS_REPO_SLUG \
+      -Dsonar.analysis.prNumber=$TRAVIS_PULL_REQUEST \
       -Dsonar.analysis.buildNumber=$TRAVIS_BUILD_NUMBER \
       -Dsonar.analysis.pipeline=$TRAVIS_BUILD_NUMBER \
       -Dsonar.analysis.sha1=$TRAVIS_PULL_REQUEST_SHA \
-      -Dsonar.analysis.repository=$TRAVIS_REPO_SLUG \
-      -Dsonar.analysis.prNumber=$TRAVIS_PULL_REQUEST \
-      -Dsonar.pullrequest.key=$TRAVIS_PULL_REQUEST \
-      -Dsonar.pullrequest.github.repository=$TRAVIS_REPO_SLUG
+      -Dsonar.analysis.repository=$TRAVIS_REPO_SLUG
 
   else
     echo '======= No analysis'

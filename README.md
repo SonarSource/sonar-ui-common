@@ -71,6 +71,24 @@ A good practice before publishing the package is to make sure everything work we
 
 ## Publish new version
 
+### Automated way
+
+It's possible to use the release script. There is one requirements though: globally install [npmrc](https://www.npmjs.com/package/npmrc) to manage your `.npmrc` profiles. You will also need two profiles defined (check the package readme to know how to set them up): 
+* One named `npm` that should target npm registry and that contain your npm auth token
+* And one named `default` that targets repox
+
+If you meet those requirements you just need to call `yarn release 0.0.x` and the script will automatically:
+* stash your current changes
+* update the `package.json` and `CHANGELOG.md` files
+* package the module
+* create a release commit and tag it
+* switch your npmrc file to target npm and publish the package (you will still need to manually enter the new version and your two factor auth token when prompted by yarn)
+* push the commit and the tag
+* pop the stashed changes
+
+
+### Manual way
+
 1. If everything is green, QG and travis jobs
 2. Bump versions in `package.json`
 3. `yarn` to update the `yarn.lock` file if needed
