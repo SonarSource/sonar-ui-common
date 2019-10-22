@@ -50,7 +50,18 @@ function dom(overrides) {
     <BoxedTabs
       onSelect={jest.fn()}
       selected="a"
-      tabs={[{ key: 'a', label: 'labela' }, { key: 'b', label: 'labelb' }]}
+      tabs={[
+        { key: 'a', label: 'labela' },
+        { key: 'b', label: 'labelb' },
+        {
+          key: 'c',
+          label: (
+            <span>
+              Complex label <strong>!!!</strong>
+            </span>
+          )
+        }
+      ]}
       {...overrides}
     />
   );
