@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.0.36
+
 - Make BoxedTabs labels accept JSX Elements
 
 ## 0.0.35
