@@ -28,6 +28,11 @@ export interface BoxedTabsProps<K> {
 
 const baseBorder = ({ theme }: ThemedProps) => `1px solid ${theme.colors.barBorderColor}`;
 
+const TabContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
 const StyledTab = styled.button<{ active: boolean }>`
   position: relative;
   background-color: ${props => (props.active ? 'white' : props.theme.colors.barBackgroundColor)};
@@ -64,7 +69,7 @@ const ActiveBorder = styled.div<{ active: boolean }>`
 export default function BoxedTabs<K>(props: BoxedTabsProps<K>) {
   const { tabs, selected } = props;
   return (
-    <div>
+    <TabContainer>
       {tabs.map(({ key, label }, i) => (
         <StyledTab
           active={selected === key}
@@ -75,6 +80,6 @@ export default function BoxedTabs<K>(props: BoxedTabsProps<K>) {
           {label}
         </StyledTab>
       ))}
-    </div>
+    </TabContainer>
   );
 }

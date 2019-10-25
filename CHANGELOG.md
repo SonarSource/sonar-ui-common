@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Bump to typescript@3.6.4
+- Fix BoxedTabs alignment
 
 ## 0.0.36
 
