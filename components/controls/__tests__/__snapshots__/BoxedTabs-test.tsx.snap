@@ -1,6 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`should render correctly 1`] = `
+.emotion-6 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
 .emotion-1 {
   position: relative;
   background-color: white;
@@ -84,75 +94,79 @@ exports[`should render correctly 1`] = `
     ]
   }
 >
-  <div>
-    <Styled(button)
-      active={true}
-      key="0"
-      onClick={[Function]}
-      type="button"
+  <Styled(div)>
+    <div
+      className="emotion-6"
     >
-      <button
-        className="emotion-1"
+      <Styled(button)
+        active={true}
+        key="0"
         onClick={[Function]}
         type="button"
       >
-        <Styled(div)
-          active={true}
+        <button
+          className="emotion-1"
+          onClick={[Function]}
+          type="button"
         >
-          <div
-            className="emotion-0"
-          />
-        </Styled(div)>
-        labela
-      </button>
-    </Styled(button)>
-    <Styled(button)
-      active={false}
-      key="1"
-      onClick={[Function]}
-      type="button"
-    >
-      <button
-        className="emotion-3"
+          <Styled(div)
+            active={true}
+          >
+            <div
+              className="emotion-0"
+            />
+          </Styled(div)>
+          labela
+        </button>
+      </Styled(button)>
+      <Styled(button)
+        active={false}
+        key="1"
         onClick={[Function]}
         type="button"
       >
-        <Styled(div)
-          active={false}
+        <button
+          className="emotion-3"
+          onClick={[Function]}
+          type="button"
         >
-          <div
-            className="emotion-2"
-          />
-        </Styled(div)>
-        labelb
-      </button>
-    </Styled(button)>
-    <Styled(button)
-      active={false}
-      key="2"
-      onClick={[Function]}
-      type="button"
-    >
-      <button
-        className="emotion-3"
+          <Styled(div)
+            active={false}
+          >
+            <div
+              className="emotion-2"
+            />
+          </Styled(div)>
+          labelb
+        </button>
+      </Styled(button)>
+      <Styled(button)
+        active={false}
+        key="2"
         onClick={[Function]}
         type="button"
       >
-        <Styled(div)
-          active={false}
+        <button
+          className="emotion-3"
+          onClick={[Function]}
+          type="button"
         >
-          <div
-            className="emotion-2"
-          />
-        </Styled(div)>
-        <span>
-          Complex label 
-          <strong>
-            !!!
-          </strong>
-        </span>
-      </button>
-    </Styled(button)>
-  </div>
+          <Styled(div)
+            active={false}
+          >
+            <div
+              className="emotion-2"
+            />
+          </Styled(div)>
+          <span>
+            Complex label 
+            <strong>
+              !!!
+            </strong>
+          </span>
+        </button>
+      </Styled(button)>
+    </div>
+  </Styled(div)>
 </BoxedTabs>
 `;
