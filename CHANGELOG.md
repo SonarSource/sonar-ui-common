@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Bump to typescript@3.6.4
+
 ## 0.0.36
 
 - Make BoxedTabs labels accept JSX Elements
