@@ -4,6 +4,7 @@
 
 - Bump to typescript@3.6.4
 - Fix BoxedTabs alignment
+- SONAR-12684 Fix glitched spinner in SearchBox
 
 ## 0.0.36
 
