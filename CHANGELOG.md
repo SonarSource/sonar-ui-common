@@ -2,10 +2,13 @@
 
 ## Unreleased
 
+## 0.0.37
+
 - Bump to typescript@3.6.4
 - Fix BoxedTabs alignment
 - SONAR-12684 Fix glitched spinner in SearchBox
 - Don't fix BoxedTabs height
+- SONAR-12636 Add a disabled state to the toggle component
 
 ## 0.0.36
 
