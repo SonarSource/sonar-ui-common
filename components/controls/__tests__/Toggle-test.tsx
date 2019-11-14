@@ -17,23 +17,33 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { shallow } from 'enzyme';
+
+import { mount } from 'enzyme';
 import * as React from 'react';
 import { click } from '../../../helpers/testUtils';
 import Toggle from '../Toggle';
 
-it('should render', () => {
-  const Toggle = shallowRender();
-  expect(Toggle.is('Button')).toBe(true);
+it('should render correctly', () => {
+  const wrapper = mountRender();
+  expect(wrapper).toMatchSnapshot();
 });
 
-it('should call onChange', () => {
+it('should call onChange if NOT disabled', () => {
   const onChange = jest.fn();
-  const Toggle = shallowRender({ onChange });
-  click(Toggle);
+  const wrapper = mountRender({ disabled: false, onChange });
+  click(wrapper.find('button'));
   expect(onChange).toBeCalledWith(false);
 });
 
-function shallowRender(props?: Partial<Toggle['props']>) {
-  return shallow(<Toggle onChange={() => true} value={true} {...props} />);
+it('should NOT call onChange if disabled', () => {
+  const onChange = jest.fn();
+  const wrapper = mountRender({ disabled: true, onChange });
+  click(wrapper.find('button'));
+  expect(onChange).not.toHaveBeenCalled();
+});
+
+function mountRender(props?: Partial<Toggle['props']>) {
+  return mount(
+    <Toggle disabled={true} name="toggle-name" onChange={jest.fn()} value={true} {...props} />
+  );
 }

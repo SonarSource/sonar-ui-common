@@ -24,6 +24,7 @@ import { Button } from './buttons';
 import './Toggle.css';
 
 interface Props {
+  disabled?: boolean;
   name?: string;
   onChange?: (value: boolean) => void;
   value: boolean | string;
@@ -43,11 +44,12 @@ export default class Toggle extends React.PureComponent<Props> {
   };
 
   render() {
+    const { disabled, name } = this.props;
     const value = this.getValue();
     const className = classNames('boolean-toggle', { 'boolean-toggle-on': value });
 
     return (
-      <Button className={className} name={this.props.name} onClick={this.handleClick}>
+      <Button className={className} disabled={disabled} name={name} onClick={this.handleClick}>
         <div className="boolean-toggle-handle">
           <CheckIcon size={12} />
         </div>
