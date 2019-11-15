@@ -42,10 +42,10 @@ const StyledTab = styled.button<{ active: boolean }>`
   border-bottom: none;
   margin-bottom: -1px;
   min-width: 128px;
-  height: 56px;
+  min-height: 56px;
   cursor: pointer;
   outline: 0;
-  padding: 0 calc(2 * ${props => props.theme.sizes.gridSize});
+  padding: calc(2 * ${props => props.theme.sizes.gridSize});
 
   &:hover {
     background-color: ${props => props.theme.colors.barBackgroundColorHighlight};

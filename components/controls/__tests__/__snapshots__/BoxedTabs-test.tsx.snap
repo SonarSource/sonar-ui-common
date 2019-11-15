@@ -20,10 +20,10 @@ exports[`should render correctly 1`] = `
   border-bottom: none;
   margin-bottom: -1px;
   min-width: 128px;
-  height: 56px;
+  min-height: 56px;
   cursor: pointer;
   outline: 0;
-  padding: 0 calc(2 * 8px);
+  padding: calc(2 * 8px);
 }
 
 .emotion-1:last-child {
@@ -49,10 +49,10 @@ exports[`should render correctly 1`] = `
   border-bottom: none;
   margin-bottom: -1px;
   min-width: 128px;
-  height: 56px;
+  min-height: 56px;
   cursor: pointer;
   outline: 0;
-  padding: 0 calc(2 * 8px);
+  padding: calc(2 * 8px);
 }
 
 .emotion-3:last-child {
