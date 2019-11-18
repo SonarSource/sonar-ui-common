@@ -43,7 +43,7 @@ it('should render with error', () => {
   expect(
     shallow(
       <ValidationInput
-        description="My description"
+        description={<div>My description</div>}
         error="Field error message"
         id="field-id"
         isInvalid={true}

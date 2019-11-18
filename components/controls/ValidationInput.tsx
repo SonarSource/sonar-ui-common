@@ -23,7 +23,7 @@ import AlertSuccessIcon from '../icons/AlertSuccessIcon';
 import HelpTooltip from './HelpTooltip';
 
 interface Props {
-  description?: string;
+  description?: React.ReactNode;
   children: React.ReactNode;
   className?: string;
   error: string | undefined;

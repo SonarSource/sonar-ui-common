@@ -98,7 +98,9 @@ exports[`should render with error 1`] = `
   <div
     className="note abs-width-400"
   >
-    My description
+    <div>
+      My description
+    </div>
   </div>
 </div>
 `;
