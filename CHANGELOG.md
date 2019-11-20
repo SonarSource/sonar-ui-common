@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.0.39
+
 - SC-1379 In requests, allow to bypass the checkstatus redirection to login page when getting a 401 error
 
 ## 0.0.38
