@@ -21,16 +21,63 @@
 import handleRequiredAuthentication from '../handleRequiredAuthentication';
 import {
   checkStatus,
+  getJSON,
+  getText,
   parseError,
   parseJSON,
   parseText,
+  post,
+  postJSON,
   requestTryAndRepeatUntil
 } from '../request';
 
 jest.mock('../handleRequiredAuthentication', () => ({ default: jest.fn() }));
 
+const url = '/my-url';
+
 beforeEach(() => {
   jest.clearAllMocks();
+  window.fetch = jest.fn().mockResolvedValue(mockResponse({}, 200, {}));
+});
+
+describe('getJSON', () => {
+  it('should get json without parameters', async () => {
+    const response = mockResponse({}, 200, {});
+    window.fetch = jest.fn().mockResolvedValue(response);
+    getJSON(url);
+    await new Promise(setImmediate);
+
+    expect(window.fetch).toBeCalledWith(url, expect.objectContaining({ method: 'GET' }));
+    expect(response.json).toBeCalled();
+  });
+
+  it('should get json with parameters', () => {
+    getJSON(url, { data: 'test' });
+    expect(window.fetch).toBeCalledWith(
+      url + '?data=test',
+      expect.objectContaining({ method: 'GET' })
+    );
+  });
+});
+
+describe('getText', () => {
+  it('should get text without parameters', async () => {
+    const response = mockResponse({}, 200, '');
+    window.fetch = jest.fn().mockResolvedValue(response);
+    getText(url);
+    await new Promise(setImmediate);
+
+    expect(window.fetch).toBeCalledWith(url, expect.objectContaining({ method: 'GET' }));
+    expect(response.text).toBeCalled();
+  });
+
+  it('should get text with parameters', () => {
+    getText(url, { data: 'test' });
+    expect(window.fetch).toBeCalledWith(
+      url + '?data=test',
+      expect.objectContaining({ method: 'GET' })
+    );
+  });
 });
 
 describe('parseError', () => {
@@ -68,10 +115,9 @@ describe('parseError', () => {
 describe('parseJSON', () => {
   it('should return a json response', () => {
     const body = { test: 2 };
-    const response = new Response(JSON.stringify(body), { status: 200 });
-    const json = jest.spyOn(response, 'json');
+    const response = mockResponse({}, 200, body);
     const jsonResponse = parseJSON(response);
-    expect(json).toBeCalled();
+    expect(response.json).toBeCalled();
     return expect(jsonResponse).resolves.toEqual(body);
   });
 });
@@ -79,11 +125,46 @@ describe('parseJSON', () => {
 describe('parseText', () => {
   it('should return a text response', () => {
     const body = 'test';
-    const response = new Response(body, { status: 200 });
-    const text = jest.spyOn(response, 'text');
+    const response = mockResponse({}, 200, body);
     const textResponse = parseText(response);
-    expect(text).toBeCalled();
+    expect(response.text).toBeCalled();
     return expect(textResponse).resolves.toBe(body);
+  });
+});
+
+describe('postJSON', () => {
+  it('should post without parameters and get json', async () => {
+    const response = mockResponse();
+    window.fetch = jest.fn().mockResolvedValue(response);
+    postJSON(url);
+    await new Promise(setImmediate);
+
+    expect(window.fetch).toBeCalledWith(url, expect.objectContaining({ method: 'POST' }));
+    expect(response.json).toBeCalled();
+  });
+
+  it('should post with a body and get json', () => {
+    postJSON(url, { data: 'test' });
+    expect(window.fetch).toBeCalledWith(
+      url,
+      expect.objectContaining({ body: 'data=test', method: 'POST' })
+    );
+  });
+});
+
+describe('post', () => {
+  it('should post without parameters and return nothing', async () => {
+    const response = mockResponse();
+    window.fetch = jest.fn().mockResolvedValue(response);
+    post(url, { data: 'test' });
+    await new Promise(setImmediate);
+
+    expect(window.fetch).toBeCalledWith(
+      url,
+      expect.objectContaining({ body: 'data=test', method: 'POST' })
+    );
+    expect(response.json).not.toBeCalled();
+    expect(response.text).not.toBeCalled();
   });
 });
 
@@ -205,6 +286,14 @@ describe('checkStatus', () => {
     });
   });
 
+  it('should bybass the redirect with a 401 error', () => {
+    const mockedResponse = mockResponse({}, 401);
+    return checkStatus(mockedResponse, true).catch(response => {
+      expect(handleRequiredAuthentication).not.toBeCalled();
+      expect(response).toEqual(mockedResponse);
+    });
+  });
+
   it('should reload the page when version is changing', async () => {
     const reload = jest.fn();
     delete window.location;
@@ -217,11 +306,12 @@ describe('checkStatus', () => {
     checkStatus(mockResponse({ 'Sonar-Version': '7.9' }));
     expect(reload).toBeCalled();
   });
-
-  function mockResponse(headers: T.Dict<string> = {}, status = 200): any {
-    return {
-      headers: { get: (prop: string) => headers[prop] },
-      status
-    };
-  }
 });
+
+function mockResponse(headers: T.Dict<string> = {}, status = 200, value?: any): Response {
+  const body = value && value instanceof Object ? JSON.stringify(value) : value;
+  const response = new Response(body, { headers, status });
+  response.json = jest.fn().mockResolvedValue(value);
+  response.text = jest.fn().mockResolvedValue(value);
+  return response;
+}

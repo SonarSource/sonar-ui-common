@@ -159,10 +159,10 @@ function checkApplicationVersion(response: Response): boolean {
 /**
  * Check that response status is ok
  */
-export function checkStatus(response: Response): Promise<Response> {
+export function checkStatus(response: Response, bypassRedirect?: boolean): Promise<Response> {
   return new Promise((resolve, reject) => {
     if (checkApplicationVersion(response)) {
-      if (response.status === 401) {
+      if (response.status === 401 && !bypassRedirect) {
         import('./handleRequiredAuthentication')
           .then(i => i.default())
           .then(reject, reject);
@@ -202,25 +202,29 @@ export function parseError(response: Response): Promise<string> {
 /**
  * Shortcut to do a GET request and return a Response
  */
-export function get(url: string, data?: RequestData): Promise<Response> {
+export function get(url: string, data?: RequestData, bypassRedirect?: boolean): Promise<Response> {
   return request(url)
     .setData(data)
     .submit()
-    .then(checkStatus);
+    .then(response => checkStatus(response, bypassRedirect));
 }
 
 /**
  * Shortcut to do a GET request and return response json
  */
-export function getJSON(url: string, data?: RequestData): Promise<any> {
-  return get(url, data).then(parseJSON);
+export function getJSON(url: string, data?: RequestData, bypassRedirect?: boolean): Promise<any> {
+  return get(url, data, bypassRedirect).then(parseJSON);
 }
 
 /**
  * Shortcut to do a GET request and return response text
  */
-export function getText(url: string, data?: RequestData): Promise<string> {
-  return get(url, data).then(parseText);
+export function getText(
+  url: string,
+  data?: RequestData,
+  bypassRedirect?: boolean
+): Promise<string> {
+  return get(url, data, bypassRedirect).then(parseText);
 }
 
 /**
@@ -242,40 +246,27 @@ export function getCorsJSON(url: string, data?: RequestData): Promise<any> {
 /**
  * Shortcut to do a POST request and return response json
  */
-export function postJSON(url: string, data?: RequestData): Promise<any> {
+export function postJSON(url: string, data?: RequestData, bypassRedirect?: boolean): Promise<any> {
   return request(url)
     .setMethod('POST')
     .setData(data)
     .submit()
-    .then(checkStatus)
+    .then(response => checkStatus(response, bypassRedirect))
     .then(parseJSON);
 }
 
 /**
  * Shortcut to do a POST request
  */
-export function post(url: string, data?: RequestData): Promise<void> {
+export function post(url: string, data?: RequestData, bypassRedirect?: boolean): Promise<void> {
   return new Promise((resolve, reject) => {
     request(url)
       .setMethod('POST')
       .setData(data)
       .submit()
-      .then(checkStatus)
-      .then(() => {
-        resolve();
-      }, reject);
+      .then(response => checkStatus(response, bypassRedirect))
+      .then(() => resolve(), reject);
   });
-}
-
-/**
- * Shortcut to do a DELETE request and return response json
- */
-export function requestDelete(url: string, data?: RequestData): Promise<any> {
-  return request(url)
-    .setMethod('DELETE')
-    .setData(data)
-    .submit()
-    .then(checkStatus);
 }
 
 /**
