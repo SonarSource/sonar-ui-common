@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.0.38
+
 - SC-1379 Validation inputs accepts a react node description
 
 ## 0.0.37
