@@ -22,16 +22,12 @@ import { translate } from '../helpers/l10n';
 import { requestTryAndRepeatUntil } from '../helpers/request';
 import { Alert } from './ui/Alert';
 
-interface ImportError {
-  request?: string;
-}
-
 export function lazyLoadComponent<T extends React.ComponentType<any>>(
   factory: () => Promise<{ default: T }>,
   displayName?: string
 ) {
   const LazyComponent = React.lazy(() =>
-    requestTryAndRepeatUntil(factory, { max: 1, slowThreshold: 2 }, () => true)
+    requestTryAndRepeatUntil(factory, { max: 2, slowThreshold: 2 }, () => true)
   );
 
   function LazyComponentWrapper(props: React.ComponentProps<T>) {
@@ -53,19 +49,19 @@ interface ErrorBoundaryProps {
 }
 
 interface ErrorBoundaryState {
-  error?: ImportError;
+  hasError: boolean;
 }
 
 export class LazyErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  state: ErrorBoundaryState = {};
+  state: ErrorBoundaryState = { hasError: false };
 
-  static getDerivedStateFromError(error: ImportError) {
+  static getDerivedStateFromError() {
     // Update state so the next render will show the fallback UI.
-    return { error };
+    return { hasError: true };
   }
 
   render() {
-    if (this.state.error && this.state.error.request) {
+    if (this.state.hasError) {
       return <Alert variant="error">{translate('default_error_message')}</Alert>;
     }
     return this.props.children;
