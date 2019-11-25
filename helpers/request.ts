@@ -280,7 +280,8 @@ function tryRequestAgain<T>(
   repeatAPICall: () => Promise<T>,
   tries: { max: number; slowThreshold: number },
   stopRepeat: (response: T) => boolean,
-  repeatErrors: number[] = []
+  repeatErrors: number[] = [],
+  lastError?: Response
 ) {
   tries.max--;
   if (tries.max !== 0) {
@@ -291,7 +292,7 @@ function tryRequestAgain<T>(
       );
     });
   }
-  return Promise.reject();
+  return Promise.reject(lastError);
 }
 
 export function requestTryAndRepeatUntil<T>(
@@ -309,7 +310,7 @@ export function requestTryAndRepeatUntil<T>(
     },
     (error: Response) => {
       if (repeatErrors.length === 0 || repeatErrors.includes(error.status)) {
-        return tryRequestAgain(repeatAPICall, tries, stopRepeat, repeatErrors);
+        return tryRequestAgain(repeatAPICall, tries, stopRepeat, repeatErrors, error);
       }
       return Promise.reject(error);
     }

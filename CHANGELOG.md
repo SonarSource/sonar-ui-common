@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- SC-1402 Fix lazyLoadComponent error handling
+- SC-1402 requestTryAndRepeatUntil now returns the error response after the max number of tries
+
 ## 0.0.39
 
 - SC-1379 In requests, allow to bypass the checkstatus redirection to login page when getting a 401 error
