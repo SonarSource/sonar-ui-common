@@ -6,6 +6,7 @@
 - SC-1402 requestTryAndRepeatUntil now returns the error response after the max number of tries
 - SC-1402 Replace usage of lazyLoad by lazyLoadComponent in Select
 - SONAR-12679 Introduce new BranchIcon
+- SONAR-12633 New BackIcon
 
 ## 0.0.39
 
