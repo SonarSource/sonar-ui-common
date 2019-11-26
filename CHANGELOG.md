@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.0.40
+
 - SC-1402 Fix lazyLoadComponent error handling
 - SC-1402 requestTryAndRepeatUntil now returns the error response after the max number of tries
 - SC-1402 Replace usage of lazyLoad by lazyLoadComponent in Select
