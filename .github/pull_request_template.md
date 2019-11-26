@@ -1,10 +1,8 @@
-See:
-
-* ... links to JIRA tickets ...
+...description
 
 **Checklist**
 
-* [ ] Write/update ITs
 * [ ] Functional validation
 * [ ] Documentation update
 * [ ] Update changelog
+
