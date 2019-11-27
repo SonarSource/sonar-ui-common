@@ -19,6 +19,7 @@
  */
 const CLASS_SIDEBAR_PAGE = 'sidebar-page';
 const CLASS_WHITE_PAGE = 'white-page';
+const CLASS_NO_FOOTER_PAGE = 'no-footer-page';
 
 export function addSideBarClass() {
   toggleBodyClass(CLASS_SIDEBAR_PAGE, true);
@@ -28,12 +29,20 @@ export function addWhitePageClass() {
   toggleBodyClass(CLASS_WHITE_PAGE, true);
 }
 
+export function addNoFooterPageClass() {
+  toggleBodyClass(CLASS_NO_FOOTER_PAGE, true);
+}
+
 export function removeSideBarClass() {
   toggleBodyClass(CLASS_SIDEBAR_PAGE, false);
 }
 
 export function removeWhitePageClass() {
   toggleBodyClass(CLASS_WHITE_PAGE, false);
+}
+
+export function removeNoFooterPageClass() {
+  toggleBodyClass(CLASS_NO_FOOTER_PAGE, false);
 }
 
 function toggleBodyClass(className: string, force?: boolean) {
