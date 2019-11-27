@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- SONAR-12717 Add a helper to hide footer
+
 ## 0.0.40
 
 - SC-1402 Fix lazyLoadComponent error handling
