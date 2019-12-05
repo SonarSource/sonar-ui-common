@@ -21,7 +21,6 @@ exports[`should render correctly 1`] = `
   margin-bottom: -1px;
   min-width: 128px;
   min-height: 56px;
-  cursor: pointer;
   outline: 0;
   padding: calc(2 * 8px);
 }
@@ -53,6 +52,10 @@ exports[`should render correctly 1`] = `
   cursor: pointer;
   outline: 0;
   padding: calc(2 * 8px);
+}
+
+.emotion-3:hover {
+  background-color: #f8f8f8;
 }
 
 .emotion-3:last-child {
