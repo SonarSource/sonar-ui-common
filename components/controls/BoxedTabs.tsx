@@ -26,11 +26,17 @@ export interface BoxedTabsProps<K> {
   tabs: Array<{ key: K; label: React.ReactNode }>;
 }
 
-const baseBorder = ({ theme }: ThemedProps) => `1px solid ${theme.colors.barBorderColor}`;
-
 const TabContainer = styled.div`
   display: flex;
   flex-direction: row;
+`;
+
+const baseBorder = ({ theme }: ThemedProps) => `1px solid ${theme.colors.barBorderColor}`;
+
+const highlightHoverMixin = ({ theme }: ThemedProps) => `
+  &:hover {
+    background-color: ${theme.colors.barBackgroundColorHighlight};
+  }
 `;
 
 const StyledTab = styled.button<{ active: boolean }>`
@@ -43,13 +49,11 @@ const StyledTab = styled.button<{ active: boolean }>`
   margin-bottom: -1px;
   min-width: 128px;
   min-height: 56px;
-  cursor: pointer;
+  ${props => !props.active && 'cursor: pointer;'}
   outline: 0;
   padding: calc(2 * ${props => props.theme.sizes.gridSize});
 
-  &:hover {
-    background-color: ${props => props.theme.colors.barBackgroundColorHighlight};
-  }
+  ${props => (!props.active ? highlightHoverMixin : null)}
 
   &:last-child {
     border-right: ${baseBorder};
@@ -74,7 +78,7 @@ export default function BoxedTabs<K>(props: BoxedTabsProps<K>) {
         <StyledTab
           active={selected === key}
           key={i}
-          onClick={() => props.onSelect(key)}
+          onClick={() => selected !== key && props.onSelect(key)}
           type="button">
           <ActiveBorder active={selected === key} />
           {label}
