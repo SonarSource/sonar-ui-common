@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.0.41
+
 - SONAR-12717 Add a helper to hide footer
 - Fix BoxedTabs: make active tab unclickable
 
