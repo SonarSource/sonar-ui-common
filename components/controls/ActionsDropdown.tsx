@@ -23,28 +23,32 @@ import * as React from 'react';
 import { Link } from 'react-router';
 import DropdownIcon from '../icons/DropdownIcon';
 import SettingsIcon from '../icons/SettingsIcon';
+import { PopupPlacement } from '../ui/popups';
 import { Button } from './buttons';
 import Dropdown from './Dropdown';
 
-interface Props {
+export interface ActionsDropdownProps {
   className?: string;
   children: React.ReactNode;
   onOpen?: () => void;
+  overlayPlacement?: PopupPlacement;
   small?: boolean;
   toggleClassName?: string;
 }
 
-export default function ActionsDropdown(props: Props) {
+export default function ActionsDropdown(props: ActionsDropdownProps) {
+  const { children, className, overlayPlacement, small, toggleClassName } = props;
   return (
     <Dropdown
-      className={props.className}
+      className={className}
       onOpen={props.onOpen}
-      overlay={<ul className="menu">{props.children}</ul>}>
+      overlay={<ul className="menu">{children}</ul>}
+      overlayPlacement={overlayPlacement}>
       <Button
-        className={classNames('dropdown-toggle', props.toggleClassName, {
-          'button-small': props.small
+        className={classNames('dropdown-toggle', toggleClassName, {
+          'button-small': small
         })}>
-        <SettingsIcon size={props.small ? 12 : 14} />
+        <SettingsIcon size={small ? 12 : 14} />
         <DropdownIcon className="little-spacer-left" />
       </Button>
     </Dropdown>

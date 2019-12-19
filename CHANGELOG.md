@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- SONAR-12637 Allow ActionsDropdown to be positioned like any other dropdown
+
 ## 0.0.41
 
 - SONAR-12717 Add a helper to hide footer
