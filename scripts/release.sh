@@ -25,7 +25,20 @@ git add CHANGELOG.md package.json
 git commit -m "Prepare version $1"
 git tag $1
 yarn publish ./build/dist/sonar-ui-common-v$1.tgz
-npmrc default
+
+if [ $? -gt 0 ]
+  then
+    echo "Publish failed, aborting"
+    git tag -d $1
+    git reset HEAD~
+    git checkout .
+    npmrc default
+    git stash pop
+    exit 1
+fi
+
 git push
 git push origin $1
+npmrc default
 git stash pop
+
