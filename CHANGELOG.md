@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.0.42
+
 - SONAR-12637 Allow ActionsDropdown to be positioned like any other dropdown
 
 ## 0.0.41
