@@ -25,6 +25,7 @@ exports[`renders 1`] = `
     />
   </DeferredSpinner>
   <ClearButton
+    aria-label="clear"
     className="button-tiny search-box-clear"
     iconProps={
       Object {

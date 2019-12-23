@@ -155,6 +155,7 @@ export default class SearchBox extends React.PureComponent<Props, State> {
 
         {value && (
           <ClearButton
+            aria-label={translate('clear')}
             className="button-tiny search-box-clear"
             iconProps={{ size: 12 }}
             onClick={this.handleResetClick}
