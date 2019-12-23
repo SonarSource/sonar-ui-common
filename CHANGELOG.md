@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Allow icon buttons to have an ARIA label
+- Set a 'Clear' label on the SearchBox clear icon button
 
 ## 0.0.42
 
