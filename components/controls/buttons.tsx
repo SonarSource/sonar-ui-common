@@ -99,6 +99,8 @@ export function ResetButtonLink(props: T.Omit<ButtonProps, 'type'>) {
 }
 
 export interface ButtonIconProps extends ButtonProps {
+  'aria-label'?: string;
+  'aria-labelledby'?: string;
   className?: string;
   color?: string;
   onClick?: () => void;
