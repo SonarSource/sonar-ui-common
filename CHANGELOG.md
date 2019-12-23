@@ -5,6 +5,7 @@
 - Allow icon buttons to have an ARIA label
 - Set a 'Clear' label on the SearchBox clear icon button
 - Allow Level component to have an ARIA label
+- SONAR-12882 Add ARIA labels to Toggle button component
 
 ## 0.0.42
 

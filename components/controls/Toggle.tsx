@@ -19,6 +19,7 @@
  */
 import * as classNames from 'classnames';
 import * as React from 'react';
+import { translate } from '../../helpers/l10n';
 import CheckIcon from '../icons/CheckIcon';
 import { Button } from './buttons';
 import './Toggle.css';
@@ -50,7 +51,7 @@ export default class Toggle extends React.PureComponent<Props> {
 
     return (
       <Button className={className} disabled={disabled} name={name} onClick={this.handleClick}>
-        <div className="boolean-toggle-handle">
+        <div aria-label={translate(value ? 'on' : 'off')} className="boolean-toggle-handle">
           <CheckIcon size={12} />
         </div>
       </Button>
