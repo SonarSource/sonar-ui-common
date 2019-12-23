@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.0.43
+
 - Allow icon buttons to have an ARIA label
 - Set a 'Clear' label on the SearchBox clear icon button
 - Allow Level component to have an ARIA label
