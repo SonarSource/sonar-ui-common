@@ -18,32 +18,27 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import * as React from 'react';
 import { click } from '../../../helpers/testUtils';
+import { Button } from '../buttons';
 import Toggle from '../Toggle';
 
 it('should render correctly', () => {
-  const wrapper = mountRender();
-  expect(wrapper).toMatchSnapshot();
+  expect(shallowRender()).toMatchSnapshot('on');
+  expect(shallowRender({ value: false })).toMatchSnapshot('off');
+  expect(shallowRender({ disabled: true })).toMatchSnapshot('disabled');
 });
 
-it('should call onChange if NOT disabled', () => {
+it('should call onChange when clicked', () => {
   const onChange = jest.fn();
-  const wrapper = mountRender({ disabled: false, onChange });
-  click(wrapper.find('button'));
+  const wrapper = shallowRender({ disabled: false, onChange, value: true });
+  click(wrapper.find(Button));
   expect(onChange).toBeCalledWith(false);
 });
 
-it('should NOT call onChange if disabled', () => {
-  const onChange = jest.fn();
-  const wrapper = mountRender({ disabled: true, onChange });
-  click(wrapper.find('button'));
-  expect(onChange).not.toHaveBeenCalled();
-});
-
-function mountRender(props?: Partial<Toggle['props']>) {
-  return mount(
+function shallowRender(props?: Partial<Toggle['props']>) {
+  return shallow(
     <Toggle disabled={true} name="toggle-name" onChange={jest.fn()} value={true} {...props} />
   );
 }

@@ -1,63 +1,55 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render correctly 1`] = `
-<Toggle
+exports[`should render correctly: disabled 1`] = `
+<Button
+  className="boolean-toggle boolean-toggle-on"
   disabled={true}
   name="toggle-name"
-  onChange={[MockFunction]}
-  value={true}
+  onClick={[Function]}
 >
-  <Button
-    className="boolean-toggle boolean-toggle-on"
-    disabled={true}
-    name="toggle-name"
-    onClick={[Function]}
+  <div
+    aria-label="on"
+    className="boolean-toggle-handle"
   >
-    <button
-      className="button boolean-toggle boolean-toggle-on"
-      disabled={true}
-      name="toggle-name"
-      onClick={[Function]}
-      type="button"
-    >
-      <div
-        className="boolean-toggle-handle"
-      >
-        <CheckIcon
-          size={12}
-        >
-          <Icon
-            size={12}
-          >
-            <svg
-              height={12}
-              style={
-                Object {
-                  "clipRule": "evenodd",
-                  "fillRule": "evenodd",
-                  "strokeLinejoin": "round",
-                  "strokeMiterlimit": 1.41421,
-                }
-              }
-              version="1.1"
-              viewBox="0 0 16 16"
-              width={12}
-              xmlSpace="preserve"
-              xmlnsXlink="http://www.w3.org/1999/xlink"
-            >
-              <path
-                d="M14.92 4.804q0 0.357-0.25 0.607l-7.679 7.679q-0.25 0.25-0.607 0.25t-0.607-0.25l-4.446-4.446q-0.25-0.25-0.25-0.607t0.25-0.607l1.214-1.214q0.25-0.25 0.607-0.25t0.607 0.25l2.625 2.634 5.857-5.866q0.25-0.25 0.607-0.25t0.607 0.25l1.214 1.214q0.25 0.25 0.25 0.607z"
-                style={
-                  Object {
-                    "fill": "currentColor",
-                  }
-                }
-              />
-            </svg>
-          </Icon>
-        </CheckIcon>
-      </div>
-    </button>
-  </Button>
-</Toggle>
+    <CheckIcon
+      size={12}
+    />
+  </div>
+</Button>
+`;
+
+exports[`should render correctly: off 1`] = `
+<Button
+  className="boolean-toggle"
+  disabled={true}
+  name="toggle-name"
+  onClick={[Function]}
+>
+  <div
+    aria-label="off"
+    className="boolean-toggle-handle"
+  >
+    <CheckIcon
+      size={12}
+    />
+  </div>
+</Button>
+`;
+
+exports[`should render correctly: on 1`] = `
+<Button
+  className="boolean-toggle boolean-toggle-on"
+  disabled={true}
+  name="toggle-name"
+  onClick={[Function]}
+>
+  <div
+    aria-label="on"
+    className="boolean-toggle-handle"
+  >
+    <CheckIcon
+      size={12}
+    />
+  </div>
+</Button>
 `;
