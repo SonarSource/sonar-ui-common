@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Allow icon buttons to have an ARIA label
+
 ## 0.0.42
 
 - SONAR-12637 Allow ActionsDropdown to be positioned like any other dropdown
