@@ -22,19 +22,28 @@ import * as React from 'react';
 import { formatMeasure } from '../../helpers/measures';
 import './Level.css';
 
-interface Props {
+export interface LevelProps {
+  'aria-label'?: string;
+  'aria-labelledby'?: string;
   className?: string;
   level: string;
   small?: boolean;
   muted?: boolean;
 }
 
-export default function Level(props: Props) {
+export default function Level(props: LevelProps) {
   const formatted = formatMeasure(props.level, 'LEVEL');
   const className = classNames(props.className, 'level', 'level-' + props.level, {
     'level-small': props.small,
     'level-muted': props.muted
   });
 
-  return <span className={className}>{formatted}</span>;
+  return (
+    <span
+      aria-label={props['aria-label']}
+      aria-labelledby={props['aria-labelledby']}
+      className={className}>
+      {formatted}
+    </span>
+  );
 }

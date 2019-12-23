@@ -19,9 +19,18 @@
  */
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import Level from '../Level';
+import Level, { LevelProps } from '../Level';
 
-it('should render', () => {
-  const rating = shallow(<Level level="ERROR" />);
-  expect(rating.is('.level-ERROR')).toBe(true);
+it('should render correctly', () => {
+  expect(shallowRender()).toMatchSnapshot('default ok');
+  expect(shallowRender({ level: 'ERROR' })).toMatchSnapshot('default error');
+  expect(shallowRender({ muted: true, small: true })).toMatchSnapshot('muted and small');
+  expect(shallowRender({ 'aria-label': 'ARIA Label' })).toMatchSnapshot('with aria-label');
+  expect(shallowRender({ 'aria-labelledby': 'element-id' })).toMatchSnapshot(
+    'with aria-labelledby'
+  );
 });
+
+function shallowRender(props: Partial<LevelProps> = {}) {
+  return shallow(<Level className="foo" level="OK" {...props} />);
+}
