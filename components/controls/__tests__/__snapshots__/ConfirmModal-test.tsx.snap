@@ -39,43 +39,45 @@ exports[`should render correctly 2`] = `
   contentLabel="title"
   onRequestClose={[MockFunction]}
 >
-  <form
-    onSubmit={[Function]}
-  >
-    <header
-      className="modal-head"
+  <ClickEventBoundary>
+    <form
+      onSubmit={[Function]}
     >
-      <h2>
-        title
-      </h2>
-    </header>
-    <div
-      className="modal-body"
-    >
-      <p>
-        My confirm message
-      </p>
-    </div>
-    <footer
-      className="modal-foot"
-    >
-      <DeferredSpinner
-        className="spacer-right"
-        loading={false}
-        timeout={100}
-      />
-      <SubmitButton
-        autoFocus={true}
+      <header
+        className="modal-head"
       >
-        confirm
-      </SubmitButton>
-      <ResetButtonLink
-        disabled={false}
-        onClick={[Function]}
+        <h2>
+          title
+        </h2>
+      </header>
+      <div
+        className="modal-body"
       >
-        cancel
-      </ResetButtonLink>
-    </footer>
-  </form>
+        <p>
+          My confirm message
+        </p>
+      </div>
+      <footer
+        className="modal-foot"
+      >
+        <DeferredSpinner
+          className="spacer-right"
+          loading={false}
+          timeout={100}
+        />
+        <SubmitButton
+          autoFocus={true}
+        >
+          confirm
+        </SubmitButton>
+        <ResetButtonLink
+          disabled={false}
+          onClick={[Function]}
+        >
+          cancel
+        </ResetButtonLink>
+      </footer>
+    </form>
+  </ClickEventBoundary>
 </Modal>
 `;
