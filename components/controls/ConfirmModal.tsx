@@ -21,6 +21,7 @@ import * as React from 'react';
 import { translate } from '../../helpers/l10n';
 import DeferredSpinner from '../ui/DeferredSpinner';
 import { ResetButtonLink, SubmitButton } from './buttons';
+import ClickEventBoundary from './ClickEventBoundary';
 import { ModalProps } from './Modal';
 import SimpleModal, { ChildrenProps } from './SimpleModal';
 
@@ -71,25 +72,27 @@ export default class ConfirmModal<T = string> extends React.PureComponent<Props<
       cancelButtonText = translate('cancel')
     } = this.props;
     return (
-      <form onSubmit={onFormSubmit}>
-        <header className="modal-head">
-          <h2>{header}</h2>
-          {headerDescription}
-        </header>
-        <div className="modal-body">{children}</div>
-        <footer className="modal-foot">
-          <DeferredSpinner className="spacer-right" loading={submitting} />
-          <SubmitButton
-            autoFocus={true}
-            className={isDestructive ? 'button-red' : undefined}
-            disabled={submitting || confirmDisable}>
-            {confirmButtonText}
-          </SubmitButton>
-          <ResetButtonLink disabled={submitting} onClick={onCloseClick}>
-            {cancelButtonText}
-          </ResetButtonLink>
-        </footer>
-      </form>
+      <ClickEventBoundary>
+        <form onSubmit={onFormSubmit}>
+          <header className="modal-head">
+            <h2>{header}</h2>
+            {headerDescription}
+          </header>
+          <div className="modal-body">{children}</div>
+          <footer className="modal-foot">
+            <DeferredSpinner className="spacer-right" loading={submitting} />
+            <SubmitButton
+              autoFocus={true}
+              className={isDestructive ? 'button-red' : undefined}
+              disabled={submitting || confirmDisable}>
+              {confirmButtonText}
+            </SubmitButton>
+            <ResetButtonLink disabled={submitting} onClick={onCloseClick}>
+              {cancelButtonText}
+            </ResetButtonLink>
+          </footer>
+        </form>
+      </ClickEventBoundary>
     );
   };
 

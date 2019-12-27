@@ -3,6 +3,7 @@
 ## Unreleased
 
 - BoxedTabs : add support for external css class
+- ConfirmModal: prevent click events from bubbling to the parent component
 
 ## 0.0.43
 
