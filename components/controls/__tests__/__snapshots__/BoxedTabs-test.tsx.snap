@@ -73,6 +73,7 @@ exports[`should render correctly 1`] = `
 }
 
 <BoxedTabs
+  className="boxed-tabs"
   onSelect={[MockFunction]}
   selected="a"
   tabs={
@@ -97,9 +98,11 @@ exports[`should render correctly 1`] = `
     ]
   }
 >
-  <Styled(div)>
+  <Styled(div)
+    className="boxed-tabs"
+  >
     <div
-      className="emotion-6"
+      className="boxed-tabs emotion-6"
     >
       <Styled(button)
         active={true}

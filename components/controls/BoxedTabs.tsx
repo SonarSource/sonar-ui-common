@@ -21,6 +21,7 @@ import * as React from 'react';
 import { styled, ThemedProps } from '../theme';
 
 export interface BoxedTabsProps<K> {
+  className?: string;
   onSelect: (key: K) => void;
   selected?: K;
   tabs: Array<{ key: K; label: React.ReactNode }>;
@@ -71,9 +72,10 @@ const ActiveBorder = styled.div<{ active: boolean }>`
 `;
 
 export default function BoxedTabs<K>(props: BoxedTabsProps<K>) {
-  const { tabs, selected } = props;
+  const { className, tabs, selected } = props;
+
   return (
-    <TabContainer>
+    <TabContainer className={className}>
       {tabs.map(({ key, label }, i) => (
         <StyledTab
           active={selected === key}
