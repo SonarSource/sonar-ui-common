@@ -48,6 +48,7 @@ function mountRender(overrides: Partial<BoxedTabsProps<string>> = {}) {
 function dom(overrides) {
   return (
     <BoxedTabs
+      className="boxed-tabs"
       onSelect={jest.fn()}
       selected="a"
       tabs={[

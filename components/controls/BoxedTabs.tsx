@@ -17,10 +17,12 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+import * as classNames from 'classnames';
 import * as React from 'react';
 import { styled, ThemedProps } from '../theme';
 
 export interface BoxedTabsProps<K> {
+  className?: string;
   onSelect: (key: K) => void;
   selected?: K;
   tabs: Array<{ key: K; label: React.ReactNode }>;
@@ -71,9 +73,10 @@ const ActiveBorder = styled.div<{ active: boolean }>`
 `;
 
 export default function BoxedTabs<K>(props: BoxedTabsProps<K>) {
-  const { tabs, selected } = props;
+  const { className, tabs, selected } = props;
+
   return (
-    <TabContainer>
+    <TabContainer className={classNames(className)}>
       {tabs.map(({ key, label }, i) => (
         <StyledTab
           active={selected === key}

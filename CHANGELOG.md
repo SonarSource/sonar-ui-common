@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- BoxedTabs : add support for external css class
+
 ## 0.0.43
 
 - Allow icon buttons to have an ARIA label
