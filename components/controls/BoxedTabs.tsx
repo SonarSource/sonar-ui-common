@@ -17,7 +17,6 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import * as classNames from 'classnames';
 import * as React from 'react';
 import { styled, ThemedProps } from '../theme';
 
@@ -76,7 +75,7 @@ export default function BoxedTabs<K>(props: BoxedTabsProps<K>) {
   const { className, tabs, selected } = props;
 
   return (
-    <TabContainer className={classNames(className)}>
+    <TabContainer className={className}>
       {tabs.map(({ key, label }, i) => (
         <StyledTab
           active={selected === key}
