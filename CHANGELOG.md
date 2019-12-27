@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Bump to typescript@3.7.4
+
 ## 0.0.44
 
 - BoxedTabs : add support for external css class
