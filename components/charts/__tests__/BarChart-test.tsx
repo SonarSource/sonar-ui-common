@@ -22,13 +22,21 @@ import * as React from 'react';
 import BarChart from '../BarChart';
 
 it('should display bars', () => {
-  const data = [{ x: 1, y: 10 }, { x: 2, y: 30 }, { x: 3, y: 20 }];
+  const data = [
+    { x: 1, y: 10 },
+    { x: 2, y: 30 },
+    { x: 3, y: 20 }
+  ];
   const chart = shallow(<BarChart barsWidth={20} data={data} height={100} width={100} />);
   expect(chart.find('.bar-chart-bar').length).toBe(3);
 });
 
 it('should display ticks', () => {
-  const data = [{ x: 1, y: 10 }, { x: 2, y: 30 }, { x: 3, y: 20 }];
+  const data = [
+    { x: 1, y: 10 },
+    { x: 2, y: 30 },
+    { x: 3, y: 20 }
+  ];
   const ticks = ['A', 'B', 'C'];
   const chart = shallow(
     <BarChart barsWidth={20} data={data} height={100} width={100} xTicks={ticks} />
@@ -37,7 +45,11 @@ it('should display ticks', () => {
 });
 
 it('should display values', () => {
-  const data = [{ x: 1, y: 10 }, { x: 2, y: 30 }, { x: 3, y: 20 }];
+  const data = [
+    { x: 1, y: 10 },
+    { x: 2, y: 30 },
+    { x: 3, y: 20 }
+  ];
   const values = ['A', 'B', 'C'];
   const chart = shallow(
     <BarChart barsWidth={20} data={data} height={100} width={100} xValues={values} />
@@ -46,7 +58,11 @@ it('should display values', () => {
 });
 
 it('should display bars, ticks and values', () => {
-  const data = [{ x: 1, y: 10 }, { x: 2, y: 30 }, { x: 3, y: 20 }];
+  const data = [
+    { x: 1, y: 10 },
+    { x: 2, y: 30 },
+    { x: 3, y: 20 }
+  ];
   const ticks = ['A', 'B', 'C'];
   const values = ['A', 'B', 'C'];
   const chart = shallow(

@@ -74,7 +74,7 @@
     "jest": "24.8.0",
     "jest-emotion": "10.0.17",
     "lodash": "4.17.15",
-    "prettier": "1.18.2",
+    "prettier": "1.19.1",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-router": "3.2.1",

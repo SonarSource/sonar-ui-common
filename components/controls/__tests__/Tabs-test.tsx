@@ -27,7 +27,10 @@ it('should render correctly', () => {
     <Tabs
       onChange={jest.fn()}
       selected="bar"
-      tabs={[{ key: 'foo', node: 'Foo' }, { key: 'bar', node: 'Bar' }]}
+      tabs={[
+        { key: 'foo', node: 'Foo' },
+        { key: 'bar', node: 'Bar' }
+      ]}
     />
   );
 
@@ -40,7 +43,10 @@ it('should switch tabs', () => {
     <Tabs
       onChange={onChange}
       selected="bar"
-      tabs={[{ key: 'foo', node: 'Foo' }, { key: 'bar', node: 'Bar' }]}
+      tabs={[
+        { key: 'foo', node: 'Foo' },
+        { key: 'bar', node: 'Bar' }
+      ]}
     />
   );
 

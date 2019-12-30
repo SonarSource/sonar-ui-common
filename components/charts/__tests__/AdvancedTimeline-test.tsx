@@ -17,38 +17,51 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import LineChart from '../LineChart';
+import AdvancedTimeline from '../AdvancedTimeline';
 
-it('should display line', () => {
-  const data = [
-    { x: 1, y: 10 },
-    { x: 2, y: 30 },
-    { x: 3, y: 20 }
-  ];
-  const chart = shallow(<LineChart data={data} height={100} width={100} />);
-  expect(chart.find('.line-chart-path').length).toBe(1);
+it('should render correctly', () => {
+  const wrapper = shallowRender();
+  expect(wrapper).toMatchSnapshot();
 });
 
-it('should display ticks', () => {
-  const data = [
-    { x: 1, y: 10 },
-    { x: 2, y: 30 },
-    { x: 3, y: 20 }
-  ];
-  const ticks = ['A', 'B', 'C'];
-  const chart = shallow(<LineChart data={data} height={100} width={100} xTicks={ticks} />);
-  expect(chart.find('.line-chart-tick').length).toBe(3);
-});
-
-it('should display values', () => {
-  const data = [
-    { x: 1, y: 10 },
-    { x: 2, y: 30 },
-    { x: 3, y: 20 }
-  ];
-  const values = ['A', 'B', 'C'];
-  const chart = shallow(<LineChart data={data} height={100} width={100} xValues={values} />);
-  expect(chart.find('.line-chart-tick').length).toBe(3);
-});
+function shallowRender(props?: Partial<AdvancedTimeline['props']>) {
+  return shallow<AdvancedTimeline>(
+    <AdvancedTimeline
+      height={100}
+      maxYTicksCount={10}
+      metricType="TEST_METRIC"
+      series={[
+        {
+          name: 'test-1',
+          type: 'test-type-1',
+          data: [
+            {
+              x: '2019-10-01',
+              y: 1
+            },
+            {
+              x: '2019-10-02',
+              y: 2
+            }
+          ]
+        },
+        {
+          name: 'test-2',
+          type: 'test-type-2',
+          data: [
+            {
+              x: '2019-10-03',
+              y: 3
+            }
+          ]
+        }
+      ]}
+      width={100}
+      zoomSpeed={1}
+      {...props}
+    />
+  );
+}
