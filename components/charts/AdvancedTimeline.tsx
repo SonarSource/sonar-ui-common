@@ -407,7 +407,7 @@ export default class AdvancedTimeline extends React.PureComponent<Props, State> 
                   serie.data[idx - 1] && (serie.data[idx - 1].y || serie.data[idx - 1].y === 0);
                 const hasPointAfter =
                   serie.data[idx + 1] && (serie.data[idx + 1].y || serie.data[idx + 1].y === 0);
-                if (pointNotDefined || (hasPointBefore || hasPointAfter)) {
+                if (pointNotDefined || hasPointBefore || hasPointAfter) {
                   return undefined;
                 }
                 return (

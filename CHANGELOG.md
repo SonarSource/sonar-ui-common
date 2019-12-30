@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Bump to typescript@3.7.4
+- Bump to prettier@1.19.1
 
 ## 0.0.44
 

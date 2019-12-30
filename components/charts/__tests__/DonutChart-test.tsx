@@ -39,7 +39,10 @@ it('should render correctly with padding and pad angle too', () => {
 function shallowRender(props: Partial<DonutChartProps> = {}) {
   return shallow(
     <DonutChart
-      data={[{ fill: '#000000', value: 25 }, { fill: '#ffffff', value: 75 }]}
+      data={[
+        { fill: '#000000', value: 25 },
+        { fill: '#ffffff', value: 75 }
+      ]}
       height={20}
       thickness={2}
       width={20}

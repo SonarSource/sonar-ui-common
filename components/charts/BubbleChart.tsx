@@ -90,7 +90,10 @@ export default class BubbleChart<T> extends React.PureComponent<Props<T>, State>
   componentDidUpdate() {
     if (this.zoom && this.node) {
       const rect = this.node.getBoundingClientRect();
-      this.zoom.translateExtent([[0, 0], [rect.width, rect.height]]);
+      this.zoom.translateExtent([
+        [0, 0],
+        [rect.width, rect.height]
+      ]);
     }
   }
 

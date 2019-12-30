@@ -27,20 +27,31 @@ jest.mock('react-virtualized/dist/commonjs/AutoSizer', () => ({
 }));
 
 it('should display bubbles', () => {
-  const items = [{ x: 1, y: 10, size: 7 }, { x: 2, y: 30, size: 5 }];
+  const items = [
+    { x: 1, y: 10, size: 7 },
+    { x: 2, y: 30, size: 5 }
+  ];
   const chart = mount(<BubbleChart height={100} items={items} padding={[0, 0, 0, 0]} />);
   chart.find('Bubble').forEach(bubble => expect(bubble).toMatchSnapshot());
+
+  chart.setProps({ height: 120 });
 });
 
 it('should render bubble links', () => {
-  const items = [{ x: 1, y: 10, size: 7, link: 'foo' }, { x: 2, y: 30, size: 5, link: 'bar' }];
+  const items = [
+    { x: 1, y: 10, size: 7, link: 'foo' },
+    { x: 2, y: 30, size: 5, link: 'bar' }
+  ];
   const chart = mount(<BubbleChart height={100} items={items} padding={[0, 0, 0, 0]} />);
   chart.find('Bubble').forEach(bubble => expect(bubble).toMatchSnapshot());
 });
 
 it('should render bubbles with click handlers', () => {
   const onClick = jest.fn();
-  const items = [{ x: 1, y: 10, size: 7, data: 'foo' }, { x: 2, y: 30, size: 5, data: 'bar' }];
+  const items = [
+    { x: 1, y: 10, size: 7, data: 'foo' },
+    { x: 2, y: 30, size: 5, data: 'bar' }
+  ];
   const chart = mount(
     <BubbleChart height={100} items={items} onBubbleClick={onClick} padding={[0, 0, 0, 0]} />
   );
