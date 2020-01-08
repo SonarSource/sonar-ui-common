@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.0.45
+
 - Bump to typescript@3.7.4
 - Bump to prettier@1.19.1
 - Update query helper for array parsing
