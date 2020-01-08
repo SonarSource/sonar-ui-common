@@ -58,6 +58,18 @@ describe('parseAsString', () => {
 describe('parseAsArray', () => {
   it('should parse string arrays correctly', () => {
     expect(query.parseAsArray('1,2,3', query.parseAsString)).toEqual(['1', '2', '3']);
+    expect(query.parseAsArray(undefined, query.parseAsString)).toEqual([]);
+  });
+});
+
+describe('parseAsOptionalArray', () => {
+  it('should parse optional arrays correctly', () => {
+    expect(query.parseAsOptionalArray('true,false,false', query.parseAsBoolean)).toEqual([
+      true,
+      false,
+      false
+    ]);
+    expect(query.parseAsOptionalArray(undefined, query.parseAsString)).toEqual(undefined);
   });
 });
 

@@ -73,11 +73,15 @@ export function parseAsOptionalString(value: string | undefined): string | undef
   return value || undefined;
 }
 
-export function parseAsArray(
-  value: string | undefined,
-  itemParser: (x: string) => string
-): string[] {
+export function parseAsArray<T>(value: string | undefined, itemParser: (x: string) => T): T[] {
   return value ? value.split(',').map(itemParser) : [];
+}
+
+export function parseAsOptionalArray<T>(
+  value: string | undefined,
+  itemParser: (x: string) => T
+): T[] | undefined {
+  return value ? parseAsArray(value, itemParser) : undefined;
 }
 
 export function serializeDate(value?: Date, serializer = toNotSoISOString): string | undefined {
