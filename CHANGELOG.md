@@ -3,6 +3,7 @@
 ## Unreleased
 
 - SONAR-12633 Add new EscKeydownHandler component
+- Deprecate using strings in keydown()
 
 ## 0.0.45
 

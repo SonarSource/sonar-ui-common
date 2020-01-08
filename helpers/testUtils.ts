@@ -82,6 +82,8 @@ export function keydown(key: number | string): void {
   if (typeof key === 'number') {
     keyCode = key;
   } else {
+    // eslint-disable-next-line no-console
+    console.warn('Using strings in keydown() is deprecated. Consider using the KeyCodes enum.');
     const mapped = Object.entries(KEYCODE_MAP).find(([_, value]) => value === key);
     if (!mapped) {
       throw new Error(`Cannot map key "${key}" to a keyCode!`);
