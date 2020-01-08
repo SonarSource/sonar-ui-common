@@ -19,6 +19,7 @@
  */
 import * as React from 'react';
 import DocumentClickHandler from './DocumentClickHandler';
+import EscKeydownHandler from './EscKeydownHandler';
 import OutsideClickHandler from './OutsideClickHandler';
 
 interface Props {
@@ -32,58 +33,32 @@ interface Props {
 }
 
 export default class Toggler extends React.Component<Props> {
-  componentDidMount() {
-    if (this.props.open && isTrueOrUndefined(this.props.closeOnEscape)) {
-      this.addEventListeners();
-    }
-  }
-
-  componentDidUpdate(prevProps: Props) {
-    if (!prevProps.open && this.props.open && isTrueOrUndefined(this.props.closeOnEscape)) {
-      this.addEventListeners();
-    } else if (prevProps.open && !this.props.open) {
-      this.removeEventListeners();
-    } else if (
-      isTrueOrUndefined(prevProps.closeOnEscape) &&
-      !isTrueOrUndefined(this.props.closeOnEscape)
-    ) {
-      this.removeEventListeners();
-    }
-  }
-
-  componentWillUnmount() {
-    this.removeEventListeners();
-  }
-
-  addEventListeners() {
-    document.addEventListener('keydown', this.handleKeyDown, false);
-  }
-
-  removeEventListeners() {
-    document.removeEventListener('keydown', this.handleKeyDown, false);
-  }
-
-  handleKeyDown = (event: KeyboardEvent) => {
-    // Escape key
-    if (event.keyCode === 27) {
-      this.props.onRequestClose();
-    }
-  };
-
   renderOverlay() {
     const {
       closeOnClick = false,
       closeOnClickOutside = true,
+      closeOnEscape = true,
       onRequestClose,
       overlay
     } = this.props;
 
-    if (closeOnClick) {
-      return <DocumentClickHandler onClick={onRequestClose}>{overlay}</DocumentClickHandler>;
-    } else if (closeOnClickOutside) {
-      return <OutsideClickHandler onClickOutside={onRequestClose}>{overlay}</OutsideClickHandler>;
+    let renderedOverlay;
+    if (closeOnEscape) {
+      renderedOverlay = <EscKeydownHandler onKeydown={onRequestClose}>{overlay}</EscKeydownHandler>;
     } else {
-      return overlay;
+      renderedOverlay = overlay;
+    }
+
+    if (closeOnClick) {
+      return (
+        <DocumentClickHandler onClick={onRequestClose}>{renderedOverlay}</DocumentClickHandler>
+      );
+    } else if (closeOnClickOutside) {
+      return (
+        <OutsideClickHandler onClickOutside={onRequestClose}>{renderedOverlay}</OutsideClickHandler>
+      );
+    } else {
+      return renderedOverlay;
     }
   }
 
@@ -95,8 +70,4 @@ export default class Toggler extends React.Component<Props> {
       </>
     );
   }
-}
-
-function isTrueOrUndefined(x: boolean | undefined) {
-  return x === true || x === undefined;
 }

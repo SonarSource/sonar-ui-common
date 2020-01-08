@@ -17,32 +17,32 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { shallow } from 'enzyme';
 import * as React from 'react';
-import Toggler from '../Toggler';
+import { KeyCodes } from '../../helpers/keycodes';
 
-it('should render only children', () => {
-  expect(shallowRender({ open: false })).toMatchSnapshot();
-});
+interface Props {
+  children: React.ReactNode;
+  onKeydown: () => void;
+}
 
-it('should render children and overlay', () => {
-  expect(shallowRender()).toMatchSnapshot();
-});
+export default class EscKeydownHandler extends React.Component<Props> {
+  componentDidMount() {
+    setTimeout(() => {
+      document.addEventListener('keydown', this.handleKeyDown, false);
+    }, 0);
+  }
 
-it('should render when closeOnClick=true', () => {
-  expect(shallowRender({ closeOnClick: true })).toMatchSnapshot();
-});
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyDown, false);
+  }
 
-it('should not render click wrappers', () => {
-  expect(
-    shallowRender({ closeOnClick: false, closeOnClickOutside: false, closeOnEscape: false })
-  ).toMatchSnapshot();
-});
+  handleKeyDown = (event: KeyboardEvent) => {
+    if (event.keyCode === KeyCodes.Escape) {
+      this.props.onKeydown();
+    }
+  };
 
-function shallowRender(props?: Partial<Toggler['props']>) {
-  return shallow(
-    <Toggler onRequestClose={jest.fn()} open={true} overlay={<div id="overlay" />} {...props}>
-      <div id="toggle" />
-    </Toggler>
-  );
+  render() {
+    return this.props.children;
+  }
 }
