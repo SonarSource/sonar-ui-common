@@ -19,9 +19,13 @@ exports[`should render children and overlay 1`] = `
   <OutsideClickHandler
     onClickOutside={[MockFunction]}
   >
-    <div
-      id="overlay"
-    />
+    <EscKeydownHandler
+      onKeydown={[MockFunction]}
+    >
+      <div
+        id="overlay"
+      />
+    </EscKeydownHandler>
   </OutsideClickHandler>
 </Fragment>
 `;
@@ -42,9 +46,13 @@ exports[`should render when closeOnClick=true 1`] = `
   <DocumentClickHandler
     onClick={[MockFunction]}
   >
-    <div
-      id="overlay"
-    />
+    <EscKeydownHandler
+      onKeydown={[MockFunction]}
+    >
+      <div
+        id="overlay"
+      />
+    </EscKeydownHandler>
   </DocumentClickHandler>
 </Fragment>
 `;

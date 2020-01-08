@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- SONAR-12633 Add new EscKeydownHandler component
+
 ## 0.0.45
 
 - Bump to typescript@3.7.4

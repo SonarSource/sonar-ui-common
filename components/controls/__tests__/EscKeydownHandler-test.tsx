@@ -17,32 +17,31 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import Toggler from '../Toggler';
+import { KeyCodes } from '../../../helpers/keycodes';
+import { keydown } from '../../../helpers/testUtils';
+import EscKeydownHandler from '../EscKeydownHandler';
 
-it('should render only children', () => {
-  expect(shallowRender({ open: false })).toMatchSnapshot();
-});
+jest.useFakeTimers();
 
-it('should render children and overlay', () => {
+it('should render correctly', () => {
   expect(shallowRender()).toMatchSnapshot();
 });
 
-it('should render when closeOnClick=true', () => {
-  expect(shallowRender({ closeOnClick: true })).toMatchSnapshot();
+it('should correctly trigger the keydown handler when hitting Esc', () => {
+  const onKeydown = jest.fn();
+  shallowRender({ onKeydown });
+  jest.runAllTimers();
+  keydown(KeyCodes.Escape);
+  expect(onKeydown).toBeCalled();
 });
 
-it('should not render click wrappers', () => {
-  expect(
-    shallowRender({ closeOnClick: false, closeOnClickOutside: false, closeOnEscape: false })
-  ).toMatchSnapshot();
-});
-
-function shallowRender(props?: Partial<Toggler['props']>) {
-  return shallow(
-    <Toggler onRequestClose={jest.fn()} open={true} overlay={<div id="overlay" />} {...props}>
-      <div id="toggle" />
-    </Toggler>
+function shallowRender(props: Partial<EscKeydownHandler['props']> = {}) {
+  return shallow<EscKeydownHandler>(
+    <EscKeydownHandler onKeydown={jest.fn()} {...props}>
+      <span>Hi there</span>
+    </EscKeydownHandler>
   );
 }
