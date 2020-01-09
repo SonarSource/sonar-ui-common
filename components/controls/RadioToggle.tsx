@@ -22,19 +22,20 @@ import * as React from 'react';
 import './RadioToggle.css';
 import Tooltip from './Tooltip';
 
+type ToggleValueType = string | number | boolean;
 interface Option {
   disabled?: boolean;
   label: string;
   tooltip?: string;
-  value: string;
+  value: ToggleValueType;
 }
 
 interface Props {
   className?: string;
   name: string;
-  onCheck: (value: string) => void;
+  onCheck: (value: ToggleValueType) => void;
   options: Option[];
-  value?: string;
+  value?: ToggleValueType;
 }
 
 export default class RadioToggle extends React.PureComponent<Props> {
@@ -43,24 +44,18 @@ export default class RadioToggle extends React.PureComponent<Props> {
     value: null
   };
 
-  handleChange = (e: React.SyntheticEvent<HTMLInputElement>) => {
-    const newValue = e.currentTarget.value;
-    this.props.onCheck(newValue);
-  };
-
   renderOption = (option: Option) => {
     const checked = option.value === this.props.value;
     const htmlId = this.props.name + '__' + option.value;
     return (
-      <li key={option.value}>
+      <li key={option.value.toString()}>
         <input
           checked={checked}
           disabled={option.disabled}
           id={htmlId}
           name={this.props.name}
-          onChange={this.handleChange}
+          onChange={() => this.props.onCheck(option.value)}
           type="radio"
-          value={option.value}
         />
         <Tooltip overlay={option.tooltip || undefined}>
           <label htmlFor={htmlId}>{option.label}</label>

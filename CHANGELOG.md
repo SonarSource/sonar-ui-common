@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-
+- SONAR-12860 Add boolean and numberic type for RadioToggle and fix size glitch.
 
 ## 0.0.47
 
