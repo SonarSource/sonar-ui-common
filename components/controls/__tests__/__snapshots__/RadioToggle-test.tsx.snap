@@ -13,7 +13,6 @@ exports[`accepts advanced options fields 1`] = `
       name="sample"
       onChange={[Function]}
       type="radio"
-      value="one"
     />
     <Tooltip
       overlay="foo"
@@ -35,7 +34,6 @@ exports[`accepts advanced options fields 1`] = `
       name="sample"
       onChange={[Function]}
       type="radio"
-      value="two"
     />
     <Tooltip
       overlay="bar"
@@ -63,7 +61,6 @@ exports[`renders 1`] = `
       name="sample"
       onChange={[Function]}
       type="radio"
-      value="one"
     />
     <Tooltip>
       <label
@@ -82,7 +79,6 @@ exports[`renders 1`] = `
       name="sample"
       onChange={[Function]}
       type="radio"
-      value="two"
     />
     <Tooltip>
       <label

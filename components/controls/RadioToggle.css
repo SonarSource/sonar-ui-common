@@ -53,6 +53,7 @@
   height: calc(var(--controlHeight) - 2px);
   line-height: calc(var(--controlHeight) - 2px);
   cursor: pointer;
+  font-weight: 600;
 }
 
 .radio-toggle input[type='radio'] {
@@ -62,7 +63,6 @@
 .radio-toggle input[type='radio']:checked + label {
   background-color: var(--darkBlue);
   color: #fff;
-  font-weight: 600;
 }
 
 .radio-toggle input[type='radio']:disabled + label {
