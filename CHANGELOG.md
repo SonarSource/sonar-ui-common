@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+
+
+## 0.0.47
+
 - Add icon to ClipboardButton
 - Update buttons padding
 
