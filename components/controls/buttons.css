@@ -24,7 +24,7 @@
   vertical-align: middle;
   height: var(--controlHeight);
   line-height: calc(var(--controlHeight) - 2px);
-  padding: 0 12px;
+  padding: 0 var(--gridSize);
   border: 1px solid var(--darkBlue);
   border-radius: 2px;
   box-sizing: border-box;

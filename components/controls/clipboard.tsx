@@ -108,7 +108,12 @@ export function ClipboardButton({ className, children, copyValue }: ButtonProps)
             className={classNames('no-select', className)}
             data-clipboard-text={copyValue}
             innerRef={setCopyButton}>
-            {children || translate('copy')}
+            {children || (
+              <>
+                <CopyIcon className="little-spacer-right" />
+                {translate('copy')}
+              </>
+            )}
           </Button>
         </Tooltip>
       )}

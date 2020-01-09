@@ -16,6 +16,9 @@ exports[`ClipboardButton should display correctly 1`] = `
     data-clipboard-text="foo"
     innerRef={[Function]}
   >
+    <CopyIcon
+      className="little-spacer-right"
+    />
     copy
   </Button>
 </Tooltip>
