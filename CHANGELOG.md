@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Add icon to ClipboardButton
+- Update buttons padding
+
 ## 0.0.46
 
 - SONAR-12633 Add new EscKeydownHandler component
