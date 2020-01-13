@@ -4,7 +4,7 @@
 
 
 
-## 0.0.47
+## 0.0.48
 
 - Add icon to ClipboardButton
 - Update buttons padding
