@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-
+- Clean button-group css
 
 ## 0.0.47
 

@@ -184,57 +184,6 @@
   transform: translateY(-2px);
 }
 
-/* #region .button-group */
-.button-group {
-  display: inline-block;
-  vertical-align: middle;
-  font-size: 0;
-  white-space: nowrap;
-}
-
-.button-group > button,
-.button-group > .button {
-  position: relative;
-  z-index: var(--normalZIndex);
-  display: inline-block;
-  vertical-align: middle;
-  margin: 0;
-  cursor: pointer;
-}
-
-.button-group > .button:hover:not(:disabled),
-.button-group > .button:focus:not(:disabled),
-.button-group > .button:active:not(:disabled),
-.button-group > .button.active:not(:disabled) {
-  z-index: var(--aboveNormalZIndex);
-}
-
-.button-group > .button:disabled {
-  z-index: var(--belowNormalZIndex);
-}
-
-.button-group > .button:not(:first-child) {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.button-group > .button:not(:last-child):not(.dropdown-toggle) {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.button-group > .button + .button {
-  margin-left: -1px;
-}
-
-.button-group > a:not(.button) {
-  vertical-align: middle;
-  margin: 0 8px;
-  font-size: var(--smallFontSize);
-}
-
-/* #endregion */
-
 /* #region .button-icon */
 .button-icon {
   display: inline-flex;
