@@ -183,12 +183,37 @@ describe('scrollHorizontally', () => {
   });
 });
 
-const mockGetBoundingClientRect = (overrides: Partial<ClientRect>) => () => ({
-  bottom: 0,
-  height: 0,
-  left: 0,
-  right: 0,
-  top: 0,
-  width: 0,
-  ...overrides
+it('correctly queues and processes multiple scroll calls', async () => {
+  const element1 = document.createElement('a');
+  const element2 = document.createElement('a');
+  document.body.appendChild(element1);
+  document.body.appendChild(element2);
+  element1.getBoundingClientRect = mockGetBoundingClientRect({ left: 840, right: 845 });
+  element2.getBoundingClientRect = mockGetBoundingClientRect({ top: -10, bottom: 10 });
+
+  window.scrollTo = jest.fn();
+
+  scrollHorizontally(element1, {});
+  scrollToElement(element2, { smooth: false });
+
+  jest.runAllTimers();
+  await Promise.resolve(setImmediate);
+  await Promise.resolve(setImmediate);
+
+  expect(window.scrollTo).toBeCalledTimes(11);
+
+  scrollHorizontally(element1, {});
+  jest.runAllTimers();
+  expect(window.scrollTo).toBeCalledTimes(21);
 });
+
+const mockGetBoundingClientRect = (overrides: Partial<ClientRect>) => () =>
+  ({
+    bottom: 0,
+    height: 0,
+    left: 0,
+    right: 0,
+    top: 0,
+    width: 0,
+    ...overrides
+  } as DOMRect);

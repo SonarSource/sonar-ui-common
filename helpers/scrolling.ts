@@ -17,7 +17,6 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { debounce } from 'lodash';
 
 const SCROLLING_DURATION = 100;
 const SCROLLING_INTERVAL = 10;
@@ -33,46 +32,53 @@ function getScroll(element: Element | Window) {
     : { x: element.scrollLeft, y: element.scrollTop };
 }
 
-function scrollElement(element: Element | Window, x: number, y: number): void {
+function scrollElement(element: Element | Window, x: number, y: number): Promise<void> {
   if (isWindow(element)) {
     window.scrollTo(x, y);
   } else {
     element.scrollLeft = x;
     element.scrollTop = y;
   }
+  return Promise.resolve();
 }
 
-let smoothScroll = (target: number, current: number, scroll: (position: number) => void) => {
+function smoothScroll(
+  target: number,
+  current: number,
+  scroll: (position: number) => void
+): Promise<void> {
   const positiveDirection = target > current;
   const step = Math.ceil(Math.abs(target - current) / SCROLLING_STEPS);
   let stepsDone = 0;
 
-  const interval = setInterval(() => {
-    if (current === target || SCROLLING_STEPS === stepsDone) {
-      clearInterval(interval);
-    } else {
-      let goal;
-      if (positiveDirection) {
-        goal = Math.min(target, current + step);
+  return new Promise(resolve => {
+    const interval = setInterval(() => {
+      if (current === target || SCROLLING_STEPS === stepsDone) {
+        clearInterval(interval);
+        resolve();
       } else {
-        goal = Math.max(target, current - step);
+        let goal;
+        if (positiveDirection) {
+          goal = Math.min(target, current + step);
+        } else {
+          goal = Math.max(target, current - step);
+        }
+        stepsDone++;
+        current = goal;
+        scroll(goal);
       }
-      stepsDone++;
-      current = goal;
-      scroll(goal);
-    }
-  }, SCROLLING_INTERVAL);
-};
-smoothScroll = debounce(smoothScroll, SCROLLING_DURATION, { leading: true });
-
-function smoothScrollTop(position: number, parent: Element | Window) {
-  const scroll = getScroll(parent);
-  smoothScroll(position, scroll.y, position => scrollElement(parent, scroll.x, position));
+    }, SCROLLING_INTERVAL);
+  });
 }
 
-function smoothScrollLeft(position: number, parent: Element | Window) {
+function smoothScrollTop(parent: Element | Window, position: number) {
   const scroll = getScroll(parent);
-  smoothScroll(position, scroll.x, position => scrollElement(parent, position, scroll.y));
+  return smoothScroll(position, scroll.y, position => scrollElement(parent, scroll.x, position));
+}
+
+function smoothScrollLeft(parent: Element | Window, position: number) {
+  const scroll = getScroll(parent);
+  return smoothScroll(position, scroll.x, position => scrollElement(parent, position, scroll.y));
 }
 
 export function scrollToElement(
@@ -100,18 +106,18 @@ export function scrollToElement(
   if (top - parentTop < opts.topOffset) {
     const goal = scroll.y - opts.topOffset + top - parentTop;
     if (opts.smooth) {
-      smoothScrollTop(goal, parent);
+      addToScrollQueue(smoothScrollTop, parent, goal);
     } else {
-      scrollElement(parent, scroll.x, goal);
+      addToScrollQueue(scrollElement, parent, scroll.x, goal);
     }
   }
 
   if (bottom - parentTop > height - opts.bottomOffset) {
     const goal = scroll.y + bottom - parentTop - height + opts.bottomOffset;
     if (opts.smooth) {
-      smoothScrollTop(goal, parent);
+      addToScrollQueue(smoothScrollTop, parent, goal);
     } else {
-      scrollElement(parent, scroll.x, goal);
+      addToScrollQueue(scrollElement, parent, scroll.x, goal);
     }
   }
 }
@@ -139,18 +145,54 @@ export function scrollHorizontally(
   if (left - parentLeft < opts.leftOffset) {
     const goal = scroll.x - opts.leftOffset + left - parentLeft;
     if (opts.smooth) {
-      smoothScrollLeft(goal, parent);
+      addToScrollQueue(smoothScrollLeft, parent, goal);
     } else {
-      scrollElement(parent, goal, scroll.y);
+      addToScrollQueue(scrollElement, parent, goal, scroll.y);
     }
   }
 
   if (right - parentLeft > width - opts.rightOffset) {
     const goal = scroll.x + right - parentLeft - width + opts.rightOffset;
     if (opts.smooth) {
-      smoothScrollLeft(goal, parent);
+      addToScrollQueue(smoothScrollLeft, parent, goal);
     } else {
-      scrollElement(parent, goal, scroll.y);
+      addToScrollQueue(scrollElement, parent, goal, scroll.y);
     }
+  }
+}
+
+type ScrollFunction = (element: Element | Window, x: number, y?: number) => Promise<void>;
+
+interface ScrollQueueItem {
+  element: Element | Window;
+  fn: ScrollFunction;
+  x: number;
+  y?: number;
+}
+
+const queue: ScrollQueueItem[] = [];
+let queueRunning: boolean;
+
+function addToScrollQueue(
+  fn: ScrollFunction,
+  element: Element | Window,
+  x: number,
+  y?: number
+): void {
+  queue.push({ fn, element, x, y });
+  if (!queueRunning) {
+    processQueue();
+  }
+}
+
+function processQueue() {
+  if (queue.length > 0) {
+    queueRunning = true;
+    const { fn, element, x, y } = queue.shift()!;
+    fn(element, x, y)
+      .then(processQueue)
+      .catch(processQueue);
+  } else {
+    queueRunning = false;
   }
 }
