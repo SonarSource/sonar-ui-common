@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 /* eslint-disable sonarjs/no-duplicate-string */
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import { click } from '../../../helpers/testUtils';
 import { PopupPlacement } from '../../ui/popups';
@@ -63,9 +63,22 @@ describe('ActionsDropdownItem', () => {
     expect(onClick).toBeCalled();
   });
 
+  it('should render correctly copy item', () => {
+    const wrapper = mountRender({ copyValue: 'my content to copy to clipboard' });
+    expect(wrapper).toMatchSnapshot();
+  });
+
   function shallowRender(props: Partial<ActionsDropdownItem['props']> = {}) {
-    return shallow(
-      <ActionsDropdownItem className="foo" onClick={jest.fn()} {...props}>
+    return shallow(renderContent(props));
+  }
+
+  function mountRender(props: Partial<ActionsDropdownItem['props']> = {}) {
+    return mount(renderContent(props));
+  }
+
+  function renderContent(props: Partial<ActionsDropdownItem['props']> = {}) {
+    return (
+      <ActionsDropdownItem className="foo" {...props}>
         <span>Hello world</span>
       </ActionsDropdownItem>
     );

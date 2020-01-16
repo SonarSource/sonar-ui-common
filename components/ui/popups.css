@@ -207,6 +207,30 @@
 }
 /* #endregion */
 
+/* #region .popup.is-top-left */
+.popup.is-top-left {
+  bottom: calc(100% + 8px);
+  left: 0;
+  margin: 0;
+  transform: translateX(-8px);
+}
+
+.popup.is-top-left .popup-arrow {
+  bottom: -6px;
+  top: auto;
+  left: 8px;
+  border-color: var(--barBorderColor) transparent transparent;
+  border-width: 6px 6px 0 6px;
+}
+
+.popup.is-top-left .popup-arrow:after {
+  left: -6px;
+  top: -7px;
+  border-width: 6px 6px 0 6px;
+  border-color: #fff transparent transparent;
+}
+/* #endregion */
+
 /* #region .popup & .menu or .multi-select */
 .popup:not(.no-padding) > .menu,
 .popup:not(.no-padding) > .multi-select {
