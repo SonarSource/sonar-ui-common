@@ -22,12 +22,22 @@ import * as React from 'react';
 import ClickEventBoundary from '../controls/ClickEventBoundary';
 import './popups.css';
 
+/**
+ * Positioning rules:
+ * - Bottom = below the block, horizontally centered
+ * - BottomLeft = below the block, horizontally left-aligned
+ * - BottomRight = below the block, horizontally right-aligned
+ * - LeftTop = on the left-side of the block, vertically top-aligned
+ * - RightTop = on the right-side of the block, vertically top-aligned
+ * - TopLeft = above the block, horizontally left-aligned
+ */
 export enum PopupPlacement {
   Bottom = 'bottom',
   BottomLeft = 'bottom-left',
   BottomRight = 'bottom-right',
   LeftTop = 'left-top',
-  RightTop = 'right-top'
+  RightTop = 'right-top',
+  TopLeft = 'top-left'
 }
 
 interface PopupProps {

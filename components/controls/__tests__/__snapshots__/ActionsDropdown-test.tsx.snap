@@ -105,3 +105,39 @@ exports[`ActionsDropdownItem should render correctly 3`] = `
   </a>
 </li>
 `;
+
+exports[`ActionsDropdownItem should render correctly copy item 1`] = `
+<ActionsDropdownItem
+  className="foo"
+  copyValue="my content to copy to clipboard"
+>
+  <ClipboardBase>
+    <Tooltip
+      overlay="copied_action"
+      visible={false}
+    >
+      <TooltipInner
+        mouseEnterDelay={0.1}
+        overlay="copied_action"
+        visible={false}
+      >
+        <li
+          data-clipboard-text="my content to copy to clipboard"
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <a
+            className="foo"
+            href="#"
+            onClick={[Function]}
+          >
+            <span>
+              Hello world
+            </span>
+          </a>
+        </li>
+      </TooltipInner>
+    </Tooltip>
+  </ClipboardBase>
+</ActionsDropdownItem>
+`;
