@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.0.49
+
 - SONAR-12860 Add boolean and numberic type for RadioToggle and fix size glitch.
 - SC-1258 Add 'copy to clipboard' feature to ActionsDropdownItem
 - SC-1258 Add new popup positioning TopLeft
