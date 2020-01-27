@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- SONAR-12632 Prevent activity graph labels from overlapping
+
 ## 0.0.49
 
 - SONAR-12860 Add boolean and numberic type for RadioToggle and fix size glitch.

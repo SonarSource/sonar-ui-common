@@ -17,8 +17,8 @@ exports[`should render correctly 1`] = `
           className="line-chart-grid"
           x1={0}
           x2={30}
-          y1={60}
-          y2={60}
+          y1={40}
+          y2={40}
         />
       </g>
       <g
@@ -28,8 +28,8 @@ exports[`should render correctly 1`] = `
           className="line-chart-grid"
           x1={0}
           x2={30}
-          y1={56}
-          y2={56}
+          y1={37.333333333333336}
+          y2={37.333333333333336}
         />
       </g>
       <g
@@ -39,56 +39,12 @@ exports[`should render correctly 1`] = `
           className="line-chart-grid"
           x1={0}
           x2={30}
-          y1={52}
-          y2={52}
+          y1={34.666666666666664}
+          y2={34.666666666666664}
         />
       </g>
       <g
         key="0.6"
-      >
-        <line
-          className="line-chart-grid"
-          x1={0}
-          x2={30}
-          y1={48}
-          y2={48}
-        />
-      </g>
-      <g
-        key="0.8"
-      >
-        <line
-          className="line-chart-grid"
-          x1={0}
-          x2={30}
-          y1={44}
-          y2={44}
-        />
-      </g>
-      <g
-        key="1"
-      >
-        <line
-          className="line-chart-grid"
-          x1={0}
-          x2={30}
-          y1={40}
-          y2={40}
-        />
-      </g>
-      <g
-        key="1.2"
-      >
-        <line
-          className="line-chart-grid"
-          x1={0}
-          x2={30}
-          y1={36}
-          y2={36}
-        />
-      </g>
-      <g
-        key="1.4"
       >
         <line
           className="line-chart-grid"
@@ -99,18 +55,29 @@ exports[`should render correctly 1`] = `
         />
       </g>
       <g
-        key="1.6"
+        key="0.8"
       >
         <line
           className="line-chart-grid"
           x1={0}
           x2={30}
-          y1={28}
-          y2={28}
+          y1={29.333333333333336}
+          y2={29.333333333333336}
         />
       </g>
       <g
-        key="1.8"
+        key="1"
+      >
+        <line
+          className="line-chart-grid"
+          x1={0}
+          x2={30}
+          y1={26.666666666666668}
+          y2={26.666666666666668}
+        />
+      </g>
+      <g
+        key="1.2"
       >
         <line
           className="line-chart-grid"
@@ -121,18 +88,29 @@ exports[`should render correctly 1`] = `
         />
       </g>
       <g
-        key="2"
+        key="1.4"
       >
         <line
           className="line-chart-grid"
           x1={0}
           x2={30}
-          y1={20}
-          y2={20}
+          y1={21.333333333333336}
+          y2={21.333333333333336}
         />
       </g>
       <g
-        key="2.2"
+        key="1.6"
+      >
+        <line
+          className="line-chart-grid"
+          x1={0}
+          x2={30}
+          y1={18.666666666666668}
+          y2={18.666666666666668}
+        />
+      </g>
+      <g
+        key="1.8"
       >
         <line
           className="line-chart-grid"
@@ -143,14 +121,36 @@ exports[`should render correctly 1`] = `
         />
       </g>
       <g
+        key="2"
+      >
+        <line
+          className="line-chart-grid"
+          x1={0}
+          x2={30}
+          y1={13.333333333333336}
+          y2={13.333333333333336}
+        />
+      </g>
+      <g
+        key="2.2"
+      >
+        <line
+          className="line-chart-grid"
+          x1={0}
+          x2={30}
+          y1={10.666666666666664}
+          y2={10.666666666666664}
+        />
+      </g>
+      <g
         key="2.4"
       >
         <line
           className="line-chart-grid"
           x1={0}
           x2={30}
-          y1={12.000000000000007}
-          y2={12.000000000000007}
+          y1={8.000000000000004}
+          y2={8.000000000000004}
         />
       </g>
       <g
@@ -160,8 +160,8 @@ exports[`should render correctly 1`] = `
           className="line-chart-grid"
           x1={0}
           x2={30}
-          y1={8}
-          y2={8}
+          y1={5.333333333333329}
+          y2={5.333333333333329}
         />
       </g>
       <g
@@ -171,8 +171,8 @@ exports[`should render correctly 1`] = `
           className="line-chart-grid"
           x1={0}
           x2={30}
-          y1={4.000000000000007}
-          y2={4.000000000000007}
+          y1={2.6666666666666714}
+          y2={2.6666666666666714}
         />
       </g>
       <g
@@ -187,11 +187,13 @@ exports[`should render correctly 1`] = `
         />
       </g>
     </g>
-    <g />
+    <g
+      transform="translate(0, 20)"
+    />
     <g>
       <path
         className="line-chart-path line-chart-path-0"
-        d="MNaN,40LNaN,20"
+        d="MNaN,26.666666666666668LNaN,13.333333333333336"
         key="test-1"
       />
       <path
@@ -211,7 +213,7 @@ exports[`should render correctly 1`] = `
     </g>
     <rect
       className="chart-mouse-events-overlay"
-      height={60}
+      height={40}
       width={30}
     />
   </g>

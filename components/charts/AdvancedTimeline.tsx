@@ -70,7 +70,7 @@ export default class AdvancedTimeline extends React.PureComponent<Props, State> 
   static defaultProps = {
     eventSize: 8,
     maxYTicksCount: 4,
-    padding: [10, 10, 30, 60],
+    padding: [10, 10, 50, 60],
     zoomSpeed: 1
   };
 
@@ -332,12 +332,18 @@ export default class AdvancedTimeline extends React.PureComponent<Props, State> 
     const ticks = xScale.ticks(7);
     const y = yScale.range()[0];
     return (
-      <g>
+      <g transform="translate(0, 20)">
         {ticks.slice(0, -1).map((tick, index) => {
           const nextTick = index + 1 < ticks.length ? ticks[index + 1] : xScale.domain()[1];
           const x = (xScale(tick) + xScale(nextTick)) / 2;
           return (
-            <text className="line-chart-tick" dy="1.5em" key={index} x={x} y={y}>
+            <text
+              className="line-chart-tick"
+              key={index}
+              textAnchor="end"
+              transform={`rotate(-35, ${x}, ${y})`}
+              x={x}
+              y={y}>
               {format(tick)}
             </text>
           );

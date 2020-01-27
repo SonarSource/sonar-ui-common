@@ -53,7 +53,6 @@
 .line-chart-tick {
   fill: var(--secondFontColor);
   font-size: var(--smallFontSize);
-  text-anchor: middle;
 }
 
 .line-chart-tick-x {
