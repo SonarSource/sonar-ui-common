@@ -1,7 +1,7 @@
 # sonar-ui-common changelog
 
 ## Unreleased
-
+- SONAR-12961 Add security review rating helper
 - SONAR-12632 Prevent activity graph labels from overlapping
 
 ## 0.0.49

@@ -17,16 +17,23 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-function checkNumberRating(coverageRating: number): void {
-  if (!(typeof coverageRating === 'number' && coverageRating > 0 && coverageRating < 6)) {
-    throw new Error(`Unknown number rating: "${coverageRating}"`);
+function checkNumberRating(rating: number): void {
+  if (!(typeof rating === 'number' && rating > 0 && rating < 6)) {
+    throw new Error(`Unknown number rating: "${rating}"`);
   }
 }
 
-export function getCoverageRatingLabel(rating: number): string {
+function getRatingSliceLabel(rating: number, mapping: string[]) {
   checkNumberRating(rating);
-  const mapping = ['≥ 80%', '70% - 80%', '50% - 70%', '30% - 50%', '< 30%'];
   return mapping[rating - 1];
+}
+
+export function getSecurityReviewRatingLabel(rating: number): string {
+  return getRatingSliceLabel(rating, ['≥ 80%', '70% - 80%', '50% - 70%', '30% - 50%', '< 30%']);
+}
+
+export function getCoverageRatingLabel(rating: number): string {
+  return getRatingSliceLabel(rating, ['≥ 80%', '70% - 80%', '50% - 70%', '30% - 50%', '< 30%']);
 }
 
 export function getCoverageRatingAverageValue(rating: number): number {
