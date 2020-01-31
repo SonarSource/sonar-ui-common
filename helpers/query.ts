@@ -17,8 +17,9 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { isEqual, isNil, omitBy } from 'lodash';
+import { isEqual } from 'lodash';
 import { isValidDate, parseDate, toNotSoISOString, toShortNotSoISOString } from './dates';
+import { omitNil } from './request';
 
 export function queriesEqual(a: T.RawQuery, b: T.RawQuery): boolean {
   const keysA = Object.keys(a);
@@ -32,7 +33,7 @@ export function queriesEqual(a: T.RawQuery, b: T.RawQuery): boolean {
 }
 
 export function cleanQuery(query: T.RawQuery): T.RawQuery {
-  return omitBy(query, isNil);
+  return omitNil(query);
 }
 
 export function parseAsBoolean(value: string | undefined, defaultValue = true): boolean {
