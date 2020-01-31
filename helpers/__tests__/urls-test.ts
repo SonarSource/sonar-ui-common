@@ -64,10 +64,10 @@ describe('#getReturnUrl', () => {
 
 describe('#isRelativeUrl', () => {
   it('should check a relative url', () => {
-    expect(isRelativeUrl('/test')).toBeTruthy();
-    expect(isRelativeUrl('http://www.google.com')).toBeFalsy();
-    expect(isRelativeUrl('javascript:alert("test")')).toBeFalsy();
-    expect(isRelativeUrl('\\test')).toBeFalsy();
-    expect(isRelativeUrl('//test')).toBeFalsy();
+    expect(isRelativeUrl('/test')).toBe(true);
+    expect(isRelativeUrl('http://www.google.com')).toBe(false);
+    expect(isRelativeUrl('javascript:alert("test")')).toBe(false);
+    expect(isRelativeUrl('\\test')).toBe(false);
+    expect(isRelativeUrl('//test')).toBe(false);
   });
 });

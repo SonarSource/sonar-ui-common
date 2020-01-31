@@ -26,7 +26,7 @@ it('should render correctly', () => {
   expect(shallowRender({ className: 'my-class', query: 'security_hotspots' })).toMatchSnapshot();
   expect(shallowRender({ query: 'new_code_smells' })).toMatchSnapshot();
   expect(shallowRender({ query: 'vulnerability' })).toMatchSnapshot();
-  expect(shallowRender({ query: 'unknown' }).type()).toBe(null);
+  expect(shallowRender({ query: 'unknown' }).type()).toBeNull();
 });
 
 function shallowRender(props: Partial<Props> = {}) {

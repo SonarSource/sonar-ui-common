@@ -27,14 +27,14 @@ describe('#stringToColor', () => {
 
 describe('#isDarkColor', () => {
   it('should be dark', () => {
-    expect(colors.isDarkColor('#000000')).toBeTruthy();
-    expect(colors.isDarkColor('#222222')).toBeTruthy();
-    expect(colors.isDarkColor('#000')).toBeTruthy();
+    expect(colors.isDarkColor('#000000')).toBe(true);
+    expect(colors.isDarkColor('#222222')).toBe(true);
+    expect(colors.isDarkColor('#000')).toBe(true);
   });
   it('should be light', () => {
-    expect(colors.isDarkColor('#FFFFFF')).toBeFalsy();
-    expect(colors.isDarkColor('#CDCDCD')).toBeFalsy();
-    expect(colors.isDarkColor('#FFF')).toBeFalsy();
+    expect(colors.isDarkColor('#FFFFFF')).toBe(false);
+    expect(colors.isDarkColor('#CDCDCD')).toBe(false);
+    expect(colors.isDarkColor('#FFF')).toBe(false);
   });
 });
 

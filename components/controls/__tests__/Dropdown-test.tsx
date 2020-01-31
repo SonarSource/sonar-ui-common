@@ -30,7 +30,7 @@ describe('Dropdown', () => {
       shallow(<Dropdown overlay={<div id="overlay" />}>{() => <div />}</Dropdown>)
         .find('div')
         .exists()
-    ).toBeTruthy();
+    ).toBe(true);
   });
 
   it('toggles with element child', () => {

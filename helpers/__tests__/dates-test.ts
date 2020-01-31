@@ -31,7 +31,7 @@ it('toNotSoISOString', () => {
 });
 
 it('isValidDate', () => {
-  expect(dates.isValidDate(recentDate)).toBeTruthy();
-  expect(dates.isValidDate(new Date())).toBeTruthy();
-  expect(dates.isValidDate(parseDate('foo'))).toBeFalsy();
+  expect(dates.isValidDate(recentDate)).toBe(true);
+  expect(dates.isValidDate(new Date())).toBe(true);
+  expect(dates.isValidDate(parseDate('foo'))).toBe(false);
 });

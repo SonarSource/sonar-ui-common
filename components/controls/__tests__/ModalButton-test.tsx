@@ -29,10 +29,10 @@ it('should open/close modal', () => {
     </ModalButton>
   );
 
-  expect(wrapper.find('#js-open').exists()).toBeTruthy();
-  expect(wrapper.find('#js-close').exists()).toBeFalsy();
+  expect(wrapper.find('#js-open').exists()).toBe(true);
+  expect(wrapper.find('#js-close').exists()).toBe(false);
   click(wrapper.find('#js-open'));
-  expect(wrapper.find('#js-close').exists()).toBeTruthy();
+  expect(wrapper.find('#js-close').exists()).toBe(true);
   click(wrapper.find('#js-close'));
-  expect(wrapper.find('#js-close').exists()).toBeFalsy();
+  expect(wrapper.find('#js-close').exists()).toBe(false);
 });

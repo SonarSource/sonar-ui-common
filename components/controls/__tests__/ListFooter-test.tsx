@@ -29,13 +29,8 @@ it('should render "3 of 5 shown"', () => {
 });
 
 it('should not render "show more"', () => {
-  const listFooter = shallowRender({ loadMore: undefined });
-  expect(listFooter.find('a').length).toBe(0);
-});
-
-it('should not render "show more"', () => {
-  const listFooter = shallowRender({ count: 5 });
-  expect(listFooter.find('a').length).toBe(0);
+  expect(shallowRender({ loadMore: undefined }).find('a').length).toBe(0);
+  expect(shallowRender({ count: 5 }).find('a').length).toBe(0);
 });
 
 it('should "show more"', () => {

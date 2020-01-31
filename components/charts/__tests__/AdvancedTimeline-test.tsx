@@ -22,9 +22,24 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import AdvancedTimeline from '../AdvancedTimeline';
 
+jest.mock('lodash', () => {
+  const lodash = jest.requireActual('lodash');
+  return { ...lodash, throttle: f => f };
+});
+
 it('should render correctly', () => {
+  expect(shallowRender()).toMatchSnapshot();
+});
+
+it('should find date to display based on mouse location', () => {
   const wrapper = shallowRender();
-  expect(wrapper).toMatchSnapshot();
+
+  wrapper.instance().updateTooltipPos(0);
+  expect(wrapper.state().selectedDateIdx).toBeUndefined();
+
+  wrapper.instance().handleMouseEnter();
+  wrapper.instance().updateTooltipPos(0);
+  expect(wrapper.state().selectedDateIdx).toBe(1);
 });
 
 function shallowRender(props?: Partial<AdvancedTimeline['props']>) {

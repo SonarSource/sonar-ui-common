@@ -46,8 +46,6 @@ interface Fixes {
 export default class ScreenPositionFixer extends React.Component<Props, Fixes> {
   throttledPosition: () => void;
 
-  static contextType = ThemeContext;
-
   constructor(props: Props) {
     super(props);
     this.state = {};
@@ -70,6 +68,8 @@ export default class ScreenPositionFixer extends React.Component<Props, Fixes> {
   componentWillUnmount() {
     this.removeEventListeners();
   }
+
+  static contextType = ThemeContext;
 
   addEventListeners = () => {
     window.addEventListener('resize', this.throttledPosition);

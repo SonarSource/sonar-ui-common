@@ -43,14 +43,14 @@ it('warns when input is too short', () => {
   const wrapper = shallow(
     <SearchBox minLength={2} onChange={jest.fn()} placeholder="placeholder" value="f" />
   );
-  expect(wrapper.find('.search-box-note').exists()).toBeTruthy();
+  expect(wrapper.find('.search-box-note').exists()).toBe(true);
 });
 
 it('shows clear button only when there is a value', () => {
   const wrapper = shallow(<SearchBox onChange={jest.fn()} placeholder="placeholder" value="f" />);
-  expect(wrapper.find('.search-box-clear').exists()).toBeTruthy();
+  expect(wrapper.find('.search-box-clear').exists()).toBe(true);
   wrapper.setProps({ value: '' });
-  expect(wrapper.find('.search-box-clear').exists()).toBeFalsy();
+  expect(wrapper.find('.search-box-clear').exists()).toBe(false);
 });
 
 it('attaches ref', () => {

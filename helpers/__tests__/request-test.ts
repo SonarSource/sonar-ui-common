@@ -81,34 +81,24 @@ describe('getText', () => {
 });
 
 describe('parseError', () => {
-  it('should parse error and return the message', () => {
-    return expect(
-      parseError({ json: jest.fn().mockResolvedValue({ errors: [{ msg: 'Error1' }] }) } as any)
-    ).resolves.toBe('Error1');
+  it('should parse error and return the message', async () => {
+    const response = new Response(JSON.stringify({ errors: [{ msg: 'Error1' }] }), { status: 400 });
+    await expect(parseError(response)).resolves.toBe('Error1');
   });
 
-  it('should parse error and return concatenated messages', () => {
-    return expect(
-      parseError({
-        json: jest.fn().mockResolvedValue({ errors: [{ msg: 'Error1' }, { msg: 'Error2' }] })
-      } as any)
-    ).resolves.toBe('Error1. Error2');
+  it('should parse error and return concatenated messages', async () => {
+    const response = new Response(
+      JSON.stringify({ errors: [{ msg: 'Error1' }, { msg: 'Error2' }] }),
+      { status: 400 }
+    );
+    await expect(parseError(response)).resolves.toBe('Error1. Error2');
   });
 
-  it('should parse error and return default message', () => {
-    return expect(
-      parseError({
-        json: jest.fn().mockResolvedValue({})
-      } as any)
-    ).resolves.toBe('default_error_message');
-  });
-
-  it('should parse error and return default message', () => {
-    return expect(
-      parseError({
-        json: jest.fn().mockRejectedValue(undefined)
-      } as any)
-    ).resolves.toBe('default_error_message');
+  it('should parse error and return default message', async () => {
+    const response = new Response('{}', { status: 400 });
+    await expect(parseError(response)).resolves.toBe('default_error_message');
+    const responseUndefined = new Response('', { status: 400 });
+    await expect(parseError(responseUndefined)).resolves.toBe('default_error_message');
   });
 });
 
@@ -197,7 +187,7 @@ describe('requestTryAndRepeatUntil', () => {
     await new Promise(setImmediate);
     expect(stopRepeat).toBeCalledTimes(5);
 
-    return expect(promiseResult).resolves.toEqual({ repeat: false });
+    await expect(promiseResult).resolves.toEqual({ repeat: false });
   });
 
   it('should repeat call as long as there is an error', async () => {
@@ -221,7 +211,7 @@ describe('requestTryAndRepeatUntil', () => {
     await new Promise(setImmediate);
     expect(stopRepeat).toBeCalledTimes(1);
 
-    return expect(promiseResult).resolves.toBe('Success');
+    await expect(promiseResult).resolves.toBe('Success');
   });
 
   it('should stop after 3 calls', async () => {
@@ -233,14 +223,15 @@ describe('requestTryAndRepeatUntil', () => {
       stopRepeat
     );
 
-    expect(promiseResult).rejects.toBe(undefined);
-
     for (let i = 1; i < 3; i++) {
-      jest.runAllTimers();
       expect(apiCall).toBeCalledTimes(i);
       await new Promise(setImmediate);
+      jest.runAllTimers();
     }
-    apiCall.mockResolvedValue('Success');
+    expect(apiCall).toBeCalledTimes(3);
+    await expect(promiseResult).rejects.toBeUndefined();
+
+    // It should not call anymore after 3 times
     jest.runAllTimers();
     expect(apiCall).toBeCalledTimes(3);
   });
@@ -270,25 +261,25 @@ describe('requestTryAndRepeatUntil', () => {
 });
 
 describe('checkStatus', () => {
-  it('should resolve with the response', () => {
+  it('should resolve with the response', async () => {
     const response = mockResponse();
-    return expect(checkStatus(response)).resolves.toBe(response);
+    await expect(checkStatus(response)).resolves.toBe(response);
   });
 
-  it('should reject with the response', () => {
+  it('should reject with the response', async () => {
     const response = mockResponse({}, 500);
-    return expect(checkStatus(response)).rejects.toEqual(response);
+    await expect(checkStatus(response)).rejects.toEqual(response);
   });
 
-  it('should handle required authentication', () => {
-    return checkStatus(mockResponse({}, 401)).catch(() => {
+  it('should handle required authentication', async () => {
+    await checkStatus(mockResponse({}, 401)).catch(() => {
       expect(handleRequiredAuthentication).toBeCalled();
     });
   });
 
-  it('should bybass the redirect with a 401 error', () => {
+  it('should bybass the redirect with a 401 error', async () => {
     const mockedResponse = mockResponse({}, 401);
-    return checkStatus(mockedResponse, true).catch(response => {
+    await checkStatus(mockedResponse, true).catch(response => {
       expect(handleRequiredAuthentication).not.toBeCalled();
       expect(response).toEqual(mockedResponse);
     });

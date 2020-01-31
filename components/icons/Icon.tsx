@@ -62,8 +62,8 @@ export default function Icon({
       version="1.1"
       viewBox={viewBox}
       width={width}
-      xmlSpace="preserve"
       xmlnsXlink="http://www.w3.org/1999/xlink"
+      xmlSpace="preserve"
       {...other}>
       {children}
     </svg>
