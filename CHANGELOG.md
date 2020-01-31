@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Switch to esnext modules in the tsconfig, to avoid duplicate lodash copies in sonar-web build
+
 ## 0.0.52
 
 - Introduce primary button styles
