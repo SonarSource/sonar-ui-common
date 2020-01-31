@@ -29,36 +29,36 @@ it('should render', () => {
 
 it('should render unchecked', () => {
   const checkbox = shallow(<Checkbox checked={false} onCheck={() => true} />);
-  expect(checkbox.is('.icon-checkbox-checked')).toBeFalsy();
+  expect(checkbox.is('.icon-checkbox-checked')).toBe(false);
   expect(checkbox.prop('aria-checked')).toBe(false);
 });
 
 it('should render checked', () => {
   const checkbox = shallow(<Checkbox checked={true} onCheck={() => true} />);
-  expect(checkbox.is('.icon-checkbox-checked')).toBeTruthy();
+  expect(checkbox.is('.icon-checkbox-checked')).toBe(true);
   expect(checkbox.prop('aria-checked')).toBe(true);
 });
 
 it('should render disabled', () => {
   const checkbox = shallow(<Checkbox checked={true} disabled={true} onCheck={() => true} />);
-  expect(checkbox.is('.icon-checkbox-disabled')).toBeTruthy();
+  expect(checkbox.is('.icon-checkbox-disabled')).toBe(true);
 });
 
 it('should render unchecked third state', () => {
   const checkbox = shallow(<Checkbox checked={false} onCheck={() => true} thirdState={true} />);
-  expect(checkbox.is('.icon-checkbox-single')).toBeTruthy();
-  expect(checkbox.is('.icon-checkbox-checked')).toBeFalsy();
+  expect(checkbox.is('.icon-checkbox-single')).toBe(true);
+  expect(checkbox.is('.icon-checkbox-checked')).toBe(false);
 });
 
 it('should render checked third state', () => {
   const checkbox = shallow(<Checkbox checked={true} onCheck={() => true} thirdState={true} />);
-  expect(checkbox.is('.icon-checkbox-single')).toBeTruthy();
-  expect(checkbox.is('.icon-checkbox-checked')).toBeTruthy();
+  expect(checkbox.is('.icon-checkbox-single')).toBe(true);
+  expect(checkbox.is('.icon-checkbox-checked')).toBe(true);
 });
 
 it('should render with a spinner', () => {
   const checkbox = shallow(<Checkbox checked={false} loading={true} onCheck={() => true} />);
-  expect(checkbox.find('DeferredSpinner')).toBeTruthy();
+  expect(checkbox.find('DeferredSpinner').exists()).toBe(true);
 });
 
 it('should render children', () => {
@@ -67,8 +67,8 @@ it('should render children', () => {
       <span>foo</span>
     </Checkbox>
   );
-  expect(checkbox.hasClass('link-checkbox')).toBeTruthy();
-  expect(checkbox.find('span').exists()).toBeTruthy();
+  expect(checkbox.hasClass('link-checkbox')).toBe(true);
+  expect(checkbox.find('span').exists()).toBe(true);
 });
 
 it('should render children with a spinner', () => {
@@ -77,9 +77,9 @@ it('should render children with a spinner', () => {
       <span>foo</span>
     </Checkbox>
   );
-  expect(checkbox.hasClass('link-checkbox')).toBeTruthy();
-  expect(checkbox.find('span').exists()).toBeTruthy();
-  expect(checkbox.find('DeferredSpinner').exists()).toBeTruthy();
+  expect(checkbox.hasClass('link-checkbox')).toBe(true);
+  expect(checkbox.find('span').exists()).toBe(true);
+  expect(checkbox.find('DeferredSpinner').exists()).toBe(true);
 });
 
 it('should call onCheck', () => {
@@ -107,7 +107,7 @@ it('should apply custom class', () => {
   const checkbox = shallow(
     <Checkbox checked={true} className="customclass" onCheck={() => true} />
   );
-  expect(checkbox.is('.customclass')).toBeTruthy();
+  expect(checkbox.is('.customclass')).toBe(true);
 });
 
 it('should render the checkbox on the right', () => {

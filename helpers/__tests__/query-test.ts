@@ -22,10 +22,10 @@ import * as query from '../query';
 
 describe('queriesEqual', () => {
   it('should correctly test equality of two queries', () => {
-    expect(query.queriesEqual({ a: 'test', b: 'test' }, { a: 'test', b: 'test' })).toBeTruthy();
-    expect(query.queriesEqual({ a: [1, 2], b: 'test' }, { a: [1, 2], b: 'test' })).toBeTruthy();
-    expect(query.queriesEqual({ a: 'a' }, { a: 'test', b: 'test' })).toBeFalsy();
-    expect(query.queriesEqual({ a: [1, 2], b: 'test' }, { a: [1], b: 'test' })).toBeFalsy();
+    expect(query.queriesEqual({ a: 'test', b: 'test' }, { a: 'test', b: 'test' })).toBe(true);
+    expect(query.queriesEqual({ a: [1, 2], b: 'test' }, { a: [1, 2], b: 'test' })).toBe(true);
+    expect(query.queriesEqual({ a: 'a' }, { a: 'test', b: 'test' })).toBe(false);
+    expect(query.queriesEqual({ a: [1, 2], b: 'test' }, { a: [1], b: 'test' })).toBe(false);
   });
 });
 
@@ -37,13 +37,13 @@ describe('cleanQuery', () => {
 
 describe('parseAsBoolean', () => {
   it('should parse booleans correctly', () => {
-    expect(query.parseAsBoolean('false')).toBeFalsy();
-    expect(query.parseAsBoolean('true')).toBeTruthy();
+    expect(query.parseAsBoolean('false')).toBe(false);
+    expect(query.parseAsBoolean('true')).toBe(true);
   });
 
   it('should return a default value', () => {
-    expect(query.parseAsBoolean('1')).toBeTruthy();
-    expect(query.parseAsBoolean('foo')).toBeTruthy();
+    expect(query.parseAsBoolean('1')).toBe(true);
+    expect(query.parseAsBoolean('foo')).toBe(true);
   });
 });
 
@@ -69,15 +69,15 @@ describe('parseAsOptionalArray', () => {
       false,
       false
     ]);
-    expect(query.parseAsOptionalArray(undefined, query.parseAsString)).toEqual(undefined);
+    expect(query.parseAsOptionalArray(undefined, query.parseAsString)).toBeUndefined();
   });
 });
 
 describe('parseAsDate', () => {
   it('should parse string date correctly', () => {
     expect(query.parseAsDate('2016-06-20T13:09:48.256Z')).toMatchSnapshot();
-    expect(query.parseAsDate('')).toBeFalsy();
-    expect(query.parseAsDate()).toBeFalsy();
+    expect(query.parseAsDate('')).toBeUndefined();
+    expect(query.parseAsDate()).toBeUndefined();
   });
 });
 

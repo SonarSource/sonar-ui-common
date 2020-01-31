@@ -185,6 +185,7 @@
 }
 
 /* #region .button-group */
+/* TODO drop usage of this class in SQ (already dropped from SC) */
 .button-group {
   display: inline-block;
   vertical-align: middle;

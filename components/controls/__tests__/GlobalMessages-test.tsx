@@ -20,6 +20,8 @@
 import { shallow } from 'enzyme';
 import { matchers } from 'jest-emotion';
 import * as React from 'react';
+// mockedTheme is in fact the default theme
+// eslint-disable-next-line jest/no-mocks-import
 import { mockedTheme } from '../../__mocks__/mockedTheme';
 import GlobalMessages, { GlobalMessagesProps } from '../GlobalMessages';
 

@@ -34,7 +34,7 @@ it('should show the inner content after a click', () => {
   expect(onClick).lastCalledWith('foo');
   wrapper.setProps({ open: true });
 
-  expect(wrapper.find('.boxed-group-inner').exists()).toBeTruthy();
+  expect(wrapper.find('.boxed-group-inner').exists()).toBe(true);
 });
 
 function getWrapper(props = {}) {

@@ -251,30 +251,33 @@ export default class AdvancedTimeline extends React.PureComponent<Props, State> 
   };
 
   updateTooltipPos = (xPos: number) => {
-    const firstSerie = this.props.series[0];
-    if (this.state.mouseOver && firstSerie) {
-      const { updateTooltip } = this.props;
-      const date = this.state.xScale.invert(xPos);
-      const bisectX = bisector<T.Chart.Point, Date>(d => d.x).right;
-      let idx = bisectX(firstSerie.data, date);
-      if (idx >= 0) {
-        const previousPoint = firstSerie.data[idx - 1];
-        const nextPoint = firstSerie.data[idx];
-        if (
-          !nextPoint ||
-          (previousPoint &&
-            date.valueOf() - previousPoint.x.valueOf() <= nextPoint.x.valueOf() - date.valueOf())
-        ) {
-          idx--;
-        }
-        const selectedDate = firstSerie.data[idx].x;
-        const xPos = this.state.xScale(selectedDate);
-        this.setState({ selectedDate, selectedDateXPos: xPos, selectedDateIdx: idx });
-        if (updateTooltip) {
-          updateTooltip(selectedDate, xPos, idx);
+    this.setState(state => {
+      const firstSerie = this.props.series[0];
+      if (state.mouseOver && firstSerie) {
+        const { updateTooltip } = this.props;
+        const date = state.xScale.invert(xPos);
+        const bisectX = bisector<T.Chart.Point, Date>(d => d.x).right;
+        let idx = bisectX(firstSerie.data, date);
+        if (idx >= 0) {
+          const previousPoint = firstSerie.data[idx - 1];
+          const nextPoint = firstSerie.data[idx];
+          if (
+            !nextPoint ||
+            (previousPoint &&
+              date.valueOf() - previousPoint.x.valueOf() <= nextPoint.x.valueOf() - date.valueOf())
+          ) {
+            idx--;
+          }
+          const selectedDate = firstSerie.data[idx].x;
+          const xPos = state.xScale(selectedDate);
+          if (updateTooltip) {
+            updateTooltip(selectedDate, xPos, idx);
+          }
+          return { selectedDate, selectedDateXPos: xPos, selectedDateIdx: idx };
         }
       }
-    }
+      return null;
+    });
   };
 
   renderHorizontalGrid = () => {

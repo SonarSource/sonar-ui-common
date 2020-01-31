@@ -26,6 +26,8 @@ import {
   withTheme
 } from 'emotion-theming';
 import * as React from 'react';
+// mockedTheme is in fact the default theme
+// eslint-disable-next-line jest/no-mocks-import
 import { mockedTheme } from './__mocks__/mockedTheme';
 
 export interface Theme {

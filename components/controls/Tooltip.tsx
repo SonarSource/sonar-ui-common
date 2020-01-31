@@ -87,8 +87,6 @@ export class TooltipInner extends React.Component<TooltipProps, State> {
     mouseEnterDelay: 0.1
   };
 
-  static contextType = ThemeContext;
-
   constructor(props: TooltipProps) {
     super(props);
     this.state = {
@@ -142,6 +140,8 @@ export class TooltipInner extends React.Component<TooltipProps, State> {
     this.removeEventListeners();
     this.clearTimeouts();
   }
+
+  static contextType = ThemeContext;
 
   addEventListeners = () => {
     window.addEventListener('resize', this.throttledPositionTooltip);
