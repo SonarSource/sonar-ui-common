@@ -46,6 +46,7 @@ export default function IssueTypeIcon({ query, ...iconProps }: Props) {
       break;
     case 'security_hotspot':
     case 'security_hotspots':
+    case 'new_security_hotspots':
       type = 'SECURITY_HOTSPOT';
       break;
     default:
