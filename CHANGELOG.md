@@ -3,6 +3,7 @@
 ## Unreleased
 
 - SONAR-12632 Prevent activity graph labels from overlapping
+- SONAR-12965 Add icon for 'new security hotspots'
 
 ## 0.0.49
 
