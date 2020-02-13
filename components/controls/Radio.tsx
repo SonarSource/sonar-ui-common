@@ -24,6 +24,7 @@ import './Radio.css';
 interface Props {
   checked: boolean;
   className?: string;
+  disabled?: boolean;
   onCheck: (value: string) => void;
   value: string;
 }
@@ -31,23 +32,24 @@ interface Props {
 export default class Radio extends React.PureComponent<Props> {
   handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
-    this.props.onCheck(this.props.value);
+
+    if (!this.props.disabled) {
+      this.props.onCheck(this.props.value);
+    }
   };
 
   render() {
+    const { className, checked, children, disabled } = this.props;
+
     return (
       <a
-        aria-checked={this.props.checked}
-        className={classNames('display-inline-flex-center link-radio', this.props.className)}
+        aria-checked={checked}
+        className={classNames('display-inline-flex-center link-radio', className, { disabled })}
         href="#"
         onClick={this.handleClick}
         role="radio">
-        <i
-          className={classNames('icon-radio', 'spacer-right', {
-            'is-checked': this.props.checked
-          })}
-        />
-        {this.props.children}
+        <i className={classNames('icon-radio', 'spacer-right', { 'is-checked': checked })} />
+        {children}
       </a>
     );
   }
