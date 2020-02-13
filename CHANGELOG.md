@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- SONAR-13049 Radio icons don't work well with flex
+
 ## 0.0.50
 
 - SONAR-12632 Prevent activity graph labels from overlapping
