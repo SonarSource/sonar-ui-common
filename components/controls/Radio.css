@@ -29,6 +29,7 @@
   border-radius: 12px;
   box-sizing: border-box;
   transition: border-color 0.3s ease;
+  flex-shrink: 0;
 }
 
 .icon-radio:after {
