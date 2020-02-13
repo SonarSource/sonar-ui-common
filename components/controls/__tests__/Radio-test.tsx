@@ -22,14 +22,31 @@ import * as React from 'react';
 import { click } from '../../../helpers/testUtils';
 import Radio from '../Radio';
 
-it('should render and check', () => {
+it('should render properly', () => {
+  const wrapper = shallowRender();
+  expect(wrapper).toMatchSnapshot('not checked');
+
+  wrapper.setProps({ checked: true });
+  expect(wrapper).toMatchSnapshot('checked');
+});
+
+it('should invoke callback on click', () => {
   const onCheck = jest.fn();
   const value = 'value';
-  const wrapper = shallow(<Radio checked={false} onCheck={onCheck} value={value} />);
-  expect(wrapper).toMatchSnapshot();
+  const wrapper = shallowRender({ onCheck, value });
 
   click(wrapper);
-  expect(onCheck).toBeCalledWith(value);
-  wrapper.setProps({ checked: true });
-  expect(wrapper).toMatchSnapshot();
+  expect(onCheck).toHaveBeenCalled();
 });
+
+it('should not invoke callback on click when disabled', () => {
+  const onCheck = jest.fn();
+  const wrapper = shallowRender({ disabled: true, onCheck });
+
+  click(wrapper);
+  expect(onCheck).not.toHaveBeenCalled();
+});
+
+function shallowRender(props?: Partial<Radio['props']>) {
+  return shallow<Radio>(<Radio checked={false} onCheck={jest.fn()} value="value" {...props} />);
+}
