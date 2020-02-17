@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.0.51
+
 - SONAR-13049 Radio icons don't work well with flex
 - SONAR-12909 Make radio buttons disableable
 
