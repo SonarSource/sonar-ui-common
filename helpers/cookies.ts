@@ -17,19 +17,24 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { memoize } from 'lodash';
 
-const parseCookies = memoize(
-  (documentCookie: string): T.Dict<string> => {
-    const rawCookies = documentCookie.split('; ');
-    const cookies: T.Dict<string> = {};
-    rawCookies.forEach(candidate => {
-      const [key, value] = candidate.split('=');
-      cookies[key] = value;
-    });
-    return cookies;
+// Memoize only last parsed element
+const lastParsed: { cookie?: string; result?: T.Dict<string> } = {};
+
+function parseCookies(documentCookie: string): T.Dict<string> {
+  if (lastParsed.cookie === documentCookie && lastParsed.result) {
+    return lastParsed.result;
   }
-);
+  const rawCookies = documentCookie.split('; ');
+  const cookies: T.Dict<string> = {};
+  rawCookies.forEach(candidate => {
+    const [key, value] = candidate.split('=');
+    cookies[key] = value;
+  });
+  lastParsed.cookie = documentCookie;
+  lastParsed.result = cookies;
+  return cookies;
+}
 
 export function getCookie(name: string): string | undefined {
   return parseCookies(document.cookie)[name];

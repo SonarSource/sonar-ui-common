@@ -17,7 +17,6 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { isNil, omitBy } from 'lodash';
 import { stringify } from 'querystring';
 import { getCookie } from './cookies';
 import { translate } from './l10n';
@@ -50,8 +49,13 @@ export function getCSRFToken(): T.Dict<string> {
 
 export type RequestData = T.Dict<any>;
 
-export function omitNil(obj: RequestData): RequestData {
-  return omitBy(obj, isNil);
+export function omitNil<T>(obj: T.Dict<T>) {
+  return Object.keys(obj).reduce<T.Dict<T>>((newObj, key) => {
+    if (obj[key] != null) {
+      newObj[key] = obj[key];
+    }
+    return newObj;
+  }, {});
 }
 
 /**

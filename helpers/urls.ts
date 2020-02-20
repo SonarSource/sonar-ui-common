@@ -17,12 +17,10 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { isNil, omitBy } from 'lodash';
 import { stringify } from 'querystring';
+import { omitNil } from './request';
 
-interface Query {
-  [x: string]: string | undefined;
-}
+type Query = T.Dict<string | undefined>;
 
 export interface Location {
   pathname: string;
@@ -39,7 +37,7 @@ export function getHostUrl(): string {
 
 export function getPathUrlAsString(path: Location, internal = true): string {
   return `${internal ? getBaseUrl() : getHostUrl()}${path.pathname}?${stringify(
-    omitBy(path.query, isNil)
+    omitNil(path.query || {})
   )}`;
 }
 
