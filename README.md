@@ -29,6 +29,10 @@ While developing styled components, you should seriously consider adding one of 
 
 It will provide syntax highlighting, quick-fix and intellisense.
 
+## Storybook
+
+Run `yarn storybook` to browse the components.
+
 ## What to improve
 
 - [ ] Add a global index file

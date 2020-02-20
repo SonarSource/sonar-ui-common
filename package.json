@@ -35,8 +35,14 @@
     "react-dom": "^16.8.6"
   },
   "devDependencies": {
+    "@babel/core": "7.8.4",
     "@emotion/core": "10.0.17",
     "@emotion/styled": "10.0.17",
+    "@storybook/addon-actions": "5.3.13",
+    "@storybook/addon-info": "5.3.13",
+    "@storybook/addon-links": "5.3.13",
+    "@storybook/addons": "5.3.13",
+    "@storybook/react": "5.3.13",
     "@types/classnames": "2.2.8",
     "@types/clipboard": "2.0.1",
     "@types/d3-array": "1.2.4",
@@ -55,6 +61,7 @@
     "@types/react-router": "3.0.20",
     "@types/react-virtualized": "9.21.0",
     "@typescript-eslint/parser": "2.6.0",
+    "babel-loader": "8.0.6",
     "cpy-cli": "2.0.0",
     "date-fns": "1.30.1",
     "diff": "4.0.1",
@@ -77,10 +84,12 @@
     "lodash": "4.17.15",
     "prettier": "1.19.1",
     "react": "16.8.6",
+    "react-docgen-typescript-loader": "3.6.0",
     "react-dom": "16.8.6",
     "react-router": "3.2.1",
     "react-test-renderer": "16.8.6",
     "ts-jest": "24.0.2",
+    "ts-loader": "6.2.1",
     "typescript": "3.7.4",
     "whatwg-fetch": "3.0.0"
   },
@@ -97,7 +106,9 @@
     "lint-report": "eslint --ext ts,tsx -f json -o build/eslint-report.json \"{,!(build|node_modules)/**/}*.{ts,tsx}\"",
     "ts-check": "tsc --noEmit",
     "validate": "yarn ts-check && yarn license-check && yarn lint && yarn format-check && yarn test",
-    "validate-ci": "yarn lint-report && yarn license-check && yarn format-check && yarn test --coverage"
+    "validate-ci": "yarn lint-report && yarn license-check && yarn format-check && yarn test --coverage",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "engines": {
     "node": ">=10.15.3",
