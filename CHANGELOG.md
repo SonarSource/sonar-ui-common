@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Introduce primary button styles
+
 ## 0.0.51
 
 - SONAR-13049 Radio icons don't work well with flex

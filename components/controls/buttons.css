@@ -52,6 +52,15 @@
   box-shadow: 0 0 0 3px rgba(35, 106, 151, 0.25);
 }
 
+.button-primary {
+  background: var(--darkBlue);
+  color: #fff;
+}
+
+.button-primary:hover {
+  background: var(--veryDarkBlue);
+}
+
 .button.disabled,
 .button:disabled,
 .button:disabled:hover,
