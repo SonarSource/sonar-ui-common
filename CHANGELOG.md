@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.0.52
+
 - Introduce primary button styles
 
 ## 0.0.51
