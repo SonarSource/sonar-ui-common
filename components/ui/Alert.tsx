@@ -20,7 +20,6 @@
 import * as classNames from 'classnames';
 import * as React from 'react';
 import { translate } from '../../helpers/l10n';
-import Tooltip from '../controls/Tooltip';
 import AlertErrorIcon from '../icons/AlertErrorIcon';
 import AlertSuccessIcon from '../icons/AlertSuccessIcon';
 import AlertWarnIcon from '../icons/AlertWarnIcon';
@@ -147,11 +146,12 @@ export function Alert(props: AlertProps & React.HTMLAttributes<HTMLDivElement>) 
       variantInfo={variantInfo}
       {...domProps}>
       <StyledAlertInner isBanner={isBanner}>
-        <Tooltip overlay={translate('alert.tooltip', variant)}>
-          <StyledAlertIcon isBanner={isBanner} variantInfo={variantInfo}>
-            {variantInfo.icon}
-          </StyledAlertIcon>
-        </Tooltip>
+        <StyledAlertIcon
+          aria-label={translate('alert.tooltip', variant)}
+          isBanner={isBanner}
+          variantInfo={variantInfo}>
+          {variantInfo.icon}
+        </StyledAlertIcon>
         <StyledAlertContent className="alert-content">{props.children}</StyledAlertContent>
       </StyledAlertInner>
     </StyledAlert>

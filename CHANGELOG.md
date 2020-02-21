@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Remove alert's tooltip in favor of an aria-label
+
 ## 0.0.54
 
 - SC-1814 Add Radio styles to RadioCard

@@ -21,6 +21,10 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Alert, AlertProps } from '../Alert';
 
+it('should render properly', () => {
+  expect(shallowRender({ variant: 'error' })).toMatchSnapshot();
+});
+
 it('verification of all variants of alert', () => {
   const variants: AlertProps['variant'][] = ['error', 'warning', 'success', 'info', 'loading'];
   variants.forEach(variant => {
