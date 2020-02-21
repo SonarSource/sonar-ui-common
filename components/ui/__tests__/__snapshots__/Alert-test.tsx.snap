@@ -77,6 +77,7 @@ exports[`should render banner alert with correct css 1`] = `
     class="emotion-2"
   >
     <div
+      aria-label="alert.tooltip.error"
       class="emotion-0"
     >
       <svg
@@ -101,6 +102,53 @@ exports[`should render banner alert with correct css 1`] = `
     </div>
   </div>
 </div>
+`;
+
+exports[`should render properly 1`] = `
+<Styled(div)
+  className="alert alert-test"
+  id="error-message"
+  isInline={false}
+  role="alert"
+  variantInfo={
+    Object {
+      "backGroundColor": "#f2dede",
+      "borderColor": "#f4b1b0",
+      "color": "#862422",
+      "icon": <AlertErrorIcon
+        fill="#a4030f"
+      />,
+    }
+  }
+>
+  <Styled(div)
+    isBanner={false}
+  >
+    <Styled(div)
+      aria-label="alert.tooltip.error"
+      isBanner={false}
+      variantInfo={
+        Object {
+          "backGroundColor": "#f2dede",
+          "borderColor": "#f4b1b0",
+          "color": "#862422",
+          "icon": <AlertErrorIcon
+            fill="#a4030f"
+          />,
+        }
+      }
+    >
+      <AlertErrorIcon
+        fill="#a4030f"
+      />
+    </Styled(div)>
+    <Styled(div)
+      className="alert-content"
+    >
+      This is an error!
+    </Styled(div)>
+  </Styled(div)>
+</Styled(div)>
 `;
 
 exports[`verification of all variants of alert 1`] = `
