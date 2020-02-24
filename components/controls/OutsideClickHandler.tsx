@@ -26,15 +26,17 @@ interface Props {
 }
 
 export default class OutsideClickHandler extends React.Component<Props> {
-  element?: Element | null;
+  mounted = false;
 
   componentDidMount() {
+    this.mounted = true;
     setTimeout(() => {
       this.addClickHandler();
     }, 0);
   }
 
   componentWillUnmount() {
+    this.mounted = false;
     this.removeClickHandler();
   }
 
@@ -47,10 +49,12 @@ export default class OutsideClickHandler extends React.Component<Props> {
   };
 
   handleWindowClick = (event: MouseEvent) => {
-    // eslint-disable-next-line react/no-find-dom-node
-    const node = findDOMNode(this);
-    if (!node || !node.contains(event.target as Node)) {
-      this.props.onClickOutside();
+    if (this.mounted) {
+      // eslint-disable-next-line react/no-find-dom-node
+      const node = findDOMNode(this);
+      if (!node || !node.contains(event.target as Node)) {
+        this.props.onClickOutside();
+      }
     }
   };
 

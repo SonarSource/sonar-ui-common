@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Fixing unmount issue with click outside handler component.
+
 ## 0.0.52
 
 - Introduce primary button styles
