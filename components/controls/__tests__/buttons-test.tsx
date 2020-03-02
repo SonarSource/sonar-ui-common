@@ -19,7 +19,45 @@
  */
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { ButtonIcon, ButtonIconProps } from '../buttons';
+import { click, mockEvent } from '../../../helpers/testUtils';
+import { Button, ButtonIcon, ButtonIconProps } from '../buttons';
+
+describe('Button', () => {
+  it('should render correctly', () => {
+    const onClick = jest.fn();
+    const preventDefault = jest.fn();
+    const stopPropagation = jest.fn();
+    const wrapper = shallowRender({ onClick });
+    expect(wrapper).toMatchSnapshot();
+    click(wrapper.find('button'), mockEvent({ preventDefault, stopPropagation }));
+    expect(onClick).toBeCalled();
+    expect(preventDefault).toBeCalled();
+    expect(stopPropagation).not.toBeCalled();
+  });
+
+  it('should not stop propagation, but prevent default of the click event', () => {
+    const preventDefault = jest.fn();
+    const stopPropagation = jest.fn();
+    const wrapper = shallowRender({ preventDefault: false, stopPropagation: true });
+    click(wrapper.find('button'), mockEvent({ preventDefault, stopPropagation }));
+    expect(preventDefault).not.toBeCalled();
+    expect(stopPropagation).toBeCalled();
+  });
+
+  it('should disable buttons with a class', () => {
+    const onClick = jest.fn();
+    const button = shallowRender({ disabled: true, onClick }).find('button');
+    expect(button.props().disabled).toBeUndefined();
+    expect(button.props().className).toContain('disabled');
+    expect(button.props()['aria-disabled']).toBe(true);
+    click(button);
+    expect(onClick).not.toBeCalled();
+  });
+
+  function shallowRender(props: Partial<Button['props']> = {}) {
+    return shallow<Button>(<Button {...props}>My button</Button>);
+  }
+});
 
 describe('ButtonIcon', () => {
   it('should render correctly', () => {

@@ -1,5 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Button should render correctly 1`] = `
+<button
+  className="button"
+  onClick={[Function]}
+  type="button"
+>
+  My button
+</button>
+`;
+
 exports[`ButtonIcon should render correctly 1`] = `
 <Tooltip
   mouseEnterDelay={0.4}

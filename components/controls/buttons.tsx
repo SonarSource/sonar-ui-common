@@ -46,7 +46,7 @@ interface ButtonProps extends AllowedButtonAttributes {
 
 export class Button extends React.PureComponent<ButtonProps> {
   handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const { onClick, preventDefault = true, stopPropagation = false } = this.props;
+    const { disabled, onClick, preventDefault = true, stopPropagation = false } = this.props;
 
     event.currentTarget.blur();
     if (preventDefault) {
@@ -55,7 +55,8 @@ export class Button extends React.PureComponent<ButtonProps> {
     if (stopPropagation) {
       event.stopPropagation();
     }
-    if (onClick) {
+
+    if (onClick && !disabled) {
       onClick();
     }
   };
@@ -63,6 +64,7 @@ export class Button extends React.PureComponent<ButtonProps> {
   render() {
     const {
       className,
+      disabled,
       innerRef,
       onClick,
       preventDefault,
@@ -74,8 +76,8 @@ export class Button extends React.PureComponent<ButtonProps> {
       // eslint-disable-next-line react/button-has-type
       <button
         {...props}
-        className={classNames('button', className)}
-        disabled={this.props.disabled}
+        aria-disabled={disabled}
+        className={classNames('button', className, { disabled })}
         id={this.props.id}
         onClick={this.handleClick}
         ref={this.props.innerRef}
