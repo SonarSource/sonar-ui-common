@@ -21,14 +21,14 @@ import * as classNames from 'classnames';
 import { LocationDescriptor } from 'history';
 import * as React from 'react';
 import { Link } from 'react-router';
+import { translate } from '../../helpers/l10n';
 import DropdownIcon from '../icons/DropdownIcon';
 import SettingsIcon from '../icons/SettingsIcon';
 import { PopupPlacement } from '../ui/popups';
 import { Button } from './buttons';
-import Dropdown from './Dropdown';
 import { ClipboardBase } from './clipboard';
+import Dropdown from './Dropdown';
 import Tooltip from './Tooltip';
-import { translate } from '../../helpers/l10n';
 
 export interface ActionsDropdownProps {
   className?: string;

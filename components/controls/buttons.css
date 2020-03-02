@@ -61,11 +61,7 @@
   background: var(--veryDarkBlue);
 }
 
-.button.disabled,
-.button:disabled,
-.button:disabled:hover,
-.button:disabled:active,
-.button:disabled:focus {
+.button.disabled {
   color: var(--disableGrayText) !important;
   border-color: var(--disableGrayBorder) !important;
   background: var(--disableGrayBg) !important;
@@ -142,10 +138,7 @@
   outline: 1px dotted var(--blue);
 }
 
-.button-link:disabled,
-.button-link:disabled:hover,
-.button-link:disabled:active,
-.button-link:disabled:focus {
+.button-link.disabled {
   color: var(--secondFontColor);
   background: transparent !important;
   cursor: default;
@@ -212,14 +205,14 @@
   cursor: pointer;
 }
 
-.button-group > .button:hover:not(:disabled),
-.button-group > .button:focus:not(:disabled),
-.button-group > .button:active:not(:disabled),
-.button-group > .button.active:not(:disabled) {
+.button-group > .button:hover:not(.disabled),
+.button-group > .button:focus:not(.disabled),
+.button-group > .button:active:not(.disabled),
+.button-group > .button.active:not(.disabled) {
   z-index: var(--aboveNormalZIndex);
 }
 
-.button-group > .button:disabled {
+.button-group > .button.disabled {
   z-index: var(--belowNormalZIndex);
 }
 
