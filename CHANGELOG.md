@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Fixing unmount issue with click outside handler component.
+- SONAR-12060 Fix titles in modal for long words
 
 ## 0.0.52
 
