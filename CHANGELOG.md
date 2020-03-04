@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.0.53
+
 - Fixing unmount issue with click outside handler component.
 - SONAR-12060 Fix titles in modal for long words
 - SC-1733 Fix mouse event issues on disabled buttons, transform disabled property into disabled class
