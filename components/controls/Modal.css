@@ -99,6 +99,7 @@
   font-size: var(--bigFontSize);
   font-weight: bold;
   line-height: normal;
+  overflow-wrap: break-word;
 }
 
 .modal-body {
