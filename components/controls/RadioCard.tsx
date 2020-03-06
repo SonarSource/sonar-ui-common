@@ -23,6 +23,7 @@ import { FormattedMessage } from 'react-intl';
 import { translate } from '../../helpers/l10n';
 import RecommendedIcon from '../icons/RecommendedIcon';
 import './RadioCard.css';
+import './Radio.css';
 
 export interface RadioCardProps {
   className?: string;
@@ -53,7 +54,7 @@ export default function RadioCard(props: Props) {
       role="radio"
       tabIndex={0}>
       <h2 className="radio-card-header big-spacer-bottom">
-        <span className="display-flex-center">
+        <span className="display-flex-center link-radio">
           {isActionable && (
             <i className={classNames('icon-radio', 'spacer-right', { 'is-checked': selected })} />
           )}

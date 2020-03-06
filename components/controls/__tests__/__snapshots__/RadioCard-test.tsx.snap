@@ -11,7 +11,7 @@ exports[`should be actionable 1`] = `
     className="radio-card-header big-spacer-bottom"
   >
     <span
-      className="display-flex-center"
+      className="display-flex-center link-radio"
     >
       <i
         className="icon-radio spacer-right"
@@ -64,7 +64,7 @@ exports[`should be actionable 2`] = `
     className="radio-card-header big-spacer-bottom"
   >
     <span
-      className="display-flex-center"
+      className="display-flex-center link-radio"
     >
       <i
         className="icon-radio spacer-right is-checked"
@@ -93,7 +93,7 @@ exports[`should render correctly 1`] = `
     className="radio-card-header big-spacer-bottom"
   >
     <span
-      className="display-flex-center"
+      className="display-flex-center link-radio"
     >
       Radio Card
     </span>
