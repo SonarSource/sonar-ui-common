@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- SC-1814 Add Radio styles to RadioCard
+
 ## 0.0.53
 
 - Fixing unmount issue with click outside handler component.
