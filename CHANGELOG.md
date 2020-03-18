@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Remove alert's tooltip in favor of an aria-label
+- SONAR-13155 Upgrade dependencies
 
 ## 0.0.54
 
