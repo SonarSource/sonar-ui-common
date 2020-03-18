@@ -568,10 +568,10 @@
     "@types/d3-interpolate" "*"
     "@types/d3-selection" "*"
 
-"@types/enzyme@3.10.1":
-  version "3.10.1"
-  resolved "https://repox.jfrog.io/repox/api/npm/npm/@types/enzyme/-/enzyme-3.10.1.tgz#74a7f7345075a4c03e574661068d3f96a054f495"
-  integrity sha1-dKf3NFB1pMA+V0ZhBo0/lqBU9JU=
+"@types/enzyme@3.10.5":
+  version "3.10.5"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/@types/enzyme/-/enzyme-3.10.5.tgz#fe7eeba3550369eed20e7fb565bfb74eec44f1f0"
+  integrity sha1-/n7ro1UDae7SDn+1Zb+3TuxE8fA=
   dependencies:
     "@types/cheerio" "*"
     "@types/react" "*"
@@ -812,13 +812,13 @@ acorn@^6.0.1, acorn@^6.0.7:
   resolved "https://repox.jfrog.io/repox/api/npm/npm/acorn/-/acorn-6.2.0.tgz#67f0da2fc339d6cfb5d6fb244fd449f33cd8bbe3"
   integrity sha1-Z/DaL8M51s+11vskT9RJ8zzYu+M=
 
-airbnb-prop-types@^2.13.2:
-  version "2.13.2"
-  resolved "https://repox.jfrog.io/repox/api/npm/npm/airbnb-prop-types/-/airbnb-prop-types-2.13.2.tgz#43147a5062dd2a4a5600e748a47b64004cc5f7fc"
-  integrity sha1-QxR6UGLdKkpWAOdIpHtkAEzF9/w=
+airbnb-prop-types@^2.15.0:
+  version "2.15.0"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/airbnb-prop-types/-/airbnb-prop-types-2.15.0.tgz#5287820043af1eb469f5b0af0d6f70da6c52aaef"
+  integrity sha1-UoeCAEOvHrRp9bCvDW9w2mxSqu8=
   dependencies:
-    array.prototype.find "^2.0.4"
-    function.prototype.name "^1.1.0"
+    array.prototype.find "^2.1.0"
+    function.prototype.name "^1.1.1"
     has "^1.0.3"
     is-regex "^1.0.4"
     object-is "^1.0.1"
@@ -826,7 +826,7 @@ airbnb-prop-types@^2.13.2:
     object.entries "^1.1.0"
     prop-types "^15.7.2"
     prop-types-exact "^1.2.0"
-    react-is "^16.8.6"
+    react-is "^16.9.0"
 
 ajv@^6.10.2, ajv@^6.5.5, ajv@^6.9.1:
   version "6.10.2"
@@ -961,13 +961,13 @@ array-unique@^0.3.2:
   resolved "https://repox.jfrog.io/repox/api/npm/npm/array-unique/-/array-unique-0.3.2.tgz#a894b75d4bc4f6cd679ef3244a9fd8f46ae2d428"
   integrity sha1-qJS3XUvE9s1nnvMkSp/Y9Gri1Cg=
 
-array.prototype.find@^2.0.4:
-  version "2.1.0"
-  resolved "https://repox.jfrog.io/repox/api/npm/npm/array.prototype.find/-/array.prototype.find-2.1.0.tgz#630f2eaf70a39e608ac3573e45cf8ccd0ede9ad7"
-  integrity sha1-Yw8ur3CjnmCKw1c+Rc+MzQ7emtc=
+array.prototype.find@^2.1.0:
+  version "2.1.1"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/array.prototype.find/-/array.prototype.find-2.1.1.tgz#3baca26108ca7affb08db06bf0be6cb3115a969c"
+  integrity sha1-O6yiYQjKev+wjbBr8L5ssxFalpw=
   dependencies:
     define-properties "^1.1.3"
-    es-abstract "^1.13.0"
+    es-abstract "^1.17.4"
 
 array.prototype.flat@^1.2.1:
   version "1.2.1"
@@ -977,6 +977,14 @@ array.prototype.flat@^1.2.1:
     define-properties "^1.1.2"
     es-abstract "^1.10.0"
     function-bind "^1.1.1"
+
+array.prototype.flat@^1.2.3:
+  version "1.2.3"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/array.prototype.flat/-/array.prototype.flat-1.2.3.tgz#0de82b426b0318dbfdb940089e38b043d37f6c7b"
+  integrity sha1-DegrQmsDGNv9uUAInjiwQ9N/bHs=
+  dependencies:
+    define-properties "^1.1.3"
+    es-abstract "^1.17.0-next.1"
 
 arrify@^1.0.1:
   version "1.0.1"
@@ -1303,7 +1311,7 @@ chardet@^0.7.0:
   resolved "https://repox.jfrog.io/repox/api/npm/npm/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha1-kAlISfCTfy7twkJdDSip5fDLrZ4=
 
-cheerio@^1.0.0-rc.2:
+cheerio@^1.0.0-rc.3:
   version "1.0.0-rc.3"
   resolved "https://repox.jfrog.io/repox/api/npm/npm/cheerio/-/cheerio-1.0.0-rc.3.tgz#094636d425b2e9c0f4eb91a46c05630c9a1a8bf6"
   integrity sha1-CUY21CWy6cD065GkbAVjDJoai/Y=
@@ -1352,10 +1360,10 @@ cli-width@^2.0.0:
   resolved "https://repox.jfrog.io/repox/api/npm/npm/cli-width/-/cli-width-2.2.0.tgz#ff19ede8a9a5e579324147b0c11f0fbcbabed639"
   integrity sha1-/xnt6Kml5XkyQUewwR8PvLq+1jk=
 
-clipboard@2.0.4:
-  version "2.0.4"
-  resolved "https://repox.jfrog.io/repox/api/npm/npm/clipboard/-/clipboard-2.0.4.tgz#836dafd66cf0fea5d71ce5d5b0bf6e958009112d"
-  integrity sha1-g22v1mzw/qXXHOXVsL9ulYAJES0=
+clipboard@2.0.6:
+  version "2.0.6"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/clipboard/-/clipboard-2.0.6.tgz#52921296eec0fdf77ead1749421b21c968647376"
+  integrity sha1-UpISlu7A/fd+rRdJQhshyWhkc3Y=
   dependencies:
     good-listener "^1.2.2"
     select "^1.1.2"
@@ -1575,15 +1583,10 @@ currently-unhandled@^0.4.1:
   dependencies:
     array-find-index "^1.0.1"
 
-d3-array@1.2.4, d3-array@^1.2.0:
-  version "1.2.4"
-  resolved "https://repox.jfrog.io/repox/api/npm/npm/d3-array/-/d3-array-1.2.4.tgz#635ce4d5eea759f6f605863dbcfc30edc737f71f"
-  integrity sha1-Y1zk1e6nWfb2BYY9vPww7cc39x8=
-
-d3-collection@1:
-  version "1.0.7"
-  resolved "https://repox.jfrog.io/repox/api/npm/npm/d3-collection/-/d3-collection-1.0.7.tgz#349bd2aa9977db071091c13144d5e4f16b5b310e"
-  integrity sha1-NJvSqpl32wcQkcExRNXk8WtbMQ4=
+"d3-array@1.2.0 - 2", d3-array@2.4.0:
+  version "2.4.0"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/d3-array/-/d3-array-2.4.0.tgz#87f8b9ad11088769c82b5ea846bcb1cc9393f242"
+  integrity sha1-h/i5rREIh2nIK16oRryxzJOT8kI=
 
 d3-color@1:
   version "1.2.8"
@@ -1613,10 +1616,10 @@ d3-format@1:
   resolved "https://repox.jfrog.io/repox/api/npm/npm/d3-format/-/d3-format-1.3.2.tgz#6a96b5e31bcb98122a30863f7d92365c00603562"
   integrity sha1-apa14xvLmBIqMIY/fZI2XABgNWI=
 
-d3-hierarchy@1.1.8:
-  version "1.1.8"
-  resolved "https://repox.jfrog.io/repox/api/npm/npm/d3-hierarchy/-/d3-hierarchy-1.1.8.tgz#7a6317bd3ed24e324641b6f1e76e978836b008cc"
-  integrity sha1-emMXvT7STjJGQbbx526XiDawCMw=
+d3-hierarchy@1.1.9:
+  version "1.1.9"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/d3-hierarchy/-/d3-hierarchy-1.1.9.tgz#2f6bee24caaea43f8dc37545fa01628559647a83"
+  integrity sha1-L2vuJMqupD+Nw3VF+gFihVlkeoM=
 
 d3-interpolate@1:
   version "1.3.2"
@@ -1625,32 +1628,43 @@ d3-interpolate@1:
   dependencies:
     d3-color "1"
 
+d3-interpolate@^1.2.0:
+  version "1.4.0"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/d3-interpolate/-/d3-interpolate-1.4.0.tgz#526e79e2d80daa383f9e0c1c1c7dcc0f0583e987"
+  integrity sha1-Um554tgNqjg/ngwcHH3MDwWD6Yc=
+  dependencies:
+    d3-color "1"
+
 d3-path@1:
   version "1.0.7"
   resolved "https://repox.jfrog.io/repox/api/npm/npm/d3-path/-/d3-path-1.0.7.tgz#8de7cd693a75ac0b5480d3abaccd94793e58aae8"
   integrity sha1-jefNaTp1rAtUgNOrrM2UeT5Yqug=
 
-d3-scale@2.1.2:
-  version "2.1.2"
-  resolved "https://repox.jfrog.io/repox/api/npm/npm/d3-scale/-/d3-scale-2.1.2.tgz#4e932b7b60182aee9073ede8764c98423e5f9a94"
-  integrity sha1-TpMre2AYKu6Qc+3odkyYQj5fmpQ=
+d3-scale@3.2.1:
+  version "3.2.1"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/d3-scale/-/d3-scale-3.2.1.tgz#da1684adce7261b4bc7a76fe193d887f0e909e69"
+  integrity sha1-2haErc5yYbS8enb+GT2Ifw6Qnmk=
   dependencies:
-    d3-array "^1.2.0"
-    d3-collection "1"
+    d3-array "1.2.0 - 2"
     d3-format "1"
-    d3-interpolate "1"
+    d3-interpolate "^1.2.0"
     d3-time "1"
     d3-time-format "2"
 
-d3-selection@1, d3-selection@1.4.0, d3-selection@^1.1.0:
+d3-selection@1, d3-selection@^1.1.0:
   version "1.4.0"
   resolved "https://repox.jfrog.io/repox/api/npm/npm/d3-selection/-/d3-selection-1.4.0.tgz#ab9ac1e664cf967ebf1b479cc07e28ce9908c474"
   integrity sha1-q5rB5mTPln6/G0ecwH4ozpkIxHQ=
 
-d3-shape@1.2.2:
-  version "1.2.2"
-  resolved "https://repox.jfrog.io/repox/api/npm/npm/d3-shape/-/d3-shape-1.2.2.tgz#f9dba3777a5825f9a8ce8bc928da08c17679e9a7"
-  integrity sha1-+dujd3pYJfmozovJKNoIwXZ56ac=
+d3-selection@1.4.1:
+  version "1.4.1"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/d3-selection/-/d3-selection-1.4.1.tgz#98eedbbe085fbda5bafa2f9e3f3a2f4d7d622a98"
+  integrity sha1-mO7bvghfvaW6+i+ePzovTX1iKpg=
+
+d3-shape@1.3.7:
+  version "1.3.7"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/d3-shape/-/d3-shape-1.3.7.tgz#df63801be07bc986bc54f63789b4fe502992b5d7"
+  integrity sha1-32OAG+B7yYa8VPY3ibT+UCmStdc=
   dependencies:
     d3-path "1"
 
@@ -1683,10 +1697,10 @@ d3-transition@1:
     d3-selection "^1.1.0"
     d3-timer "1"
 
-d3-zoom@1.7.3:
-  version "1.7.3"
-  resolved "https://repox.jfrog.io/repox/api/npm/npm/d3-zoom/-/d3-zoom-1.7.3.tgz#f444effdc9055c38077c4299b4df999eb1d47ccb"
-  integrity sha1-9ETv/ckFXDgHfEKZtN+ZnrHUfMs=
+d3-zoom@1.8.3:
+  version "1.8.3"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/d3-zoom/-/d3-zoom-1.8.3.tgz#b6a3dbe738c7763121cd05b8a7795ffe17f4fc0a"
+  integrity sha1-tqPb5zjHdjEhzQW4p3lf/hf0/Ao=
   dependencies:
     d3-dispatch "1"
     d3-drag "1"
@@ -1975,31 +1989,40 @@ entities@^1.1.1, entities@~1.1.1:
   resolved "https://repox.jfrog.io/repox/api/npm/npm/entities/-/entities-1.1.2.tgz#bdfa735299664dfafd34529ed4f8522a275fea56"
   integrity sha1-vfpzUplmTfr9NFKe1PhSKidf6lY=
 
-enzyme-adapter-react-16@1.14.0:
-  version "1.14.0"
-  resolved "https://repox.jfrog.io/repox/api/npm/npm/enzyme-adapter-react-16/-/enzyme-adapter-react-16-1.14.0.tgz#204722b769172bcf096cb250d33e6795c1f1858f"
-  integrity sha1-IEcit2kXK88JbLJQ0z5nlcHxhY8=
+enzyme-adapter-react-16@1.15.2:
+  version "1.15.2"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/enzyme-adapter-react-16/-/enzyme-adapter-react-16-1.15.2.tgz#b16db2f0ea424d58a808f9df86ab6212895a4501"
+  integrity sha1-sW2y8OpCTVioCPnfhqtiEolaRQE=
   dependencies:
-    enzyme-adapter-utils "^1.12.0"
+    enzyme-adapter-utils "^1.13.0"
+    enzyme-shallow-equal "^1.0.1"
     has "^1.0.3"
     object.assign "^4.1.0"
-    object.values "^1.1.0"
+    object.values "^1.1.1"
     prop-types "^15.7.2"
-    react-is "^16.8.6"
+    react-is "^16.12.0"
     react-test-renderer "^16.0.0-0"
     semver "^5.7.0"
 
-enzyme-adapter-utils@^1.12.0:
-  version "1.12.0"
-  resolved "https://repox.jfrog.io/repox/api/npm/npm/enzyme-adapter-utils/-/enzyme-adapter-utils-1.12.0.tgz#96e3730d76b872f593e54ce1c51fa3a451422d93"
-  integrity sha1-luNzDXa4cvWT5UzhxR+jpFFCLZM=
+enzyme-adapter-utils@^1.13.0:
+  version "1.13.0"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/enzyme-adapter-utils/-/enzyme-adapter-utils-1.13.0.tgz#01c885dde2114b4690bf741f8dc94cee3060eb78"
+  integrity sha1-AciF3eIRS0aQv3QfjclM7jBg63g=
   dependencies:
-    airbnb-prop-types "^2.13.2"
-    function.prototype.name "^1.1.0"
+    airbnb-prop-types "^2.15.0"
+    function.prototype.name "^1.1.2"
     object.assign "^4.1.0"
-    object.fromentries "^2.0.0"
+    object.fromentries "^2.0.2"
     prop-types "^15.7.2"
-    semver "^5.6.0"
+    semver "^5.7.1"
+
+enzyme-shallow-equal@^1.0.1:
+  version "1.0.1"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/enzyme-shallow-equal/-/enzyme-shallow-equal-1.0.1.tgz#7afe03db3801c9b76de8440694096412a8d9d49e"
+  integrity sha1-ev4D2zgBybdt6EQGlAlkEqjZ1J4=
+  dependencies:
+    has "^1.0.3"
+    object-is "^1.0.2"
 
 enzyme-to-json@3.4.0:
   version "3.4.0"
@@ -2008,32 +2031,33 @@ enzyme-to-json@3.4.0:
   dependencies:
     lodash "^4.17.12"
 
-enzyme@3.10.0:
-  version "3.10.0"
-  resolved "https://repox.jfrog.io/repox/api/npm/npm/enzyme/-/enzyme-3.10.0.tgz#7218e347c4a7746e133f8e964aada4a3523452f6"
-  integrity sha1-chjjR8SndG4TP46WSq2ko1I0UvY=
+enzyme@3.11.0:
+  version "3.11.0"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/enzyme/-/enzyme-3.11.0.tgz#71d680c580fe9349f6f5ac6c775bc3e6b7a79c28"
+  integrity sha1-cdaAxYD+k0n29axsd1vD5rennCg=
   dependencies:
-    array.prototype.flat "^1.2.1"
-    cheerio "^1.0.0-rc.2"
-    function.prototype.name "^1.1.0"
+    array.prototype.flat "^1.2.3"
+    cheerio "^1.0.0-rc.3"
+    enzyme-shallow-equal "^1.0.1"
+    function.prototype.name "^1.1.2"
     has "^1.0.3"
-    html-element-map "^1.0.0"
-    is-boolean-object "^1.0.0"
-    is-callable "^1.1.4"
-    is-number-object "^1.0.3"
-    is-regex "^1.0.4"
-    is-string "^1.0.4"
+    html-element-map "^1.2.0"
+    is-boolean-object "^1.0.1"
+    is-callable "^1.1.5"
+    is-number-object "^1.0.4"
+    is-regex "^1.0.5"
+    is-string "^1.0.5"
     is-subset "^0.1.1"
     lodash.escape "^4.0.1"
     lodash.isequal "^4.5.0"
-    object-inspect "^1.6.0"
-    object-is "^1.0.1"
+    object-inspect "^1.7.0"
+    object-is "^1.0.2"
     object.assign "^4.1.0"
-    object.entries "^1.0.4"
-    object.values "^1.0.4"
-    raf "^3.4.0"
+    object.entries "^1.1.1"
+    object.values "^1.1.1"
+    raf "^3.4.1"
     rst-selector-parser "^2.2.3"
-    string.prototype.trim "^1.1.2"
+    string.prototype.trim "^1.2.1"
 
 error-ex@^1.2.0, error-ex@^1.3.1:
   version "1.3.2"
@@ -2042,7 +2066,7 @@ error-ex@^1.2.0, error-ex@^1.3.1:
   dependencies:
     is-arrayish "^0.2.1"
 
-es-abstract@^1.10.0, es-abstract@^1.11.0, es-abstract@^1.12.0, es-abstract@^1.13.0, es-abstract@^1.5.0, es-abstract@^1.5.1, es-abstract@^1.7.0:
+es-abstract@^1.10.0, es-abstract@^1.12.0, es-abstract@^1.5.1, es-abstract@^1.7.0:
   version "1.13.0"
   resolved "https://repox.jfrog.io/repox/api/npm/npm/es-abstract/-/es-abstract-1.13.0.tgz#ac86145fdd5099d8dd49558ccba2eaf9b88e24e9"
   integrity sha1-rIYUX91QmdjdSVWMy6Lq+biOJOk=
@@ -2054,7 +2078,7 @@ es-abstract@^1.10.0, es-abstract@^1.11.0, es-abstract@^1.12.0, es-abstract@^1.13
     is-regex "^1.0.4"
     object-keys "^1.0.12"
 
-es-abstract@^1.17.0-next.1:
+es-abstract@^1.17.0-next.1, es-abstract@^1.17.4:
   version "1.17.4"
   resolved "https://repox.jfrog.io/repox/api/npm/npm/es-abstract/-/es-abstract-1.17.4.tgz#e3aedf19706b20e7c2594c35fc0d57605a79e184"
   integrity sha1-467fGXBrIOfCWUw1/A1XYFp54YQ=
@@ -2619,24 +2643,29 @@ fsevents@^1.2.7:
     nan "^2.12.1"
     node-pre-gyp "^0.12.0"
 
-function-bind@^1.0.2, function-bind@^1.1.1:
+function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://repox.jfrog.io/repox/api/npm/npm/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
   integrity sha1-pWiZ0+o8m6uHS7l3O3xe3pL0iV0=
 
-function.prototype.name@^1.1.0:
-  version "1.1.0"
-  resolved "https://repox.jfrog.io/repox/api/npm/npm/function.prototype.name/-/function.prototype.name-1.1.0.tgz#8bd763cc0af860a859cc5d49384d74b932cd2327"
-  integrity sha1-i9djzAr4YKhZzF1JOE10uTLNIyc=
+function.prototype.name@^1.1.1, function.prototype.name@^1.1.2:
+  version "1.1.2"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/function.prototype.name/-/function.prototype.name-1.1.2.tgz#5cdf79d7c05db401591dfde83e3b70c5123e9a45"
+  integrity sha1-XN9518BdtAFZHf3oPjtwxRI+mkU=
   dependencies:
-    define-properties "^1.1.2"
-    function-bind "^1.1.1"
-    is-callable "^1.1.3"
+    define-properties "^1.1.3"
+    es-abstract "^1.17.0-next.1"
+    functions-have-names "^1.2.0"
 
 functional-red-black-tree@^1.0.1:
   version "1.0.1"
   resolved "https://repox.jfrog.io/repox/api/npm/npm/functional-red-black-tree/-/functional-red-black-tree-1.0.1.tgz#1b0ab3bd553b2a0d6399d29c0e3ea0b252078327"
   integrity sha1-GwqzvVU7Kg1jmdKcDj6gslIHgyc=
+
+functions-have-names@^1.2.0:
+  version "1.2.1"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/functions-have-names/-/functions-have-names-1.2.1.tgz#a981ac397fa0c9964551402cdc5533d7a4d52f91"
+  integrity sha1-qYGsOX+gyZZFUUAs3FUz16TVL5E=
 
 gauge@~2.7.3:
   version "2.7.4"
@@ -2896,10 +2925,10 @@ hosted-git-info@^2.1.4:
   resolved "https://repox.jfrog.io/repox/api/npm/npm/hosted-git-info/-/hosted-git-info-2.7.1.tgz#97f236977bd6e125408930ff6de3eec6281ec047"
   integrity sha1-l/I2l3vW4SVAiTD/bePuxigewEc=
 
-html-element-map@^1.0.0:
-  version "1.0.1"
-  resolved "https://repox.jfrog.io/repox/api/npm/npm/html-element-map/-/html-element-map-1.0.1.tgz#3c4fcb4874ebddfe4283b51c8994e7713782b592"
-  integrity sha1-PE/LSHTr3f5Cg7UciZTncTeCtZI=
+html-element-map@^1.2.0:
+  version "1.2.0"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/html-element-map/-/html-element-map-1.2.0.tgz#dfbb09efe882806af63d990cf6db37993f099f22"
+  integrity sha1-37sJ7+iCgGr2PZkM9ts3mT8JnyI=
   dependencies:
     array-filter "^1.0.0"
 
@@ -3081,17 +3110,17 @@ is-arrayish@^0.2.1:
   resolved "https://repox.jfrog.io/repox/api/npm/npm/is-arrayish/-/is-arrayish-0.2.1.tgz#77c99840527aa8ecb1a8ba697b80645a7a926a9d"
   integrity sha1-d8mYQFJ6qOyxqLppe4BkWnqSap0=
 
-is-boolean-object@^1.0.0:
-  version "1.0.0"
-  resolved "https://repox.jfrog.io/repox/api/npm/npm/is-boolean-object/-/is-boolean-object-1.0.0.tgz#98f8b28030684219a95f375cfbd88ce3405dff93"
-  integrity sha1-mPiygDBoQhmpXzdc+9iM40Bd/5M=
+is-boolean-object@^1.0.1:
+  version "1.0.1"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/is-boolean-object/-/is-boolean-object-1.0.1.tgz#10edc0900dd127697a92f6f9807c7617d68ac48e"
+  integrity sha1-EO3AkA3RJ2l6kvb5gHx2F9aKxI4=
 
 is-buffer@^1.1.5:
   version "1.1.6"
   resolved "https://repox.jfrog.io/repox/api/npm/npm/is-buffer/-/is-buffer-1.1.6.tgz#efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be"
   integrity sha1-76ouqdqg16suoTqXsritUf776L4=
 
-is-callable@^1.1.3, is-callable@^1.1.4:
+is-callable@^1.1.4:
   version "1.1.4"
   resolved "https://repox.jfrog.io/repox/api/npm/npm/is-callable/-/is-callable-1.1.4.tgz#1e1adf219e1eeb684d691f9d6a05ff0d30a24d75"
   integrity sha1-HhrfIZ4e62hNaR+dagX/DTCiTXU=
@@ -3203,10 +3232,10 @@ is-glob@^4.0.0, is-glob@^4.0.1:
   dependencies:
     is-extglob "^2.1.1"
 
-is-number-object@^1.0.3:
-  version "1.0.3"
-  resolved "https://repox.jfrog.io/repox/api/npm/npm/is-number-object/-/is-number-object-1.0.3.tgz#f265ab89a9f445034ef6aff15a8f00b00f551799"
-  integrity sha1-8mWrian0RQNO9q/xWo8AsA9VF5k=
+is-number-object@^1.0.4:
+  version "1.0.4"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/is-number-object/-/is-number-object-1.0.4.tgz#36ac95e741cf18b283fc1ddf5e83da798e3ec197"
+  integrity sha1-NqyV50HPGLKD/B3fXoPaeY4+wZc=
 
 is-number@^3.0.0:
   version "3.0.0"
@@ -3256,10 +3285,10 @@ is-stream@^1.0.1, is-stream@^1.1.0:
   resolved "https://repox.jfrog.io/repox/api/npm/npm/is-stream/-/is-stream-1.1.0.tgz#12d4a3dd4e68e0b79ceb8dbc84173ae80d91ca44"
   integrity sha1-EtSj3U5o4Lec6428hBc66A2RykQ=
 
-is-string@^1.0.4:
-  version "1.0.4"
-  resolved "https://repox.jfrog.io/repox/api/npm/npm/is-string/-/is-string-1.0.4.tgz#cc3a9b69857d621e963725a24caeec873b826e64"
-  integrity sha1-zDqbaYV9Yh6WNyWiTK7shzuCbmQ=
+is-string@^1.0.5:
+  version "1.0.5"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/is-string/-/is-string-1.0.5.tgz#40493ed198ef3ff477b8c7f92f644ec82a5cd3a6"
+  integrity sha1-QEk+0ZjvP/R3uMf5L2ROyCpc06Y=
 
 is-subset@^0.1.1:
   version "0.1.1"
@@ -4392,11 +4421,6 @@ object-copy@^0.1.0:
     define-property "^0.2.5"
     kind-of "^3.0.3"
 
-object-inspect@^1.6.0:
-  version "1.6.0"
-  resolved "https://repox.jfrog.io/repox/api/npm/npm/object-inspect/-/object-inspect-1.6.0.tgz#c70b6cbf72f274aab4c34c0c82f5167bf82cf15b"
-  integrity sha1-xwtsv3LydKq0w0wMgvUWe/gs8Vs=
-
 object-inspect@^1.7.0:
   version "1.7.0"
   resolved "https://repox.jfrog.io/repox/api/npm/npm/object-inspect/-/object-inspect-1.7.0.tgz#f4f6bd181ad77f006b5ece60bd0b6f398ff74a67"
@@ -4406,6 +4430,11 @@ object-is@^1.0.1:
   version "1.0.1"
   resolved "https://repox.jfrog.io/repox/api/npm/npm/object-is/-/object-is-1.0.1.tgz#0aa60ec9989a0b3ed795cf4d06f62cf1ad6539b6"
   integrity sha1-CqYOyZiaCz7Xlc9NBvYs8a1lObY=
+
+object-is@^1.0.2:
+  version "1.0.2"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/object-is/-/object-is-1.0.2.tgz#6b80eb84fe451498f65007982f035a5b445edec4"
+  integrity sha1-a4DrhP5FFJj2UAeYLwNaW0Re3sQ=
 
 object-keys@^1.0.11, object-keys@^1.0.12, object-keys@^1.1.1:
   version "1.1.1"
@@ -4429,7 +4458,7 @@ object.assign@^4.1.0:
     has-symbols "^1.0.0"
     object-keys "^1.0.11"
 
-object.entries@^1.0.4, object.entries@^1.1.0:
+object.entries@^1.1.0:
   version "1.1.0"
   resolved "https://repox.jfrog.io/repox/api/npm/npm/object.entries/-/object.entries-1.1.0.tgz#2024fc6d6ba246aee38bdb0ffd5cfbcf371b7519"
   integrity sha1-ICT8bWuiRq7ji9sP/Vz7zzcbdRk=
@@ -4439,17 +4468,17 @@ object.entries@^1.0.4, object.entries@^1.1.0:
     function-bind "^1.1.1"
     has "^1.0.3"
 
-object.fromentries@^2.0.0:
-  version "2.0.0"
-  resolved "https://repox.jfrog.io/repox/api/npm/npm/object.fromentries/-/object.fromentries-2.0.0.tgz#49a543d92151f8277b3ac9600f1e930b189d30ab"
-  integrity sha1-SaVD2SFR+Cd7OslgDx6TCxidMKs=
+object.entries@^1.1.1:
+  version "1.1.1"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/object.entries/-/object.entries-1.1.1.tgz#ee1cf04153de02bb093fec33683900f57ce5399b"
+  integrity sha1-7hzwQVPeArsJP+wzaDkA9XzlOZs=
   dependencies:
-    define-properties "^1.1.2"
-    es-abstract "^1.11.0"
+    define-properties "^1.1.3"
+    es-abstract "^1.17.0-next.1"
     function-bind "^1.1.1"
-    has "^1.0.1"
+    has "^1.0.3"
 
-object.fromentries@^2.0.1:
+object.fromentries@^2.0.1, object.fromentries@^2.0.2:
   version "2.0.2"
   resolved "https://repox.jfrog.io/repox/api/npm/npm/object.fromentries/-/object.fromentries-2.0.2.tgz#4a09c9b9bb3843dd0f89acdb517a794d4f355ac9"
   integrity sha1-SgnJubs4Q90PiazbUXp5TU81Wsk=
@@ -4474,13 +4503,23 @@ object.pick@^1.3.0:
   dependencies:
     isobject "^3.0.1"
 
-object.values@^1.0.4, object.values@^1.1.0:
+object.values@^1.1.0:
   version "1.1.0"
   resolved "https://repox.jfrog.io/repox/api/npm/npm/object.values/-/object.values-1.1.0.tgz#bf6810ef5da3e5325790eaaa2be213ea84624da9"
   integrity sha1-v2gQ712j5TJXkOqqK+IT6oRiTak=
   dependencies:
     define-properties "^1.1.3"
     es-abstract "^1.12.0"
+    function-bind "^1.1.1"
+    has "^1.0.3"
+
+object.values@^1.1.1:
+  version "1.1.1"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/object.values/-/object.values-1.1.1.tgz#68a99ecde356b7e9295a3c5e0ce31dc8c953de5e"
+  integrity sha1-aKmezeNWt+kpWjxeDOMdyMlT3l4=
+  dependencies:
+    define-properties "^1.1.3"
+    es-abstract "^1.17.0-next.1"
     function-bind "^1.1.1"
     has "^1.0.3"
 
@@ -4858,7 +4897,7 @@ quick-lru@^1.0.0:
   resolved "https://repox.jfrog.io/repox/api/npm/npm/quick-lru/-/quick-lru-1.1.0.tgz#4360b17c61136ad38078397ff11416e186dcfbb8"
   integrity sha1-Q2CxfGETatOAeDl/8RQW4Ybc+7g=
 
-raf@^3.4.0:
+raf@^3.4.1:
   version "3.4.1"
   resolved "https://repox.jfrog.io/repox/api/npm/npm/raf/-/raf-3.4.1.tgz#0742e99a4a6552f445d73e3ee0328af0ff1ede39"
   integrity sha1-B0LpmkplUvRF1z4+4DKK8P8e3jk=
@@ -4898,10 +4937,10 @@ react-dom@16.8.6:
     prop-types "^15.6.2"
     scheduler "^0.13.6"
 
-react-draggable@3.2.1:
-  version "3.2.1"
-  resolved "https://repox.jfrog.io/repox/api/npm/npm/react-draggable/-/react-draggable-3.2.1.tgz#45d09a9a227988dc85674b23ab3c75b6e820dae5"
-  integrity sha1-RdCamiJ5iNyFZ0sjqzx1tugg2uU=
+react-draggable@4.2.0:
+  version "4.2.0"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/react-draggable/-/react-draggable-4.2.0.tgz#40cc5209082ca7d613104bf6daf31372cc0e1114"
+  integrity sha1-QMxSCQgsp9YTEEv22vMTcswOERQ=
   dependencies:
     classnames "^2.2.5"
     prop-types "^15.6.0"
@@ -4928,6 +4967,11 @@ react-intl@2.8.0:
     intl-messageformat "^2.1.0"
     intl-relativeformat "^2.1.0"
     invariant "^2.1.1"
+
+react-is@^16.12.0, react-is@^16.9.0:
+  version "16.13.0"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/react-is/-/react-is-16.13.0.tgz#0f37c3613c34fe6b37cd7f763a0d6293ab15c527"
+  integrity sha1-DzfDYTw0/ms3zX92Og1ik6sVxSc=
 
 react-is@^16.7.0:
   version "16.9.0"
@@ -5345,6 +5389,11 @@ select@^1.1.2:
   resolved "https://repox.jfrog.io/repox/api/npm/npm/semver/-/semver-5.7.0.tgz#790a7cf6fea5459bac96110b29b60412dc8ff96b"
   integrity sha1-eQp89v6lRZuslhELKbYEEtyP+Ws=
 
+semver@^5.7.1:
+  version "5.7.1"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/semver/-/semver-5.7.1.tgz#a954f931aeba508d307bbf069eff0c01c96116f7"
+  integrity sha1-qVT5Ma66UI0we78Gnv8MAclhFvc=
+
 semver@^6.0.0:
   version "6.2.0"
   resolved "https://repox.jfrog.io/repox/api/npm/npm/semver/-/semver-6.2.0.tgz#4d813d9590aaf8a9192693d6c85b9344de5901db"
@@ -5595,14 +5644,14 @@ string-width@^4.1.0:
     is-fullwidth-code-point "^3.0.0"
     strip-ansi "^5.2.0"
 
-string.prototype.trim@^1.1.2:
-  version "1.1.2"
-  resolved "https://repox.jfrog.io/repox/api/npm/npm/string.prototype.trim/-/string.prototype.trim-1.1.2.tgz#d04de2c89e137f4d7d206f086b5ed2fae6be8cea"
-  integrity sha1-0E3iyJ4Tf019IG8Ia17S+ua+jOo=
+string.prototype.trim@^1.2.1:
+  version "1.2.1"
+  resolved "https://repox.jfrog.io/repox/api/npm/npm/string.prototype.trim/-/string.prototype.trim-1.2.1.tgz#141233dff32c82bfad80684d7e5f0869ee0fb782"
+  integrity sha1-FBIz3/Msgr+tgGhNfl8Iae4Pt4I=
   dependencies:
-    define-properties "^1.1.2"
-    es-abstract "^1.5.0"
-    function-bind "^1.0.2"
+    define-properties "^1.1.3"
+    es-abstract "^1.17.0-next.1"
+    function-bind "^1.1.1"
 
 string.prototype.trimleft@^2.1.1:
   version "2.1.1"
