@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render properly 1`] = `
+<ThemedIcon
+  size={64}
+  viewBox="0 0 64 64"
+>
+  <Component />
+</ThemedIcon>
+`;

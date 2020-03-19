@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- SC-1819 Rework SC user onboarding: add 2 onboarding icons
+
 ## 0.0.55
 
 - Remove alert's tooltip in favor of an aria-label
