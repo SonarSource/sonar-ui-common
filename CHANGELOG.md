@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add update-center's component used in documentation
+
 ## 0.0.55
 
 - Remove alert's tooltip in favor of an aria-label
