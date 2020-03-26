@@ -1,6 +1,6 @@
 /*
  * Sonar UI Common
- * Copyright (C) 2019-2019 SonarSource SA
+ * Copyright (C) 2019-2020 SonarSource SA
  * mailto:info AT sonarsource DOT com
  *
  * This program is free software; you can redistribute it and/or
@@ -22,8 +22,8 @@ import * as React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { translate } from '../../helpers/l10n';
 import RecommendedIcon from '../icons/RecommendedIcon';
-import './RadioCard.css';
 import './Radio.css';
+import './RadioCard.css';
 
 export interface RadioCardProps {
   className?: string;
