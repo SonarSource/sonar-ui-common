@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.0.56
+
 - Add update-center's component used in documentation
 - Update licence header
 
