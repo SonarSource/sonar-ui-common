@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.0.57
+
 - Fix for update-center's component that was failing in the context of gatsby 
 
 ## 0.0.56
