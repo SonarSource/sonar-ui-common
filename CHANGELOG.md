@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Fix for update-center's component that was failing in the context of gatsby 
+
 ## 0.0.56
 
 - Add update-center's component used in documentation
