@@ -19,7 +19,6 @@
  */
 
 import * as React from 'react';
-import { getJSON } from '../../../helpers/request';
 import './MetaData.css';
 import MetaDataVersions from './MetaDataVersions';
 import { MetaDataInformation } from './update-center-metadata';
@@ -55,14 +54,25 @@ export default class MetaData extends React.Component<Props, State> {
     const { updateCenterKey } = this.props;
 
     if (updateCenterKey) {
-      getJSON(`https://update.sonarsource.org/${updateCenterKey}.json`).then(
-        (data: MetaDataInformation) => {
+      window
+        .fetch(`https://update.sonarsource.org/${updateCenterKey}.json`)
+        .then((response: Response) => {
+          if (response.status >= 200 && response.status < 300) {
+            return response.json();
+          } else {
+            return Promise.reject(response);
+          }
+        })
+        .then(data => {
           if (this.mounted) {
             this.setState({ data });
           }
-        },
-        () => this.setState({ data: undefined })
-      );
+        })
+        .catch(() => {
+          if (this.mounted) {
+            this.setState({ data: undefined });
+          }
+        });
     } else {
       this.setState({ data: undefined });
     }

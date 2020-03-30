@@ -20,18 +20,22 @@
 
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { getJSON } from '../../../../helpers/request';
 import { waitAndUpdate } from '../../../../helpers/testUtils';
 import MetaData from '../MetaData';
 import { mockMetaDataInformation } from '../mocks/update-center-metadata';
+import { MetaDataInformation } from '../update-center-metadata';
 
-jest.mock('../../../../helpers/request', () => ({
-  getJSON: jest.fn()
-}));
+beforeAll(() => {
+  window.fetch = jest.fn();
+});
+
+beforeEach(() => {
+  jest.resetAllMocks();
+});
 
 it('should render correctly', async () => {
   const metaDataInfo = mockMetaDataInformation();
-  (getJSON as jest.Mock).mockResolvedValueOnce(metaDataInfo);
+  mockFetchReturnValue(metaDataInfo);
 
   const wrapper = shallowRender();
   await waitAndUpdate(wrapper);
@@ -42,13 +46,41 @@ it('should render correctly with organization', async () => {
   const metaDataInfo = mockMetaDataInformation({
     organization: { name: 'test-org', url: 'test-org-url' }
   });
-  (getJSON as jest.Mock).mockResolvedValueOnce(metaDataInfo);
+  mockFetchReturnValue(metaDataInfo);
 
   const wrapper = shallowRender();
   await waitAndUpdate(wrapper);
   expect(wrapper).toMatchSnapshot();
 });
 
+it('should not render anything if call for metadata fails', async () => {
+  const metaDataInfo = mockMetaDataInformation();
+  mockFetchReturnValue(metaDataInfo, 404);
+
+  const wrapper = shallowRender();
+  await waitAndUpdate(wrapper);
+  expect(wrapper.type()).toBeNull();
+});
+
+it('should fetch metadata again if the update center key if modified', async () => {
+  const metaDataInfo = mockMetaDataInformation();
+  mockFetchReturnValue(metaDataInfo);
+
+  const wrapper = shallowRender();
+  await waitAndUpdate(wrapper);
+
+  expect(window.fetch).toHaveBeenCalledTimes(1);
+
+  mockFetchReturnValue(metaDataInfo);
+  wrapper.setProps({ updateCenterKey: 'abap' });
+
+  expect(window.fetch).toHaveBeenCalledTimes(2);
+});
+
 function shallowRender(props?: Partial<MetaData['props']>) {
   return shallow<MetaData>(<MetaData updateCenterKey="apex" {...props} />);
+}
+
+function mockFetchReturnValue(metaDataInfo: MetaDataInformation, status = 200) {
+  (window.fetch as jest.Mock).mockResolvedValueOnce({ status, json: () => metaDataInfo });
 }
