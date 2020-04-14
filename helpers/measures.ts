@@ -173,14 +173,27 @@ function floatFormatter(value: string | number): string {
   return numberFormatter(value, 1, 5);
 }
 
-function percentFormatter(value: string | number, options: { decimals?: number } = {}): string {
+function percentFormatter(
+  value: string | number,
+  { decimals, omitExtraDecimalZeros }: { decimals?: number; omitExtraDecimalZeros?: boolean } = {}
+): string {
   if (typeof value === 'string') {
     value = parseFloat(value);
   }
-  if (options.decimals) {
-    return `${numberFormatter(value, options.decimals)}%`;
+  if (value === 100) {
+    return '100%';
+  } else if (omitExtraDecimalZeros && decimals) {
+    // If omitExtraDecimalZeros is true, all trailing decimal 0s will be removed,
+    // except for the first decimal.
+    // E.g. for decimals=3:
+    // - omitExtraDecimalZeros: false, value: 45.450 => 45.450
+    // - omitExtraDecimalZeros: true, value: 45.450 => 45.45
+    // - omitExtraDecimalZeros: false, value: 85 => 85.000
+    // - omitExtraDecimalZeros: true, value: 85 => 85.0
+    return `${numberFormatter(value, 1, decimals)}%`;
+  } else {
+    return `${numberFormatter(value, decimals || 1)}%`;
   }
-  return value === 100 ? '100%' : `${numberFormatter(value, 1)}%`;
 }
 
 function ratingFormatter(value: string | number): string {

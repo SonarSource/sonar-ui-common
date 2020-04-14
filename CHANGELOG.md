@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- SONAR-12256 Improve percentage formatting with trailing zeros
+
 ## 0.0.57
 
 - Fix for update-center's component that was failing in the context of gatsby 
