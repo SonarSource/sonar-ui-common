@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.0.58
+
 - SONAR-12256 Improve percentage formatting with trailing zeros
 - SONAR-13310 Add intl Components
 
