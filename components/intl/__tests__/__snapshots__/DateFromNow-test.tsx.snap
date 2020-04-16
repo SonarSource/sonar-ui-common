@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render correctly: standard 1`] = `
+<FormattedRelative
+  updateInterval={10000}
+  value={2020-02-20T20:20:20.000Z}
+>
+  <Component />
+</FormattedRelative>
+`;
