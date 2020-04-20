@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+#### Breaking changes
+- Drop legacy lazyLoad function
+
 ## 0.0.58
 
 - SONAR-12256 Improve percentage formatting with trailing zeros
