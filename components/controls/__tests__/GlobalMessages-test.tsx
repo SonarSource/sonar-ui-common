@@ -34,30 +34,21 @@ it('should not render when no message', () => {
 it('should render correctly with a message', () => {
   const wrapper = shallowRender();
   expect(wrapper).toMatchSnapshot();
-  expect(
-    wrapper
-      .find('GlobalMessage')
-      .first()
-      .dive()
-  ).toMatchSnapshot();
+  expect(wrapper.find('GlobalMessage').first().dive()).toMatchSnapshot();
 });
 
 it('should render with correct css', () => {
   const wrapper = shallowRender();
   expect(wrapper.render()).toMatchSnapshot();
-  expect(
-    wrapper
-      .find('GlobalMessage')
-      .first()
-      .render()
-  ).toHaveStyleRule('background-color', mockedTheme.colors.red);
+  expect(wrapper.find('GlobalMessage').first().render()).toHaveStyleRule(
+    'background-color',
+    mockedTheme.colors.red
+  );
 
-  expect(
-    wrapper
-      .find('GlobalMessage')
-      .last()
-      .render()
-  ).toHaveStyleRule('background-color', mockedTheme.colors.green);
+  expect(wrapper.find('GlobalMessage').last().render()).toHaveStyleRule(
+    'background-color',
+    mockedTheme.colors.green
+  );
 });
 
 function shallowRender(props: Partial<GlobalMessagesProps> = {}) {
@@ -66,7 +57,7 @@ function shallowRender(props: Partial<GlobalMessagesProps> = {}) {
       closeGlobalMessage={jest.fn()}
       messages={[
         { id: '1', level: 'ERROR', message: 'Test' },
-        { id: '2', level: 'SUCCESS', message: 'Test 2' }
+        { id: '2', level: 'SUCCESS', message: 'Test 2' },
       ]}
       {...props}
     />

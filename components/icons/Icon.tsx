@@ -57,7 +57,7 @@ export default function Icon({
         clipRule: 'evenodd',
         strokeLinejoin: 'round',
         strokeMiterlimit: 1.41421,
-        ...style
+        ...style,
       }}
       version="1.1"
       viewBox={viewBox}
@@ -75,5 +75,5 @@ interface ThemedProps extends Props {
 }
 
 export function ThemedIcon({ children, ...other }: ThemedProps) {
-  return <ThemeConsumer>{theme => <Icon {...other}>{children({ theme })}</Icon>}</ThemeConsumer>;
+  return <ThemeConsumer>{(theme) => <Icon {...other}>{children({ theme })}</Icon>}</ThemeConsumer>;
 }

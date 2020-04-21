@@ -100,7 +100,7 @@ export const mockedTheme = {
     alertBorderInfo: '#b1dff3',
     alertBackgroundInfo: '#d9edf7',
     alertTextInfo: '#0e516f',
-    alertIconInfo: '#0271b9'
+    alertIconInfo: '#0271b9',
   },
 
   sizes: {
@@ -125,14 +125,14 @@ export const mockedTheme = {
 
     maxPageWidth: '1320px',
     minPageWidth: '1080px',
-    pagePadding: '20px'
+    pagePadding: '20px',
   },
 
   rawSizes: {
     grid,
     globalNavHeightRaw: 6 * grid,
     globalNavContentHeightRaw: 4 * grid,
-    contextNavHeightRaw: 9 * grid
+    contextNavHeightRaw: 9 * grid,
   },
 
   fonts: {
@@ -140,7 +140,7 @@ export const mockedTheme = {
     systemFontFamily:
       "-apple-system,'BlinkMacSystemFont','Segoe UI','Helvetica','Arial',sans-serif",
     sonarcloudFontFamily:
-      "Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif"
+      "Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif",
   },
 
   // z-index
@@ -167,10 +167,10 @@ export const mockedTheme = {
     modalZIndex: '6001',
     modalOverlayZIndex: '6000',
 
-    popupZIndex: '5000'
+    popupZIndex: '5000',
   },
 
   others: {
-    defaultShadow: '0 6px 12px rgba(0, 0, 0, 0.175)'
-  }
+    defaultShadow: '0 6px 12px rgba(0, 0, 0, 0.175)',
+  },
 };

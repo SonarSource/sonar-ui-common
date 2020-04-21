@@ -22,7 +22,7 @@ import { requestMessages, resetBundle, translate, translateWithParameters } from
 import { getJSON } from '../request';
 
 jest.mock('../request', () => ({
-  getJSON: jest.fn()
+  getJSON: jest.fn(),
 }));
 
 const MSG = 'my_message';

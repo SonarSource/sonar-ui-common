@@ -148,14 +148,12 @@ export default class BarChart<T> extends React.PureComponent<Props<T>> {
     const innerPadding = (availableWidth - barsWidth * data.length) / (data.length - 1);
     const relativeInnerPadding = innerPadding / (innerPadding + barsWidth);
 
-    const maxY = max(data, d => d.y) as number;
+    const maxY = max(data, (d) => d.y) as number;
     const xScale = scaleBand<number>()
-      .domain(data.map(d => d.x))
+      .domain(data.map((d) => d.x))
       .range([0, availableWidth])
       .paddingInner(relativeInnerPadding);
-    const yScale = scaleLinear()
-      .domain([0, maxY])
-      .range([availableHeight, 0]);
+    const yScale = scaleLinear().domain([0, maxY]).range([availableHeight, 0]);
 
     return (
       <svg className="bar-chart" height={height} width={width}>

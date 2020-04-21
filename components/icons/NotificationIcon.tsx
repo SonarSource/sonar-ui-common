@@ -28,7 +28,7 @@ export default function NotificationIcon({
   className,
   fill = 'currentColor',
   hasUnread,
-  size
+  size,
 }: Props) {
   return (
     <ThemedIcon className={className} size={size}>

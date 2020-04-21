@@ -62,7 +62,7 @@ export function translateWithParameters(
   const message = window.SonarMessages[messageKey];
   if (message) {
     return parameters
-      .map(parameter => String(parameter))
+      .map((parameter) => String(parameter))
       .reduce((acc, parameter, index) => acc.replace(`{${index}}`, parameter), message);
   } else {
     if (process.env.NODE_ENV === 'development') {
@@ -127,7 +127,7 @@ export function requestMessages(): Promise<string> {
       resetBundle(messages);
       return effectiveLocale;
     },
-    response => {
+    (response) => {
       if (response && response.status === 304) {
         resetBundle(JSON.parse(get(L10_BUNDLE) || '{}') as LanguageBundle);
       } else {
@@ -188,7 +188,7 @@ export function getShortMonthName(index: number) {
     'Sep',
     'Oct',
     'Nov',
-    'Dec'
+    'Dec',
   ];
   return translate(months[index]);
 }

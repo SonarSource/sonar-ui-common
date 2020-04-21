@@ -25,10 +25,7 @@ import { Location } from '../../helpers/urls';
 import Tooltip, { Placement } from '../controls/Tooltip';
 import LinkIcon from '../icons/LinkIcon';
 
-const SIZE_SCALE = scaleLinear()
-  .domain([3, 15])
-  .range([11, 18])
-  .clamp(true);
+const SIZE_SCALE = scaleLinear().domain([3, 15]).range([11, 18]).clamp(true);
 
 interface Props {
   fill: string;
@@ -79,7 +76,7 @@ export default class TreeMapRect extends React.PureComponent<Props> {
       backgroundColor: this.props.fill,
       fontSize: SIZE_SCALE(this.props.width / this.props.label.length),
       lineHeight: `${this.props.height}px`,
-      cursor: this.props.onClick != null ? 'pointer' : 'default'
+      cursor: this.props.onClick != null ? 'pointer' : 'default',
     };
     const isTextVisible = this.props.width >= 40 && this.props.height >= 45;
     const isIconVisible = this.props.width >= 24 && this.props.height >= 26;

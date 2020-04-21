@@ -81,11 +81,11 @@ export default class SearchSelect<T extends { value: string }> extends React.Pur
     // Ignore the result if the query changed
     const currentQuery = query;
     this.props.onSearch(currentQuery).then(
-      options => {
+      (options) => {
         if (this.mounted) {
-          this.setState(state => ({
+          this.setState((state) => ({
             loading: false,
-            options: state.query === currentQuery ? options : state.options
+            options: state.query === currentQuery ? options : state.options,
           }));
         }
       },

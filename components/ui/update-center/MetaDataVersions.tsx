@@ -32,7 +32,7 @@ interface State {
 
 export default class MetaDataVersions extends React.Component<Props, State> {
   state: State = {
-    collapsed: true
+    collapsed: true,
   };
 
   componentDidUpdate(prevProps: Props) {
@@ -51,8 +51,8 @@ export default class MetaDataVersions extends React.Component<Props, State> {
     const { versions } = this.props;
     const { collapsed } = this.state;
 
-    const archivedVersions = versions.filter(version => version.archived);
-    const currentVersions = versions.filter(version => !version.archived);
+    const archivedVersions = versions.filter((version) => version.archived);
+    const currentVersions = versions.filter((version) => !version.archived);
 
     return (
       <div className="update-center-meta-data-versions">
@@ -65,7 +65,7 @@ export default class MetaDataVersions extends React.Component<Props, State> {
           </button>
         )}
 
-        {currentVersions.map(versionInformation => (
+        {currentVersions.map((versionInformation) => (
           <MetaDataVersion
             key={versionInformation.version}
             versionInformation={versionInformation}
@@ -73,7 +73,7 @@ export default class MetaDataVersions extends React.Component<Props, State> {
         ))}
 
         {!collapsed &&
-          archivedVersions.map(archivedVersionInformation => (
+          archivedVersions.map((archivedVersionInformation) => (
             <MetaDataVersion
               key={archivedVersionInformation.version}
               versionInformation={archivedVersionInformation}

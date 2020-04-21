@@ -40,7 +40,7 @@ export default function ColorGradientLegend({
   colorNA,
   padding = [12, 24, 0, 0],
   height,
-  width
+  width,
 }: Props) {
   const colorRange: Array<string | number> = colorScale.range();
   const colorDomain: Array<string | number> = colorScale.domain();

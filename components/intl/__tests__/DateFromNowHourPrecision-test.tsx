@@ -38,7 +38,7 @@ function shallowRender(
     ? shallow(<DateFromNowHourPrecision date={date} {...overrides} />)
     : shallow(
         <DateFromNowHourPrecision date={date} {...overrides}>
-          {formatted => <span>{formatted}</span>}
+          {(formatted) => <span>{formatted}</span>}
         </DateFromNowHourPrecision>
       );
 }

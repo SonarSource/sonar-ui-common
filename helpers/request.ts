@@ -62,14 +62,14 @@ const DEFAULT_OPTIONS: {
   method: string;
 } = {
   credentials: 'same-origin',
-  method: 'GET'
+  method: 'GET',
 };
 
 /**
  * Default request headers
  */
 const DEFAULT_HEADERS = {
-  Accept: 'application/json'
+  Accept: 'application/json',
 };
 
 /**
@@ -100,7 +100,7 @@ class Request {
 
     options.headers = {
       ...DEFAULT_HEADERS,
-      ...customHeaders
+      ...customHeaders,
     };
     return { url, options };
   }
@@ -136,7 +136,7 @@ export function request(url: string): Request {
 export function corsRequest(url: string, mode: RequestMode = 'cors'): Request {
   const options: RequestInit = { mode };
   const request = new Request(url, options);
-  request.submit = function() {
+  request.submit = function () {
     const { url, options } = this.getSubmitData();
     return window.fetch(url, options);
   };
@@ -164,7 +164,7 @@ export function checkStatus(response: Response, bypassRedirect?: boolean): Promi
     if (checkApplicationVersion(response)) {
       if (response.status === 401 && !bypassRedirect) {
         import('./handleRequiredAuthentication')
-          .then(i => i.default())
+          .then((i) => i.default())
           .then(reject, reject);
       } else if (response.status >= 200 && response.status < 300) {
         resolve(response);
@@ -206,7 +206,7 @@ export function get(url: string, data?: RequestData, bypassRedirect?: boolean): 
   return request(url)
     .setData(data)
     .submit()
-    .then(response => checkStatus(response, bypassRedirect));
+    .then((response) => checkStatus(response, bypassRedirect));
 }
 
 /**
@@ -234,7 +234,7 @@ export function getCorsJSON(url: string, data?: RequestData): Promise<any> {
   return corsRequest(url)
     .setData(data)
     .submit()
-    .then(response => {
+    .then((response) => {
       if (response.status >= 200 && response.status < 300) {
         return parseJSON(response);
       } else {
@@ -251,7 +251,7 @@ export function postJSON(url: string, data?: RequestData, bypassRedirect?: boole
     .setMethod('POST')
     .setData(data)
     .submit()
-    .then(response => checkStatus(response, bypassRedirect))
+    .then((response) => checkStatus(response, bypassRedirect))
     .then(parseJSON);
 }
 
@@ -264,7 +264,7 @@ export function post(url: string, data?: RequestData, bypassRedirect?: boolean):
       .setMethod('POST')
       .setData(data)
       .submit()
-      .then(response => checkStatus(response, bypassRedirect))
+      .then((response) => checkStatus(response, bypassRedirect))
       .then(() => resolve(), reject);
   });
 }
@@ -273,7 +273,7 @@ export function post(url: string, data?: RequestData, bypassRedirect?: boolean):
  * Delay promise for testing purposes
  */
 export function delay(response: any): Promise<any> {
-  return new Promise(resolve => setTimeout(() => resolve(response), 1200));
+  return new Promise((resolve) => setTimeout(() => resolve(response), 1200));
 }
 
 function tryRequestAgain<T>(
@@ -285,7 +285,7 @@ function tryRequestAgain<T>(
 ) {
   tries.max--;
   if (tries.max !== 0) {
-    return new Promise<T>(resolve => {
+    return new Promise<T>((resolve) => {
       setTimeout(
         () => resolve(requestTryAndRepeatUntil(repeatAPICall, tries, stopRepeat, repeatErrors)),
         tries.max > tries.slowThreshold ? 500 : 3000
@@ -302,7 +302,7 @@ export function requestTryAndRepeatUntil<T>(
   repeatErrors: number[] = []
 ) {
   return repeatAPICall().then(
-    r => {
+    (r) => {
       if (stopRepeat(r)) {
         return r;
       }

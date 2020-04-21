@@ -29,11 +29,11 @@ const on = jest.fn();
 jest.mock(
   'clipboard',
   () =>
-    function(...args: any) {
+    function (...args: any) {
       constructor(...args);
       return {
         destroy,
-        on
+        on,
       };
     }
 );

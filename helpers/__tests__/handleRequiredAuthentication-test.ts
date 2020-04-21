@@ -21,7 +21,7 @@ import getHistory from '../getHistory';
 import handleRequiredAuthentication from '../handleRequiredAuthentication';
 
 jest.mock('../getHistory', () => ({
-  default: jest.fn()
+  default: jest.fn(),
 }));
 
 it('should not render for anonymous user', () => {

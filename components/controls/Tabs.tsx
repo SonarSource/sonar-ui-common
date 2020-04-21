@@ -30,7 +30,7 @@ interface Props<T extends string> {
 export default function Tabs<T extends string>({ onChange, selected, tabs }: Props<T>) {
   return (
     <ul className="flex-tabs">
-      {tabs.map(tab => (
+      {tabs.map((tab) => (
         <Tab
           disabled={tab.disabled}
           key={tab.key}

@@ -98,7 +98,7 @@ function getFormatter(type: string): Formatter {
     SHORT_WORK_DUR: shortDurationFormatter,
     RATING: ratingFormatter,
     LEVEL: levelFormatter,
-    MILLISEC: millisecondsFormatter
+    MILLISEC: millisecondsFormatter,
   };
   return FORMATTERS[type] || noFormatter;
 }
@@ -110,7 +110,7 @@ function numberFormatter(
 ) {
   const { format } = new Intl.NumberFormat(getCurrentLocale(), {
     minimumFractionDigits,
-    maximumFractionDigits
+    maximumFractionDigits,
   });
   if (typeof value === 'string') {
     return format(parseFloat(value));
@@ -132,7 +132,7 @@ const shortIntFormats = [
   { unit: 1e7, formatUnit: 1e6, fraction: 0, suffix: 'short_number_suffix.m' },
   { unit: 1e6, formatUnit: 1e6, fraction: 1, suffix: 'short_number_suffix.m' },
   { unit: 1e4, formatUnit: 1e3, fraction: 0, suffix: 'short_number_suffix.k' },
-  { unit: 1e3, formatUnit: 1e3, fraction: 1, suffix: 'short_number_suffix.k' }
+  { unit: 1e3, formatUnit: 1e3, fraction: 1, suffix: 'short_number_suffix.k' },
 ];
 
 function shortIntFormatter(

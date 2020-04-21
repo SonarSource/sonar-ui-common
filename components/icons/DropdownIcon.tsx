@@ -28,7 +28,7 @@ export default function DropdownIcon({
   className,
   fill = 'currentColor',
   size = 16,
-  turned = false
+  turned = false,
 }: IconProps & DropdownIconProps) {
   return (
     <Icon

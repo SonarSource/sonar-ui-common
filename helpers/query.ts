@@ -28,7 +28,7 @@ export function queriesEqual(a: T.RawQuery, b: T.RawQuery): boolean {
     return false;
   }
 
-  return keysA.every(key => isEqual(a[key], b[key]));
+  return keysA.every((key) => isEqual(a[key], b[key]));
 }
 
 export function cleanQuery(query: T.RawQuery): T.RawQuery {

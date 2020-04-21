@@ -42,7 +42,7 @@ export default function IdentityProviderLink({
   name,
   onClick,
   small,
-  url
+  url,
 }: Props) {
   const size = small ? 14 : 20;
 

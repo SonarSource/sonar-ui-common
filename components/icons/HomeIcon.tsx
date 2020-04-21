@@ -29,7 +29,7 @@ interface Props extends IconProps {
 export default function HomeIcon({ className, fill, filled = false, size }: Props) {
   return (
     <ThemeConsumer>
-      {theme => (
+      {(theme) => (
         <Icon
           className={classNames(className, 'icon-outline', { 'is-filled': filled })}
           size={size}

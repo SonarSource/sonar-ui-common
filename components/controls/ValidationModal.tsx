@@ -55,7 +55,7 @@ export default class ValidationModal<V> extends React.PureComponent<Props<V>> {
           isInitialValid={this.props.isInitialValid}
           onSubmit={this.handleSubmit}
           validate={this.props.validate}>
-          {props => (
+          {(props) => (
             <>
               <header className="modal-head">
                 <h2>{this.props.header}</h2>

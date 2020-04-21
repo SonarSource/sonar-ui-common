@@ -37,7 +37,7 @@ export enum PopupPlacement {
   BottomRight = 'bottom-right',
   LeftTop = 'left-top',
   RightTop = 'right-top',
-  TopLeft = 'top-left'
+  TopLeft = 'top-left',
 }
 
 interface PopupProps {

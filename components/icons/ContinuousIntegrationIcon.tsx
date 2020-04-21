@@ -23,7 +23,7 @@ import Icon, { IconProps } from './Icon';
 export default function ContinuousIntegrationIcon({
   className,
   fill = 'currentColor',
-  size
+  size,
 }: IconProps) {
   return (
     <Icon className={className} size={size}>

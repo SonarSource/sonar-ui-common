@@ -23,16 +23,16 @@ import { AutoSizerProps } from 'react-virtualized';
 import BubbleChart from '../BubbleChart';
 
 jest.mock('react-virtualized/dist/commonjs/AutoSizer', () => ({
-  AutoSizer: ({ children }: AutoSizerProps) => children({ width: 100, height: NaN })
+  AutoSizer: ({ children }: AutoSizerProps) => children({ width: 100, height: NaN }),
 }));
 
 it('should display bubbles', () => {
   const items = [
     { x: 1, y: 10, size: 7 },
-    { x: 2, y: 30, size: 5 }
+    { x: 2, y: 30, size: 5 },
   ];
   const chart = mount(<BubbleChart height={100} items={items} padding={[0, 0, 0, 0]} />);
-  chart.find('Bubble').forEach(bubble => expect(bubble).toMatchSnapshot());
+  chart.find('Bubble').forEach((bubble) => expect(bubble).toMatchSnapshot());
 
   chart.setProps({ height: 120 });
 });
@@ -40,20 +40,20 @@ it('should display bubbles', () => {
 it('should render bubble links', () => {
   const items = [
     { x: 1, y: 10, size: 7, link: 'foo' },
-    { x: 2, y: 30, size: 5, link: 'bar' }
+    { x: 2, y: 30, size: 5, link: 'bar' },
   ];
   const chart = mount(<BubbleChart height={100} items={items} padding={[0, 0, 0, 0]} />);
-  chart.find('Bubble').forEach(bubble => expect(bubble).toMatchSnapshot());
+  chart.find('Bubble').forEach((bubble) => expect(bubble).toMatchSnapshot());
 });
 
 it('should render bubbles with click handlers', () => {
   const onClick = jest.fn();
   const items = [
     { x: 1, y: 10, size: 7, data: 'foo' },
-    { x: 2, y: 30, size: 5, data: 'bar' }
+    { x: 2, y: 30, size: 5, data: 'bar' },
   ];
   const chart = mount(
     <BubbleChart height={100} items={items} onBubbleClick={onClick} padding={[0, 0, 0, 0]} />
   );
-  chart.find('Bubble').forEach(bubble => expect(bubble).toMatchSnapshot());
+  chart.find('Bubble').forEach((bubble) => expect(bubble).toMatchSnapshot());
 });

@@ -27,9 +27,7 @@ it('should display a modal button', () => {
 
 it('should display a confirm modal', () => {
   expect(
-    shallowRender()
-      .find('ModalButton')
-      .prop<Function>('modal')({ onClose: jest.fn() })
+    shallowRender().find('ModalButton').prop<Function>('modal')({ onClose: jest.fn() })
   ).toMatchSnapshot();
 });
 

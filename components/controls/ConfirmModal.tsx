@@ -69,7 +69,7 @@ export default class ConfirmModal<T = string> extends React.PureComponent<Props<
       header,
       headerDescription,
       isDestructive,
-      cancelButtonText = translate('cancel')
+      cancelButtonText = translate('cancel'),
     } = this.props;
     return (
       <ClickEventBoundary>

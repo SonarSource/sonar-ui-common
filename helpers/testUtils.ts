@@ -26,7 +26,7 @@ export function mockEvent(overrides = {}) {
     currentTarget: { blur() {} },
     preventDefault() {},
     stopPropagation() {},
-    ...overrides
+    ...overrides,
   } as any;
 }
 
@@ -49,7 +49,7 @@ export function clickOutside(event = {}): void {
 
 export function submit(element: ShallowWrapper | ReactWrapper): void {
   element.simulate('submit', {
-    preventDefault() {}
+    preventDefault() {},
   });
 }
 
@@ -64,7 +64,7 @@ export function change(element: ShallowWrapper | ReactWrapper, value: string, ev
     element.simulate('change', {
       target: { value },
       currentTarget: { value },
-      ...event
+      ...event,
     });
   }
 }
@@ -74,7 +74,7 @@ export const KEYCODE_MAP: { [keycode: number]: string } = {
   37: 'left',
   38: 'up',
   39: 'right',
-  40: 'down'
+  40: 'down',
 };
 
 export function keydown(key: number | string): void {
@@ -99,7 +99,7 @@ export function elementKeydown(element: ShallowWrapper, keyCode: number): void {
   const event = {
     currentTarget: { element },
     keyCode,
-    preventDefault() {}
+    preventDefault() {},
   };
 
   if (typeof element.type() === 'string') {
@@ -117,13 +117,13 @@ export function resizeWindowTo(width?: number, height?: number) {
   if (width) {
     Object.defineProperty(document.documentElement, 'clientWidth', {
       configurable: true,
-      value: width
+      value: width,
     });
   }
   if (height) {
     Object.defineProperty(document.documentElement, 'clientHeight', {
       configurable: true,
-      value: height
+      value: height,
     });
   }
 
@@ -142,13 +142,13 @@ export function setNodeRect({ width = 50, height = 50, left = 0, top = 0 }) {
   const { findDOMNode } = require('react-dom');
   const element = document.createElement('div');
   Object.defineProperty(element, 'getBoundingClientRect', {
-    value: () => ({ width, height, left, top })
+    value: () => ({ width, height, left, top }),
   });
   findDOMNode.mockReturnValue(element);
 }
 
 export function doAsync(fn?: Function): Promise<void> {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setImmediate(() => {
       if (fn) {
         fn();

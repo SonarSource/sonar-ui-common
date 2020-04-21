@@ -31,7 +31,7 @@ export const formatterOption = {
   month: 'long',
   day: 'numeric',
   hour: 'numeric',
-  minute: 'numeric'
+  minute: 'numeric',
 };
 
 export default function DateTimeFormatter({ children, date }: Props) {

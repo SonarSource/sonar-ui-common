@@ -35,7 +35,7 @@ const qualifierIcons: T.Dict<(props: IconProps) => React.ReactElement> = {
   cla: UnitTestIcon,
   dev_prj: ProjectIcon,
   lib: LibraryIcon,
-  pac: DirectoryIcon
+  pac: DirectoryIcon,
 };
 
 interface QualifierIconProps {

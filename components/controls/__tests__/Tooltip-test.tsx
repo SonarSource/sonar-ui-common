@@ -25,7 +25,7 @@ jest.useFakeTimers();
 jest.mock('react-dom', () => {
   const actual = require.requireActual('react-dom');
   return Object.assign({}, actual, {
-    findDOMNode: () => undefined
+    findDOMNode: () => undefined,
   });
 });
 

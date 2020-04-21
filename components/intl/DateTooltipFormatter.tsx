@@ -32,7 +32,7 @@ export default function DateTooltipFormatter({ className, date }: Props) {
   const parsedDate = parseDate(date);
   return (
     <DateFormatter date={parsedDate} long={true}>
-      {formattedDate => (
+      {(formattedDate) => (
         <Tooltip mouseEnterDelay={0.5} overlay={<DateTimeFormatter date={parsedDate} />}>
           <time className={className} dateTime={parsedDate.toISOString()}>
             {formattedDate}

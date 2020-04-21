@@ -28,7 +28,7 @@ import {
   parseText,
   post,
   postJSON,
-  requestTryAndRepeatUntil
+  requestTryAndRepeatUntil,
 } from '../request';
 
 jest.mock('../handleRequiredAuthentication', () => ({ default: jest.fn() }));
@@ -279,7 +279,7 @@ describe('checkStatus', () => {
 
   it('should bybass the redirect with a 401 error', async () => {
     const mockedResponse = mockResponse({}, 401);
-    await checkStatus(mockedResponse, true).catch(response => {
+    await checkStatus(mockedResponse, true).catch((response) => {
       expect(handleRequiredAuthentication).not.toBeCalled();
       expect(response).toEqual(mockedResponse);
     });

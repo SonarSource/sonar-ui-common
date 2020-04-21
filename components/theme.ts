@@ -23,7 +23,7 @@ import {
   ThemeProvider as EmotionThemeProvider,
   ThemeProviderProps,
   useTheme as emotionUseTheme,
-  withTheme
+  withTheme,
 } from 'emotion-theming';
 import * as React from 'react';
 // mockedTheme is in fact the default theme

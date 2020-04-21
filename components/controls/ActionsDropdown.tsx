@@ -49,7 +49,7 @@ export default function ActionsDropdown(props: ActionsDropdownProps) {
       overlayPlacement={overlayPlacement}>
       <Button
         className={classNames('dropdown-toggle', toggleClassName, {
-          'button-small': small
+          'button-small': small,
         })}>
         <SettingsIcon size={small ? 12 : 14} />
         <DropdownIcon className="little-spacer-left" />

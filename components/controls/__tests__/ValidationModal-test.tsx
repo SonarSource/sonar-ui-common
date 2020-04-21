@@ -32,7 +32,7 @@ it('should render correctly', () => {
       onClose={jest.fn()}
       onSubmit={jest.fn()}
       validate={jest.fn()}>
-      {props => (
+      {(props) => (
         <input
           name="field"
           onBlur={props.handleBlur}
