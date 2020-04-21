@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Update version of Typescript, Eslint and Prettier
+
 #### Breaking changes
 - Drop legacy lazyLoad function
 
