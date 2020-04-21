@@ -17,20 +17,15 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+import Initializer from '../init';
 import { getPathUrlAsString, getReturnUrl, isRelativeUrl } from '../urls';
 
 const SIMPLE_COMPONENT_KEY = 'sonarqube';
 const COMPLEX_COMPONENT_KEY = 'org.sonarsource.sonarqube:sonarqube';
 const COMPLEX_COMPONENT_KEY_ENCODED = encodeURIComponent(COMPLEX_COMPONENT_KEY);
 
-let oldBaseUrl: string;
-
-beforeAll(() => {
-  oldBaseUrl = (window as any).baseUrl;
-});
-
 afterEach(() => {
-  (window as any).baseUrl = oldBaseUrl;
+  Initializer.setUrlContext('');
 });
 
 describe('#getPathUrlAsString', () => {
@@ -47,7 +42,7 @@ describe('#getPathUrlAsString', () => {
   });
 
   it('should take baseUrl into account', () => {
-    (window as any).baseUrl = '/context';
+    Initializer.setUrlContext('/context');
     expect(
       getPathUrlAsString({ pathname: '/dashboard', query: { id: COMPLEX_COMPONENT_KEY } })
     ).toBe('/context/dashboard?id=' + COMPLEX_COMPONENT_KEY_ENCODED);
@@ -69,5 +64,29 @@ describe('#isRelativeUrl', () => {
     expect(isRelativeUrl('javascript:alert("test")')).toBe(false);
     expect(isRelativeUrl('\\test')).toBe(false);
     expect(isRelativeUrl('//test')).toBe(false);
+  });
+});
+
+describe('#getHostUrl', () => {
+  beforeEach(() => {
+    jest.resetModules();
+  });
+  it('should return host url on client side', () => {
+    jest.mock('../init', () => ({
+      getUrlContext: () => '',
+      IS_SSR: false,
+    }));
+    const mockedUrls = require('../urls');
+    expect(mockedUrls.getHostUrl()).toBe('http://localhost');
+  });
+  it('should throw on server-side', () => {
+    jest.mock('../init', () => ({
+      getUrlContext: () => '',
+      IS_SSR: true,
+    }));
+    const mockedUrls = require('../urls');
+    expect(mockedUrls.getHostUrl).toThrowErrorMatchingInlineSnapshot(
+      `"No host url available on server side."`
+    );
   });
 });

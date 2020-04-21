@@ -6,6 +6,9 @@
 
 #### Breaking changes
 - Drop legacy lazyLoad function
+- SC-1951 Add sonar-ui-common initialization function for l10n messages and url context
+  - Drop all the network and caching functions from `helpers/l10n.ts`
+
 
 ## 0.0.58
 

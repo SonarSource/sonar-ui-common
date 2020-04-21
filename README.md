@@ -23,6 +23,21 @@ Ambients types are available in the `types.d.ts`, to benefit from them in your p
 }
 ```
 
+To use the library, it should first be initialized by these methods:
+
+```Ts
+import Initializer from 'sonar-ui-common/helpers/init';
+
+Initializer
+  .setUrlContext('/sonarqube')  // [required] Provide the web context
+  .setMessages({})              // [optional] Provide your l10n bundle, retrieved anyway you want (from ws call, localstorage, json file...)
+  .setLocale('en');             // [optional] Provide the language of your l10n bundle
+```
+
+The urlContext MUST be set before using the library or it will throw an Error.
+The l10n data can be set asynchronously, i.e. `messages` and `locale` can stay `undefined` if they need to be updated later.
+The default messages contain only a default error message, and the default locale is 'en'.
+
 ## Styled-components
 
 While developing styled components, you should seriously consider adding one of those extension to your IDE : https://github.com/Microsoft/typescript-styled-plugin#usage
@@ -35,7 +50,6 @@ It will provide syntax highlighting, quick-fix and intellisense.
 - [ ] Expose sonar-ui-common from sonar-web to reduce bundle size from extensions, currently it's duplicated in every extensions. Also it should help with theming and allows us to remove most of the call to ThemeProvider. Our current way of using ThemeProvider everywhere is mostly due to the fact that every extension is loading a different ThemeProvider component (it means that this ThemeProvider is duplicated for each extension).
 - [ ] Better management of theming (currently all extensions needs to reference the theme file from sonar-web in their build)
 - [ ] CSS of component based on theme (we currently rely on the fact that all usage of sonar-ui-common also compile CSS of components with the correct CSS custom properties setup)
-- [ ] Embbed translations in the lib (currently we rely on the fact that the translation bundle will be made available by sonar-web, the lib can't be started in standalone mode, there would be not translations)
 - [ ] Add release button in burgr
 - [ ] Display failing jobs in burgr
 

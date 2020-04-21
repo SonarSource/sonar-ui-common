@@ -19,6 +19,7 @@
  */
 import { isNil, omitBy } from 'lodash';
 import { stringify } from 'querystring';
+import { getUrlContext, IS_SSR } from './init';
 
 interface Query {
   [x: string]: string | undefined;
@@ -30,10 +31,13 @@ export interface Location {
 }
 
 export function getBaseUrl(): string {
-  return (window as any).baseUrl;
+  return getUrlContext();
 }
 
 export function getHostUrl(): string {
+  if (IS_SSR) {
+    throw new Error('No host url available on server side.');
+  }
   return window.location.origin + getBaseUrl();
 }
 

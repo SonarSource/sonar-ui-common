@@ -17,56 +17,32 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { toNotSoISOString } from './dates';
-import { getJSON } from './request';
-import { get, save } from './storage';
+import { getLocale, getMessages } from './init';
 
-const L10_TIMESTAMP = 'l10n.timestamp';
-const L10_LOCALE = 'l10n.locale';
-const L10_BUNDLE = 'l10n.bundle';
-
-interface LanguageBundle {
-  [name: string]: string;
-}
-
-interface BundleRequestParams {
-  locale?: string;
-  ts?: string;
-}
-
-interface BundleRequestResponse {
-  effectiveLocale: string;
-  messages: LanguageBundle;
-}
-
-declare let window: Window & { SonarMessages: LanguageBundle };
-if (!window.SonarMessages) {
-  window.SonarMessages = {};
-}
-
-export const DEFAULT_LANGUAGE = 'en';
+export type Messages = T.Dict<string>;
 
 export function translate(...keys: string[]): string {
   const messageKey = keys.join('.');
-  if (process.env.NODE_ENV === 'development' && !window.SonarMessages[messageKey]) {
-    // eslint-disable-next-line
+  const l10nMessages = getMessages();
+  if (process.env.NODE_ENV === 'development' && !l10nMessages[messageKey]) {
+    // eslint-disable-next-line no-console
     console.error(`No message for: ${messageKey}`);
   }
-  return window.SonarMessages[messageKey] || messageKey;
+  return l10nMessages[messageKey] || messageKey;
 }
 
 export function translateWithParameters(
   messageKey: string,
   ...parameters: Array<string | number>
 ): string {
-  const message = window.SonarMessages[messageKey];
+  const message = getMessages()[messageKey];
   if (message) {
     return parameters
       .map((parameter) => String(parameter))
       .reduce((acc, parameter, index) => acc.replace(`{${index}}`, parameter), message);
   } else {
     if (process.env.NODE_ENV === 'development') {
-      // eslint-disable-next-line
+      // eslint-disable-next-line no-console
       console.error(`No message for: ${messageKey}`);
     }
     return `${messageKey}.${parameters.join('.')}`;
@@ -75,76 +51,7 @@ export function translateWithParameters(
 
 export function hasMessage(...keys: string[]): boolean {
   const messageKey = keys.join('.');
-  return window.SonarMessages[messageKey] != null;
-}
-
-function getPreferredLanguage(): string | undefined {
-  return window.navigator.languages ? window.navigator.languages[0] : window.navigator.language;
-}
-
-function checkCachedBundle(): boolean {
-  const cached = get(L10_BUNDLE);
-
-  if (!cached) {
-    return false;
-  }
-
-  try {
-    const parsed = JSON.parse(cached);
-    return parsed != null && typeof parsed === 'object';
-  } catch (e) {
-    return false;
-  }
-}
-
-function getL10nBundle(params: BundleRequestParams): Promise<BundleRequestResponse> {
-  const url = '/api/l10n/index';
-  return getJSON(url, params);
-}
-
-export function requestMessages(): Promise<string> {
-  const browserLocale = getPreferredLanguage();
-  const cachedLocale = get(L10_LOCALE);
-  const params: BundleRequestParams = {};
-
-  if (browserLocale) {
-    params.locale = browserLocale;
-
-    if (cachedLocale && browserLocale.startsWith(cachedLocale)) {
-      const bundleTimestamp = get(L10_TIMESTAMP);
-      if (bundleTimestamp !== null && checkCachedBundle()) {
-        params.ts = bundleTimestamp;
-      }
-    }
-  }
-
-  return getL10nBundle(params).then(
-    ({ effectiveLocale, messages }: BundleRequestResponse) => {
-      const currentTimestamp = toNotSoISOString(new Date());
-      save(L10_TIMESTAMP, currentTimestamp);
-      save(L10_LOCALE, effectiveLocale);
-      save(L10_BUNDLE, JSON.stringify(messages));
-      resetBundle(messages);
-      return effectiveLocale;
-    },
-    (response) => {
-      if (response && response.status === 304) {
-        resetBundle(JSON.parse(get(L10_BUNDLE) || '{}') as LanguageBundle);
-      } else {
-        throw new Error(`Unexpected status code: ${response.status}`);
-      }
-      return cachedLocale || browserLocale || DEFAULT_LANGUAGE;
-    }
-  );
-}
-
-export function resetBundle(bundle: LanguageBundle) {
-  window.SonarMessages = bundle;
-}
-
-export function installGlobal() {
-  (window as any).t = translate;
-  (window as any).tp = translateWithParameters;
+  return getMessages()[messageKey] != null;
 }
 
 export function getLocalizedMetricName(
@@ -172,7 +79,7 @@ export function getLocalizedMetricDomain(domainName: string) {
 }
 
 export function getCurrentLocale() {
-  return get(L10_LOCALE) || DEFAULT_LANGUAGE;
+  return getLocale();
 }
 
 export function getShortMonthName(index: number) {

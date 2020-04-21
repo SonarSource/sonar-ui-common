@@ -18,6 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import * as React from 'react';
+import { IS_SSR } from '../helpers/init';
 import { translate } from '../helpers/l10n';
 import { requestTryAndRepeatUntil } from '../helpers/request';
 import { Alert } from './ui/Alert';
@@ -31,6 +32,9 @@ export function lazyLoadComponent<T extends React.ComponentType<any>>(
   );
 
   function LazyComponentWrapper(props: React.ComponentProps<T>) {
+    if (IS_SSR) {
+      return null;
+    }
     return (
       <LazyErrorBoundary>
         <React.Suspense fallback={null}>

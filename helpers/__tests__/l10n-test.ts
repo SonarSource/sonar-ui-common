@@ -17,32 +17,25 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-// require a "parent object" for spying
-import { requestMessages, resetBundle, translate, translateWithParameters } from '../l10n';
-import { getJSON } from '../request';
+/* eslint-disable camelcase */
+import Initializer, { getMessages } from '../init';
+import { hasMessage, translate, translateWithParameters } from '../l10n';
 
-jest.mock('../request', () => ({
-  getJSON: jest.fn(),
-}));
-
+const originalMessages = getMessages();
 const MSG = 'my_message';
 
 afterEach(() => {
-  resetBundle({});
+  Initializer.setMessages(originalMessages);
 });
 
-beforeEach(() => {
-  jest.clearAllMocks();
-});
-
-describe('#translate', () => {
+describe('translate', () => {
   it('should translate simple message', () => {
-    resetBundle({ my_key: MSG });
+    Initializer.setMessages({ my_key: MSG });
     expect(translate('my_key')).toBe(MSG);
   });
 
   it('should translate message with composite key', () => {
-    resetBundle({ 'my.composite.message': MSG });
+    Initializer.setMessages({ 'my.composite.message': MSG });
     expect(translate('my', 'composite', 'message')).toBe(MSG);
     expect(translate('my.composite', 'message')).toBe(MSG);
     expect(translate('my', 'composite.message')).toBe(MSG);
@@ -54,31 +47,26 @@ describe('#translate', () => {
     expect(translate('random', 'key')).toBe('random.key');
     expect(translate('composite.random', 'key')).toBe('composite.random.key');
   });
-
-  it('should use pre-existing global bundle', () => {
-    (window as any).SonarMessages = { test: MSG };
-    expect(translate('test')).toBe(MSG);
-  });
 });
 
-describe('#translateWithParameters', () => {
+describe('translateWithParameters', () => {
   it('should translate message with one parameter in the beginning', () => {
-    resetBundle({ x_apples: '{0} apples' });
+    Initializer.setMessages({ x_apples: '{0} apples' });
     expect(translateWithParameters('x_apples', 5)).toBe('5 apples');
   });
 
   it('should translate message with one parameter in the middle', () => {
-    resetBundle({ x_apples: 'I have {0} apples' });
+    Initializer.setMessages({ x_apples: 'I have {0} apples' });
     expect(translateWithParameters('x_apples', 5)).toBe('I have 5 apples');
   });
 
   it('should translate message with one parameter in the end', () => {
-    resetBundle({ x_apples: 'Apples: {0}' });
+    Initializer.setMessages({ x_apples: 'Apples: {0}' });
     expect(translateWithParameters('x_apples', 5)).toBe('Apples: 5');
   });
 
   it('should translate message with several parameters', () => {
-    resetBundle({ x_apples: '{0}: I have {2} apples in my {1} baskets - {3}' });
+    Initializer.setMessages({ x_apples: '{0}: I have {2} apples in my {1} baskets - {3}' });
     expect(translateWithParameters('x_apples', 1, 2, 3, 4)).toBe(
       '1: I have 3 apples in my 2 baskets - 4'
     );
@@ -91,24 +79,15 @@ describe('#translateWithParameters', () => {
   });
 });
 
-describe('requestMessages', () => {
-  it('should handle 304', () => {
-    (getJSON as jest.Mock).mockRejectedValue({ status: 304 });
-
-    resetBundle({ foo: 'bar' });
-
-    return requestMessages().then(() => {
-      expect((window as any).SonarMessages).toEqual({});
-    });
+describe('hasMessage', () => {
+  it('should return that the message exists', () => {
+    Initializer.setMessages({ foo: 'Foo', 'foo.bar': 'Foo Bar' });
+    expect(hasMessage('foo')).toBe(true);
+    expect(hasMessage('foo', 'bar')).toBe(true);
   });
 
-  it('should forward unexpected errors', () => {
-    (getJSON as jest.Mock).mockRejectedValue({ status: 401 });
-
-    return requestMessages()
-      .then(() => {
-        fail('should throw');
-      })
-      .catch((error: any) => expect(error.message).toBe('Unexpected status code: 401'));
+  it('should return that the message is missing', () => {
+    expect(hasMessage('foo')).toBe(false);
+    expect(hasMessage('foo', 'bar')).toBe(false);
   });
 });
