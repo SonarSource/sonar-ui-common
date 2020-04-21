@@ -129,7 +129,8 @@
     },
     "setupFiles": [
       "<rootDir>/config/jest/SetupTestEnvironment.js",
-      "<rootDir>/config/jest/SetupEnzyme.js"
+      "<rootDir>/config/jest/SetupEnzyme.js",
+      "<rootDir>/config/jest/SetupSUC.ts"
     ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer",

@@ -20,6 +20,7 @@
 import { isNil, omitBy } from 'lodash';
 import { stringify } from 'querystring';
 import { getCookie } from './cookies';
+import { getUrlContext } from './init';
 import { translate } from './l10n';
 
 /** Current application version. Can be changed if a newer version is deployed. */
@@ -107,7 +108,7 @@ class Request {
 
   submit(): Promise<Response> {
     const { url, options } = this.getSubmitData({ ...getCSRFToken() });
-    return window.fetch((window as any).baseUrl + url, options);
+    return window.fetch(getUrlContext() + url, options);
   }
 
   setMethod(method: string): Request {
@@ -267,13 +268,6 @@ export function post(url: string, data?: RequestData, bypassRedirect?: boolean):
       .then((response) => checkStatus(response, bypassRedirect))
       .then(() => resolve(), reject);
   });
-}
-
-/**
- * Delay promise for testing purposes
- */
-export function delay(response: any): Promise<any> {
-  return new Promise((resolve) => setTimeout(() => resolve(response), 1200));
 }
 
 function tryRequestAgain<T>(

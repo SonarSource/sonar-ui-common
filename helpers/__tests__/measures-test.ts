@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { resetBundle } from '../l10n';
+import Initializer from '../init';
 import { formatMeasure, getMinDecimalsCountToBeDistinctFromThreshold } from '../measures';
 
 const HOURS_IN_DAY = 8;
@@ -25,8 +25,8 @@ const ONE_MINUTE = 1;
 const ONE_HOUR = ONE_MINUTE * 60;
 const ONE_DAY = HOURS_IN_DAY * ONE_HOUR;
 
-beforeEach(() => {
-  resetBundle({
+beforeAll(() => {
+  Initializer.setMessages({
     'work_duration.x_days': '{0}d',
     'work_duration.x_hours': '{0}h',
     'work_duration.x_minutes': '{0}min',
@@ -38,6 +38,10 @@ beforeEach(() => {
     'short_number_suffix.k': 'k',
     'short_number_suffix.m': 'M',
   });
+});
+
+afterAll(() => {
+  Initializer.setMessages({});
 });
 
 describe('#formatMeasure()', () => {

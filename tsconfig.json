@@ -18,6 +18,6 @@
     "rootDir": "./",
     "baseUrl": "."
   },
-  "include": ["components", "helpers", "index.ts", "types.d.ts"],
+  "include": ["components", "helpers", "types.d.ts"],
   "exclude": ["**/*-test.*"]
 }
