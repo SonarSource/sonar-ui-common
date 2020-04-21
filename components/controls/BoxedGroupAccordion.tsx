@@ -55,7 +55,7 @@ export default class BoxedGroupAccordion extends React.PureComponent<Props, Stat
     return (
       <div
         className={classNames('boxed-group boxed-group-accordion', className, {
-          'no-hover': this.state.hoveringInner
+          'no-hover': this.state.hoveringInner,
         })}>
         <div className="boxed-group-header" onClick={this.handleClick} role="listitem">
           <span className="boxed-group-accordion-title">

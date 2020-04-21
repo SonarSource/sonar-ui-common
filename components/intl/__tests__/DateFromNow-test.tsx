@@ -28,7 +28,7 @@ it('should render correctly', () => {
 function shallowRender() {
   return shallow(
     <DateFromNow date={new Date('2020-02-20T20:20:20Z')}>
-      {formatted => <span>{formatted}</span>}
+      {(formatted) => <span>{formatted}</span>}
     </DateFromNow>
   );
 }

@@ -24,7 +24,7 @@ import AdvancedTimeline from '../AdvancedTimeline';
 
 jest.mock('lodash', () => {
   const lodash = jest.requireActual('lodash');
-  return { ...lodash, throttle: f => f };
+  return { ...lodash, throttle: (f) => f };
 });
 
 it('should render correctly', () => {
@@ -55,13 +55,13 @@ function shallowRender(props?: Partial<AdvancedTimeline['props']>) {
           data: [
             {
               x: '2019-10-01',
-              y: 1
+              y: 1,
             },
             {
               x: '2019-10-02',
-              y: 2
-            }
-          ]
+              y: 2,
+            },
+          ],
         },
         {
           name: 'test-2',
@@ -69,10 +69,10 @@ function shallowRender(props?: Partial<AdvancedTimeline['props']>) {
           data: [
             {
               x: '2019-10-03',
-              y: 3
-            }
-          ]
-        }
+              y: 3,
+            },
+          ],
+        },
       ]}
       width={100}
       zoomSpeed={1}

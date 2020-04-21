@@ -26,7 +26,7 @@ it('should render correctly', () => {
   const items = [
     { key: '1', size: 10, color: '#777', label: 'SonarQube :: Server' },
     { key: '2', size: 30, color: '#777', label: 'SonarQube :: Web' },
-    { key: '3', size: 20, color: '#777', label: 'SonarQube :: Search' }
+    { key: '3', size: 20, color: '#777', label: 'SonarQube :: Search' },
   ];
   const onRectClick = jest.fn();
   const chart = mount(
@@ -36,7 +36,7 @@ it('should render correctly', () => {
   expect(rects).toHaveLength(3);
 
   const event: React.MouseEvent<HTMLAnchorElement> = {
-    stopPropagation: jest.fn()
+    stopPropagation: jest.fn(),
   } as any;
 
   (rects.first().instance() as TreeMapRect).handleLinkClick(event);

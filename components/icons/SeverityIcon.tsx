@@ -30,7 +30,7 @@ const severityIcons: T.Dict<(props: IconProps) => React.ReactElement> = {
   critical: CriticalSeverityIcon,
   major: MajorSeverityIcon,
   minor: MinorSeverityIcon,
-  info: InfoSeverityIcon
+  info: InfoSeverityIcon,
 };
 
 export default function SeverityIcon(props: Props) {

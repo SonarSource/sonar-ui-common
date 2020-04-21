@@ -59,11 +59,7 @@ it('should render "reload" properly', () => {
 });
 
 it('should display spinner while loading', () => {
-  expect(
-    shallowRender({ loading: true })
-      .find('DeferredSpinner')
-      .exists()
-  ).toBe(true);
+  expect(shallowRender({ loading: true }).find('DeferredSpinner').exists()).toBe(true);
 });
 
 function shallowRender(props: Partial<Props> = {}) {

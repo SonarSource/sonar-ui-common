@@ -50,7 +50,7 @@ export default function GlobalMessages({ closeGlobalMessage, messages }: GlobalM
 
   return (
     <MessagesContainer>
-      {messages.map(message => (
+      {messages.map((message) => (
         <GlobalMessage closeGlobalMessage={closeGlobalMessage} key={message.id} message={message} />
       ))}
     </MessagesContainer>

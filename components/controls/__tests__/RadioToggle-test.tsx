@@ -39,9 +39,9 @@ it('handles numeric values', () => {
     onCheck,
     options: [
       { value: 1, label: 'first', tooltip: 'foo' },
-      { value: 2, label: 'second', tooltip: 'bar' }
+      { value: 2, label: 'second', tooltip: 'bar' },
     ],
-    value: 1
+    value: 1,
   });
   change(wrapper.find('input[id="sample__2"]'), '');
   expect(onCheck).toBeCalledWith(2);
@@ -53,9 +53,9 @@ it('handles boolean values', () => {
     onCheck,
     options: [
       { value: true, label: 'yes', tooltip: 'foo' },
-      { value: false, label: 'no', tooltip: 'bar' }
+      { value: false, label: 'no', tooltip: 'bar' },
     ],
-    value: true
+    value: true,
   });
   change(wrapper.find('input[id="sample__false"]'), '');
   expect(onCheck).toBeCalledWith(false);
@@ -67,9 +67,9 @@ it('initialize value', () => {
     onCheck,
     options: [
       { value: 1, label: 'first', tooltip: 'foo' },
-      { value: 2, label: 'second', tooltip: 'bar', disabled: true }
+      { value: 2, label: 'second', tooltip: 'bar', disabled: true },
     ],
-    value: 2
+    value: 2,
   });
   expect(wrapper.find('input[checked=true]').prop('id')).toBe('sample__2');
 });
@@ -79,8 +79,8 @@ it('accepts advanced options fields', () => {
     shallowRender({
       options: [
         { value: 'one', label: 'first', tooltip: 'foo' },
-        { value: 'two', label: 'second', tooltip: 'bar', disabled: true }
-      ]
+        { value: 'two', label: 'second', tooltip: 'bar', disabled: true },
+      ],
     })
   ).toMatchSnapshot();
 });
@@ -88,7 +88,7 @@ it('accepts advanced options fields', () => {
 function shallowRender(props?: Partial<RadioToggle['props']>) {
   const options = [
     { value: 'one', label: 'first' },
-    { value: 'two', label: 'second' }
+    { value: 'two', label: 'second' },
   ];
   return shallow(<RadioToggle name="sample" onCheck={() => true} options={options} {...props} />);
 }

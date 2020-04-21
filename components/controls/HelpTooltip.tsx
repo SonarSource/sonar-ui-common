@@ -47,7 +47,7 @@ export default function HelpTooltip(props: Props) {
       <span className="display-inline-flex-center">
         {props.children || (
           <ThemeConsumer>
-            {theme => <HelpIcon fill={theme.colors.gray71} size={12} />}
+            {(theme) => <HelpIcon fill={theme.colors.gray71} size={12} />}
           </ThemeConsumer>
         )}
       </span>

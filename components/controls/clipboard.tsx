@@ -88,7 +88,7 @@ export class ClipboardBase extends React.PureComponent<BaseProps, State> {
   render() {
     return this.props.children({
       setCopyButton: this.setCopyButton,
-      copySuccess: this.state.copySuccess
+      copySuccess: this.state.copySuccess,
     });
   }
 }

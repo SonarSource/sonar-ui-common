@@ -114,7 +114,7 @@ export function ButtonIcon(props: ButtonIconProps) {
   const { className, color, tooltip, tooltipProps, ...other } = props;
   return (
     <ThemeConsumer>
-      {theme => (
+      {(theme) => (
         <Tooltip mouseEnterDelay={0.4} overlay={tooltip} {...tooltipProps}>
           <Button
             className={classNames(className, 'button-icon')}
@@ -137,7 +137,7 @@ interface ClearButtonProps extends ButtonIconProps {
 export function ClearButton({ color, iconProps = {}, ...props }: ClearButtonProps) {
   return (
     <ThemeConsumer>
-      {theme => (
+      {(theme) => (
         <ButtonIcon color={color || theme.colors.gray60} {...props}>
           <ClearIcon {...iconProps} />
         </ButtonIcon>
@@ -155,7 +155,7 @@ interface ActionButtonProps extends ButtonIconProps {
 export function DeleteButton({ iconProps = {}, ...props }: ActionButtonProps) {
   return (
     <ThemeConsumer>
-      {theme => (
+      {(theme) => (
         <ButtonIcon color={theme.colors.red} {...props}>
           <DeleteIcon {...iconProps} />
         </ButtonIcon>

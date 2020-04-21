@@ -37,7 +37,7 @@ interface Props {
 
 export default class Checkbox extends React.PureComponent<Props> {
   static defaultProps = {
-    thirdState: false
+    thirdState: false,
   };
 
   handleClick = (event: React.SyntheticEvent<HTMLElement>) => {
@@ -53,7 +53,7 @@ export default class Checkbox extends React.PureComponent<Props> {
     const className = classNames('icon-checkbox', {
       'icon-checkbox-checked': checked,
       'icon-checkbox-single': thirdState,
-      'icon-checkbox-disabled': disabled
+      'icon-checkbox-disabled': disabled,
     });
 
     if (children) {
@@ -62,7 +62,7 @@ export default class Checkbox extends React.PureComponent<Props> {
           aria-checked={checked}
           className={classNames('link-checkbox', this.props.className, {
             note: disabled,
-            disabled
+            disabled,
           })}
           href="#"
           id={id}

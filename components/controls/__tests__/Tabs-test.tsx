@@ -29,7 +29,7 @@ it('should render correctly', () => {
       selected="bar"
       tabs={[
         { key: 'foo', node: 'Foo' },
-        { key: 'bar', node: 'Bar' }
+        { key: 'bar', node: 'Bar' },
       ]}
     />
   );
@@ -45,7 +45,7 @@ it('should switch tabs', () => {
       selected="bar"
       tabs={[
         { key: 'foo', node: 'Foo' },
-        { key: 'bar', node: 'Bar' }
+        { key: 'bar', node: 'Bar' },
       ]}
     />
   );

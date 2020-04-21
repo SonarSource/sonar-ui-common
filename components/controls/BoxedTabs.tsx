@@ -42,7 +42,7 @@ const highlightHoverMixin = ({ theme }: ThemedProps) => `
 
 const StyledTab = styled.button<{ active: boolean }>`
   position: relative;
-  background-color: ${props => (props.active ? 'white' : props.theme.colors.barBackgroundColor)};
+  background-color: ${(props) => (props.active ? 'white' : props.theme.colors.barBackgroundColor)};
   border-top: ${baseBorder};
   border-left: ${baseBorder};
   border-right: none;
@@ -50,11 +50,11 @@ const StyledTab = styled.button<{ active: boolean }>`
   margin-bottom: -1px;
   min-width: 128px;
   min-height: 56px;
-  ${props => !props.active && 'cursor: pointer;'}
+  ${(props) => !props.active && 'cursor: pointer;'}
   outline: 0;
-  padding: calc(2 * ${props => props.theme.sizes.gridSize});
+  padding: calc(2 * ${(props) => props.theme.sizes.gridSize});
 
-  ${props => (!props.active ? highlightHoverMixin : null)}
+  ${(props) => (!props.active ? highlightHoverMixin : null)}
 
   &:last-child {
     border-right: ${baseBorder};
@@ -62,8 +62,8 @@ const StyledTab = styled.button<{ active: boolean }>`
 `;
 
 const ActiveBorder = styled.div<{ active: boolean }>`
-  display: ${props => (props.active ? 'block' : 'none')};
-  background-color: ${props => props.theme.colors.blue};
+  display: ${(props) => (props.active ? 'block' : 'none')};
+  background-color: ${(props) => props.theme.colors.blue};
   height: 3px;
   width: 100%;
   position: absolute;

@@ -41,7 +41,7 @@ interface Props {
 export default class RadioToggle extends React.PureComponent<Props> {
   static defaultProps = {
     disabled: false,
-    value: null
+    value: null,
   };
 
   renderOption = (option: Option) => {

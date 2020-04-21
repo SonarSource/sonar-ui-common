@@ -23,7 +23,7 @@ const parseCookies = memoize(
   (documentCookie: string): T.Dict<string> => {
     const rawCookies = documentCookie.split('; ');
     const cookies: T.Dict<string> = {};
-    rawCookies.forEach(candidate => {
+    rawCookies.forEach((candidate) => {
       const [key, value] = candidate.split('=');
       cookies[key] = value;
     });

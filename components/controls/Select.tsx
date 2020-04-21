@@ -22,7 +22,7 @@ import {
   defaultFilterOptions as reactSelectDefaultFilterOptions,
   ReactAsyncSelectProps,
   ReactCreatableSelectProps,
-  ReactSelectProps
+  ReactSelectProps,
 } from 'react-select';
 import { lazyLoadComponent } from '../lazyLoadComponent';
 import { ClearButton } from './buttons';
@@ -35,9 +35,9 @@ declare module 'react-select' {
 const ReactSelectLib = import('react-select');
 const ReactSelect = lazyLoadComponent(() => ReactSelectLib);
 const ReactCreatable = lazyLoadComponent(() =>
-  ReactSelectLib.then(lib => ({ default: lib.Creatable }))
+  ReactSelectLib.then((lib) => ({ default: lib.Creatable }))
 );
-const ReactAsync = lazyLoadComponent(() => ReactSelectLib.then(lib => ({ default: lib.Async })));
+const ReactAsync = lazyLoadComponent(() => ReactSelectLib.then((lib) => ({ default: lib.Async })));
 
 function renderInput() {
   return <ClearButton className="button-tiny spacer-left text-middle" iconProps={{ size: 12 }} />;

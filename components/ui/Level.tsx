@@ -35,7 +35,7 @@ export default function Level(props: LevelProps) {
   const formatted = formatMeasure(props.level, 'LEVEL');
   const className = classNames(props.className, 'level', 'level-' + props.level, {
     'level-small': props.small,
-    'level-muted': props.muted
+    'level-muted': props.muted,
   });
 
   return (

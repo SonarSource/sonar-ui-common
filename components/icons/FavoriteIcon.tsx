@@ -29,7 +29,7 @@ interface Props extends IconProps {
 export default function FavoriteIcon({ className, favorite, fill, size }: Props) {
   return (
     <ThemeConsumer>
-      {theme => (
+      {(theme) => (
         <Icon
           className={classNames('icon-outline', { 'is-filled': favorite }, className)}
           size={size}

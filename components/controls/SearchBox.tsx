@@ -123,7 +123,7 @@ export default class SearchBox extends React.PureComponent<Props, State> {
     const { value } = this.state;
 
     const inputClassName = classNames('search-box-input', {
-      touched: value.length > 0 && (!minLength || minLength > value.length)
+      touched: value.length > 0 && (!minLength || minLength > value.length),
     });
 
     const tooShort = minLength !== undefined && value.length > 0 && value.length < minLength;

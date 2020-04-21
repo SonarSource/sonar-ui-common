@@ -57,7 +57,7 @@ const FLIP_MAP: { [key in Placement]: Placement } = {
   left: 'right',
   right: 'left',
   top: 'bottom',
-  bottom: 'top'
+  bottom: 'top',
 };
 
 function isMeasured(state: State): state is OwnState & Measurements {
@@ -84,7 +84,7 @@ export class TooltipInner extends React.Component<TooltipProps, State> {
   mouseIn = false;
 
   static defaultProps = {
-    mouseEnterDelay: 0.1
+    mouseEnterDelay: 0.1,
   };
 
   constructor(props: TooltipProps) {
@@ -92,7 +92,7 @@ export class TooltipInner extends React.Component<TooltipProps, State> {
     this.state = {
       flipped: false,
       placement: props.placement,
-      visible: props.visible !== undefined ? props.visible : false
+      visible: props.visible !== undefined ? props.visible : false,
     };
     this.throttledPositionTooltip = throttle(this.positionTooltip, 10);
   }
@@ -225,7 +225,7 @@ export class TooltipInner extends React.Component<TooltipProps, State> {
         left: window.pageXOffset + left,
         top: window.pageYOffset + top,
         width,
-        height
+        height,
       });
     }
   };
@@ -237,7 +237,7 @@ export class TooltipInner extends React.Component<TooltipProps, State> {
       top: undefined,
       width: undefined,
       height: undefined,
-      placement: this.props.placement
+      placement: this.props.placement,
     });
   };
 
@@ -320,7 +320,7 @@ export class TooltipInner extends React.Component<TooltipProps, State> {
             // Set height to undefined to force ScreenPositionFixer to
             // re-compute our positioning.
             height: undefined,
-            placement: FLIP_MAP[placement]
+            placement: FLIP_MAP[placement],
           }),
           () => {
             if (this.state.visible) {
@@ -342,7 +342,7 @@ export class TooltipInner extends React.Component<TooltipProps, State> {
           left: this.state.left + leftFix,
           top: this.state.top + topFix,
           width: this.state.width,
-          height: this.state.height
+          height: this.state.height,
         }
       : undefined;
 
@@ -371,7 +371,7 @@ export class TooltipInner extends React.Component<TooltipProps, State> {
       <>
         {React.cloneElement(this.props.children, {
           onMouseEnter: this.handleMouseEnter,
-          onMouseLeave: this.handleMouseLeave
+          onMouseLeave: this.handleMouseLeave,
         })}
         {this.isVisible() && (
           <TooltipPortal>

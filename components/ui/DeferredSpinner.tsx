@@ -37,7 +37,7 @@ export default class DeferredSpinner extends React.PureComponent<Props, State> {
   timer: any;
 
   static defaultProps = {
-    timeout: 100
+    timeout: 100,
   };
 
   state: State = { showSpinner: false };

@@ -23,7 +23,7 @@ import SearchSelect from '../SearchSelect';
 
 jest.mock('lodash', () => {
   const lodash = require.requireActual('lodash');
-  lodash.debounce = jest.fn(fn => fn);
+  lodash.debounce = jest.fn((fn) => fn);
   return lodash;
 });
 

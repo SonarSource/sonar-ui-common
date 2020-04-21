@@ -47,16 +47,17 @@ const StyledAlertIcon = styled.div<{ isBanner: boolean; variantInfo: AlertVarian
   display: flex;
   justify-content: center;
   align-items: center;
-  width: calc(${props => (props.isBanner ? 2 : 4)} * ${props => props.theme.sizes.gridSize});
-  border-right: ${props => (!props.isBanner ? '1px solid' : 'none')};
-  border-color: ${props => props.variantInfo.borderColor};
+  width: calc(${(props) => (props.isBanner ? 2 : 4)} * ${(props) => props.theme.sizes.gridSize});
+  border-right: ${(props) => (!props.isBanner ? '1px solid' : 'none')};
+  border-color: ${(props) => props.variantInfo.borderColor};
 `;
 
 const StyledAlertContent = styled.div`
   flex: 1 1 auto;
   overflow: auto;
   text-align: left;
-  padding: ${props => props.theme.sizes.gridSize} calc(2 * ${props => props.theme.sizes.gridSize});
+  padding: ${(props) => props.theme.sizes.gridSize}
+    calc(2 * ${(props) => props.theme.sizes.gridSize});
 `;
 
 const alertInnerIsBannerMixin = ({ theme }: ThemedProps) => css`
@@ -72,17 +73,17 @@ const alertInnerIsBannerMixin = ({ theme }: ThemedProps) => css`
 const StyledAlertInner = styled.div<{ isBanner: boolean }>`
   display: flex;
   align-items: stretch;
-  ${props => (props.isBanner ? alertInnerIsBannerMixin : null)}
+  ${(props) => (props.isBanner ? alertInnerIsBannerMixin : null)}
 `;
 
 const StyledAlert = styled.div<{ isInline: boolean; variantInfo: AlertVariantInformation }>`
   border: 1px solid;
   border-radius: 2px;
-  margin-bottom: ${props => props.theme.sizes.gridSize};
-  border-color: ${props => props.variantInfo.borderColor};
-  background-color: ${props => props.variantInfo.backGroundColor};
-  color: ${props => props.variantInfo.color};
-  display: ${props => (props.isInline ? 'inline-block' : 'block')};
+  margin-bottom: ${(props) => props.theme.sizes.gridSize};
+  border-color: ${(props) => props.variantInfo.borderColor};
+  background-color: ${(props) => props.variantInfo.backGroundColor};
+  color: ${(props) => props.variantInfo.color};
+  display: ${(props) => (props.isInline ? 'inline-block' : 'block')};
 
   :empty {
     display: none;
@@ -90,7 +91,7 @@ const StyledAlert = styled.div<{ isInline: boolean; variantInfo: AlertVariantInf
 
   a,
   .button-link {
-    border-color: ${props => props.theme.colors.darkBlue};
+    border-color: ${(props) => props.theme.colors.darkBlue};
   }
 `;
 
@@ -100,32 +101,32 @@ function getAlertVariantInfo({ colors }: Theme, variant: AlertVariant): AlertVar
       icon: <AlertErrorIcon fill={colors.alertIconError} />,
       color: colors.alertTextError,
       borderColor: colors.alertBorderError,
-      backGroundColor: colors.alertBackgroundError
+      backGroundColor: colors.alertBackgroundError,
     },
     warning: {
       icon: <AlertWarnIcon fill={colors.alertIconWarning} />,
       color: colors.alertTextWarning,
       borderColor: colors.alertBorderWarning,
-      backGroundColor: colors.alertBackgroundWarning
+      backGroundColor: colors.alertBackgroundWarning,
     },
     success: {
       icon: <AlertSuccessIcon fill={colors.alertIconSuccess} />,
       color: colors.alertTextSuccess,
       borderColor: colors.alertBorderSuccess,
-      backGroundColor: colors.alertBackgroundSuccess
+      backGroundColor: colors.alertBackgroundSuccess,
     },
     info: {
       icon: <InfoIcon fill={colors.alertIconInfo} />,
       color: colors.alertTextInfo,
       borderColor: colors.alertBorderInfo,
-      backGroundColor: colors.alertBackgroundInfo
+      backGroundColor: colors.alertBackgroundInfo,
     },
     loading: {
       icon: <DeferredSpinner timeout={0} />,
       color: colors.alertTextInfo,
       borderColor: colors.alertBorderInfo,
-      backGroundColor: colors.alertBackgroundInfo
-    }
+      backGroundColor: colors.alertBackgroundInfo,
+    },
   };
 
   return variantList[variant];

@@ -25,7 +25,7 @@ import { PopupPlacement } from '../../ui/popups';
 import ActionsDropdown, {
   ActionsDropdownDivider,
   ActionsDropdownItem,
-  ActionsDropdownProps
+  ActionsDropdownProps,
 } from '../ActionsDropdown';
 
 describe('ActionsDropdown', () => {

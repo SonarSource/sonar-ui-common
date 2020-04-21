@@ -28,7 +28,7 @@ export default function ClearIcon({
   className,
   fill = 'currentColor',
   size,
-  thin
+  thin,
 }: ClearIconProps) {
   return (
     <Icon className={className} size={size}>
