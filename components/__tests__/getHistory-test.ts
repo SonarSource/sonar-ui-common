@@ -17,19 +17,13 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { shallow } from 'enzyme';
-import * as React from 'react';
-import DateFormatter from '../DateFormatter';
+import getHistory from '../../helpers/getHistory';
+import * as Router from 'react-router';
 
-it('should render correctly', () => {
-  expect(shallowRender()).toMatchSnapshot('standard');
-  expect(shallowRender({ long: true })).toMatchSnapshot('long');
+it('should get browser history properly', () => {
+  expect(getHistory()).not.toBeUndefined();
+  expect(getHistory().getCurrentLocation().pathname).toBe('/');
+  const pathname = '/foo/bar';
+  Router.browserHistory.push(pathname);
+  expect(getHistory().getCurrentLocation().pathname).toBe(pathname);
 });
-
-function shallowRender(overrides: Partial<React.ComponentProps<typeof DateFormatter>> = {}) {
-  return shallow(
-    <DateFormatter date={new Date('2020-02-20T20:20:20Z')} {...overrides}>
-      {(formatted) => <span>{formatted}</span>}
-    </DateFormatter>
-  );
-}

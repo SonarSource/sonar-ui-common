@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render properly 1`] = `
+<div
+  className="help-tooltip"
+>
+  <Tooltip
+    mouseLeaveDelay={0.25}
+    overlay={
+      <div
+        className="my-overlay"
+      />
+    }
+  >
+    <span
+      className="display-inline-flex-center"
+    >
+      <ContextConsumer>
+        <Component />
+      </ContextConsumer>
+    </span>
+  </Tooltip>
+</div>
+`;

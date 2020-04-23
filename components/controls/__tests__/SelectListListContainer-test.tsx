@@ -23,7 +23,11 @@ import { SelectListFilter } from '../SelectList';
 import SelectListListContainer from '../SelectListListContainer';
 
 it('should render correctly', () => {
-  const wrapper = shallow(
+  expect(shallowRender()).toMatchSnapshot();
+});
+
+function shallowRender(props: Partial<SelectListListContainer['props']> = {}) {
+  return shallow(
     <SelectListListContainer
       allowBulkSelection={true}
       disabledElements={[]}
@@ -31,9 +35,10 @@ it('should render correctly', () => {
       filter={SelectListFilter.All}
       onSelect={jest.fn(() => Promise.resolve())}
       onUnselect={jest.fn(() => Promise.resolve())}
+      readOnly={false}
       renderElement={(foo: string) => foo}
       selectedElements={['foo']}
+      {...props}
     />
   );
-  expect(wrapper).toMatchSnapshot();
-});
+}

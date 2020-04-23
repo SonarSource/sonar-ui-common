@@ -17,19 +17,34 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import DateFormatter from '../DateFormatter';
+import { click } from '../../../helpers/testUtils';
+import { ThemeProvider } from '../../theme';
+// eslint-disable-next-line jest/no-mocks-import
+import { mockedTheme } from '../../__mocks__/mockedTheme';
+import ReloadButton from '../ReloadButton';
 
-it('should render correctly', () => {
-  expect(shallowRender()).toMatchSnapshot('standard');
-  expect(shallowRender({ long: true })).toMatchSnapshot('long');
+it('should render properly', () => {
+  const wrapper = shallowRender();
+  expect(wrapper).toMatchSnapshot();
+  expect(wrapper.find('ContextConsumer').dive()).toMatchSnapshot();
 });
 
-function shallowRender(overrides: Partial<React.ComponentProps<typeof DateFormatter>> = {}) {
-  return shallow(
-    <DateFormatter date={new Date('2020-02-20T20:20:20Z')} {...overrides}>
-      {(formatted) => <span>{formatted}</span>}
-    </DateFormatter>
-  );
+it('should handle click', () => {
+  const onClick = jest.fn();
+  const wrapper = shallowRender({ onClick });
+  expect(wrapper).toMatchSnapshot();
+  click(wrapper.find('a'));
+  expect(onClick).toBeCalled();
+});
+
+function shallowRender(props: Partial<ReloadButton['props']> = {}) {
+  return shallow<ReloadButton>(<ReloadButton onClick={jest.fn()} {...props} />, {
+    wrappingComponent: ThemeProvider,
+    wrappingComponentProps: {
+      theme: mockedTheme,
+    },
+  });
 }

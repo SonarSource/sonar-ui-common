@@ -17,19 +17,20 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import DateFormatter from '../DateFormatter';
+import { ThemeProvider } from '../../theme';
+// eslint-disable-next-line jest/no-mocks-import
+import { mockedTheme } from '../../__mocks__/mockedTheme';
+import HelpTooltip from '../HelpTooltip';
 
-it('should render correctly', () => {
-  expect(shallowRender()).toMatchSnapshot('standard');
-  expect(shallowRender({ long: true })).toMatchSnapshot('long');
+it('should render properly', () => {
+  const wrapper = shallow(<HelpTooltip overlay={<div className="my-overlay" />} />, {
+    wrappingComponent: ThemeProvider,
+    wrappingComponentProps: {
+      theme: mockedTheme,
+    },
+  });
+  expect(wrapper).toMatchSnapshot();
 });
-
-function shallowRender(overrides: Partial<React.ComponentProps<typeof DateFormatter>> = {}) {
-  return shallow(
-    <DateFormatter date={new Date('2020-02-20T20:20:20Z')} {...overrides}>
-      {(formatted) => <span>{formatted}</span>}
-    </DateFormatter>
-  );
-}

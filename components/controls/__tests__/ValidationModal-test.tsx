@@ -19,10 +19,31 @@
  */
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { waitAndUpdate } from '../../../helpers/testUtils';
+import ValidationForm from '../ValidationForm';
 import ValidationModal from '../ValidationModal';
 
 it('should render correctly', () => {
-  const wrapper = shallow(
+  const wrapper = shallowRender();
+  expect(wrapper).toMatchSnapshot();
+  expect(wrapper.find(ValidationForm).dive().dive()).toMatchSnapshot();
+});
+
+it('should handle submit', async () => {
+  const data = { field: 'foo' };
+  const onSubmit = jest.fn().mockResolvedValue({});
+  const onClose = jest.fn();
+  const wrapper = shallowRender({ onClose, onSubmit });
+
+  wrapper.instance().handleSubmit(data);
+  expect(onSubmit).toBeCalledWith(data);
+
+  await waitAndUpdate(wrapper);
+  expect(onClose).toBeCalled();
+});
+
+function shallowRender(props: Partial<ValidationModal<{ field: string }>['props']> = {}) {
+  return shallow<ValidationModal<{ field: string }>>(
     <ValidationModal<{ field: string }>
       confirmButtonText="confirm"
       header="title"
@@ -31,7 +52,8 @@ it('should render correctly', () => {
       isInitialValid={true}
       onClose={jest.fn()}
       onSubmit={jest.fn()}
-      validate={jest.fn()}>
+      validate={jest.fn()}
+      {...props}>
       {(props) => (
         <input
           name="field"
@@ -43,5 +65,4 @@ it('should render correctly', () => {
       )}
     </ValidationModal>
   );
-  expect(wrapper).toMatchSnapshot();
-});
+}
