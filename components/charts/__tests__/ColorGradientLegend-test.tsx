@@ -17,19 +17,26 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+import { scaleLinear } from 'd3-scale';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import DateFormatter from '../DateFormatter';
+// eslint-disable-next-line jest/no-mocks-import
+import { mockedTheme } from '../../__mocks__/mockedTheme';
+import ColorGradientLegend from '../ColorGradientLegend';
 
-it('should render correctly', () => {
-  expect(shallowRender()).toMatchSnapshot('standard');
-  expect(shallowRender({ long: true })).toMatchSnapshot('long');
-});
+const { colors } = mockedTheme;
+const COLORS = [colors.green, colors.lightGreen, colors.yellow, colors.orange, colors.red];
 
-function shallowRender(overrides: Partial<React.ComponentProps<typeof DateFormatter>> = {}) {
-  return shallow(
-    <DateFormatter date={new Date('2020-02-20T20:20:20Z')} {...overrides}>
-      {(formatted) => <span>{formatted}</span>}
-    </DateFormatter>
+it('should render properly', () => {
+  const colorScale = scaleLinear<string, string>().domain([0, 25, 50, 75, 100]).range(COLORS);
+  const wrapper = shallow(
+    <ColorGradientLegend
+      className="measure-details-treemap-legend"
+      colorNA={colors.secondFontColor}
+      colorScale={colorScale}
+      height={20}
+      width={200}
+    />
   );
-}
+  expect(wrapper).toMatchSnapshot();
+});

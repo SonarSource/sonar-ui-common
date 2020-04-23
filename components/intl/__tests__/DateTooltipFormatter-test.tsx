@@ -19,12 +19,21 @@
  */
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { IntlProvider } from 'react-intl';
+import { getLocale } from '../../../helpers/init';
 import DateTooltipFormatter from '../DateTooltipFormatter';
 
 it('should render correctly', () => {
-  expect(shallowRender()).toMatchSnapshot('standard');
+  expect(shallowRender()).toMatchSnapshot();
 });
 
 function shallowRender() {
-  return shallow(<DateTooltipFormatter date={new Date('2020-02-20T20:20:20Z')} />);
+  return shallow(<DateTooltipFormatter date={new Date('2020-02-20T20:20:20Z')} />, {
+    wrappingComponent: IntlProvider,
+    wrappingComponentProps: {
+      locale: getLocale(),
+      defaultLocale: getLocale(),
+      messages: {},
+    },
+  });
 }

@@ -19,17 +19,8 @@
  */
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import DateFormatter from '../DateFormatter';
+import GenericAvatar from '../GenericAvatar';
 
-it('should render correctly', () => {
-  expect(shallowRender()).toMatchSnapshot('standard');
-  expect(shallowRender({ long: true })).toMatchSnapshot('long');
+it('should render properly', () => {
+  expect(shallow(<GenericAvatar name="foo" size={40} />)).toMatchSnapshot();
 });
-
-function shallowRender(overrides: Partial<React.ComponentProps<typeof DateFormatter>> = {}) {
-  return shallow(
-    <DateFormatter date={new Date('2020-02-20T20:20:20Z')} {...overrides}>
-      {(formatted) => <span>{formatted}</span>}
-    </DateFormatter>
-  );
-}
