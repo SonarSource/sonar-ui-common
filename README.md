@@ -31,12 +31,14 @@ import Initializer from 'sonar-ui-common/helpers/init';
 Initializer
   .setUrlContext('/sonarqube')  // [required] Provide the web context
   .setMessages({})              // [optional] Provide your l10n bundle, retrieved anyway you want (from ws call, localstorage, json file...)
-  .setLocale('en');             // [optional] Provide the language of your l10n bundle
+  .setLocale('en')              // [optional] Provide the language of your l10n bundle
+  .setReactDomContainer('#app');// [optional] Is a css selector of the DOM node where the React app is attached. Defaults to '#content'.
 ```
 
-The urlContext MUST be set before using the library or it will throw an Error.
+The `urlContext` MUST be set before using the library or it will throw an Error.
 The l10n data can be set asynchronously, i.e. `messages` and `locale` can stay `undefined` if they need to be updated later.
 The default messages contain only a default error message, and the default locale is 'en'.
+The `reactDomContainerSelector` is completely optional and defaults to `#content` for backward compatility, it won't display any warning or error if not initialized at all.
 
 ## Styled-components
 
