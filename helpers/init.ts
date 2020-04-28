@@ -22,6 +22,7 @@ import type { Messages } from './l10n';
 let urlContext: string; // Is the base path (web context) in SQ
 let messages: Messages | undefined;
 let locale: string | undefined;
+let reactDomContainerSelector: string | undefined; // CSS selector of the DOM node where the React App is attached
 
 export const IS_SSR = typeof window === 'undefined';
 export const DEFAULT_LOCALE = 'en';
@@ -44,6 +45,10 @@ export default {
     messages = newMessages;
     return this;
   },
+  setReactDomContainer(nodeSelector: string) {
+    reactDomContainerSelector = nodeSelector;
+    return this;
+  },
 };
 
 export function getMessages() {
@@ -60,6 +65,10 @@ export function getLocale() {
     return DEFAULT_LOCALE;
   }
   return locale;
+}
+
+export function getReactDomContainerSelector() {
+  return reactDomContainerSelector || '#content';
 }
 
 export function getUrlContext() {

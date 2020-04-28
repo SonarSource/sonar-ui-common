@@ -20,9 +20,10 @@
 import * as classNames from 'classnames';
 import * as React from 'react';
 import * as ReactModal from 'react-modal';
+import { getReactDomContainerSelector } from '../../helpers/init';
 import './Modal.css';
 
-ReactModal.setAppElement('#content');
+ReactModal.setAppElement(getReactDomContainerSelector());
 
 export interface ModalProps {
   children: React.ReactNode;

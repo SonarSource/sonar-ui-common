@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add new 'setReactDomContainer' init function
+
 ## 1.0.0
 
 - Update version of Typescript, Eslint and Prettier

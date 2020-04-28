@@ -23,6 +23,7 @@ import Initializer, {
   DEFAULT_MESSAGES,
   getLocale,
   getMessages,
+  getReactDomContainerSelector,
   getUrlContext,
 } from '../init';
 
@@ -34,7 +35,7 @@ beforeEach(() => {
 });
 
 afterAll(() => {
-  Initializer.setLocale('en').setMessages({}).setUrlContext('');
+  Initializer.setLocale('en').setMessages({}).setUrlContext('').setReactDomContainer(undefined);
   console.warn = originalConsoleWarn;
 });
 
@@ -57,15 +58,26 @@ it('should throw when trying to get a value without initializing first', () => {
   );
 });
 
-it('should return the locale, messages and context', () => {
+it('should return the initialized values', () => {
   const locale = 'ru';
   const messages = { any: 'Any' };
   const urlContext = '/context';
-  Initializer.setLocale(locale).setMessages(messages).setUrlContext(urlContext);
+  const reactDomContainerSelector = '#custom';
+  Initializer.setLocale(locale)
+    .setMessages(messages)
+    .setUrlContext(urlContext)
+    .setReactDomContainer(reactDomContainerSelector);
 
   expect(getLocale()).toBe(locale);
   expect(getMessages()).toBe(messages);
   expect(getUrlContext()).toBe(urlContext);
+  expect(getReactDomContainerSelector()).toBe(reactDomContainerSelector);
+  expect(console.warn).not.toBeCalled();
+});
 
+it('should have a default react dom container selector without warning', () => {
+  Initializer.setReactDomContainer(undefined);
+
+  expect(getReactDomContainerSelector()).toBe('#content');
   expect(console.warn).not.toBeCalled();
 });
