@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.0.0
+
 - Update version of Typescript, Eslint and Prettier
 
 #### Breaking changes
