@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.0.1
+
 - Add new 'setReactDomContainer' init function
 
 ## 1.0.0
