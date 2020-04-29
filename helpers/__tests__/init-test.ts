@@ -35,12 +35,14 @@ beforeEach(() => {
 });
 
 afterAll(() => {
-  Initializer.setLocale('en').setMessages({}).setUrlContext('').setReactDomContainer(undefined);
+  Initializer.setLocale('en').setMessages({}).setUrlContext('');
+  // @ts-ignore: initialize everything to undefined, not possible by respecting types
+  Initializer.setReactDomContainer(undefined);
   console.warn = originalConsoleWarn;
 });
 
 it('should throw when trying to get a value without initializing first', () => {
-  // @ts-ignore: initialize everything to undefined, not possible by respecting types
+  // @ts-ignore: initialize react dom container to undefined, not possible by respecting types
   Initializer.setLocale(undefined).setMessages(undefined).setUrlContext(undefined);
 
   expect(getLocale()).toBe(DEFAULT_LOCALE);
@@ -76,6 +78,7 @@ it('should return the initialized values', () => {
 });
 
 it('should have a default react dom container selector without warning', () => {
+  // @ts-ignore: initialize react dom container to undefined, not possible by respecting types
   Initializer.setReactDomContainer(undefined);
 
   expect(getReactDomContainerSelector()).toBe('#content');
