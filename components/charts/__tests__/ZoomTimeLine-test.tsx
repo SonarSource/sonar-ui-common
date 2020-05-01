@@ -20,8 +20,7 @@
 
 import { shallow } from 'enzyme';
 import * as React from 'react';
-// eslint-disable-next-line jest/no-mocks-import
-import { mockedTheme } from '../../__mocks__/mockedTheme';
+import testTheme from '../../../config/jest/testTheme';
 import ZoomTimeLine from '../ZoomTimeLine';
 
 const series = [
@@ -59,7 +58,7 @@ it('should render a leak period', () => {
     shallowRender({ leakPeriodDate: new Date('2020-01-01') })
       .find('ContextConsumer')
       .dive()
-      .find(`rect[fill="${mockedTheme.colors.leakPrimaryColor}"]`)
+      .find(`rect[fill="${testTheme.colors.leakPrimaryColor}"]`)
       .exists()
   ).toBe(true);
 });

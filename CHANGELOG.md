@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Remove the mocked theme from the bundled package, `SetupTestEnvironment.js` files need to be updated in projects that use SUC (see the readme).
+
 ## 1.0.1
 
 - Add new 'setReactDomContainer' init function

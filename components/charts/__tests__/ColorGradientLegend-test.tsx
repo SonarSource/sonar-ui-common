@@ -20,11 +20,10 @@
 import { scaleLinear } from 'd3-scale';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-// eslint-disable-next-line jest/no-mocks-import
-import { mockedTheme } from '../../__mocks__/mockedTheme';
+import testTheme from '../../../config/jest/testTheme';
 import ColorGradientLegend from '../ColorGradientLegend';
 
-const { colors } = mockedTheme;
+const { colors } = testTheme;
 const COLORS = [colors.green, colors.lightGreen, colors.yellow, colors.orange, colors.red];
 
 it('should render properly', () => {

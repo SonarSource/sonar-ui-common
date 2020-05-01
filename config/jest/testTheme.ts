@@ -17,11 +17,9 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-
-// IMPORTANT: any change in this file requires restart of the dev server
 const grid = 8;
 
-export const mockedTheme = {
+export default {
   colors: {
     blue: '#4b9fd5',
     veryLightBlue: '#f2faff',

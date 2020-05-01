@@ -26,9 +26,6 @@ import {
   withTheme,
 } from 'emotion-theming';
 import * as React from 'react';
-// mockedTheme is in fact the default theme
-// eslint-disable-next-line jest/no-mocks-import
-import { mockedTheme } from './__mocks__/mockedTheme';
 
 export interface Theme {
   colors: T.Dict<string>;
@@ -44,14 +41,6 @@ export interface ThemedProps {
 }
 
 const ThemeContext = EmotionThemeContext as React.Context<Theme>;
-
-// Hack : override the default value of the context used for theme by emotion
-// As we can't pass a default value when it is constructed
-// This allows outside tests to get the mocked theme value without specifiying a theme provider
-if (process.env.NODE_ENV === 'test') {
-  (ThemeContext as any)['_currentValue'] = mockedTheme;
-  (ThemeContext as any)['_currentValue2'] = mockedTheme;
-}
 
 export const styled = emotionStyled as CreateStyled<Theme>;
 export const ThemeConsumer = ThemeContext.Consumer;
