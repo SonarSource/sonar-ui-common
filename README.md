@@ -8,24 +8,15 @@ It is available on the npm registry: https://www.npmjs.com/package/sonar-ui-comm
 
 There is no index file so you have to import components with their path like this :
 
-```Ts
+```ts
 import BugIcon from 'sonar-ui-common/components/icons/BugIcon';
 ```
 
-Ambients types are available in the `types.d.ts`, to benefit from them in your project you include it in your `tsconfig.json` file, example:
-
-```json
-{
-  "compilerOptions": {
-    /*...*/
-  },
-  "include": ["./src/main/js/**/*", "node_modules/sonar-ui-common/types.d.ts"]
-}
-```
+### Initialize it
 
 To use the library, it should first be initialized by these methods:
 
-```Ts
+```ts
 import Initializer from 'sonar-ui-common/helpers/init';
 
 Initializer
@@ -39,6 +30,37 @@ The `urlContext` MUST be set before using the library or it will throw an Error.
 The l10n data can be set asynchronously, i.e. `messages` and `locale` can stay `undefined` if they need to be updated later.
 The default messages contain only a default error message, and the default locale is 'en'.
 The `reactDomContainerSelector` is completely optional and defaults to `#content` for backward compatility, it won't display any warning or error if not initialized at all.
+
+### Ambient types
+
+Ambients types are available in the `types.d.ts`, to benefit from them in your project you include it in your `tsconfig.json` file, example:
+
+```json
+{
+  "compilerOptions": {
+    /*...*/
+  },
+  "include": ["./src/main/js/**/*", "node_modules/sonar-ui-common/types.d.ts"]
+}
+```
+
+### Run test that use Sonar-ui-common components
+
+To ease testing your components that depends on Sonar-ui-common components you should initialize Sonar-ui-common
+in your test runner. Create a `SetupSUC.ts` file that you add in the `setupFiles` config of jest, with a similar content:
+
+```ts
+import ThemeContext from 'sonar-ui-common/components/theme';
+import Initializer, { DEFAULT_LOCALE } from 'sonar-ui-common/helpers/init';
+import theme from '../../src/app/theme';
+
+Initializer.setLocale(DEFAULT_LOCALE).setMessages({}).setUrlContext('');
+
+// Hack : override the default value of the context used for theme by emotion
+// This allows tests to get the theme value without specifiying a theme provider
+ThemeContext['_currentValue'] = theme;
+ThemeContext['_currentValue2'] = theme;
+```
 
 ## Styled-components
 

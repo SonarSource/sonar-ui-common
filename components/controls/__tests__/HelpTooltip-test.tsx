@@ -20,16 +20,15 @@
 
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import testTheme from '../../../config/jest/testTheme';
 import { ThemeProvider } from '../../theme';
-// eslint-disable-next-line jest/no-mocks-import
-import { mockedTheme } from '../../__mocks__/mockedTheme';
 import HelpTooltip from '../HelpTooltip';
 
 it('should render properly', () => {
   const wrapper = shallow(<HelpTooltip overlay={<div className="my-overlay" />} />, {
     wrappingComponent: ThemeProvider,
     wrappingComponentProps: {
-      theme: mockedTheme,
+      theme: testTheme,
     },
   });
   expect(wrapper).toMatchSnapshot();

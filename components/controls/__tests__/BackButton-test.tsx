@@ -19,10 +19,9 @@
  */
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import testTheme from '../../../config/jest/testTheme';
 import { click } from '../../../helpers/testUtils';
 import { ThemeProvider } from '../../theme';
-// eslint-disable-next-line jest/no-mocks-import
-import { mockedTheme } from '../../__mocks__/mockedTheme';
 import BackButton from '../BackButton';
 
 it('should render properly', () => {
@@ -43,7 +42,7 @@ function shallowRender(props: Partial<BackButton['props']> = {}) {
   return shallow<BackButton>(<BackButton onClick={jest.fn()} {...props} />, {
     wrappingComponent: ThemeProvider,
     wrappingComponentProps: {
-      theme: mockedTheme,
+      theme: testTheme,
     },
   });
 }

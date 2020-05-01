@@ -20,9 +20,7 @@
 import { shallow } from 'enzyme';
 import { matchers } from 'jest-emotion';
 import * as React from 'react';
-// mockedTheme is in fact the default theme
-// eslint-disable-next-line jest/no-mocks-import
-import { mockedTheme } from '../../__mocks__/mockedTheme';
+import testTheme from '../../../config/jest/testTheme';
 import GlobalMessages, { GlobalMessagesProps } from '../GlobalMessages';
 
 expect.extend(matchers);
@@ -42,12 +40,12 @@ it('should render with correct css', () => {
   expect(wrapper.render()).toMatchSnapshot();
   expect(wrapper.find('GlobalMessage').first().render()).toHaveStyleRule(
     'background-color',
-    mockedTheme.colors.red
+    testTheme.colors.red
   );
 
   expect(wrapper.find('GlobalMessage').last().render()).toHaveStyleRule(
     'background-color',
-    mockedTheme.colors.green
+    testTheme.colors.green
   );
 });
 
