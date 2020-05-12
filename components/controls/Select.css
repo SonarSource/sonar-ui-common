@@ -339,7 +339,8 @@
 
 .Select-option.is-disabled {
   cursor: default;
-  opacity: 0.5;
+  opacity: 0.4;
+  font-style: italic;
 }
 
 .Select-noresults {
