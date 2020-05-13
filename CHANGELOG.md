@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- SC-737 Improve disabled select option style
+
 ## 1.0.2
 
 - Remove the mocked theme from the bundled package, `SetupTestEnvironment.js` files need to be updated in projects that use SUC (see the readme).
