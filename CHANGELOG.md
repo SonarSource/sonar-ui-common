@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.0.3
+
 - SC-737 Improve disabled select option style
 
 ## 1.0.2
