@@ -28,7 +28,7 @@ import { ThemeConsumer } from '../theme';
 import './LineChart.css';
 import './ZoomTimeLine.css';
 
-export interface Props {
+export interface ZoomTimeLineProps {
   basisCurve?: boolean;
   endDate?: Date;
   height: number;
@@ -52,13 +52,13 @@ type XScale = ScaleTime<number, number>;
 // TODO it should be `ScaleLinear<number, number> | ScalePoint<number> | ScalePoint<string>`, but it's super hard to make it work :'(
 type YScale = any;
 
-export default class ZoomTimeLine extends React.PureComponent<Props, State> {
+export default class ZoomTimeLine extends React.PureComponent<ZoomTimeLineProps, State> {
   static defaultProps = {
     padding: [0, 0, 18, 0],
     showXTicks: true,
   };
 
-  constructor(props: Props) {
+  constructor(props: ZoomTimeLineProps) {
     super(props);
     this.state = {};
     this.handleZoomUpdate = throttle(this.handleZoomUpdate, 40);

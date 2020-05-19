@@ -23,7 +23,7 @@ import { translate, translateWithParameters } from '../../helpers/l10n';
 import { formatMeasure } from '../../helpers/measures';
 import DeferredSpinner from '../ui/DeferredSpinner';
 
-export interface Props {
+export interface ListFooterProps {
   count: number;
   className?: string;
   loading?: boolean;
@@ -34,7 +34,7 @@ export interface Props {
   total?: number;
 }
 
-export default function ListFooter({ ready = true, ...props }: Props) {
+export default function ListFooter({ ready = true, ...props }: ListFooterProps) {
   const handleLoadMore = (event: React.SyntheticEvent<HTMLElement>) => {
     event.preventDefault();
     event.currentTarget.blur();

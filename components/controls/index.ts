@@ -38,7 +38,11 @@ export * from './IdentityProviderLink';
 export * from './InputValidationField';
 export * from './ListFooter';
 export * from './Modal';
-export * from './ModalButton';
+export {
+  ChildrenProps as ModalButtonChildrenProps,
+  ModalButtonProps,
+  ModalProps as ModalButtonModalProps,
+} from './ModalButton';
 export * from './ModalValidationField';
 export * from './OutsideClickHandler';
 export * from './Radio';
@@ -52,7 +56,7 @@ export * from './Select';
 export * from './SelectList';
 export * from './SelectListListContainer';
 export * from './SelectListListElement';
-export * from './SimpleModal';
+export { ChildrenProps as SimpleModalChildrenProps, default } from './SimpleModal';
 export * from './Tabs';
 export * from './Toggle';
 export * from './Toggler';

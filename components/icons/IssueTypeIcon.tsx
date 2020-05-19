@@ -21,11 +21,11 @@ import * as React from 'react';
 import { IconProps } from './Icon';
 import IssueIcon from './IssueIcon';
 
-export interface Props extends IconProps {
+export interface IssueTypeIconProps extends IconProps {
   query: string;
 }
 
-export default function IssueTypeIcon({ query, ...iconProps }: Props) {
+export default function IssueTypeIcon({ query, ...iconProps }: IssueTypeIconProps) {
   let type: T.IssueType;
 
   switch (query.toLowerCase()) {

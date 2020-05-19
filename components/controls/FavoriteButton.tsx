@@ -24,14 +24,14 @@ import FavoriteIcon from '../icons/FavoriteIcon';
 import { ButtonLink } from './buttons';
 import Tooltip from './Tooltip';
 
-export interface Props {
+export interface FavoriteButtonProps {
   className?: string;
   favorite: boolean;
   qualifier: string;
   toggleFavorite: () => void;
 }
 
-export default class FavoriteButton extends React.PureComponent<Props> {
+export default class FavoriteButton extends React.PureComponent<FavoriteButtonProps> {
   render() {
     const { className, favorite, qualifier, toggleFavorite } = this.props;
     const tooltip = favorite

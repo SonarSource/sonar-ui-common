@@ -22,13 +22,13 @@ import { inRange } from 'lodash';
 import * as React from 'react';
 import './SizeRating.css';
 
-export interface Props {
+export interface SizeRatingProps {
   muted?: boolean;
   small?: boolean;
   value: number | null | undefined;
 }
 
-export default function SizeRating({ small = false, muted = false, value }: Props) {
+export default function SizeRating({ small = false, muted = false, value }: SizeRatingProps) {
   if (value == null) {
     return <div className="size-rating size-rating-muted">&nbsp;</div>;
   }

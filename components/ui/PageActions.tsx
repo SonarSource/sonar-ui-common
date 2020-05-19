@@ -21,13 +21,13 @@ import * as React from 'react';
 import { translate } from '../../helpers/l10n';
 import FilesCounter from './FilesCounter';
 
-export interface Props {
+export interface PageActionsProps {
   current?: number;
   showShortcuts?: boolean;
   total?: number;
 }
 
-export default function PageActions(props: Props) {
+export default function PageActions(props: PageActionsProps) {
   const { current, showShortcuts, total = 0 } = props;
 
   return (

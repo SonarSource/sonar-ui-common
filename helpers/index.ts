@@ -35,7 +35,11 @@ export * from './ratings';
 export * from './request';
 export * from './scrolling';
 export * from './search';
-export * from './storage';
+export {
+  get as getFromLocalStorage,
+  remove as removeFromLocalStorage,
+  save as saveInLocalStorage,
+} from './storage';
 export * from './strings';
 export * from './testUtils';
 export * from './urls';

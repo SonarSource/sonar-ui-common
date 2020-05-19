@@ -28,7 +28,7 @@ import { ThemeConsumer } from '../theme';
 import './AdvancedTimeline.css';
 import './LineChart.css';
 
-export interface Props {
+export interface AdvancedTimelineProps {
   basisCurve?: boolean;
   endDate?: Date;
   disableZoom?: boolean;
@@ -66,7 +66,7 @@ interface State {
   xScale: XScale;
 }
 
-export default class AdvancedTimeline extends React.PureComponent<Props, State> {
+export default class AdvancedTimeline extends React.PureComponent<AdvancedTimelineProps, State> {
   static defaultProps = {
     eventSize: 8,
     maxYTicksCount: 4,
@@ -74,7 +74,7 @@ export default class AdvancedTimeline extends React.PureComponent<Props, State> 
     zoomSpeed: 1,
   };
 
-  constructor(props: Props) {
+  constructor(props: AdvancedTimelineProps) {
     super(props);
     const scales = this.getScales(props);
     const selectedDatePos = this.getSelectedDatePos(scales.xScale, props.selectedDate);
@@ -83,7 +83,7 @@ export default class AdvancedTimeline extends React.PureComponent<Props, State> 
     this.handleZoomUpdate = throttle(this.handleZoomUpdate, 40);
   }
 
-  componentWillReceiveProps(nextProps: Props) {
+  componentWillReceiveProps(nextProps: AdvancedTimelineProps) {
     let scales;
     let selectedDatePos;
     if (
@@ -132,7 +132,11 @@ export default class AdvancedTimeline extends React.PureComponent<Props, State> 
     return scalePoint().domain(['ERROR', 'WARN', 'OK']).range([availableHeight, 0]);
   };
 
-  getYScale = (props: Props, availableHeight: number, flatData: T.Chart.Point[]): YScale => {
+  getYScale = (
+    props: AdvancedTimelineProps,
+    availableHeight: number,
+    flatData: T.Chart.Point[]
+  ): YScale => {
     if (props.metricType === 'RATING') {
       return this.getRatingScale(availableHeight);
     } else if (props.metricType === 'LEVEL') {
@@ -146,7 +150,7 @@ export default class AdvancedTimeline extends React.PureComponent<Props, State> 
   };
 
   getXScale = (
-    { startDate, endDate }: Props,
+    { startDate, endDate }: AdvancedTimelineProps,
     availableWidth: number,
     flatData: T.Chart.Point[]
   ) => {
@@ -163,7 +167,7 @@ export default class AdvancedTimeline extends React.PureComponent<Props, State> 
     };
   };
 
-  getScales = (props: Props) => {
+  getScales = (props: AdvancedTimelineProps) => {
     const availableWidth = props.width - props.padding[1] - props.padding[3];
     const availableHeight = props.height - props.padding[0] - props.padding[2];
     const flatData = flatten(props.series.map((serie) => serie.data));

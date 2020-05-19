@@ -23,14 +23,14 @@ import { translate } from '../../helpers/l10n';
 import { ClearButton } from '../controls/buttons';
 import './NewsBox.css';
 
-export interface Props {
+export interface NewsBoxProps {
   children: React.ReactNode;
   className?: string;
   onClose: () => void;
   title: string;
 }
 
-export default function NewsBox({ children, className, onClose, title }: Props) {
+export default function NewsBox({ children, className, onClose, title }: NewsBoxProps) {
   return (
     <div className={classNames('news-box', className)} role="alert">
       <div className="news-box-header">

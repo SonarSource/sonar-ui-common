@@ -28,7 +28,7 @@ export interface ModalProps {
   onClose: () => void;
 }
 
-export interface Props {
+export interface ModalButtonProps {
   children: (props: ChildrenProps) => React.ReactNode;
   modal: (props: ModalProps) => React.ReactNode;
 }
@@ -37,7 +37,7 @@ interface State {
   modal: boolean;
 }
 
-export default class ModalButton extends React.PureComponent<Props, State> {
+export default class ModalButton extends React.PureComponent<ModalButtonProps, State> {
   mounted = false;
   state: State = { modal: false };
 
