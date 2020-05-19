@@ -24,6 +24,7 @@ import { area, curveBasis, line as d3Line } from 'd3-shape';
 import { flatten, isEqual, sortBy, throttle, uniq } from 'lodash';
 import * as React from 'react';
 import { isDefined } from '../../helpers/types';
+import { ChartPoint, ChartSerie } from '../../types/types';
 import { ThemeConsumer } from '../theme';
 import './AdvancedTimeline.css';
 import './LineChart.css';
@@ -43,7 +44,7 @@ export interface AdvancedTimelineProps {
   metricType: string;
   padding: number[];
   selectedDate?: Date;
-  series: T.Chart.Serie[];
+  series: ChartSerie[];
   showAreas?: boolean;
   startDate?: Date;
   updateSelectedDate?: (selectedDate?: Date) => void;
@@ -135,7 +136,7 @@ export default class AdvancedTimeline extends React.PureComponent<AdvancedTimeli
   getYScale = (
     props: AdvancedTimelineProps,
     availableHeight: number,
-    flatData: T.Chart.Point[]
+    flatData: ChartPoint[]
   ): YScale => {
     if (props.metricType === 'RATING') {
       return this.getRatingScale(availableHeight);
@@ -152,7 +153,7 @@ export default class AdvancedTimeline extends React.PureComponent<AdvancedTimeli
   getXScale = (
     { startDate, endDate }: AdvancedTimelineProps,
     availableWidth: number,
-    flatData: T.Chart.Point[]
+    flatData: ChartPoint[]
   ) => {
     const dateRange = extent(flatData, (d) => d.x) as [Date, Date];
     const start = startDate && startDate > dateRange[0] ? startDate : dateRange[0];
@@ -256,7 +257,7 @@ export default class AdvancedTimeline extends React.PureComponent<AdvancedTimeli
       if (state.mouseOver && firstSerie) {
         const { updateTooltip } = this.props;
         const date = state.xScale.invert(xPos);
-        const bisectX = bisector<T.Chart.Point, Date>((d) => d.x).right;
+        const bisectX = bisector<ChartPoint, Date>((d) => d.x).right;
         let idx = bisectX(firstSerie.data, date);
         if (idx >= 0) {
           const previousPoint = firstSerie.data[idx - 1];
@@ -384,7 +385,7 @@ export default class AdvancedTimeline extends React.PureComponent<AdvancedTimeli
   };
 
   renderLines = () => {
-    const lineGenerator = d3Line<T.Chart.Point>()
+    const lineGenerator = d3Line<ChartPoint>()
       .defined((d) => Boolean(d.y || d.y === 0))
       .x((d) => this.state.xScale(d.x))
       .y((d) => this.state.yScale(d.y));
@@ -437,7 +438,7 @@ export default class AdvancedTimeline extends React.PureComponent<AdvancedTimeli
   };
 
   renderAreas = () => {
-    const areaGenerator = area<T.Chart.Point>()
+    const areaGenerator = area<ChartPoint>()
       .defined((d) => Boolean(d.y || d.y === 0))
       .x((d) => this.state.xScale(d.x))
       .y1((d) => this.state.yScale(d.y))

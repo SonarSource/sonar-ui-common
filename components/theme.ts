@@ -26,14 +26,15 @@ import {
   withTheme,
 } from 'emotion-theming';
 import * as React from 'react';
+import { Dict } from '../types/types';
 
 export interface Theme {
-  colors: T.Dict<string>;
-  sizes: T.Dict<string>;
-  rawSizes: T.Dict<number>;
-  fonts: T.Dict<string>;
-  zIndexes: T.Dict<string>;
-  others: T.Dict<string>;
+  colors: Dict<string>;
+  sizes: Dict<string>;
+  rawSizes: Dict<number>;
+  fonts: Dict<string>;
+  zIndexes: Dict<string>;
+  others: Dict<string>;
 }
 
 export interface ThemedProps {

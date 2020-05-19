@@ -17,6 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+import { Dict } from '../types/types';
 import { getCurrentLocale, translate, translateWithParameters } from './l10n';
 
 const HOURS_IN_DAY = 8;
@@ -89,7 +90,7 @@ function useFormatter(
 }
 
 function getFormatter(type: string): Formatter {
-  const FORMATTERS: T.Dict<Formatter> = {
+  const FORMATTERS: Dict<Formatter> = {
     INT: intFormatter,
     SHORT_INT: shortIntFormatter,
     FLOAT: floatFormatter,

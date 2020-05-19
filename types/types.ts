@@ -17,27 +17,24 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-declare namespace T {
-  export type Dict<T> = { [key: string]: T };
-  export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
-  // Type ordered alphabetically to prevent merge conflicts
+export type Dict<T> = { [key: string]: T };
+export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
-  export type IssueType = 'BUG' | 'VULNERABILITY' | 'CODE_SMELL' | 'SECURITY_HOTSPOT';
+// Type ordered alphabetically to prevent merge conflicts
 
-  export type RawQuery = T.Dict<any>;
+export type IssueType = 'BUG' | 'VULNERABILITY' | 'CODE_SMELL' | 'SECURITY_HOTSPOT';
 
-  export namespace Chart {
-    export interface Point {
-      x: Date;
-      y: number | string | undefined;
-    }
+export type RawQuery = Dict<any>;
 
-    export interface Serie {
-      data: Point[];
-      name: string;
-      translatedName: string;
-      type: string;
-    }
-  }
+export interface ChartPoint {
+  x: Date;
+  y: number | string | undefined;
+}
+
+export interface ChartSerie {
+  data: ChartPoint[];
+  name: string;
+  translatedName: string;
+  type: string;
 }

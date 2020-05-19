@@ -17,9 +17,10 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+import { Dict } from '../types/types';
 import { getLocale, getMessages } from './init';
 
-export type Messages = T.Dict<string>;
+export type Messages = Dict<string>;
 
 export function translate(...keys: string[]): string {
   const messageKey = keys.join('.');

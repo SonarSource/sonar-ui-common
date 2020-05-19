@@ -19,6 +19,7 @@
  */
 import { isNil, omitBy } from 'lodash';
 import { stringify } from 'querystring';
+import { Dict } from '../types/types';
 import { getCookie } from './cookies';
 import { getUrlContext } from './init';
 import { translate } from './l10n';
@@ -42,14 +43,14 @@ export function getCSRFTokenValue(): string {
 /**
  * Return an object containing a special http request header used to prevent CSRF attacks.
  */
-export function getCSRFToken(): T.Dict<string> {
+export function getCSRFToken(): Dict<string> {
   // Fetch API in Edge doesn't work with empty header,
   // so we ensure non-empty value
   const value = getCSRFTokenValue();
   return value ? { [getCSRFTokenName()]: value } : {};
 }
 
-export type RequestData = T.Dict<any>;
+export type RequestData = Dict<any>;
 
 export function omitNil(obj: RequestData): RequestData {
   return omitBy(obj, isNil);

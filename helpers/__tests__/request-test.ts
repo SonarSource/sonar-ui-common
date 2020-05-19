@@ -299,7 +299,7 @@ describe('checkStatus', () => {
   });
 });
 
-function mockResponse(headers: T.Dict<string> = {}, status = 200, value?: any): Response {
+function mockResponse(headers: Dict<string> = {}, status = 200, value?: any): Response {
   const body = value && value instanceof Object ? JSON.stringify(value) : value;
   const response = new Response(body, { headers, status });
   response.json = jest.fn().mockResolvedValue(value);

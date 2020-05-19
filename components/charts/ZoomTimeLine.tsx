@@ -24,6 +24,7 @@ import { area, curveBasis, line as d3Line } from 'd3-shape';
 import { flatten, sortBy, throttle } from 'lodash';
 import * as React from 'react';
 import Draggable, { DraggableBounds, DraggableCore, DraggableData } from 'react-draggable';
+import { ChartPoint, ChartSerie } from '../../types/types';
 import { ThemeConsumer } from '../theme';
 import './LineChart.css';
 import './ZoomTimeLine.css';
@@ -35,7 +36,7 @@ export interface ZoomTimeLineProps {
   leakPeriodDate?: Date;
   metricType: string;
   padding: number[];
-  series: T.Chart.Serie[];
+  series: ChartSerie[];
   showAreas?: boolean;
   showXTicks: boolean;
   startDate?: Date;
@@ -72,7 +73,7 @@ export default class ZoomTimeLine extends React.PureComponent<ZoomTimeLineProps,
     return scalePoint().domain(['ERROR', 'WARN', 'OK']).range([availableHeight, 0]);
   };
 
-  getYScale = (availableHeight: number, flatData: T.Chart.Point[]): YScale => {
+  getYScale = (availableHeight: number, flatData: ChartPoint[]): YScale => {
     if (this.props.metricType === 'RATING') {
       return this.getRatingScale(availableHeight);
     } else if (this.props.metricType === 'LEVEL') {
@@ -85,7 +86,7 @@ export default class ZoomTimeLine extends React.PureComponent<ZoomTimeLineProps,
     }
   };
 
-  getXScale = (availableWidth: number, flatData: T.Chart.Point[]): XScale => {
+  getXScale = (availableWidth: number, flatData: ChartPoint[]): XScale => {
     return scaleTime()
       .domain(extent(flatData, (d) => d.x) as [Date, Date])
       .range([0, availableWidth])
@@ -232,7 +233,7 @@ export default class ZoomTimeLine extends React.PureComponent<ZoomTimeLineProps,
   };
 
   renderLines = (xScale: XScale, yScale: YScale) => {
-    const lineGenerator = d3Line<T.Chart.Point>()
+    const lineGenerator = d3Line<ChartPoint>()
       .defined((d) => Boolean(d.y || d.y === 0))
       .x((d) => xScale(d.x))
       .y((d) => yScale(d.y));
@@ -253,7 +254,7 @@ export default class ZoomTimeLine extends React.PureComponent<ZoomTimeLineProps,
   };
 
   renderAreas = (xScale: XScale, yScale: YScale) => {
-    const areaGenerator = area<T.Chart.Point>()
+    const areaGenerator = area<ChartPoint>()
       .defined((d) => Boolean(d.y || d.y === 0))
       .x((d) => xScale(d.x))
       .y1((d) => yScale(d.y))

@@ -18,6 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import * as React from 'react';
+import { Dict } from '../../types/types';
 import { IconProps, ThemedIcon } from './Icon';
 
 interface Props {
@@ -25,7 +26,7 @@ interface Props {
   severity: string | null | undefined;
 }
 
-const severityIcons: T.Dict<(props: IconProps) => React.ReactElement> = {
+const severityIcons: Dict<(props: IconProps) => React.ReactElement> = {
   blocker: BlockerSeverityIcon,
   critical: CriticalSeverityIcon,
   major: MajorSeverityIcon,

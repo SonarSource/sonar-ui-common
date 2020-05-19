@@ -28,6 +28,6 @@ it('should render correctly', () => {
   expect(shallowRender('SECURITY_HOTSPOT')).toMatchSnapshot();
 });
 
-function shallowRender(type: T.IssueType) {
+function shallowRender(type: IssueType) {
   return shallow(<IssueIcon type={type} />);
 }

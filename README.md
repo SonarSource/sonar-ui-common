@@ -31,19 +31,6 @@ The l10n data can be set asynchronously, i.e. `messages` and `locale` can stay `
 The default messages contain only a default error message, and the default locale is 'en'.
 The `reactDomContainerSelector` is completely optional and defaults to `#content` for backward compatility, it won't display any warning or error if not initialized at all.
 
-### Ambient types
-
-Ambients types are available in the `types.d.ts`, to benefit from them in your project you include it in your `tsconfig.json` file, example:
-
-```json
-{
-  "compilerOptions": {
-    /*...*/
-  },
-  "include": ["./src/main/js/**/*", "node_modules/sonar-ui-common/types.d.ts"]
-}
-```
-
 ### Run test that use Sonar-ui-common components
 
 To ease testing your components that depends on Sonar-ui-common components you should initialize Sonar-ui-common
