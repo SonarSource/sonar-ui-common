@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- SONAR-12920 Deprecate the no footer CSS class
+
 ## 1.0.3
 
 - SC-737 Improve disabled select option style
