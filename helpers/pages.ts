@@ -30,6 +30,8 @@ export function addWhitePageClass() {
 }
 
 export function addNoFooterPageClass() {
+  /* eslint-disable-next-line no-console */
+  console.warn('DEPRECATED: addNoFooterPageClass() was deprecated.');
   toggleBodyClass(CLASS_NO_FOOTER_PAGE, true);
 }
 
@@ -42,6 +44,8 @@ export function removeWhitePageClass() {
 }
 
 export function removeNoFooterPageClass() {
+  /* eslint-disable-next-line no-console */
+  console.warn('DEPRECATED: removeNoFooterPageClass() was deprecated.');
   toggleBodyClass(CLASS_NO_FOOTER_PAGE, false);
 }
 
