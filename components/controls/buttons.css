@@ -276,9 +276,13 @@
   background-color: currentColor;
 }
 
-.button-icon:hover svg,
-.button-icon:focus svg {
+.button-icon:not(.disabled):hover svg,
+.button-icon:not(.disabled):focus svg {
   color: #fff;
+}
+
+.button.button-icon.disabled {
+  background: transparent !important;
 }
 
 /* #endregion */
