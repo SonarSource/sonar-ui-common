@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.0.4
+
 - SONAR-12920 Deprecate the no footer CSS class
 - Don't show a gray background on icon buttons
 
