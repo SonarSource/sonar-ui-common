@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- SONAR-13479 Add a Chevrons icon
+
 ## 1.0.4
 
 - SONAR-12920 Deprecate the no footer CSS class
