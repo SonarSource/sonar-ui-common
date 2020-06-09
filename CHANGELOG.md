@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.0.5
+
 - SONAR-13479 Add a Chevrons icon
 
 ## 1.0.4
