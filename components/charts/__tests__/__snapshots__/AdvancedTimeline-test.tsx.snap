@@ -189,22 +189,104 @@ exports[`should render correctly 1`] = `
     </g>
     <g
       transform="translate(0, 20)"
-    />
+    >
+      <text
+        className="line-chart-tick"
+        key="0"
+        textAnchor="end"
+        transform="rotate(-35, 1.875, 40)"
+        x={1.875}
+        y={40}
+      >
+        October
+      </text>
+      <text
+        className="line-chart-tick"
+        key="1"
+        textAnchor="end"
+        transform="rotate(-35, 5.625, 40)"
+        x={5.625}
+        y={40}
+      >
+        06 AM
+      </text>
+      <text
+        className="line-chart-tick"
+        key="2"
+        textAnchor="end"
+        transform="rotate(-35, 9.375, 40)"
+        x={9.375}
+        y={40}
+      >
+        12 PM
+      </text>
+      <text
+        className="line-chart-tick"
+        key="3"
+        textAnchor="end"
+        transform="rotate(-35, 13.125, 40)"
+        x={13.125}
+        y={40}
+      >
+        06 PM
+      </text>
+      <text
+        className="line-chart-tick"
+        key="4"
+        textAnchor="end"
+        transform="rotate(-35, 16.875, 40)"
+        x={16.875}
+        y={40}
+      >
+        Wed 02
+      </text>
+      <text
+        className="line-chart-tick"
+        key="5"
+        textAnchor="end"
+        transform="rotate(-35, 20.625, 40)"
+        x={20.625}
+        y={40}
+      >
+        06 AM
+      </text>
+      <text
+        className="line-chart-tick"
+        key="6"
+        textAnchor="end"
+        transform="rotate(-35, 24.375, 40)"
+        x={24.375}
+        y={40}
+      >
+        12 PM
+      </text>
+      <text
+        className="line-chart-tick"
+        key="7"
+        textAnchor="end"
+        transform="rotate(-35, 28.125, 40)"
+        x={28.125}
+        y={40}
+      >
+        06 PM
+      </text>
+    </g>
     <g>
       <path
         className="line-chart-path line-chart-path-0"
-        d="MNaN,26.66666666666667LNaN,13.333333333333336"
+        d="M0,26.66666666666667L15,13.333333333333336"
         key="test-1"
       />
       <path
         className="line-chart-path line-chart-path-1"
-        d="MNaN,0Z"
+        d="M30,0Z"
         key="test-2"
       />
     </g>
     <g>
       <circle
         className="line-chart-dot line-chart-dot-1"
+        cx={30}
         cy={0}
         key="test-20"
         r="2"

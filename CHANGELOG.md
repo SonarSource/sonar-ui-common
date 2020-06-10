@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- SONAR-13391 Fix Activity Chart
+
 ## 1.0.5
 
 - SONAR-13479 Add a Chevrons icon
@@ -28,10 +30,10 @@
 - Update version of Typescript, Eslint and Prettier
 
 #### Breaking changes
+
 - Drop legacy lazyLoad function
 - SC-1951 Add sonar-ui-common initialization function for l10n messages and url context
   - Drop all the network and caching functions from `helpers/l10n.ts`
-
 
 ## 0.0.58
 
@@ -40,7 +42,7 @@
 
 ## 0.0.57
 
-- Fix for update-center's component that was failing in the context of gatsby 
+- Fix for update-center's component that was failing in the context of gatsby
 
 ## 0.0.56
 
