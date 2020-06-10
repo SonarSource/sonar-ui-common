@@ -359,7 +359,12 @@ export default class AdvancedTimeline extends React.PureComponent<Props, State> 
     const { xScale, yScale } = this.state;
     const yRange = yScale.range();
     const xRange = xScale.range();
-    const leakWidth = xRange[xRange.length - 1] - xScale(leakPeriodDate);
+
+    // truncate leak to start of chart to prevent weird visual artifacts when too far left
+    // (occurs when leak starts a long time before first analysis)
+    const leakStart = Math.max(xScale(leakPeriodDate), xRange[0]);
+
+    const leakWidth = xRange[xRange.length - 1] - leakStart;
     if (leakWidth < 0) {
       return null;
     }
@@ -371,7 +376,7 @@ export default class AdvancedTimeline extends React.PureComponent<Props, State> 
             fill={theme.colors.leakPrimaryColor}
             height={yRange[0] - yRange[yRange.length - 1]}
             width={leakWidth}
-            x={xScale(leakPeriodDate)}
+            x={leakStart}
             y={yRange[yRange.length - 1]}
           />
         )}

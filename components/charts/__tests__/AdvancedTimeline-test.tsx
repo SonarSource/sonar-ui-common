@@ -20,7 +20,18 @@
 
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { ThemeConsumer } from '../../theme';
 import AdvancedTimeline from '../AdvancedTimeline';
+
+// Replace scaleTime with scaleUtc to avoid timezone-dependent snapshots
+jest.mock('d3-scale', () => {
+  const { scaleUtc, ...others } = jest.requireActual('d3-scale');
+
+  return {
+    ...others,
+    scaleTime: scaleUtc,
+  };
+});
 
 jest.mock('lodash', () => {
   const lodash = jest.requireActual('lodash');
@@ -31,6 +42,22 @@ it('should render correctly', () => {
   expect(shallowRender()).toMatchSnapshot();
 });
 
+it('should render leak correctly', () => {
+  const wrapper = shallowRender({ leakPeriodDate: new Date('2019-10-02') });
+
+  const leakNode = wrapper.find(ThemeConsumer).dive().find('.leak-chart-rect');
+  expect(leakNode.exists()).toBe(true);
+  expect(leakNode.getElement().props.width).toBe(15);
+});
+
+it('should render old leak correctly', () => {
+  const wrapper = shallowRender({ leakPeriodDate: new Date('2014-10-02') });
+
+  const leakNode = wrapper.find(ThemeConsumer).dive().find('.leak-chart-rect');
+  expect(leakNode.exists()).toBe(true);
+  expect(leakNode.getElement().props.width).toBe(30);
+});
+
 it('should find date to display based on mouse location', () => {
   const wrapper = shallowRender();
 
@@ -38,7 +65,7 @@ it('should find date to display based on mouse location', () => {
   expect(wrapper.state().selectedDateIdx).toBeUndefined();
 
   wrapper.instance().handleMouseEnter();
-  wrapper.instance().updateTooltipPos(0);
+  wrapper.instance().updateTooltipPos(10);
   expect(wrapper.state().selectedDateIdx).toBe(1);
 });
 
@@ -54,11 +81,11 @@ function shallowRender(props?: Partial<AdvancedTimeline['props']>) {
           type: 'test-type-1',
           data: [
             {
-              x: '2019-10-01',
+              x: new Date('2019-10-01'),
               y: 1,
             },
             {
-              x: '2019-10-02',
+              x: new Date('2019-10-02'),
               y: 2,
             },
           ],
@@ -68,7 +95,7 @@ function shallowRender(props?: Partial<AdvancedTimeline['props']>) {
           type: 'test-type-2',
           data: [
             {
-              x: '2019-10-03',
+              x: new Date('2019-10-03'),
               y: 3,
             },
           ],
