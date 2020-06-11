@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.0.6
+
 - SONAR-13391 Fix Activity Chart
 
 ## 1.0.5
