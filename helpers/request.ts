@@ -163,7 +163,7 @@ function checkApplicationVersion(response: Response): boolean {
 export function checkStatus(response: Response, bypassRedirect?: boolean): Promise<Response> {
   return new Promise((resolve, reject) => {
     if (checkApplicationVersion(response)) {
-      if (response.status === HttpStatus.unauthorized && !bypassRedirect) {
+      if (response.status === HttpStatus.Unauthorized && !bypassRedirect) {
         import('./handleRequiredAuthentication')
           .then((i) => i.default())
           .then(reject, reject);
@@ -317,18 +317,18 @@ export function isSuccessStatus(status: number) {
 
 // Adapted from https://nodejs.org/api/http.html#http_http_HTTP_STATUS
 export enum HttpStatus {
-  ok = 200,
-  created = 201,
-  multipleChoices = 300,
-  movedPermanently = 301,
-  found = 302,
-  badRequest = 400,
-  unauthorized = 401,
-  forbidden = 403,
-  notFound = 404,
-  internalServerError = 500,
-  notImplemented = 501,
-  badGateway = 502,
-  serviceUnavailable = 503,
-  gatewayTimeout = 504,
+  Ok = 200,
+  Created = 201,
+  MultipleChoices = 300,
+  MovedPermanently = 301,
+  Found = 302,
+  BadRequest = 400,
+  Unauthorized = 401,
+  Forbidden = 403,
+  NotFound = 404,
+  InternalServerError = 500,
+  NotImplemented = 501,
+  BadGateway = 502,
+  ServiceUnavailable = 503,
+  GatewayTimeout = 504,
 }

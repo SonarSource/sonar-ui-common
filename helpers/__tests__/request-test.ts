@@ -39,12 +39,12 @@ const url = '/my-url';
 
 beforeEach(() => {
   jest.clearAllMocks();
-  window.fetch = jest.fn().mockResolvedValue(mockResponse({}, HttpStatus.ok, {}));
+  window.fetch = jest.fn().mockResolvedValue(mockResponse({}, HttpStatus.Ok, {}));
 });
 
 describe('getJSON', () => {
   it('should get json without parameters', async () => {
-    const response = mockResponse({}, HttpStatus.ok, {});
+    const response = mockResponse({}, HttpStatus.Ok, {});
     window.fetch = jest.fn().mockResolvedValue(response);
     getJSON(url);
     await new Promise(setImmediate);
@@ -64,7 +64,7 @@ describe('getJSON', () => {
 
 describe('getText', () => {
   it('should get text without parameters', async () => {
-    const response = mockResponse({}, HttpStatus.ok, '');
+    const response = mockResponse({}, HttpStatus.Ok, '');
     window.fetch = jest.fn().mockResolvedValue(response);
     getText(url);
     await new Promise(setImmediate);
@@ -85,7 +85,7 @@ describe('getText', () => {
 describe('parseError', () => {
   it('should parse error and return the message', async () => {
     const response = new Response(JSON.stringify({ errors: [{ msg: 'Error1' }] }), {
-      status: HttpStatus.badRequest,
+      status: HttpStatus.BadRequest,
     });
     await expect(parseError(response)).resolves.toBe('Error1');
   });
@@ -93,15 +93,15 @@ describe('parseError', () => {
   it('should parse error and return concatenated messages', async () => {
     const response = new Response(
       JSON.stringify({ errors: [{ msg: 'Error1' }, { msg: 'Error2' }] }),
-      { status: HttpStatus.badRequest }
+      { status: HttpStatus.BadRequest }
     );
     await expect(parseError(response)).resolves.toBe('Error1. Error2');
   });
 
   it('should parse error and return default message', async () => {
-    const response = new Response('{}', { status: HttpStatus.badRequest });
+    const response = new Response('{}', { status: HttpStatus.BadRequest });
     await expect(parseError(response)).resolves.toBe('default_error_message');
-    const responseUndefined = new Response('', { status: HttpStatus.badRequest });
+    const responseUndefined = new Response('', { status: HttpStatus.BadRequest });
     await expect(parseError(responseUndefined)).resolves.toBe('default_error_message');
   });
 });
@@ -109,7 +109,7 @@ describe('parseError', () => {
 describe('parseJSON', () => {
   it('should return a json response', () => {
     const body = { test: 2 };
-    const response = mockResponse({}, HttpStatus.ok, body);
+    const response = mockResponse({}, HttpStatus.Ok, body);
     const jsonResponse = parseJSON(response);
     expect(response.json).toBeCalled();
     return expect(jsonResponse).resolves.toEqual(body);
@@ -119,7 +119,7 @@ describe('parseJSON', () => {
 describe('parseText', () => {
   it('should return a text response', () => {
     const body = 'test';
-    const response = mockResponse({}, HttpStatus.ok, body);
+    const response = mockResponse({}, HttpStatus.Ok, body);
     const textResponse = parseText(response);
     expect(response.text).toBeCalled();
     return expect(textResponse).resolves.toBe(body);
@@ -195,13 +195,13 @@ describe('requestTryAndRepeatUntil', () => {
   });
 
   it('should repeat call as long as there is an error', async () => {
-    const apiCall = jest.fn().mockRejectedValue({ status: HttpStatus.gatewayTimeout });
+    const apiCall = jest.fn().mockRejectedValue({ status: HttpStatus.GatewayTimeout });
     const stopRepeat = jest.fn().mockReturnValue(true);
     const promiseResult = requestTryAndRepeatUntil(
       apiCall,
       { max: -1, slowThreshold: -20 },
       stopRepeat,
-      [HttpStatus.gatewayTimeout]
+      [HttpStatus.GatewayTimeout]
     );
 
     for (let i = 1; i < 5; i++) {
@@ -271,18 +271,18 @@ describe('checkStatus', () => {
   });
 
   it('should reject with the response', async () => {
-    const response = mockResponse({}, HttpStatus.internalServerError);
+    const response = mockResponse({}, HttpStatus.InternalServerError);
     await expect(checkStatus(response)).rejects.toEqual(response);
   });
 
   it('should handle required authentication', async () => {
-    await checkStatus(mockResponse({}, HttpStatus.unauthorized)).catch(() => {
+    await checkStatus(mockResponse({}, HttpStatus.Unauthorized)).catch(() => {
       expect(handleRequiredAuthentication).toBeCalled();
     });
   });
 
   it('should bybass the redirect with a 401 error', async () => {
-    const mockedResponse = mockResponse({}, HttpStatus.unauthorized);
+    const mockedResponse = mockResponse({}, HttpStatus.Unauthorized);
     await checkStatus(mockedResponse, true).catch((response) => {
       expect(handleRequiredAuthentication).not.toBeCalled();
       expect(response).toEqual(mockedResponse);
@@ -304,23 +304,23 @@ describe('checkStatus', () => {
 });
 
 it('should export status codes', () => {
-  expect(HttpStatus.notFound).toEqual(404);
+  expect(HttpStatus.NotFound).toEqual(404);
 });
 
 describe('isSuccessStatus', () => {
   it('should work for a successful response status', () => {
-    expect(isSuccessStatus(HttpStatus.ok)).toBe(true);
-    expect(isSuccessStatus(HttpStatus.created)).toBe(true);
+    expect(isSuccessStatus(HttpStatus.Ok)).toBe(true);
+    expect(isSuccessStatus(HttpStatus.Created)).toBe(true);
   });
 
   it('should work for an unsuccessful response status', () => {
-    expect(isSuccessStatus(HttpStatus.multipleChoices)).toBe(false);
-    expect(isSuccessStatus(HttpStatus.notFound)).toBe(false);
-    expect(isSuccessStatus(HttpStatus.internalServerError)).toBe(false);
+    expect(isSuccessStatus(HttpStatus.MultipleChoices)).toBe(false);
+    expect(isSuccessStatus(HttpStatus.NotFound)).toBe(false);
+    expect(isSuccessStatus(HttpStatus.InternalServerError)).toBe(false);
   });
 });
 
-function mockResponse(headers: T.Dict<string> = {}, status = HttpStatus.ok, value?: any): Response {
+function mockResponse(headers: T.Dict<string> = {}, status = HttpStatus.Ok, value?: any): Response {
   const body = value && value instanceof Object ? JSON.stringify(value) : value;
   const response = new Response(body, { headers, status });
   response.json = jest.fn().mockResolvedValue(value);

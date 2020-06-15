@@ -56,7 +56,7 @@ it('should render correctly with organization', async () => {
 
 it('should not render anything if call for metadata fails', async () => {
   const metaDataInfo = mockMetaDataInformation();
-  mockFetchReturnValue(metaDataInfo, HttpStatus.notFound);
+  mockFetchReturnValue(metaDataInfo, HttpStatus.NotFound);
 
   const wrapper = shallowRender();
   await waitAndUpdate(wrapper);
@@ -82,6 +82,6 @@ function shallowRender(props?: Partial<MetaData['props']>) {
   return shallow<MetaData>(<MetaData updateCenterKey="apex" {...props} />);
 }
 
-function mockFetchReturnValue(metaDataInfo: MetaDataInformation, status = HttpStatus.ok) {
+function mockFetchReturnValue(metaDataInfo: MetaDataInformation, status = HttpStatus.Ok) {
   (window.fetch as jest.Mock).mockResolvedValueOnce({ status, json: () => metaDataInfo });
 }
