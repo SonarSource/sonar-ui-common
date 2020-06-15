@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add HttpStatus enum
+
 ## 1.0.6
 
 - SONAR-13391 Fix Activity Chart

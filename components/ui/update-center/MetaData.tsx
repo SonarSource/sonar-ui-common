@@ -22,6 +22,7 @@ import * as React from 'react';
 import './MetaData.css';
 import MetaDataVersions from './MetaDataVersions';
 import { MetaDataInformation } from './update-center-metadata';
+import { isSuccessStatus } from '../../../helpers/request';
 
 interface Props {
   updateCenterKey?: string;
@@ -57,7 +58,7 @@ export default class MetaData extends React.Component<Props, State> {
       window
         .fetch(`https://update.sonarsource.org/${updateCenterKey}.json`)
         .then((response: Response) => {
-          if (response.status >= 200 && response.status < 300) {
+          if (isSuccessStatus(response.status)) {
             return response.json();
           } else {
             return Promise.reject(response);

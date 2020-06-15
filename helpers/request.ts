@@ -163,11 +163,11 @@ function checkApplicationVersion(response: Response): boolean {
 export function checkStatus(response: Response, bypassRedirect?: boolean): Promise<Response> {
   return new Promise((resolve, reject) => {
     if (checkApplicationVersion(response)) {
-      if (response.status === 401 && !bypassRedirect) {
+      if (response.status === HttpStatus.unauthorized && !bypassRedirect) {
         import('./handleRequiredAuthentication')
           .then((i) => i.default())
           .then(reject, reject);
-      } else if (response.status >= 200 && response.status < 300) {
+      } else if (isSuccessStatus(response.status)) {
         resolve(response);
       } else {
         reject(response);
@@ -236,7 +236,7 @@ export function getCorsJSON(url: string, data?: RequestData): Promise<any> {
     .setData(data)
     .submit()
     .then((response) => {
-      if (response.status >= 200 && response.status < 300) {
+      if (isSuccessStatus(response.status)) {
         return parseJSON(response);
       } else {
         return Promise.reject(response);
@@ -309,4 +309,26 @@ export function requestTryAndRepeatUntil<T>(
       return Promise.reject(error);
     }
   );
+}
+
+export function isSuccessStatus(status: number) {
+  return status >= 200 && status < 300;
+}
+
+// Adapted from https://nodejs.org/api/http.html#http_http_HTTP_STATUS
+export enum HttpStatus {
+  ok = 200,
+  created = 201,
+  multipleChoices = 300,
+  movedPermanently = 301,
+  found = 302,
+  badRequest = 400,
+  unauthorized = 401,
+  forbidden = 403,
+  notFound = 404,
+  internalServerError = 500,
+  notImplemented = 501,
+  badGateway = 502,
+  serviceUnavailable = 503,
+  gatewayTimeout = 504,
 }

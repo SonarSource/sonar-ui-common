@@ -24,6 +24,7 @@ import { waitAndUpdate } from '../../../../helpers/testUtils';
 import MetaData from '../MetaData';
 import { mockMetaDataInformation } from '../mocks/update-center-metadata';
 import { MetaDataInformation } from '../update-center-metadata';
+import { HttpStatus } from '../../../../helpers/request';
 
 beforeAll(() => {
   window.fetch = jest.fn();
@@ -55,7 +56,7 @@ it('should render correctly with organization', async () => {
 
 it('should not render anything if call for metadata fails', async () => {
   const metaDataInfo = mockMetaDataInformation();
-  mockFetchReturnValue(metaDataInfo, 404);
+  mockFetchReturnValue(metaDataInfo, HttpStatus.notFound);
 
   const wrapper = shallowRender();
   await waitAndUpdate(wrapper);
@@ -81,6 +82,6 @@ function shallowRender(props?: Partial<MetaData['props']>) {
   return shallow<MetaData>(<MetaData updateCenterKey="apex" {...props} />);
 }
 
-function mockFetchReturnValue(metaDataInfo: MetaDataInformation, status = 200) {
+function mockFetchReturnValue(metaDataInfo: MetaDataInformation, status = HttpStatus.ok) {
   (window.fetch as jest.Mock).mockResolvedValueOnce({ status, json: () => metaDataInfo });
 }
