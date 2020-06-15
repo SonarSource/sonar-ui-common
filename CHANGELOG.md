@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.0.8
+
 - Make HttpStatus enum follow enum guidelines
 
 ## 1.0.7
