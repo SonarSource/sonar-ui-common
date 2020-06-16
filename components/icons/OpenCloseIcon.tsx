@@ -26,6 +26,6 @@ interface Props extends IconProps {
   open: boolean;
 }
 
-export default function OpenCloseIcon({ open, ...props }: Props) {
-  return open ? <ChevronDownIcon {...props} /> : <ChevronRightIcon {...props} />;
+export default function OpenCloseIcon({ open, ...iconProps }: Props) {
+  return open ? <ChevronDownIcon {...iconProps} /> : <ChevronRightIcon {...iconProps} />;
 }

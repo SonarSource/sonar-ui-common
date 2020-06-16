@@ -20,9 +20,9 @@
 import * as React from 'react';
 import Icon, { IconProps } from './Icon';
 
-export default function PlusCircleIcon({ className, fill = 'currentColor', size }: IconProps) {
+export default function PlusCircleIcon({ fill = 'currentColor', ...iconProps }: IconProps) {
   return (
-    <Icon className={className} size={size}>
+    <Icon {...iconProps}>
       <path
         d="M8 1c3.863 0 7 3.137 7 7s-3.137 7-7 7-7-3.137-7-7 3.137-7 7-7zm3.726 7.985A.274.274 0 0 0 12 8.711V7.289a.274.274 0 0 0-.274-.274H8.985V4.274A.274.274 0 0 0 8.711 4H7.289a.274.274 0 0 0-.274.274v2.741H4.274A.274.274 0 0 0 4 7.289v1.422c0 .152.123.274.274.274h2.741v2.741c0 .151.122.274.274.274h1.422a.274.274 0 0 0 .274-.274V8.985h2.741z"
         style={{ fill }}

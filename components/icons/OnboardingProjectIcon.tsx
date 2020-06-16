@@ -20,9 +20,9 @@
 import * as React from 'react';
 import { IconProps, ThemedIcon } from './Icon';
 
-export default function OnboardingProjectIcon({ className, fill, size }: IconProps) {
+export default function OnboardingProjectIcon({ fill, size = 64, ...iconProps }: IconProps) {
   return (
-    <ThemedIcon className={className} size={size || 64} viewBox="0 0 64 64">
+    <ThemedIcon size={size} viewBox="0 0 64 64" {...iconProps}>
       {({ theme }) => (
         <g fill="none" fillRule="evenodd" stroke={fill || theme.colors.darkBlue} strokeWidth="2">
           <path d="M2 59h60V13H2zm0-46h60V5H2zm3-4h2m2 0h2m2 0h2m2 0h42" />

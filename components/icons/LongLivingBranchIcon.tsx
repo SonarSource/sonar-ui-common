@@ -20,9 +20,9 @@
 import * as React from 'react';
 import { IconProps, ThemedIcon } from './Icon';
 
-export default function LongLivingBranchIcon({ className, fill, size }: IconProps) {
+export default function LongLivingBranchIcon({ fill, ...iconProps }: IconProps) {
   return (
-    <ThemedIcon className={className} size={size}>
+    <ThemedIcon {...iconProps}>
       {({ theme }) => (
         <g transform="translate(5, 0)">
           <path

@@ -20,9 +20,9 @@
 import * as React from 'react';
 import { IconProps, ThemedIcon } from './Icon';
 
-export default function ShortLivingBranchIcon({ className, fill, size }: IconProps) {
+export default function ShortLivingBranchIcon({ fill, ...iconProps }: IconProps) {
   return (
-    <ThemedIcon className={className} size={size}>
+    <ThemedIcon {...iconProps}>
       {({ theme }) => (
         <g transform="translate(3, 0)">
           <path

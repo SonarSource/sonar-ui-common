@@ -20,9 +20,9 @@
 import * as React from 'react';
 import Icon, { IconProps } from './Icon';
 
-export default function MeasuresIcon({ className, fill = 'currentColor', size }: IconProps) {
+export default function MeasuresIcon({ fill = 'currentColor', ...iconProps }: IconProps) {
   return (
-    <Icon className={className} size={size} style={{ fillRule: 'nonzero' }}>
+    <Icon {...iconProps} style={{ fillRule: 'nonzero' }}>
       <path d="M3.33 6.13h2v6.54h-2zm3.74-2.8h1.86v9.34H7.07zm3.73 5.34h1.87v4H10.8z" fill={fill} />
     </Icon>
   );

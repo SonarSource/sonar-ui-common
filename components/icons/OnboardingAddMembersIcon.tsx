@@ -20,9 +20,9 @@
 import * as React from 'react';
 import { IconProps, ThemedIcon } from './Icon';
 
-export default function OnboardingAddMembersIcon({ className, fill, size = 64 }: IconProps) {
+export default function OnboardingAddMembersIcon({ fill, size = 64, ...iconProps }: IconProps) {
   return (
-    <ThemedIcon className={className} height={(size / 64) * 80} viewBox="0 0 64 80" width={size}>
+    <ThemedIcon height={(size / 64) * 80} viewBox="0 0 64 80" width={size} {...iconProps}>
       {({ theme }) => (
         <g>
           <path

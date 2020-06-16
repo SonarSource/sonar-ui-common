@@ -20,9 +20,9 @@
 import * as React from 'react';
 import Icon, { IconProps } from './Icon';
 
-export default function InfoIcon({ className, fill = 'currentColor', size }: IconProps) {
+export default function InfoIcon({ fill = 'currentColor', ...iconProps }: IconProps) {
   return (
-    <Icon className={className} size={size}>
+    <Icon {...iconProps}>
       <path
         d="M10.333 12.375v-1.458a.288.288 0 0 0-.291-.292h-.875V5.958a.288.288 0 0 0-.292-.291H5.958a.288.288 0 0 0-.291.291v1.459c0 .164.127.291.291.291h.875v2.917h-.875a.288.288 0 0 0-.291.292v1.458c0 .164.127.292.291.292h4.084a.288.288 0 0 0 .291-.292zM9.167 4.208V2.75a.288.288 0 0 0-.292-.292h-1.75a.288.288 0 0 0-.292.292v1.458c0 .164.128.292.292.292h1.75a.288.288 0 0 0 .292-.292zM15 8c0 3.865-3.135 7-7 7s-7-3.135-7-7 3.135-7 7-7 7 3.135 7 7z"
         style={{ fill }}

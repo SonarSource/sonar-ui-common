@@ -20,9 +20,9 @@
 import * as React from 'react';
 import Icon, { IconProps } from './Icon';
 
-export default function ProjectEventIcon({ className, fill = '#fff', size = 14 }: IconProps) {
+export default function ProjectEventIcon({ fill = '#fff', size = 14, ...iconProps }: IconProps) {
   return (
-    <Icon className={className} size={size}>
+    <Icon size={size} {...iconProps}>
       <path
         d="M8 2 L14 8 L8 14 L2 8 L8 2 L14 8"
         style={{ fill, stroke: 'currentColor', strokeWidth: '2px' }}

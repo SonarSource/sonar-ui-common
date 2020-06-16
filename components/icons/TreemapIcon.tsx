@@ -20,9 +20,9 @@
 import * as React from 'react';
 import Icon, { IconProps } from './Icon';
 
-export default function TreemapIcon({ className, fill = 'currentColor', size = 14 }: IconProps) {
+export default function TreemapIcon({ fill = 'currentColor', size = 14, ...iconProps }: IconProps) {
   return (
-    <Icon className={className} size={size}>
+    <Icon size={size} {...iconProps}>
       <path
         d="M0 0h8v16h-8zM9.143 0h6.857v9.143h-6.857zM9.143 10.286h6.857v5.714h-6.857z"
         style={{ fill }}

@@ -29,17 +29,17 @@ interface ProjectLinkIconProps {
   type: string;
 }
 
-export default function ProjectLinkIcon({ type, ...props }: IconProps & ProjectLinkIconProps) {
+export default function ProjectLinkIcon({ type, ...iconProps }: IconProps & ProjectLinkIconProps) {
   switch (type) {
     case 'issue':
-      return <BugTrackerIcon {...props} />;
+      return <BugTrackerIcon {...iconProps} />;
     case 'homepage':
-      return <HouseIcon {...props} />;
+      return <HouseIcon {...iconProps} />;
     case 'ci':
-      return <ContinuousIntegrationIcon {...props} />;
+      return <ContinuousIntegrationIcon {...iconProps} />;
     case 'scm':
-      return <SCMIcon {...props} />;
+      return <SCMIcon {...iconProps} />;
     default:
-      return <DetachIcon {...props} />;
+      return <DetachIcon {...iconProps} />;
   }
 }

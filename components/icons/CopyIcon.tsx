@@ -20,9 +20,9 @@
 import * as React from 'react';
 import Icon, { IconProps } from './Icon';
 
-export default function CopyIcon({ className, fill = 'currentColor', size }: IconProps) {
+export default function CopyIcon({ fill = 'currentColor', ...iconProps }: IconProps) {
   return (
-    <Icon className={className} size={size}>
+    <Icon {...iconProps}>
       <g fill={fill} fillRule="nonzero">
         <path d="M2.931 15.005V3H2v13h9v-.995z" />
         <path d="M10 4.015h3V14H4V1h6v3.015zM9 8V6H8v2H6v1h2v2h1V9h2V8H9z" />

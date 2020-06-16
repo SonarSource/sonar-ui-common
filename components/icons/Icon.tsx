@@ -20,13 +20,13 @@
 import * as React from 'react';
 import { Theme, ThemeConsumer } from '../theme';
 
-export interface IconProps {
+export interface IconProps extends React.AriaAttributes {
   className?: string;
   fill?: string;
   size?: number;
 }
 
-interface Props {
+interface Props extends React.AriaAttributes {
   children: React.ReactNode;
   className?: string;
   size?: number;
@@ -46,7 +46,7 @@ export default function Icon({
   height = size,
   width = size,
   viewBox = '0 0 16 16',
-  ...other
+  ...iconProps
 }: Props) {
   return (
     <svg
@@ -64,7 +64,7 @@ export default function Icon({
       width={width}
       xmlnsXlink="http://www.w3.org/1999/xlink"
       xmlSpace="preserve"
-      {...other}>
+      {...iconProps}>
       {children}
     </svg>
   );
@@ -74,6 +74,8 @@ interface ThemedProps extends Props {
   children: (themeContext: { theme: Theme }) => React.ReactNode;
 }
 
-export function ThemedIcon({ children, ...other }: ThemedProps) {
-  return <ThemeConsumer>{(theme) => <Icon {...other}>{children({ theme })}</Icon>}</ThemeConsumer>;
+export function ThemedIcon({ children, ...iconProps }: ThemedProps) {
+  return (
+    <ThemeConsumer>{(theme) => <Icon {...iconProps}>{children({ theme })}</Icon>}</ThemeConsumer>
+  );
 }
