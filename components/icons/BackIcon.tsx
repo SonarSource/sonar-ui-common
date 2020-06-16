@@ -20,9 +20,9 @@
 import * as React from 'react';
 import Icon, { IconProps } from './Icon';
 
-export default function BackIcon({ className, fill = 'currentColor', size }: IconProps) {
+export default function BackIcon({ fill = 'currentColor', ...iconProps }: IconProps) {
   return (
-    <Icon className={className} size={size}>
+    <Icon {...iconProps}>
       <path
         d="M3.6 8.69l4.07 4.13.04.04a.7.7 0 01.12.7.69.69 0 01-.86.4.73.73 0 01-.26-.16L1 8l5.71-5.8.04-.03A.73.73 0 017.13 2l.1-.01c.1.01.2.04.3.09a.7.7 0 01.3.82c-.03.1-.09.19-.16.27L3.61 7.3c3.59-.03 7.18-.14 10.77.01.05 0 .06 0 .1.02a.68.68 0 01.52.61.7.7 0 01-.57.74h-.1z"
         style={{ fill }}

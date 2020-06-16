@@ -20,9 +20,9 @@
 import * as React from 'react';
 import Icon, { IconProps } from './Icon';
 
-export default function ChevronUpIcon({ className, fill = 'currentColor', size }: IconProps) {
+export default function ChevronUpIcon({ fill = 'currentColor', ...iconProps }: IconProps) {
   return (
-    <Icon className={className} size={size}>
+    <Icon {...iconProps}>
       <path
         d="M8.28 4.404l4.602 4.604a.382.382 0 0 1 .118.279c0 .108-.04.2-.118.279l-1.03 1.03a.382.382 0 0 1-.278.117.382.382 0 0 1-.28-.117L8 7.3l-3.294 3.295a.382.382 0 0 1-.28.117.382.382 0 0 1-.279-.117l-1.03-1.03A.382.382 0 0 1 3 9.286c0-.107.04-.2.118-.278L7.72 4.404A.382.382 0 0 1 8 4.287c.108 0 .201.04.28.117z"
         style={{ fill }}

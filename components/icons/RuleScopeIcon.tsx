@@ -20,9 +20,9 @@
 import * as React from 'react';
 import Icon, { IconProps } from './Icon';
 
-export default function RuleScopeIcon({ className, fill = 'currentColor', size }: IconProps) {
+export default function RuleScopeIcon({ fill = 'currentColor', ...iconProps }: IconProps) {
   return (
-    <Icon className={className} size={size}>
+    <Icon {...iconProps}>
       <path
         d="M8 3.071c2.724 0 4.929 2.204 4.929 4.929s-2.204 4.929-4.929 4.929c-2.724 0-4.929-2.204-4.929-4.929s2.204-4.929 4.929-4.929zM8 1.357c-3.669 0-6.643 2.974-6.643 6.643s2.974 6.643 6.643 6.643 6.643-2.974 6.643-6.643-2.974-6.643-6.643-6.643zM8 6.286c0.945 0 1.714 0.769 1.714 1.714s-0.769 1.714-1.714 1.714-1.714-0.769-1.714-1.714 0.769-1.714 1.714-1.714zM8 4.571c-1.893 0-3.429 1.535-3.429 3.429s1.535 3.429 3.429 3.429 3.429-1.535 3.429-3.429-1.535-3.429-3.429-3.429z"
         style={{ fill }}

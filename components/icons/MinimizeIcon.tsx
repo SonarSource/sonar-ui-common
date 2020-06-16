@@ -20,9 +20,9 @@
 import * as React from 'react';
 import Icon, { IconProps } from './Icon';
 
-export default function MinimizeIcon({ className, fill = 'currentColor', size }: IconProps) {
+export default function MinimizeIcon({ fill = 'currentColor', ...iconProps }: IconProps) {
   return (
-    <Icon className={className} size={size}>
+    <Icon {...iconProps}>
       <path
         d="M14 12.1v1.267c0 .176-.08.325-.239.448a.918.918 0 0 1-.58.185H2.819a.918.918 0 0 1-.58-.185C2.08 13.692 2 13.543 2 13.367V12.1c0-.176.08-.326.239-.449a.918.918 0 0 1 .58-.185h10.363c.227 0 .42.062.58.185.158.123.238.273.238.449z"
         style={{ fill }}

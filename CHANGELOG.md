@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Allow to pass arial attributes prop to icons
+
 ## 1.0.8
 
 - Make HttpStatus enum follow enum guidelines

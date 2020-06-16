@@ -26,9 +26,9 @@ interface Props {
   size?: number;
 }
 
-export default function ChartLegendIcon({ className, index, size }: Props) {
+export default function ChartLegendIcon({ index, ...iconProps }: Props) {
   return (
-    <ThemedIcon className={className} size={size}>
+    <ThemedIcon {...iconProps}>
       {({ theme }) => {
         const COLORS = [theme.colors.blue, theme.colors.darkBlue, '#24c6e0'];
         return (

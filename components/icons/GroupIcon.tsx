@@ -20,9 +20,9 @@
 import * as React from 'react';
 import { IconProps, ThemedIcon } from './Icon';
 
-export default function GroupIcon({ className, fill, size = 36 }: IconProps) {
+export default function GroupIcon({ fill, size = 36, ...iconProps }: IconProps) {
   return (
-    <ThemedIcon className={className} size={size} viewBox="0 0 36 36">
+    <ThemedIcon viewBox="0 0 36 36" {...iconProps}>
       {({ theme }) => (
         <g transform="matrix(0.0625,0,0,0.0625,3,4)">
           <path

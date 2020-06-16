@@ -21,9 +21,9 @@ import * as classNames from 'classnames';
 import * as React from 'react';
 import Icon, { IconProps } from './Icon';
 
-export default function ClockIcon({ className, size = 16 }: IconProps) {
+export default function ClockIcon({ className, ...iconProps }: IconProps) {
   return (
-    <Icon className={classNames('icon-clock', className)} size={size}>
+    <Icon className={classNames('icon-clock', className)} {...iconProps}>
       <g fill="#fff" stroke="#ADADAD" transform="matrix(1.4 0 0 1.4 .3 .7)">
         <circle cx="5.5" cy="5.2" r="5" />
         <path d="M5.6 2.9v2.7l2-.5" fillRule="nonzero" />

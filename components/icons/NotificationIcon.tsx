@@ -25,13 +25,12 @@ interface Props extends IconProps {
 }
 
 export default function NotificationIcon({
-  className,
   fill = 'currentColor',
   hasUnread,
-  size,
+  ...iconProps
 }: Props) {
   return (
-    <ThemedIcon className={className} size={size}>
+    <ThemedIcon {...iconProps}>
       {({ theme }) =>
         hasUnread ? (
           <>

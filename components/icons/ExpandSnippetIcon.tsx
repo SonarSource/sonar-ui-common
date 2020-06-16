@@ -20,9 +20,9 @@
 import * as React from 'react';
 import Icon, { IconProps } from './Icon';
 
-export default function ExpandSnippetIcon({ className, fill = 'currentColor', size }: IconProps) {
+export default function ExpandSnippetIcon({ fill = 'currentColor', ...iconProps }: IconProps) {
   return (
-    <Icon className={className} size={size}>
+    <Icon {...iconProps}>
       <g fill="none" fillRule="evenodd">
         <path
           d="M8 1v4H4"

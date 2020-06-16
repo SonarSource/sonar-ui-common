@@ -24,14 +24,9 @@ export interface ClearIconProps extends IconProps {
   thin?: boolean;
 }
 
-export default function ClearIcon({
-  className,
-  fill = 'currentColor',
-  size,
-  thin,
-}: ClearIconProps) {
+export default function ClearIcon({ fill = 'currentColor', thin, ...iconProps }: ClearIconProps) {
   return (
-    <Icon className={className} size={size}>
+    <Icon {...iconProps}>
       {thin ? (
         <path
           d="M14 3.209l-1.209-1.209-4.791 4.791-4.791-4.791-1.209 1.209 4.791 4.791-4.791 4.791 1.209 1.209 4.791-4.791 4.791 4.791 1.209-1.209-4.791-4.791z"

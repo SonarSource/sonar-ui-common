@@ -20,9 +20,9 @@
 import * as React from 'react';
 import { IconProps, ThemedIcon } from './Icon';
 
-export default function PendingIcon({ className, fill, size }: IconProps) {
+export default function PendingIcon({ fill, ...iconProps }: IconProps) {
   return (
-    <ThemedIcon className={className} size={size}>
+    <ThemedIcon {...iconProps}>
       {({ theme }) => (
         <g transform="matrix(0.0364583,0,0,0.0364583,1,-0.166667)">
           <path
