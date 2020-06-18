@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add POST JSON body request support
+
 ## 1.0.9
 
 - Allow to pass arial attributes prop to icons
