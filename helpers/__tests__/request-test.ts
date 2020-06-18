@@ -30,6 +30,7 @@ import {
   parseText,
   post,
   postJSON,
+  postJSONBody,
   requestTryAndRepeatUntil,
 } from '../request';
 
@@ -142,6 +143,30 @@ describe('postJSON', () => {
     expect(window.fetch).toBeCalledWith(
       url,
       expect.objectContaining({ body: 'data=test', method: 'POST' })
+    );
+  });
+});
+
+describe('postJSONBody', () => {
+  it('should post without parameters and get json', async () => {
+    const response = mockResponse();
+    window.fetch = jest.fn().mockResolvedValue(response);
+    postJSONBody(url);
+    await new Promise(setImmediate);
+
+    expect(window.fetch).toBeCalledWith(url, expect.objectContaining({ method: 'POST' }));
+    expect(response.json).toBeCalled();
+  });
+
+  it('should post with a body and get json', () => {
+    postJSONBody(url, { nested: { data: 'test', withArray: [1, 2] } });
+    expect(window.fetch).toBeCalledWith(
+      url,
+      expect.objectContaining({
+        headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+        body: '{"nested":{"data":"test","withArray":[1,2]}}',
+        method: 'POST',
+      })
     );
   });
 });

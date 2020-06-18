@@ -78,6 +78,7 @@ const DEFAULT_HEADERS = {
  */
 class Request {
   private data?: RequestData;
+  private isJSON = false;
 
   constructor(private readonly url: string, private readonly options: { method?: string } = {}) {}
 
@@ -88,6 +89,9 @@ class Request {
     if (this.data) {
       if (this.data instanceof FormData) {
         options.body = this.data;
+      } else if (this.isJSON) {
+        customHeaders['Content-Type'] = 'application/json';
+        options.body = JSON.stringify(this.data);
       } else {
         const strData = stringify(omitNil(this.data));
         if (options.method === 'GET') {
@@ -116,9 +120,10 @@ class Request {
     return this;
   }
 
-  setData(data?: RequestData): Request {
+  setData(data?: RequestData, isJSON = false): Request {
     if (data) {
       this.data = data;
+      this.isJSON = isJSON;
     }
     return this;
   }
@@ -251,6 +256,22 @@ export function postJSON(url: string, data?: RequestData, bypassRedirect?: boole
   return request(url)
     .setMethod('POST')
     .setData(data)
+    .submit()
+    .then((response) => checkStatus(response, bypassRedirect))
+    .then(parseJSON);
+}
+
+/**
+ * Shortcut to do a POST request with a json body and return response json
+ */
+export function postJSONBody(
+  url: string,
+  data?: RequestData,
+  bypassRedirect?: boolean
+): Promise<any> {
+  return request(url)
+    .setMethod('POST')
+    .setData(data, true)
     .submit()
     .then((response) => checkStatus(response, bypassRedirect))
     .then(parseJSON);
