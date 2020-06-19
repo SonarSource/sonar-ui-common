@@ -23,16 +23,26 @@ import { translate, translateWithParameters } from '../../helpers/l10n';
 import { formatMeasure } from '../../helpers/measures';
 import './Rating.css';
 
-interface Props {
+interface Props extends React.AriaAttributes {
   className?: string;
   muted?: boolean;
   small?: boolean;
   value: string | number | undefined;
 }
 
-export default function Rating({ className, muted = false, small = false, value }: Props) {
+export default function Rating({
+  className,
+  muted = false,
+  small = false,
+  value,
+  ...ariaAttrs
+}: Props) {
   if (value === undefined) {
-    return <span aria-label={translate('metric.no_rating')}>–</span>;
+    return (
+      <span aria-label={translate('metric.no_rating')} {...ariaAttrs}>
+        –
+      </span>
+    );
   }
   const formatted = formatMeasure(value, 'RATING');
   return (
@@ -40,10 +50,11 @@ export default function Rating({ className, muted = false, small = false, value 
       aria-label={translateWithParameters('metric.has_rating_X', formatted)}
       className={classNames(
         'rating',
-        'rating-' + formatted,
+        `rating-${formatted}`,
         { 'rating-small': small, 'rating-muted': muted },
         className
-      )}>
+      )}
+      {...ariaAttrs}>
       {formatted}
     </span>
   );

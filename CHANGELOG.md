@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Allow custom aria attributs in Rating component
+
 ## 1.0.10
 
 - Add POST JSON body request support
