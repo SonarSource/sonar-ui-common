@@ -20,48 +20,38 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { click } from '../../../helpers/testUtils';
-import ListFooter, { Props } from '../ListFooter';
+import { Button } from '../buttons';
+import ListFooter, { ListFooterProps } from '../ListFooter';
 
-it('should render "3 of 5 shown"', () => {
-  const listFooter = shallowRender();
-  expect(listFooter.text()).toContain('x_of_y_shown.3.5');
-  expect(listFooter).toMatchSnapshot();
+it('should render correctly', () => {
+  expect(shallowRender()).toMatchSnapshot('default');
+  expect(shallowRender({ loading: true })).toMatchSnapshot('loading');
+  expect(shallowRender({ needReload: true, reload: jest.fn() })).toMatchSnapshot('reload');
+  expect(shallowRender({ loading: true, needReload: true, reload: jest.fn() })).toMatchSnapshot(
+    'reload, loading'
+  );
+  expect(shallowRender({ loadMore: undefined })).toMatchSnapshot(
+    'empty if no loadMore nor reload props'
+  );
+  expect(shallowRender({ count: 5 })).toMatchSnapshot('empty if everything is loaded');
 });
 
-it('should not render "show more"', () => {
-  expect(shallowRender({ loadMore: undefined }).find('a').length).toBe(0);
-  expect(shallowRender({ count: 5 }).find('a').length).toBe(0);
-});
-
-it('should "show more"', () => {
+it('should properly call loadMore', () => {
   const loadMore = jest.fn();
-  const listFooter = shallowRender({ loadMore });
-  const link = listFooter.find('a');
-  expect(link.length).toBe(1);
-  click(link);
+  const wrapper = shallowRender({ loadMore });
+  click(wrapper.find(Button));
   expect(loadMore).toBeCalled();
 });
 
-it('should render "reload" properly', () => {
-  const listFooter = shallowRender({ needReload: true });
-  expect(listFooter).toMatchSnapshot();
-
+it('should properly call reload', () => {
   const reload = jest.fn();
-
-  listFooter.setProps({ reload });
-  expect(listFooter).toMatchSnapshot();
-
-  const link = listFooter.find('a');
-  expect(link.length).toBe(1);
-
-  click(link);
+  const wrapper = shallowRender({ needReload: true, reload });
+  click(wrapper.find(Button));
   expect(reload).toBeCalled();
 });
 
-it('should display spinner while loading', () => {
-  expect(shallowRender({ loading: true }).find('DeferredSpinner').exists()).toBe(true);
-});
-
-function shallowRender(props: Partial<Props> = {}) {
-  return shallow(<ListFooter count={3} loadMore={jest.fn()} total={5} {...props} />);
+function shallowRender(props: Partial<ListFooterProps> = {}) {
+  return shallow<ListFooterProps>(
+    <ListFooter count={3} loadMore={jest.fn()} total={5} {...props} />
+  );
 }
