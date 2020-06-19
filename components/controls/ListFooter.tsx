@@ -22,8 +22,9 @@ import * as React from 'react';
 import { translate, translateWithParameters } from '../../helpers/l10n';
 import { formatMeasure } from '../../helpers/measures';
 import DeferredSpinner from '../ui/DeferredSpinner';
+import { Button } from './buttons';
 
-export interface Props {
+export interface ListFooterProps {
   count: number;
   className?: string;
   loading?: boolean;
@@ -34,60 +35,39 @@ export interface Props {
   total?: number;
 }
 
-export default function ListFooter({ ready = true, ...props }: Props) {
-  const handleLoadMore = (event: React.SyntheticEvent<HTMLElement>) => {
-    event.preventDefault();
-    event.currentTarget.blur();
-    if (props.loadMore) {
-      props.loadMore();
-    }
-  };
+export default function ListFooter(props: ListFooterProps) {
+  const { className, count, loading, needReload, total, ready = true } = props;
+  const hasMore = total && total > count;
 
-  const handleReload = (event: React.SyntheticEvent<HTMLElement>) => {
-    event.preventDefault();
-    event.currentTarget.blur();
-    if (props.reload) {
-      props.reload();
-    }
-  };
-
-  const hasMore = props.total && props.total > props.count;
-
-  const loadMoreLink = (
-    <a className="spacer-left" data-test="show-more" href="#" onClick={handleLoadMore}>
-      {translate('show_more')}
-    </a>
-  );
-
-  const reloadLink = (
-    <a className="spacer-left" data-test="reload" href="#" onClick={handleReload}>
-      {translate('reload')}
-    </a>
-  );
-
-  const className = classNames(
-    'spacer-top note text-center',
-    { 'new-loading': !ready },
-    props.className
-  );
-
-  let link;
-
-  if (props.needReload && props.reload) {
-    link = reloadLink;
+  let button;
+  if (needReload && props.reload) {
+    button = (
+      <Button className="spacer-left" data-test="reload" disabled={loading} onClick={props.reload}>
+        {translate('reload')}
+      </Button>
+    );
   } else if (hasMore && props.loadMore) {
-    link = loadMoreLink;
+    button = (
+      <Button
+        className="spacer-left"
+        disabled={loading}
+        data-test="show-more"
+        onClick={props.loadMore}>
+        {translate('show_more')}
+      </Button>
+    );
   }
 
   return (
-    <footer className={className}>
+    <footer
+      className={classNames('spacer-top note text-center', { 'new-loading': !ready }, className)}>
       {translateWithParameters(
         'x_of_y_shown',
-        formatMeasure(props.count, 'INT', null),
-        formatMeasure(props.total, 'INT', null)
+        formatMeasure(count, 'INT', null),
+        formatMeasure(total, 'INT', null)
       )}
-      {link}
-      {props.loading && <DeferredSpinner className="text-bottom spacer-left position-absolute" />}
+      {button}
+      {loading && <DeferredSpinner className="text-bottom spacer-left position-absolute" />}
     </footer>
   );
 }
