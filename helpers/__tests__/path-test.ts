@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-import { collapsedDirFromPath, cutLongWords, fileFromPath } from '../path';
+import { collapsedDirFromPath, cutLongWords, dirFromPath, fileFromPath } from '../path';
 
 describe('#collapsedDirFromPath()', () => {
   it('should return null when pass null', () => {
@@ -64,6 +64,28 @@ describe('#fileFromPath()', () => {
 
   it('should return file name when pass file name without extension', () => {
     expect(fileFromPath('src/main/file')).toBe('file');
+  });
+});
+
+describe('#dirFromPath()', () => {
+  it('should return null when pass null', () => {
+    expect(dirFromPath(null)).toBeNull();
+  });
+
+  it('should return "/" string when pass "/"', () => {
+    expect(dirFromPath('/')).toBe('/');
+  });
+
+  it('should return empty string when pass only file name', () => {
+    expect(dirFromPath('file.js')).toBe('');
+  });
+
+  it('should return dir when pass file path', () => {
+    expect(dirFromPath('src/main/js/file.js')).toBe('src/main/js');
+  });
+
+  it('should return dir when pass file name without extension', () => {
+    expect(dirFromPath('src/main/file')).toBe('src/main');
   });
 });
 

@@ -73,10 +73,30 @@ export function collapsedDirFromPath(path: string | null): string | null {
 }
 
 /**
+ * Return dir for a given file path
+ * * @example
+ * // returns 'src/main/js/components/navigator/app/models'
+ * dirFromPath('src/main/js/components/navigator/app/models/state.js')
+ */
+export function dirFromPath(path: string | null): string | null {
+  if (typeof path === 'string') {
+    if (path === '/') {
+      return path;
+    } else {
+      const tokens = path.split('/');
+      tokens.pop();
+      return tokens.join('/');
+    }
+  } else {
+    return null;
+  }
+}
+
+/**
  * Return a file name for a given file path
  * * @example
  * // returns 'state.js'
- * collapsedDirFromPath('src/main/js/components/navigator/app/models/state.js')
+ * fileFromPath('src/main/js/components/navigator/app/models/state.js')
  */
 export function fileFromPath(path: string | null): string | null {
   if (typeof path === 'string') {

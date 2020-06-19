@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- SONAR-13527 New helper for getting the dir from a file path
+
 ## 1.0.10
 
 - Add POST JSON body request support
