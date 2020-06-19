@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.0.10
+
 - Add POST JSON body request support
 
 ## 1.0.9
