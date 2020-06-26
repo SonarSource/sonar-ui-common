@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.0.11
+
 - Allow custom aria attributs in Rating component
 - SONAR-13553 Do not allow multiple clicks on 'Load more' link in ListFooter
 - ListFooter "Load more" and "Reload" links are now buttons
