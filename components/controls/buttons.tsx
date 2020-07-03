@@ -49,7 +49,7 @@ export class Button extends React.PureComponent<ButtonProps> {
     const { disabled, onClick, preventDefault = true, stopPropagation = false } = this.props;
 
     event.currentTarget.blur();
-    if (preventDefault) {
+    if (preventDefault || disabled) {
       event.preventDefault();
     }
     if (stopPropagation) {
