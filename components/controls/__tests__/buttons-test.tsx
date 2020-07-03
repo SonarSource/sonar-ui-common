@@ -45,13 +45,15 @@ describe('Button', () => {
   });
 
   it('should disable buttons with a class', () => {
+    const preventDefault = jest.fn();
     const onClick = jest.fn();
-    const button = shallowRender({ disabled: true, onClick }).find('button');
+    const button = shallowRender({ disabled: true, onClick, preventDefault: false }).find('button');
     expect(button.props().disabled).toBeUndefined();
     expect(button.props().className).toContain('disabled');
     expect(button.props()['aria-disabled']).toBe(true);
-    click(button);
+    click(button, mockEvent({ preventDefault }));
     expect(onClick).not.toBeCalled();
+    expect(preventDefault).toBeCalled();
   });
 
   function shallowRender(props: Partial<Button['props']> = {}) {

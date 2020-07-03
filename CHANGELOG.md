@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- SONAR-13530 Prevent default when button is disabled
+
 ## 1.0.11
 
 - Allow custom aria attributs in Rating component
