@@ -3,6 +3,9 @@
 ## Unreleased
 
 - SONAR-13530 Prevent default when button is disabled
+- Add right-bottom popup placement
+- Allow to pass a ref to a Popup
+- Add PortalPopup component: allow to create a Popup outside it's overflow:hidden parent
 
 ## 1.0.11
 

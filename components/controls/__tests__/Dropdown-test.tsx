@@ -20,9 +20,10 @@
 import { mount, shallow, ShallowWrapper } from 'enzyme';
 import * as React from 'react';
 import { click } from '../../../helpers/testUtils';
-import { PopupPlacement } from '../../ui/popups';
+import { Popup, PopupPlacement } from '../../ui/popups';
 import { Button } from '../buttons';
 import Dropdown, { DropdownOverlay } from '../Dropdown';
+import ScreenPositionFixer from '../ScreenPositionFixer';
 
 describe('Dropdown', () => {
   it('renders', () => {
@@ -94,8 +95,9 @@ describe('DropdownOverlay', () => {
       // disable ScreenPositionFixer positioning
       { disableLifecycleMethods: true }
     );
-    expect(wrapper.is('ScreenPositionFixer')).toBe(true);
-    expect(wrapper.dive().is('Popup')).toBe(true);
+
+    expect(wrapper.is(ScreenPositionFixer)).toBe(true);
+    expect(wrapper.dive().dive().dive().is(Popup)).toBe(true);
   });
 
   it('should render overlay without screen fixer', () => {
