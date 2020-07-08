@@ -6,6 +6,8 @@
 - Add right-bottom popup placement
 - Allow to pass a ref to a Popup
 - Add PortalPopup component: allow to create a Popup outside it's overflow:hidden parent
+- Add animated Arrow icon
+- Add Cog icon
 
 ## 1.0.11
 
