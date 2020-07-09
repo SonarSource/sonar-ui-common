@@ -24,7 +24,7 @@ import AlertErrorIcon from '../icons/AlertErrorIcon';
 import AlertSuccessIcon from '../icons/AlertSuccessIcon';
 import AlertWarnIcon from '../icons/AlertWarnIcon';
 import InfoIcon from '../icons/InfoIcon';
-import { css, styled, Theme, ThemedProps, useTheme } from '../theme';
+import { css, styled, Theme, themeColor, ThemedProps, themeSize, useTheme } from '../theme';
 import DeferredSpinner from './DeferredSpinner';
 
 type AlertDisplay = 'banner' | 'inline' | 'block';
@@ -47,17 +47,16 @@ const StyledAlertIcon = styled.div<{ isBanner: boolean; variantInfo: AlertVarian
   display: flex;
   justify-content: center;
   align-items: center;
-  width: calc(${(props) => (props.isBanner ? 2 : 4)} * ${(props) => props.theme.sizes.gridSize});
-  border-right: ${(props) => (!props.isBanner ? '1px solid' : 'none')};
-  border-color: ${(props) => props.variantInfo.borderColor};
+  width: calc(${({ isBanner }) => (isBanner ? 2 : 4)} * ${themeSize('gridSize')});
+  border-right: ${({ isBanner }) => (!isBanner ? '1px solid' : 'none')};
+  border-color: ${({ variantInfo }) => variantInfo.borderColor};
 `;
 
 const StyledAlertContent = styled.div`
   flex: 1 1 auto;
   overflow: auto;
   text-align: left;
-  padding: ${(props) => props.theme.sizes.gridSize}
-    calc(2 * ${(props) => props.theme.sizes.gridSize});
+  padding: ${themeSize('gridSize')} calc(2 * ${themeSize('gridSize')});
 `;
 
 const alertInnerIsBannerMixin = ({ theme }: ThemedProps) => css`
@@ -73,17 +72,17 @@ const alertInnerIsBannerMixin = ({ theme }: ThemedProps) => css`
 const StyledAlertInner = styled.div<{ isBanner: boolean }>`
   display: flex;
   align-items: stretch;
-  ${(props) => (props.isBanner ? alertInnerIsBannerMixin : null)}
+  ${({ isBanner }) => (isBanner ? alertInnerIsBannerMixin : null)}
 `;
 
 const StyledAlert = styled.div<{ isInline: boolean; variantInfo: AlertVariantInformation }>`
   border: 1px solid;
   border-radius: 2px;
-  margin-bottom: ${(props) => props.theme.sizes.gridSize};
-  border-color: ${(props) => props.variantInfo.borderColor};
-  background-color: ${(props) => props.variantInfo.backGroundColor};
-  color: ${(props) => props.variantInfo.color};
-  display: ${(props) => (props.isInline ? 'inline-block' : 'block')};
+  margin-bottom: ${themeSize('gridSize')};
+  border-color: ${({ variantInfo }) => variantInfo.borderColor};
+  background-color: ${({ variantInfo }) => variantInfo.backGroundColor};
+  color: ${({ variantInfo }) => variantInfo.color};
+  display: ${({ isInline }) => (isInline ? 'inline-block' : 'block')};
 
   :empty {
     display: none;
@@ -91,7 +90,7 @@ const StyledAlert = styled.div<{ isInline: boolean; variantInfo: AlertVariantInf
 
   a,
   .button-link {
-    border-color: ${(props) => props.theme.colors.darkBlue};
+    border-color: ${themeColor('darkBlue')};
   }
 `;
 

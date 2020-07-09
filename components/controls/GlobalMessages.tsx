@@ -20,7 +20,7 @@
 import { keyframes } from '@emotion/core';
 import * as React from 'react';
 import { cutLongWords } from '../../helpers/path';
-import { styled } from '../theme';
+import { styled, themeGet, themeSize } from '../theme';
 import { ClearButton } from './buttons';
 
 interface Message {
@@ -33,15 +33,6 @@ export interface GlobalMessagesProps {
   closeGlobalMessage: (id: string) => void;
   messages: Message[];
 }
-
-const MessagesContainer = styled.div`
-  position: fixed;
-  z-index: ${({ theme }) => theme.zIndexes.processContainerZIndex};
-  top: 0;
-  left: 50%;
-  width: 350px;
-  margin-left: -175px;
-`;
 
 export default function GlobalMessages({ closeGlobalMessage, messages }: GlobalMessagesProps) {
   if (messages.length === 0) {
@@ -57,43 +48,13 @@ export default function GlobalMessages({ closeGlobalMessage, messages }: GlobalM
   );
 }
 
-const appearAnim = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-
-const Message = styled.div<Pick<Message, 'level'>>`
-  position: relative;
-  padding: 0 30px 0 10px;
-  line-height: ${({ theme }) => theme.sizes.controlHeight};
-  border-radius: 0 0 3px 3px;
-  box-sizing: border-box;
-  color: #ffffff;
-  background-color: ${({ level, theme }) =>
-    level === 'SUCCESS' ? theme.colors.green : theme.colors.red};
-  text-align: center;
-  opacity: 0;
-  animation: ${appearAnim} 0.2s ease forwards;
-
-  & + & {
-    margin-top: calc(${({ theme }) => theme.sizes.gridSize} / 2);
-    border-radius: 3px;
-  }
-`;
-
-const CloseButton = styled(ClearButton)<Pick<Message, 'level'>>`
-  position: absolute;
-  top: calc(${({ theme }) => theme.sizes.gridSize} / 4);
-  right: calc(${({ theme }) => theme.sizes.gridSize} / 4);
-
-  &:hover svg,
-  &:focus svg {
-    color: ${({ level, theme }) => (level === 'SUCCESS' ? theme.colors.green : theme.colors.red)};
-  }
+const MessagesContainer = styled.div`
+  position: fixed;
+  z-index: ${themeGet('zIndexes', 'processContainerZIndex')};
+  top: 0;
+  left: 50%;
+  width: 350px;
+  margin-left: -175px;
 `;
 
 export class GlobalMessage extends React.PureComponent<{
@@ -119,3 +80,42 @@ export class GlobalMessage extends React.PureComponent<{
     );
   }
 }
+
+const appearAnim = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const Message = styled.div<Pick<Message, 'level'>>`
+  position: relative;
+  padding: 0 30px 0 10px;
+  line-height: ${themeSize('controlHeight')};
+  border-radius: 0 0 3px 3px;
+  box-sizing: border-box;
+  color: #ffffff;
+  background-color: ${({ level, theme }) =>
+    level === 'SUCCESS' ? theme.colors.green : theme.colors.red};
+  text-align: center;
+  opacity: 0;
+  animation: ${appearAnim} 0.2s ease forwards;
+
+  & + & {
+    margin-top: calc(${themeSize('gridSize')} / 2);
+    border-radius: 3px;
+  }
+`;
+
+const CloseButton = styled(ClearButton)<Pick<Message, 'level'>>`
+  position: absolute;
+  top: calc(${themeSize('gridSize')} / 4);
+  right: calc(${themeSize('gridSize')} / 4);
+
+  &:hover svg,
+  &:focus svg {
+    color: ${({ level, theme }) => (level === 'SUCCESS' ? theme.colors.green : theme.colors.red)};
+  }
+`;
