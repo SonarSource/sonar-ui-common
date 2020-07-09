@@ -8,6 +8,7 @@
 - Add PortalPopup component: allow to create a Popup outside it's overflow:hidden parent
 - Add animated Arrow icon
 - Add Cog icon
+- Add AutoEllipsis component: allow to automatically add the .text-ellipsis class based on the text size
 
 ## 1.0.11
 
