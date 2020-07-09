@@ -9,6 +9,7 @@
 - Add animated Arrow icon
 - Add Cog icon
 - Add AutoEllipsis component: allow to automatically add the .text-ellipsis class based on the text size
+- Add theme helpers to easily get theme values in emotion components
 
 ## 1.0.11
 

@@ -18,7 +18,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import * as React from 'react';
-import { styled, ThemedProps } from '../theme';
+import { styled, themeColor, ThemedProps, themeSize } from '../theme';
 
 export interface BoxedTabsProps<K> {
   className?: string;
@@ -52,7 +52,7 @@ const StyledTab = styled.button<{ active: boolean }>`
   min-height: 56px;
   ${(props) => !props.active && 'cursor: pointer;'}
   outline: 0;
-  padding: calc(2 * ${(props) => props.theme.sizes.gridSize});
+  padding: calc(2 * ${themeSize('gridSize')});
 
   ${(props) => (!props.active ? highlightHoverMixin : null)}
 
@@ -63,7 +63,7 @@ const StyledTab = styled.button<{ active: boolean }>`
 
 const ActiveBorder = styled.div<{ active: boolean }>`
   display: ${(props) => (props.active ? 'block' : 'none')};
-  background-color: ${(props) => props.theme.colors.blue};
+  background-color: ${themeColor('blue')};
   height: 3px;
   width: 100%;
   position: absolute;

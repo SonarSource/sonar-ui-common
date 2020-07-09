@@ -49,5 +49,17 @@ export const ThemeProvider = EmotionThemeProvider as React.ProviderExoticCompone
 >;
 export const useTheme = emotionUseTheme as () => Theme;
 
+export function themeGet(type: keyof Theme, name: keyof Theme['sizes']) {
+  return function ({ theme }: Partial<ThemedProps>) {
+    return theme?.[type][name];
+  };
+}
+export function themeColor(name: keyof Theme['colors']) {
+  return themeGet('colors', name);
+}
+export function themeSize(name: keyof Theme['sizes']) {
+  return themeGet('sizes', name);
+}
+
 export { css, withTheme };
 export default ThemeContext;
