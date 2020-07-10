@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.0.12
+
 - SONAR-13530 Prevent default when button is disabled
 - Add right-bottom popup placement
 - Allow to pass a ref to a Popup
