@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- BREAKING: Take ContextNavBar z-index from the theme
+
 ## 1.0.12
 
 - SONAR-13530 Prevent default when button is disabled
