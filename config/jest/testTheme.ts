@@ -153,19 +153,23 @@ export default {
     normalZIndex: '2',
     belowNormalZIndex: '1',
 
-    // ui elements
+    // page elements
     pageMainZIndex: '50',
 
-    tooltipZIndex: '8000',
+    // generic page fixed elements
+    contextbarZIndex: '420',
 
-    dropdownMenuZIndex: '7500',
-
-    processContainerZIndex: '7000',
+    // generic ui elements
+    popupZIndex: '5000',
 
     modalZIndex: '6001',
     modalOverlayZIndex: '6000',
 
-    popupZIndex: '5000',
+    processContainerZIndex: '7000',
+
+    dropdownMenuZIndex: '7500',
+
+    tooltipZIndex: '8000',
   },
 
   others: {

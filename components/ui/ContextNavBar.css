@@ -20,7 +20,7 @@
 .navbar-context,
 .navbar-context .navbar-inner {
   background-color: #fff;
-  z-index: 420;
+  z-index: var(--contextbarZIndex);
 }
 
 .navbar-context .navbar-inner {
