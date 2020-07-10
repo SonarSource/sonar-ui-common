@@ -49,7 +49,7 @@ export const ThemeProvider = EmotionThemeProvider as React.ProviderExoticCompone
 >;
 export const useTheme = emotionUseTheme as () => Theme;
 
-export function themeGet(type: keyof Theme, name: keyof Theme['sizes']) {
+export function themeGet(type: keyof Theme, name: string | number) {
   return function ({ theme }: Partial<ThemedProps>) {
     return theme?.[type][name];
   };

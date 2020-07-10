@@ -29,7 +29,6 @@ it('should render', () => {
   );
 
   expect(wrapper).toMatchSnapshot();
-  expect(wrapper.find('span').hasClass('medium')).toBe(true);
 });
 
 it('should render with text-ellipsis class', () => {
