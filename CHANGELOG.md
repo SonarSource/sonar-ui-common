@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.0.13
+
 - BREAKING: Take ContextNavBar z-index from the theme
 - Add Rocket icon
 
