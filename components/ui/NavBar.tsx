@@ -22,13 +22,13 @@ import { throttle } from 'lodash';
 import * as React from 'react';
 import './NavBar.css';
 
-interface Props {
-  children?: any;
+interface Props extends React.HTMLProps<HTMLDivElement> {
+  children?: React.ReactNode;
   className?: string;
   height: number;
+  limited?: boolean;
   top?: number;
   notif?: React.ReactNode;
-  [prop: string]: any;
 }
 
 interface State {
@@ -59,13 +59,13 @@ export default class NavBar extends React.PureComponent<Props, State> {
   };
 
   render() {
-    const { children, className, height, top, notif, ...other } = this.props;
+    const { children, className, height, limited = true, top, notif, ...other } = this.props;
     return (
       <nav {...other} className={classNames('navbar', className)} style={{ height, top }}>
         <div
           className={classNames('navbar-inner', { 'navbar-inner-with-notif': notif != null })}
           style={{ height, left: this.state.left }}>
-          <div className="navbar-limited clearfix">{children}</div>
+          <div className={classNames('clearfix', { 'navbar-limited': limited })}>{children}</div>
           {notif}
         </div>
       </nav>

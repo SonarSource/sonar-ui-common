@@ -32,16 +32,19 @@
   right: 0;
 }
 
-.ReactModal__Body--open .navbar-inner {
-  padding-right: var(--sbw);
+.navbar-inner > div {
+  position: relative;
+  min-width: var(--minPageWidth);
+  padding-left: var(--pagePadding);
+  padding-right: var(--pagePadding);
 }
 
 .navbar-limited {
-  position: relative;
-  min-width: var(--minPageWidth);
   max-width: var(--maxPageWidth);
   margin-left: auto;
   margin-right: auto;
-  padding-left: var(--pagePadding);
-  padding-right: var(--pagePadding);
+}
+
+.ReactModal__Body--open .navbar-inner {
+  padding-right: var(--sbw);
 }
