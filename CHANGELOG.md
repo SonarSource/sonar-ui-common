@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Allow to opt out of the NavBar limited class
+
 ## 1.0.13
 
 - BREAKING: Take ContextNavBar z-index from the theme
