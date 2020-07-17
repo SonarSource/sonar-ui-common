@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.0.14
+
 - Allow to opt out of the NavBar limited class
 
 ## 1.0.13
