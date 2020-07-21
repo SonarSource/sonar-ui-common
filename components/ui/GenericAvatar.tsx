@@ -24,10 +24,11 @@ import { getTextColor, stringToColor } from '../../helpers/colors';
 interface Props {
   className?: string;
   name: string;
+  round?: boolean;
   size: number;
 }
 
-export default function GenericAvatar({ className, name, size }: Props) {
+export default function GenericAvatar({ className, name, round, size }: Props) {
   const color = stringToColor(name);
 
   let text = '';
@@ -43,6 +44,7 @@ export default function GenericAvatar({ className, name, size }: Props) {
       className={classNames(className, 'rounded')}
       style={{
         backgroundColor: color,
+        borderRadius: round ? '50%' : undefined,
         color: getTextColor(color),
         display: 'inline-block',
         fontSize: Math.min(size / 2, 14),
