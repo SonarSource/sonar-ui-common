@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.0.15
+
 - Add optional round prop to GenericAvatar
 
 ## 1.0.14
