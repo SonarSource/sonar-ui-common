@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add optional round prop to GenericAvatar
+
 ## 1.0.14
 
 - Allow to opt out of the NavBar limited class
