@@ -33,9 +33,17 @@ import {
   postJSONBody,
   requestTryAndRepeatUntil,
 } from '../request';
+import { getRequestOptions } from '../init';
 
 jest.mock('../handleRequiredAuthentication', () => ({ default: jest.fn() }));
 
+jest.mock('../init', () => {
+  const module = jest.requireActual('../init');
+  return {
+    ...module,
+    getRequestOptions: jest.fn().mockReturnValue({}),
+  };
+});
 const url = '/my-url';
 
 beforeEach(() => {
@@ -325,6 +333,18 @@ describe('checkStatus', () => {
     expect(reload).not.toBeCalled();
     checkStatus(mockResponse({ 'Sonar-Version': '7.9' }));
     expect(reload).toBeCalled();
+  });
+
+  it('should notify when version is changing', async () => {
+    const onVersionChange = jest.fn();
+    (getRequestOptions as jest.Mock).mockReturnValue({
+      onVersionChange,
+    });
+
+    await checkStatus(mockResponse({ 'Sonar-Version': '6.7' }));
+    checkStatus(mockResponse({ 'Sonar-Version': '7.9' }));
+
+    expect(onVersionChange).toBeCalled();
   });
 });
 
