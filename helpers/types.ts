@@ -20,3 +20,12 @@
 export function isDefined<T>(x: T | undefined | null): x is T {
   return x !== undefined && x !== null;
 }
+
+export interface Notification {
+  id?: string;
+  message: React.ReactNode;
+}
+export interface NotificationsCenter {
+  add: (notification: Notification) => string;
+  remove: (id: string) => void;
+}
