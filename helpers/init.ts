@@ -18,11 +18,17 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 import type { Messages } from './l10n';
+import {RefreshBehavior, RequestOptions} from './request';
+import {NotificationsCenter} from './types'
 
 let urlContext: string; // Is the base path (web context) in SQ
 let messages: Messages | undefined;
 let locale: string | undefined;
+let notificationsCenter: NotificationsCenter;
 let reactDomContainerSelector: string | undefined; // CSS selector of the DOM node where the React App is attached
+let requestOptions: RequestOptions = {
+  refreshBehavior: RefreshBehavior.Immediately
+}
 
 export const IS_SSR = typeof window === 'undefined';
 export const DEFAULT_LOCALE = 'en';
@@ -45,10 +51,19 @@ export default {
     messages = newMessages;
     return this;
   },
+  setNotificationsCenter(notificationsCenter: NotificationsCenter) {
+    console.log('setNotificationsCenter', notificationsCenter);
+    notificationsCenter = notificationsCenter;
+    return this;
+  },
   setReactDomContainer(nodeSelector: string) {
     reactDomContainerSelector = nodeSelector;
     return this;
   },
+  setRequestOptions(options: RequestOptions) {
+    requestOptions = options;
+    return this;
+  }
 };
 
 export function getMessages() {
@@ -67,8 +82,17 @@ export function getLocale() {
   return locale;
 }
 
+export function getNotificationsCenter() {
+  console.log('getNotificationsCenter', notificationsCenter);
+  return notificationsCenter;
+}
+
 export function getReactDomContainerSelector() {
   return reactDomContainerSelector || '#content';
+}
+
+export function getRequestOptions() {
+  return requestOptions;
 }
 
 export function getUrlContext() {

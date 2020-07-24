@@ -20,8 +20,17 @@
 import { isNil, omitBy } from 'lodash';
 import { stringify } from 'querystring';
 import { getCookie } from './cookies';
-import { getUrlContext } from './init';
+import { getNotificationsCenter, getRequestOptions, getUrlContext } from './init';
 import { translate } from './l10n';
+import { Notification } from './types';
+
+export enum RefreshBehavior {
+  Immediately,
+  NotifyWaitReload,
+}
+export type RequestOptions = {
+  refreshBehavior: RefreshBehavior
+}
 
 /** Current application version. Can be changed if a newer version is deployed. */
 let currentApplicationVersion: string | undefined;
@@ -149,11 +158,35 @@ export function corsRequest(url: string, mode: RequestMode = 'cors'): Request {
   return request;
 }
 
+function reload() {
+  window.location.reload();
+}
+
+function notifyWaitReload() {
+  const minutesToWait = 1 + Math.floor(Math.random() * Math.floor(4)); // range from 1 to 5
+  const secondsToWait = minutesToWait * 60 /* * 1000 */;
+  console.log(secondsToWait);
+  const notification: Notification = {
+    title: 'hey!'
+  };
+  console.log('getNotificationsCenter()', getNotificationsCenter())
+  getNotificationsCenter().add(notification);
+  // setTimeout(reload, secondsToWait);
+}
+
+let done = false;
+
 function checkApplicationVersion(response: Response): boolean {
   const version = response.headers.get('Sonar-Version');
   if (version) {
-    if (currentApplicationVersion && currentApplicationVersion !== version) {
-      window.location.reload();
+    console.log(currentApplicationVersion, version);
+    if (/*currentApplicationVersion && currentApplicationVersion !== version*/ !done) {
+      done = true;
+      if (getRequestOptions().refreshBehavior === RefreshBehavior.NotifyWaitReload) {
+        notifyWaitReload();
+      } else {
+        reload();
+      }
       return false;
     } else {
       currentApplicationVersion = version;
