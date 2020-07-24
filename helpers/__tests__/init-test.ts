@@ -24,8 +24,10 @@ import Initializer, {
   getLocale,
   getMessages,
   getReactDomContainerSelector,
+  getRequestOptions,
   getUrlContext,
 } from '../init';
+import { RequestOptions } from '../types';
 
 const originalConsoleWarn = console.warn;
 console.warn = jest.fn();
@@ -65,13 +67,19 @@ it('should return the initialized values', () => {
   const messages = { any: 'Any' };
   const urlContext = '/context';
   const reactDomContainerSelector = '#custom';
+  const requestOptions: RequestOptions = {
+    onVersionChange: jest.fn(),
+  };
+
   Initializer.setLocale(locale)
     .setMessages(messages)
+    .setRequestOptions(requestOptions)
     .setUrlContext(urlContext)
     .setReactDomContainer(reactDomContainerSelector);
 
   expect(getLocale()).toBe(locale);
   expect(getMessages()).toBe(messages);
+  expect(getRequestOptions()).toEqual(requestOptions);
   expect(getUrlContext()).toBe(urlContext);
   expect(getReactDomContainerSelector()).toBe(reactDomContainerSelector);
   expect(console.warn).not.toBeCalled();

@@ -20,8 +20,12 @@
 import { isNil, omitBy } from 'lodash';
 import { stringify } from 'querystring';
 import { getCookie } from './cookies';
-import { getUrlContext } from './init';
+import { getRequestOptions, getUrlContext } from './init';
 import { translate } from './l10n';
+
+export interface RequestOptions {
+  onVersionChange?: VoidFunction;
+}
 
 /** Current application version. Can be changed if a newer version is deployed. */
 let currentApplicationVersion: string | undefined;
@@ -149,11 +153,16 @@ export function corsRequest(url: string, mode: RequestMode = 'cors'): Request {
   return request;
 }
 
+function reload() {
+  window.location.reload();
+}
+
 function checkApplicationVersion(response: Response): boolean {
   const version = response.headers.get('Sonar-Version');
   if (version) {
     if (currentApplicationVersion && currentApplicationVersion !== version) {
-      window.location.reload();
+      const { onVersionChange = reload } = getRequestOptions();
+      onVersionChange();
       return false;
     } else {
       currentApplicationVersion = version;
