@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Bump to eslint-config-sonarqube@0.6.1
+
 ## 1.0.15
 
 - Add optional round prop to GenericAvatar
