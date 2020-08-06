@@ -19,14 +19,14 @@
  */
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import TimeFormatter from '../TimeFormatter';
+import TimeFormatter, { TimeFormatterProps } from '../TimeFormatter';
 
 it('should render correctly', () => {
   expect(shallowRender()).toMatchSnapshot('standard');
   expect(shallowRender({ long: true })).toMatchSnapshot('long');
 });
 
-function shallowRender(overrides: Partial<typeof TimeFormatter> = {}) {
+function shallowRender(overrides: Partial<TimeFormatterProps> = {}) {
   return shallow(
     <TimeFormatter date={new Date('2020-02-20T20:20:20Z')} {...overrides}>
       {(formatted) => <span>{formatted}</span>}

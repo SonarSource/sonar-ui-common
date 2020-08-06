@@ -19,7 +19,9 @@
  */
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import DateFromNowHourPrecision from '../DateFromNowHourPrecision';
+import DateFromNowHourPrecision, {
+  DateFromNowHourPrecisionProps,
+} from '../DateFromNowHourPrecision';
 
 it('should render correctly', () => {
   expect(shallowRender()).toMatchSnapshot('standard');
@@ -29,10 +31,7 @@ it('should render correctly', () => {
   expect(shallowRender({ date: new Date() })).toMatchSnapshot('overridden - less than an hour');
 });
 
-function shallowRender(
-  overrides: Partial<typeof DateFromNowHourPrecision> = {},
-  noChildren = false
-) {
+function shallowRender(overrides: Partial<DateFromNowHourPrecisionProps> = {}, noChildren = false) {
   const date = new Date('2020-02-20T20:20:20Z');
   return noChildren
     ? shallow(<DateFromNowHourPrecision date={date} {...overrides} />)
