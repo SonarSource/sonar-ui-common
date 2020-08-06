@@ -25,12 +25,12 @@ import Tooltip from '../controls/Tooltip';
 import DateFromNow from './DateFromNow';
 import DateTimeFormatter from './DateTimeFormatter';
 
-interface Props {
+export interface DateFromNowHourPrecisionProps {
   children?: (formattedDate: string) => React.ReactNode;
   date?: DateSource;
 }
 
-export default function DateFromNowHourPrecision(props: Props) {
+export default function DateFromNowHourPrecision(props: DateFromNowHourPrecisionProps) {
   const { children = (f: string) => f, date } = props;
 
   /*

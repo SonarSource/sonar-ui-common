@@ -19,14 +19,14 @@
  */
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import DateFormatter from '../DateFormatter';
+import DateFormatter, { DateFormatterProps } from '../DateFormatter';
 
 it('should render correctly', () => {
   expect(shallowRender()).toMatchSnapshot('standard');
   expect(shallowRender({ long: true })).toMatchSnapshot('long');
 });
 
-function shallowRender(overrides: Partial<React.ComponentProps<typeof DateFormatter>> = {}) {
+function shallowRender(overrides: Partial<DateFormatterProps> = {}) {
   return shallow(
     <DateFormatter date={new Date('2020-02-20T20:20:20Z')} {...overrides}>
       {(formatted) => <span>{formatted}</span>}

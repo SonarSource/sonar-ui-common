@@ -21,7 +21,7 @@ import * as React from 'react';
 import { DateSource, FormattedDate } from 'react-intl';
 import { parseDate } from '../../helpers/dates';
 
-interface Props {
+export interface DateFormatterProps {
   children?: (formattedDate: string) => React.ReactNode;
   date: DateSource;
   long?: boolean;
@@ -31,7 +31,7 @@ export const formatterOption = { year: 'numeric', month: 'short', day: '2-digit'
 
 export const longFormatterOption = { year: 'numeric', month: 'long', day: 'numeric' };
 
-export default function DateFormatter({ children, date, long }: Props) {
+export default function DateFormatter({ children, date, long }: DateFormatterProps) {
   return (
     <FormattedDate value={parseDate(date)} {...(long ? longFormatterOption : formatterOption)}>
       {children}

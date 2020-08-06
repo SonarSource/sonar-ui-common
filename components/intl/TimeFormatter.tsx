@@ -21,7 +21,7 @@ import * as React from 'react';
 import { DateSource, FormattedTime } from 'react-intl';
 import { parseDate } from '../../helpers/dates';
 
-interface Props {
+export interface TimeFormatterProps {
   children?: (formattedDate: string) => React.ReactNode;
   date: DateSource;
   long?: boolean;
@@ -31,7 +31,7 @@ export const formatterOption = { hour: 'numeric', minute: 'numeric' };
 
 export const longFormatterOption = { hour: 'numeric', minute: 'numeric', second: 'numeric' };
 
-export default function TimeFormatter({ children, date, long }: Props) {
+export default function TimeFormatter({ children, date, long }: TimeFormatterProps) {
   return (
     <FormattedTime value={parseDate(date)} {...(long ? longFormatterOption : formatterOption)}>
       {children}
