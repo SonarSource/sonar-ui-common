@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.0.16
+
 - Bump to eslint-config-sonarqube@0.6.1
 - SC-2266 Add a `setRequestOptions`  to the initialisation process
 
