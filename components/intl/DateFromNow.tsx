@@ -17,15 +17,45 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
+import { differenceInHours } from 'date-fns';
 import * as React from 'react';
 import { DateSource, FormattedRelative } from 'react-intl';
 import { parseDate } from '../../helpers/dates';
+import { translate } from '../../helpers/l10n';
+import DateTimeFormatter from './DateTimeFormatter';
 
-interface Props {
+export interface DateFromNowProps {
   children?: (formattedDate: string) => React.ReactNode;
-  date: DateSource;
+  date?: DateSource;
+  hourPrecision?: boolean;
 }
 
-export default function DateFromNow({ children, date }: Props) {
-  return <FormattedRelative value={parseDate(date)}>{children}</FormattedRelative>;
+export default function DateFromNow(props: DateFromNowProps) {
+  const { children: originalChildren = (f: string) => f, date, hourPrecision } = props;
+  let children = originalChildren;
+
+  if (!date) {
+    /*
+     * We return a JSX.Element to bypass typescript issue with functional components return type
+     * (https://github.com/DefinitelyTyped/DefinitelyTyped/issues/20544)
+     */
+    // eslint-disable-next-line react/jsx-no-useless-fragment
+    return <>{originalChildren(translate('never'))}</>;
+  }
+
+  if (date && hourPrecision && differenceInHours(Date.now(), date) < 1) {
+    children = () => originalChildren(translate('less_than_1_hour_ago'));
+  }
+
+  const parsedDate = parseDate(date);
+
+  return (
+    <DateTimeFormatter date={parsedDate}>
+      {(formattedDate) => (
+        <span title={formattedDate}>
+          <FormattedRelative value={parsedDate}>{children}</FormattedRelative>
+        </span>
+      )}
+    </DateTimeFormatter>
+  );
 }

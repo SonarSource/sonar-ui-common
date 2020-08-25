@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- SONAR-13796 Display the full date when hovering a date from now
+- Drop component `DateFromNowHourPrecision`. Use `DateFromNow` with `hourPrecision=true` instead.
+- Drop component `DateTooltipFormatter`. Use `DateFormatter` or `DateTimeFormatter` instead.
+
 ## 1.0.18
 
  - SC-2330 Add vertical RadioCard style
