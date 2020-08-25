@@ -53,6 +53,11 @@
   outline: none;
 }
 
+.radio-card-vertical {
+  width: 100%;
+  min-height: auto;
+}
+
 .radio-card-actionable {
   cursor: pointer;
 }
@@ -64,6 +69,20 @@
 
 .radio-card-actionable.selected {
   border-color: var(--darkBlue);
+}
+
+/*
+ * Disabled transform property because it moves the element to a new stacking context
+ * creating z-index conflicts with other components.
+ * This is a problem with a vertical list of RadioCards where a select might be above another RadioCard
+ */
+.radio-card-actionable.radio-card-vertical:not(.disabled):hover {
+  box-shadow: none;
+  transform: none;
+}
+
+.radio-card-actionable.radio-card-vertical:not(.selected):not(.disabled):hover {
+  border-color: var(--lightBlue);
 }
 
 .radio-card-actionable.selected .radio-card-recommended {

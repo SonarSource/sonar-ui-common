@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+ - SC-2330 Add vertical RadioCard style
+
 ## 1.0.17
 
 - SC-2266 onVersionChange request option must return a boolean to allow the request to proceed or not
