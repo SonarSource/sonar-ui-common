@@ -19,16 +19,49 @@
  */
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import DateFromNow from '../DateFromNow';
+import { FormattedRelative, IntlProvider } from 'react-intl';
+import DateFromNow, { DateFromNowProps } from '../DateFromNow';
+import DateTimeFormatter from '../DateTimeFormatter';
+
+const date = '2020-02-20T20:20:20Z';
 
 it('should render correctly', () => {
-  expect(shallowRender()).toMatchSnapshot('standard');
+  const wrapper = shallowRender();
+
+  expect(wrapper).toMatchSnapshot();
+  expect(wrapper.find(DateTimeFormatter).props().children(date)).toMatchSnapshot('children');
 });
 
-function shallowRender() {
-  return shallow(
-    <DateFromNow date={new Date('2020-02-20T20:20:20Z')}>
-      {(formatted) => <span>{formatted}</span>}
-    </DateFromNow>
-  );
+it('should render correctly when there is no date', () => {
+  const children = jest.fn();
+
+  shallowRender({ date: undefined }, children);
+
+  expect(children).toHaveBeenCalledWith('never');
+});
+
+it('should render correctly when the date is less than one hour in the past', () => {
+  const veryCloseDate = new Date(date);
+  veryCloseDate.setMinutes(veryCloseDate.getMinutes() - 10);
+  jest.spyOn(Date, 'now').mockImplementation(() => (new Date(date) as unknown) as number);
+  const children = jest.fn();
+
+  shallowRender({ date: veryCloseDate, hourPrecision: true }, children)
+    .dive()
+    .dive()
+    .find(FormattedRelative)
+    .props()
+    .children(date);
+
+  expect(children).toHaveBeenCalledWith('less_than_1_hour_ago');
+});
+
+function shallowRender(overrides: Partial<DateFromNowProps> = {}, children: jest.Mock = jest.fn()) {
+  return shallow<DateFromNowProps>(
+    <IntlProvider defaultLocale="en-US" locale="en">
+      <DateFromNow date={date} {...overrides}>
+        {(formattedDate) => children(formattedDate)}
+      </DateFromNow>
+    </IntlProvider>
+  ).dive();
 }
