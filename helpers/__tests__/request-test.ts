@@ -19,6 +19,7 @@
  */
 
 import handleRequiredAuthentication from '../handleRequiredAuthentication';
+import { getRequestOptions } from '../init';
 import {
   checkStatus,
   getJSON,
@@ -33,7 +34,6 @@ import {
   postJSONBody,
   requestTryAndRepeatUntil,
 } from '../request';
-import { getRequestOptions } from '../init';
 
 jest.mock('../handleRequiredAuthentication', () => ({ default: jest.fn() }));
 
@@ -336,7 +336,7 @@ describe('checkStatus', () => {
   });
 
   it('should notify when version is changing', async () => {
-    const onVersionChange = jest.fn();
+    const onVersionChange = jest.fn().mockReturnValue(true);
     (getRequestOptions as jest.Mock).mockReturnValue({
       onVersionChange,
     });
