@@ -37,17 +37,31 @@ interface Props extends RadioCardProps {
   recommended?: string;
   title: React.ReactNode;
   titleInfo?: React.ReactNode;
+  vertical?: boolean;
 }
 
 export default function RadioCard(props: Props) {
-  const { className, disabled, onClick, recommended, selected, titleInfo } = props;
+  const {
+    className,
+    disabled,
+    onClick,
+    recommended,
+    selected,
+    titleInfo,
+    vertical = false,
+  } = props;
   const isActionable = Boolean(onClick);
   return (
     <div
       aria-checked={selected}
       className={classNames(
         'radio-card',
-        { 'radio-card-actionable': isActionable, disabled, selected },
+        {
+          'radio-card-actionable': isActionable,
+          'radio-card-vertical': vertical,
+          disabled,
+          selected,
+        },
         className
       )}
       onClick={isActionable && !disabled ? onClick : undefined}

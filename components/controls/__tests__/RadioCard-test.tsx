@@ -30,6 +30,18 @@ it('should render correctly', () => {
       </RadioCard>
     )
   ).toMatchSnapshot();
+
+  expect(
+    shallow(
+      <RadioCard
+        recommended="Recommended for you"
+        title="Radio Card Vertical"
+        titleInfo="info"
+        vertical={true}>
+        <div>content</div>
+      </RadioCard>
+    )
+  ).toMatchSnapshot();
 });
 
 it('should be actionable', () => {
