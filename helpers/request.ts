@@ -24,7 +24,7 @@ import { getRequestOptions, getUrlContext } from './init';
 import { translate } from './l10n';
 
 export interface RequestOptions {
-  onVersionChange?: VoidFunction;
+  onVersionChange?: () => boolean;
 }
 
 /** Current application version. Can be changed if a newer version is deployed. */
@@ -155,6 +155,7 @@ export function corsRequest(url: string, mode: RequestMode = 'cors'): Request {
 
 function reload() {
   window.location.reload();
+  return false;
 }
 
 function checkApplicationVersion(response: Response): boolean {
@@ -162,8 +163,7 @@ function checkApplicationVersion(response: Response): boolean {
   if (version) {
     if (currentApplicationVersion && currentApplicationVersion !== version) {
       const { onVersionChange = reload } = getRequestOptions();
-      onVersionChange();
-      return false;
+      return onVersionChange();
     } else {
       currentApplicationVersion = version;
     }

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- SC-2266 onVersionChange request option must return a boolean to allow the request to proceed or not
+
 ## 1.0.16
 
 - Bump to eslint-config-sonarqube@0.6.1
