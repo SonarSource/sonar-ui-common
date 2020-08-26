@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.0.18
+
  - SC-2330 Add vertical RadioCard style
 
 ## 1.0.17
