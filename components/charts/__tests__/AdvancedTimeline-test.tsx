@@ -17,7 +17,6 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
-
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { ThemeConsumer } from '../../theme';
@@ -67,6 +66,34 @@ it('should find date to display based on mouse location', () => {
   wrapper.instance().handleMouseEnter();
   wrapper.instance().updateTooltipPos(10);
   expect(wrapper.state().selectedDateIdx).toBe(1);
+});
+
+it('should update timeline when width changes', () => {
+  const updateTooltip = jest.fn();
+  const wrapper = shallowRender({ selectedDate: new Date('2019-10-02'), updateTooltip });
+  const { xScale, selectedDateXPos } = wrapper.state();
+
+  wrapper.setProps({ width: 200 });
+  expect(wrapper.state().xScale).not.toBe(xScale);
+  expect(wrapper.state().xScale).toEqual(expect.any(Function));
+  expect(wrapper.state().selectedDateXPos).not.toBe(selectedDateXPos);
+  expect(wrapper.state().selectedDateXPos).toEqual(expect.any(Number));
+  expect(updateTooltip).toBeCalled();
+});
+
+it('should update tootlips when selected date changes', () => {
+  const updateTooltip = jest.fn();
+
+  const wrapper = shallowRender({ selectedDate: new Date('2019-10-01'), updateTooltip });
+  const { xScale, selectedDateXPos } = wrapper.state();
+  const selectedDate = new Date('2019-10-02');
+
+  wrapper.setProps({ selectedDate });
+  expect(wrapper.state().xScale).toBe(xScale);
+  expect(wrapper.state().selectedDate).toBe(selectedDate);
+  expect(wrapper.state().selectedDateXPos).not.toBe(selectedDateXPos);
+  expect(wrapper.state().selectedDateXPos).toEqual(expect.any(Number));
+  expect(updateTooltip).toBeCalled();
 });
 
 function shallowRender(props?: Partial<AdvancedTimeline['props']>) {

@@ -83,27 +83,27 @@ export default class AdvancedTimeline extends React.PureComponent<Props, State> 
     this.handleZoomUpdate = throttle(this.handleZoomUpdate, 40);
   }
 
-  componentWillReceiveProps(nextProps: Props) {
+  componentDidUpdate(prevProps: Props) {
     let scales;
     let selectedDatePos;
     if (
-      nextProps.metricType !== this.props.metricType ||
-      nextProps.startDate !== this.props.startDate ||
-      nextProps.endDate !== this.props.endDate ||
-      nextProps.width !== this.props.width ||
-      nextProps.padding !== this.props.padding ||
-      nextProps.height !== this.props.height ||
-      nextProps.series !== this.props.series
+      this.props.metricType !== prevProps.metricType ||
+      this.props.startDate !== prevProps.startDate ||
+      this.props.endDate !== prevProps.endDate ||
+      this.props.width !== prevProps.width ||
+      this.props.padding !== prevProps.padding ||
+      this.props.height !== prevProps.height ||
+      this.props.series !== prevProps.series
     ) {
-      scales = this.getScales(nextProps);
+      scales = this.getScales(this.props);
       if (this.state.selectedDate != null) {
         selectedDatePos = this.getSelectedDatePos(scales.xScale, this.state.selectedDate);
       }
     }
 
-    if (!isEqual(nextProps.selectedDate, this.props.selectedDate)) {
+    if (!isEqual(this.props.selectedDate, prevProps.selectedDate)) {
       const xScale = scales ? scales.xScale : this.state.xScale;
-      selectedDatePos = this.getSelectedDatePos(xScale, nextProps.selectedDate);
+      selectedDatePos = this.getSelectedDatePos(xScale, this.props.selectedDate);
     }
 
     if (scales || selectedDatePos) {
@@ -114,8 +114,8 @@ export default class AdvancedTimeline extends React.PureComponent<Props, State> 
         this.setState({ ...selectedDatePos });
       }
 
-      if (selectedDatePos && nextProps.updateTooltip) {
-        nextProps.updateTooltip(
+      if (selectedDatePos && this.props.updateTooltip) {
+        this.props.updateTooltip(
           selectedDatePos.selectedDate,
           selectedDatePos.selectedDateXPos,
           selectedDatePos.selectedDateIdx

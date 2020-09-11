@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Add new placeholder prop to DeferredSpinner
+- Remove usage of componentWillReceiveProps in DeferredSpinner, SearchBox and AdvancedTimeline
+
 ## 1.0.20
 
 - SONAR-13796 Display the full date when hovering a date from now
