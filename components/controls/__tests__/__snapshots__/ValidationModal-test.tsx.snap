@@ -91,7 +91,6 @@ exports[`should render correctly 2`] = `
       <DeferredSpinner
         className="spacer-right"
         loading={false}
-        timeout={100}
       />
       <SubmitButton
         className="button-red"

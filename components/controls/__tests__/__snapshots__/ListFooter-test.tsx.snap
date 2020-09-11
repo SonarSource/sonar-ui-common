@@ -46,7 +46,6 @@ exports[`should render correctly: loading 1`] = `
   </Button>
   <DeferredSpinner
     className="text-bottom spacer-left position-absolute"
-    timeout={100}
   />
 </footer>
 `;
@@ -81,7 +80,6 @@ exports[`should render correctly: reload, loading 1`] = `
   </Button>
   <DeferredSpinner
     className="text-bottom spacer-left position-absolute"
-    timeout={100}
   />
 </footer>
 `;

@@ -3,7 +3,6 @@
 exports[`add custom className 1`] = `
 <DeferredSpinner
   className="foo"
-  timeout={100}
 >
   <i
     className="deferred-spinner foo"
@@ -14,7 +13,6 @@ exports[`add custom className 1`] = `
 exports[`is controlled by loading prop 1`] = `
 <DeferredSpinner
   loading={false}
-  timeout={100}
 >
   <div>
     foo
@@ -25,7 +23,6 @@ exports[`is controlled by loading prop 1`] = `
 exports[`is controlled by loading prop 2`] = `
 <DeferredSpinner
   loading={true}
-  timeout={100}
 >
   <div>
     foo
@@ -36,7 +33,6 @@ exports[`is controlled by loading prop 2`] = `
 exports[`is controlled by loading prop 3`] = `
 <DeferredSpinner
   loading={true}
-  timeout={100}
 >
   <i
     className="deferred-spinner"
@@ -47,7 +43,6 @@ exports[`is controlled by loading prop 3`] = `
 exports[`is controlled by loading prop 4`] = `
 <DeferredSpinner
   loading={false}
-  timeout={100}
 >
   <div>
     foo
@@ -55,10 +50,18 @@ exports[`is controlled by loading prop 4`] = `
 </DeferredSpinner>
 `;
 
-exports[`renders children before timeout 1`] = `
+exports[`renders a placeholder while waiting 1`] = `
 <DeferredSpinner
-  timeout={100}
+  placeholder={true}
 >
+  <i
+    className="deferred-spinner-placeholder"
+  />
+</DeferredSpinner>
+`;
+
+exports[`renders children before timeout 1`] = `
+<DeferredSpinner>
   <div>
     foo
   </div>
@@ -66,25 +69,17 @@ exports[`renders children before timeout 1`] = `
 `;
 
 exports[`renders children before timeout 2`] = `
-<DeferredSpinner
-  timeout={100}
->
+<DeferredSpinner>
   <i
     className="deferred-spinner"
   />
 </DeferredSpinner>
 `;
 
-exports[`renders spinner after timeout 1`] = `
-<DeferredSpinner
-  timeout={100}
-/>
-`;
+exports[`renders spinner after timeout 1`] = `<DeferredSpinner />`;
 
 exports[`renders spinner after timeout 2`] = `
-<DeferredSpinner
-  timeout={100}
->
+<DeferredSpinner>
   <i
     className="deferred-spinner"
   />

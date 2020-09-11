@@ -24,8 +24,9 @@ import './DeferredSpinner.css';
 interface Props {
   children?: React.ReactNode;
   className?: string;
-  loading?: boolean;
   customSpinner?: JSX.Element;
+  loading?: boolean;
+  placeholder?: boolean;
   timeout?: number;
 }
 
@@ -33,12 +34,10 @@ interface State {
   showSpinner: boolean;
 }
 
-export default class DeferredSpinner extends React.PureComponent<Props, State> {
-  timer: any;
+const DEFAULT_TIMEOUT = 100;
 
-  static defaultProps = {
-    timeout: 100,
-  };
+export default class DeferredSpinner extends React.PureComponent<Props, State> {
+  timer?: number;
 
   state: State = { showSpinner: false };
 
@@ -48,12 +47,12 @@ export default class DeferredSpinner extends React.PureComponent<Props, State> {
     }
   }
 
-  componentWillReceiveProps(nextProps: Props) {
-    if (this.props.loading === false && nextProps.loading === true) {
+  componentDidUpdate(prevProps: Props) {
+    if (prevProps.loading === false && this.props.loading === true) {
       this.stopTimer();
       this.startTimer();
     }
-    if (this.props.loading === true && nextProps.loading === false) {
+    if (prevProps.loading === true && this.props.loading === false) {
       this.stopTimer();
       this.setState({ showSpinner: false });
     }
@@ -64,11 +63,14 @@ export default class DeferredSpinner extends React.PureComponent<Props, State> {
   }
 
   startTimer = () => {
-    this.timer = setTimeout(() => this.setState({ showSpinner: true }), this.props.timeout);
+    this.timer = window.setTimeout(
+      () => this.setState({ showSpinner: true }),
+      this.props.timeout || DEFAULT_TIMEOUT
+    );
   };
 
   stopTimer = () => {
-    clearTimeout(this.timer);
+    window.clearTimeout(this.timer);
   };
 
   render() {
@@ -79,6 +81,11 @@ export default class DeferredSpinner extends React.PureComponent<Props, State> {
         )
       );
     }
-    return this.props.children || null;
+    return (
+      this.props.children ||
+      (this.props.placeholder ? (
+        <i className={classNames('deferred-spinner-placeholder', this.props.className)} />
+      ) : null)
+    );
   }
 }

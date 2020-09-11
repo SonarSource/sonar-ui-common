@@ -63,5 +63,11 @@ it('is controlled by loading prop', () => {
   spinner.update();
   expect(spinner).toMatchSnapshot();
   spinner.setProps({ loading: false });
+  spinner.update();
+  expect(spinner).toMatchSnapshot();
+});
+
+it('renders a placeholder while waiting', () => {
+  const spinner = mount(<DeferredSpinner placeholder={true} />);
   expect(spinner).toMatchSnapshot();
 });
