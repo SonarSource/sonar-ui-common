@@ -55,16 +55,16 @@ export default class SearchBox extends React.PureComponent<Props, State> {
     this.debouncedOnChange = debounce(this.props.onChange, 250);
   }
 
-  componentWillReceiveProps(nextProps: Props) {
+  componentDidUpdate(prevProps: Props) {
     if (
       // input is controlled
-      nextProps.value !== undefined &&
+      this.props.value !== undefined &&
       // parent is aware of last change
       // can happen when previous value was less than min length
-      this.state.value === this.props.value &&
-      nextProps.value !== this.state.value
+      this.state.value === prevProps.value &&
+      this.state.value !== this.props.value
     ) {
-      this.setState({ value: nextProps.value });
+      this.setState({ value: this.props.value });
     }
   }
 

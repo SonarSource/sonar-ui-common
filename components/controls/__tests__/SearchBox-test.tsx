@@ -23,7 +23,7 @@ import { change, click } from '../../../helpers/testUtils';
 import SearchBox from '../SearchBox';
 
 jest.mock('lodash', () => {
-  const lodash = require.requireActual('lodash');
+  const lodash = jest.requireActual('lodash');
   const debounce = (fn: Function) => {
     const debounced: any = (...args: any[]) => fn(...args);
     debounced.cancel = jest.fn();
