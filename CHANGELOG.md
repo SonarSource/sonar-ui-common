@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Update lodash to 4.17.20
 - Add new placeholder prop to DeferredSpinner
 - Remove usage of componentWillReceiveProps in DeferredSpinner, SearchBox and AdvancedTimeline
 
