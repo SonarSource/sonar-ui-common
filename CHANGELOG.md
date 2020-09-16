@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- SONAR-13758 Add new code legend to Activity Chart
+
 ## 1.0.21
 
 - Update lodash to 4.17.20
@@ -16,7 +18,7 @@
 
 ## 1.0.18
 
- - SC-2330 Add vertical RadioCard style
+- SC-2330 Add vertical RadioCard style
 
 ## 1.0.17
 
@@ -25,7 +27,7 @@
 ## 1.0.16
 
 - Bump to eslint-config-sonarqube@0.6.1
-- SC-2266 Add a `setRequestOptions`  to the initialisation process
+- SC-2266 Add a `setRequestOptions` to the initialisation process
 
 ## 1.0.15
 

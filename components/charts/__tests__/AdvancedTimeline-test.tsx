@@ -22,6 +22,8 @@ import * as React from 'react';
 import { ThemeConsumer } from '../../theme';
 import AdvancedTimeline from '../AdvancedTimeline';
 
+const newCodeLegendClass = '.new-code-legend';
+
 // Replace scaleTime with scaleUtc to avoid timezone-dependent snapshots
 jest.mock('d3-scale', () => {
   const { scaleUtc, ...others } = jest.requireActual('d3-scale');
@@ -47,6 +49,52 @@ it('should render leak correctly', () => {
   const leakNode = wrapper.find(ThemeConsumer).dive().find('.leak-chart-rect');
   expect(leakNode.exists()).toBe(true);
   expect(leakNode.getElement().props.width).toBe(15);
+});
+
+it('should render leak legend correctly', () => {
+  const wrapper = shallowRender({
+    displayNewCodeLegend: true,
+    leakPeriodDate: new Date('2019-10-02'),
+  });
+
+  const leakNode = wrapper.find(ThemeConsumer).dive();
+  expect(leakNode.find(newCodeLegendClass).exists()).toBe(true);
+  expect(leakNode.find(newCodeLegendClass).props().textAnchor).toBe('start');
+  expect(leakNode).toMatchSnapshot();
+});
+
+it('should render leak legend correctly for small leak', () => {
+  const wrapper = shallowRender({
+    displayNewCodeLegend: true,
+    leakPeriodDate: new Date('2020-02-06'),
+    series: [
+      mockData(1, '2020-02-01'),
+      mockData(2, '2020-02-02'),
+      mockData(3, '2020-02-03'),
+      mockData(4, '2020-02-04'),
+      mockData(5, '2020-02-05'),
+      mockData(6, '2020-02-06'),
+      mockData(7, '2020-02-07'),
+    ],
+  });
+
+  const leakNode = wrapper.find(ThemeConsumer).dive();
+  expect(leakNode.find(newCodeLegendClass).exists()).toBe(true);
+  expect(leakNode.find(newCodeLegendClass).props().textAnchor).toBe('end');
+});
+
+it('should set leakLegendTextWidth correctly', () => {
+  const wrapper = shallowRender();
+
+  wrapper.instance().setLeakLegendTextWidth({
+    getBoundingClientRect: () => ({ width: 12 } as DOMRect),
+  } as SVGTextElement);
+
+  expect(wrapper.state().leakLegendTextWidth).toBe(12);
+
+  wrapper.instance().setLeakLegendTextWidth(null);
+
+  expect(wrapper.state().leakLegendTextWidth).toBe(12);
 });
 
 it('should render old leak correctly', () => {
@@ -133,4 +181,12 @@ function shallowRender(props?: Partial<AdvancedTimeline['props']>) {
       {...props}
     />
   );
+}
+
+function mockData(i: number, date: string) {
+  return {
+    name: `t${i}`,
+    type: 'type',
+    data: [{ x: new Date(date), y: i }],
+  };
 }

@@ -75,3 +75,8 @@
 .line-chart-event.OTHER {
   stroke: var(--purple);
 }
+
+.new-code-legend {
+  fill: var(--secondFontColor);
+  font-size: var(--smallFontSize);
+}

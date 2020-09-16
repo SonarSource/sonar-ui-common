@@ -24,7 +24,7 @@ import { area, curveBasis, line as d3Line } from 'd3-shape';
 import { flatten, isEqual, sortBy, throttle, uniq } from 'lodash';
 import * as React from 'react';
 import { isDefined } from '../../helpers/types';
-import { ThemeConsumer } from '../theme';
+import { Theme, ThemeConsumer } from '../theme';
 import './AdvancedTimeline.css';
 import './LineChart.css';
 
@@ -32,6 +32,7 @@ export interface Props {
   basisCurve?: boolean;
   endDate?: Date;
   disableZoom?: boolean;
+  displayNewCodeLegend?: boolean;
   formatYTick?: (tick: number | string) => string;
   hideGrid?: boolean;
   hideXAxis?: boolean;
@@ -56,7 +57,10 @@ type XScale = ScaleTime<number, number>;
 // TODO it should be `ScaleLinear<number, number> | ScalePoint<number> | ScalePoint<string>`, but it's super hard to make it work :'(
 type YScale = any;
 
+const LEGEND_LINE_HEIGHT = 16;
+
 interface State {
+  leakLegendTextWidth?: number;
   maxXRange: number[];
   mouseOver?: boolean;
   selectedDate?: Date;
@@ -70,7 +74,7 @@ export default class AdvancedTimeline extends React.PureComponent<Props, State> 
   static defaultProps = {
     eventSize: 8,
     maxYTicksCount: 4,
-    padding: [10, 10, 50, 60],
+    padding: [26, 10, 50, 60],
     zoomSpeed: 1,
   };
 
@@ -246,6 +250,12 @@ export default class AdvancedTimeline extends React.PureComponent<Props, State> 
     }
   };
 
+  setLeakLegendTextWidth = (node: SVGTextElement | null) => {
+    if (node) {
+      this.setState({ leakLegendTextWidth: node.getBoundingClientRect().width });
+    }
+  };
+
   updateTooltipPos = (xPos: number) => {
     this.setState((state) => {
       const firstSerie = this.props.series[0];
@@ -351,8 +361,58 @@ export default class AdvancedTimeline extends React.PureComponent<Props, State> 
     );
   };
 
+  renderNewCodeLegend = (params: { leakStart: number; leakWidth: number; theme: Theme }) => {
+    const { leakStart, leakWidth, theme } = params;
+    const { leakLegendTextWidth, xScale, yScale } = this.state;
+    const yRange = yScale.range();
+    const xRange = xScale.range();
+
+    const legendMinWidth = (leakLegendTextWidth || 0) + theme.rawSizes.grid;
+    const legendPadding = theme.rawSizes.grid / 2;
+
+    let legendBackgroundPosition;
+    let legendBackgroundWidth;
+    let legendMargin;
+    let legendPosition;
+    let legendTextAnchor;
+
+    if (leakWidth >= legendMinWidth) {
+      legendBackgroundWidth = leakWidth;
+      legendBackgroundPosition = leakStart;
+      legendMargin = 0;
+      legendPosition = legendBackgroundPosition + legendPadding;
+      legendTextAnchor = 'start';
+    } else {
+      legendBackgroundWidth = legendMinWidth;
+      legendBackgroundPosition = xRange[xRange.length - 1] - legendBackgroundWidth;
+      legendMargin = theme.rawSizes.grid / 2;
+      legendPosition = xRange[xRange.length - 1] - legendPadding;
+      legendTextAnchor = 'end';
+    }
+
+    return (
+      <>
+        <rect
+          fill={theme.colors.leakPrimaryColor}
+          height={LEGEND_LINE_HEIGHT}
+          width={legendBackgroundWidth}
+          x={legendBackgroundPosition}
+          y={yRange[yRange.length - 1] - LEGEND_LINE_HEIGHT - legendMargin}
+        />
+        <text
+          className="new-code-legend"
+          ref={this.setLeakLegendTextWidth}
+          x={legendPosition}
+          y={yRange[yRange.length - 1] - legendPadding - legendMargin}
+          textAnchor={legendTextAnchor}>
+          new code
+        </text>
+      </>
+    );
+  };
+
   renderLeak = () => {
-    const { leakPeriodDate } = this.props;
+    const { displayNewCodeLegend, leakPeriodDate } = this.props;
     if (!leakPeriodDate) {
       return null;
     }
@@ -365,20 +425,24 @@ export default class AdvancedTimeline extends React.PureComponent<Props, State> 
     const leakStart = Math.max(xScale(leakPeriodDate), xRange[0]);
 
     const leakWidth = xRange[xRange.length - 1] - leakStart;
-    if (leakWidth < 0) {
+    if (leakWidth < 1) {
       return null;
     }
+
     return (
       <ThemeConsumer>
         {(theme) => (
-          <rect
-            className="leak-chart-rect"
-            fill={theme.colors.leakPrimaryColor}
-            height={yRange[0] - yRange[yRange.length - 1]}
-            width={leakWidth}
-            x={leakStart}
-            y={yRange[yRange.length - 1]}
-          />
+          <>
+            {displayNewCodeLegend && this.renderNewCodeLegend({ leakStart, leakWidth, theme })}
+            <rect
+              className="leak-chart-rect"
+              fill={theme.colors.leakPrimaryColor}
+              height={yRange[0] - yRange[yRange.length - 1]}
+              width={leakWidth}
+              x={leakStart}
+              y={yRange[yRange.length - 1]}
+            />
+          </>
         )}
       </ThemeConsumer>
     );
