@@ -7,7 +7,7 @@ exports[`should render correctly 1`] = `
   width={100}
 >
   <g
-    transform="translate(60, 10)"
+    transform="translate(60, 26)"
   >
     <g>
       <g
@@ -17,8 +17,8 @@ exports[`should render correctly 1`] = `
           className="line-chart-grid"
           x1={0}
           x2={30}
-          y1={40}
-          y2={40}
+          y1={24}
+          y2={24}
         />
       </g>
       <g
@@ -28,8 +28,8 @@ exports[`should render correctly 1`] = `
           className="line-chart-grid"
           x1={0}
           x2={30}
-          y1={37.333333333333336}
-          y2={37.333333333333336}
+          y1={22.4}
+          y2={22.4}
         />
       </g>
       <g
@@ -39,8 +39,8 @@ exports[`should render correctly 1`] = `
           className="line-chart-grid"
           x1={0}
           x2={30}
-          y1={34.66666666666667}
-          y2={34.66666666666667}
+          y1={20.8}
+          y2={20.8}
         />
       </g>
       <g
@@ -50,8 +50,8 @@ exports[`should render correctly 1`] = `
           className="line-chart-grid"
           x1={0}
           x2={30}
-          y1={32}
-          y2={32}
+          y1={19.200000000000003}
+          y2={19.200000000000003}
         />
       </g>
       <g
@@ -61,56 +61,12 @@ exports[`should render correctly 1`] = `
           className="line-chart-grid"
           x1={0}
           x2={30}
-          y1={29.333333333333336}
-          y2={29.333333333333336}
+          y1={17.6}
+          y2={17.6}
         />
       </g>
       <g
         key="1"
-      >
-        <line
-          className="line-chart-grid"
-          x1={0}
-          x2={30}
-          y1={26.66666666666667}
-          y2={26.66666666666667}
-        />
-      </g>
-      <g
-        key="1.2"
-      >
-        <line
-          className="line-chart-grid"
-          x1={0}
-          x2={30}
-          y1={24.000000000000004}
-          y2={24.000000000000004}
-        />
-      </g>
-      <g
-        key="1.4"
-      >
-        <line
-          className="line-chart-grid"
-          x1={0}
-          x2={30}
-          y1={21.333333333333336}
-          y2={21.333333333333336}
-        />
-      </g>
-      <g
-        key="1.6"
-      >
-        <line
-          className="line-chart-grid"
-          x1={0}
-          x2={30}
-          y1={18.666666666666668}
-          y2={18.666666666666668}
-        />
-      </g>
-      <g
-        key="1.8"
       >
         <line
           className="line-chart-grid"
@@ -121,14 +77,58 @@ exports[`should render correctly 1`] = `
         />
       </g>
       <g
+        key="1.2"
+      >
+        <line
+          className="line-chart-grid"
+          x1={0}
+          x2={30}
+          y1={14.400000000000002}
+          y2={14.400000000000002}
+        />
+      </g>
+      <g
+        key="1.4"
+      >
+        <line
+          className="line-chart-grid"
+          x1={0}
+          x2={30}
+          y1={12.800000000000002}
+          y2={12.800000000000002}
+        />
+      </g>
+      <g
+        key="1.6"
+      >
+        <line
+          className="line-chart-grid"
+          x1={0}
+          x2={30}
+          y1={11.2}
+          y2={11.2}
+        />
+      </g>
+      <g
+        key="1.8"
+      >
+        <line
+          className="line-chart-grid"
+          x1={0}
+          x2={30}
+          y1={9.600000000000001}
+          y2={9.600000000000001}
+        />
+      </g>
+      <g
         key="2"
       >
         <line
           className="line-chart-grid"
           x1={0}
           x2={30}
-          y1={13.333333333333336}
-          y2={13.333333333333336}
+          y1={8}
+          y2={8}
         />
       </g>
       <g
@@ -138,8 +138,8 @@ exports[`should render correctly 1`] = `
           className="line-chart-grid"
           x1={0}
           x2={30}
-          y1={10.666666666666664}
-          y2={10.666666666666664}
+          y1={6.399999999999999}
+          y2={6.399999999999999}
         />
       </g>
       <g
@@ -149,8 +149,8 @@ exports[`should render correctly 1`] = `
           className="line-chart-grid"
           x1={0}
           x2={30}
-          y1={8.000000000000004}
-          y2={8.000000000000004}
+          y1={4.800000000000002}
+          y2={4.800000000000002}
         />
       </g>
       <g
@@ -160,8 +160,8 @@ exports[`should render correctly 1`] = `
           className="line-chart-grid"
           x1={0}
           x2={30}
-          y1={5.333333333333332}
-          y2={5.333333333333332}
+          y1={3.1999999999999993}
+          y2={3.1999999999999993}
         />
       </g>
       <g
@@ -171,8 +171,8 @@ exports[`should render correctly 1`] = `
           className="line-chart-grid"
           x1={0}
           x2={30}
-          y1={2.6666666666666705}
-          y2={2.6666666666666705}
+          y1={1.6000000000000023}
+          y2={1.6000000000000023}
         />
       </g>
       <g
@@ -194,9 +194,9 @@ exports[`should render correctly 1`] = `
         className="line-chart-tick"
         key="0"
         textAnchor="end"
-        transform="rotate(-35, 1.875, 40)"
+        transform="rotate(-35, 1.875, 24)"
         x={1.875}
-        y={40}
+        y={24}
       >
         October
       </text>
@@ -204,9 +204,9 @@ exports[`should render correctly 1`] = `
         className="line-chart-tick"
         key="1"
         textAnchor="end"
-        transform="rotate(-35, 5.625, 40)"
+        transform="rotate(-35, 5.625, 24)"
         x={5.625}
-        y={40}
+        y={24}
       >
         06 AM
       </text>
@@ -214,9 +214,9 @@ exports[`should render correctly 1`] = `
         className="line-chart-tick"
         key="2"
         textAnchor="end"
-        transform="rotate(-35, 9.375, 40)"
+        transform="rotate(-35, 9.375, 24)"
         x={9.375}
-        y={40}
+        y={24}
       >
         12 PM
       </text>
@@ -224,9 +224,9 @@ exports[`should render correctly 1`] = `
         className="line-chart-tick"
         key="3"
         textAnchor="end"
-        transform="rotate(-35, 13.125, 40)"
+        transform="rotate(-35, 13.125, 24)"
         x={13.125}
-        y={40}
+        y={24}
       >
         06 PM
       </text>
@@ -234,9 +234,9 @@ exports[`should render correctly 1`] = `
         className="line-chart-tick"
         key="4"
         textAnchor="end"
-        transform="rotate(-35, 16.875, 40)"
+        transform="rotate(-35, 16.875, 24)"
         x={16.875}
-        y={40}
+        y={24}
       >
         Wed 02
       </text>
@@ -244,9 +244,9 @@ exports[`should render correctly 1`] = `
         className="line-chart-tick"
         key="5"
         textAnchor="end"
-        transform="rotate(-35, 20.625, 40)"
+        transform="rotate(-35, 20.625, 24)"
         x={20.625}
-        y={40}
+        y={24}
       >
         06 AM
       </text>
@@ -254,9 +254,9 @@ exports[`should render correctly 1`] = `
         className="line-chart-tick"
         key="6"
         textAnchor="end"
-        transform="rotate(-35, 24.375, 40)"
+        transform="rotate(-35, 24.375, 24)"
         x={24.375}
-        y={40}
+        y={24}
       >
         12 PM
       </text>
@@ -264,9 +264,9 @@ exports[`should render correctly 1`] = `
         className="line-chart-tick"
         key="7"
         textAnchor="end"
-        transform="rotate(-35, 28.125, 40)"
+        transform="rotate(-35, 28.125, 24)"
         x={28.125}
-        y={40}
+        y={24}
       >
         06 PM
       </text>
@@ -274,7 +274,7 @@ exports[`should render correctly 1`] = `
     <g>
       <path
         className="line-chart-path line-chart-path-0"
-        d="M0,26.66666666666667L15,13.333333333333336"
+        d="M0,16L15,8"
         key="test-1"
       />
       <path
@@ -294,9 +294,37 @@ exports[`should render correctly 1`] = `
     </g>
     <rect
       className="chart-mouse-events-overlay"
-      height={40}
+      height={24}
       width={30}
     />
   </g>
 </svg>
+`;
+
+exports[`should render leak legend correctly 1`] = `
+<Fragment>
+  <rect
+    fill="#fbf3d5"
+    height={16}
+    width={15}
+    x={15}
+    y={-16}
+  />
+  <text
+    className="new-code-legend"
+    textAnchor="start"
+    x={19}
+    y={-4}
+  >
+    new code
+  </text>
+  <rect
+    className="leak-chart-rect"
+    fill="#fbf3d5"
+    height={24}
+    width={15}
+    x={15}
+    y={0}
+  />
+</Fragment>
 `;
