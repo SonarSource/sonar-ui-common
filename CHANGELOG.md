@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.0.22
+
 - SONAR-13758 Add new code legend to Activity Chart
 
 ## 1.0.21
