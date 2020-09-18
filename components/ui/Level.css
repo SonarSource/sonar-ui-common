@@ -76,3 +76,7 @@ a > .level:hover {
 .level-NONE {
   background-color: var(--gray71);
 }
+
+.level-NOT_COMPUTED {
+  background-color: var(--gray40);
+}

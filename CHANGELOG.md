@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- SC-2335 Add not computed QG level
+
 ## 1.0.22
 
 - SONAR-13758 Add new code legend to Activity Chart
