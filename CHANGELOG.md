@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.0.23
+
 - SC-2335 Add not computed QG level
 
 ## 1.0.22
