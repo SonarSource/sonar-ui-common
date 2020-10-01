@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- SONAR-12698 Tooltip font size should be 13px for readability
+
 ## 1.0.23
 
 - SC-2335 Add not computed QG level
