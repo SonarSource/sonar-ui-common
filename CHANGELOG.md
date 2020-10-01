@@ -3,6 +3,7 @@
 ## Unreleased
 
 - SONAR-12698 Tooltip font size should be 13px for readability
+- SONAR-12996 Copy-to-clipboard icon button is not accessible
 
 ## 1.0.23
 

@@ -41,6 +41,7 @@ exports[`ClipboardButton should render a custom label if provided 1`] = `
 
 exports[`ClipboardIconButton should display correctly 1`] = `
 <ButtonIcon
+  aria-label="copy_to_clipboard"
   className="no-select"
   data-clipboard-text="foo"
   innerRef={[Function]}
