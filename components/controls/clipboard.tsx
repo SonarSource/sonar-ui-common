@@ -122,16 +122,19 @@ export function ClipboardButton({ className, children, copyValue }: ButtonProps)
 }
 
 interface IconButtonProps {
+  'aria-label'?: string;
   className?: string;
   copyValue: string;
 }
 
-export function ClipboardIconButton({ className, copyValue }: IconButtonProps) {
+export function ClipboardIconButton(props: IconButtonProps) {
+  const { className, copyValue } = props;
   return (
     <ClipboardBase>
       {({ setCopyButton, copySuccess }) => {
         return (
           <ButtonIcon
+            aria-label={props['aria-label'] ?? translate('copy_to_clipboard')}
             className={classNames('no-select', className)}
             data-clipboard-text={copyValue}
             innerRef={setCopyButton}
