@@ -46,6 +46,8 @@ interface State {
   value: string;
 }
 
+const DEFAULT_MAX_LENGTH = 100;
+
 export default class SearchBox extends React.PureComponent<Props, State> {
   debouncedOnChange: ((query: string) => void) & Cancelable;
   input?: HTMLInputElement | null;
@@ -120,7 +122,7 @@ export default class SearchBox extends React.PureComponent<Props, State> {
   };
 
   render() {
-    const { loading, minLength, maxLength = 100 } = this.props;
+    const { loading, minLength, maxLength = DEFAULT_MAX_LENGTH } = this.props;
     const { value } = this.state;
 
     const inputClassName = classNames('search-box-input', {
