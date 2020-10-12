@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.0.25
+
 - SONAR-13925 Make SearchBox maximum length configurable
 
 ## 1.0.24
