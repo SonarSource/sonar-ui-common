@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- SONAR-13925 Make SearchBox maximum length configurable
+
 ## 1.0.24
 
 - SONAR-12698 Tooltip font size should be 13px for readability

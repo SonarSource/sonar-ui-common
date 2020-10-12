@@ -34,7 +34,13 @@ jest.mock('lodash', () => {
 
 it('renders', () => {
   const wrapper = shallow(
-    <SearchBox minLength={2} onChange={jest.fn()} placeholder="placeholder" value="foo" />
+    <SearchBox
+      maxLength={150}
+      minLength={2}
+      onChange={jest.fn()}
+      placeholder="placeholder"
+      value="foo"
+    />
   );
   expect(wrapper).toMatchSnapshot();
 });

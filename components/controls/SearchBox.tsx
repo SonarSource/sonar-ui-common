@@ -32,6 +32,7 @@ interface Props {
   id?: string;
   innerRef?: (node: HTMLInputElement | null) => void;
   loading?: boolean;
+  maxLength?: number;
   minLength?: number;
   onChange: (value: string) => void;
   onClick?: React.MouseEventHandler<HTMLInputElement>;
@@ -44,6 +45,8 @@ interface Props {
 interface State {
   value: string;
 }
+
+const DEFAULT_MAX_LENGTH = 100;
 
 export default class SearchBox extends React.PureComponent<Props, State> {
   debouncedOnChange: ((query: string) => void) & Cancelable;
@@ -119,7 +122,7 @@ export default class SearchBox extends React.PureComponent<Props, State> {
   };
 
   render() {
-    const { loading, minLength } = this.props;
+    const { loading, minLength, maxLength = DEFAULT_MAX_LENGTH } = this.props;
     const { value } = this.state;
 
     const inputClassName = classNames('search-box-input', {
@@ -138,7 +141,7 @@ export default class SearchBox extends React.PureComponent<Props, State> {
           autoComplete="off"
           autoFocus={this.props.autoFocus}
           className={inputClassName}
-          maxLength={100}
+          maxLength={maxLength}
           onChange={this.handleInputChange}
           onClick={this.props.onClick}
           onFocus={this.props.onFocus}
