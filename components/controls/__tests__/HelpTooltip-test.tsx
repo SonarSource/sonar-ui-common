@@ -22,10 +22,20 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import testTheme from '../../../config/jest/testTheme';
 import { ThemeProvider } from '../../theme';
-import HelpTooltip from '../HelpTooltip';
+import HelpTooltip, { DarkHelpTooltip } from '../HelpTooltip';
 
 it('should render properly', () => {
   const wrapper = shallow(<HelpTooltip overlay={<div className="my-overlay" />} />, {
+    wrappingComponent: ThemeProvider,
+    wrappingComponentProps: {
+      theme: testTheme,
+    },
+  });
+  expect(wrapper).toMatchSnapshot();
+});
+
+it('should render dark helptooltip properly', () => {
+  const wrapper = shallow(<DarkHelpTooltip overlay={<div className="my-overlay" />} size={14} />, {
     wrappingComponent: ThemeProvider,
     wrappingComponentProps: {
       theme: testTheme,

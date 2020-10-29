@@ -20,37 +20,43 @@
 import * as classNames from 'classnames';
 import * as React from 'react';
 import HelpIcon from '../icons/HelpIcon';
+import { IconProps } from '../icons/Icon';
 import { ThemeConsumer } from '../theme';
 import './HelpTooltip.css';
 import Tooltip, { Placement } from './Tooltip';
 
-interface Props {
+interface Props extends Pick<IconProps, 'size'> {
   className?: string;
   children?: React.ReactNode;
   onShow?: () => void;
   overlay: React.ReactNode;
   placement?: Placement;
-  tagName?: string;
 }
 
-export default function HelpTooltip(props: Props) {
-  const { tagName = 'div' } = props;
+export default function HelpTooltip({ size = 12, ...props }: Props) {
+  return (
+    <div className={classNames('help-tooltip', props.className)}>
+      <Tooltip
+        mouseLeaveDelay={0.25}
+        onShow={props.onShow}
+        overlay={props.overlay}
+        placement={props.placement}>
+        <span className="display-inline-flex-center">
+          {props.children || (
+            <ThemeConsumer>
+              {(theme) => <HelpIcon fill={theme.colors.gray71} size={size} />}
+            </ThemeConsumer>
+          )}
+        </span>
+      </Tooltip>
+    </div>
+  );
+}
 
-  return React.createElement(
-    tagName,
-    { className: classNames('help-tooltip', props.className) },
-    <Tooltip
-      mouseLeaveDelay={0.25}
-      onShow={props.onShow}
-      overlay={props.overlay}
-      placement={props.placement}>
-      <span className="display-inline-flex-center">
-        {props.children || (
-          <ThemeConsumer>
-            {(theme) => <HelpIcon fill={theme.colors.gray71} size={12} />}
-          </ThemeConsumer>
-        )}
-      </span>
-    </Tooltip>
+export function DarkHelpTooltip({ size = 12, ...props }: Omit<Props, 'children'>) {
+  return (
+    <HelpTooltip {...props}>
+      <HelpIcon fill="rgba(0,0,0,0.25)" fillInner="white" size={size} />
+    </HelpTooltip>
   );
 }

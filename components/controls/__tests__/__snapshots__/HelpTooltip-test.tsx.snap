@@ -1,5 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`should render dark helptooltip properly 1`] = `
+<HelpTooltip
+  overlay={
+    <div
+      className="my-overlay"
+    />
+  }
+>
+  <HelpIcon
+    fill="rgba(0,0,0,0.25)"
+    fillInner="white"
+    size={14}
+  />
+</HelpTooltip>
+`;
+
 exports[`should render properly 1`] = `
 <div
   className="help-tooltip"
