@@ -31,7 +31,11 @@ it('should render properly', () => {
       theme: testTheme,
     },
   });
-  expect(wrapper).toMatchSnapshot();
+  expect(wrapper).toMatchSnapshot('default');
+  expect(wrapper.find('ContextConsumer').dive()).toMatchSnapshot('default icon');
+
+  wrapper.setProps({ size: 18 });
+  expect(wrapper.find('ContextConsumer').dive().prop('size')).toBe(18);
 });
 
 it('should render dark helptooltip properly', () => {
@@ -41,5 +45,9 @@ it('should render dark helptooltip properly', () => {
       theme: testTheme,
     },
   });
-  expect(wrapper).toMatchSnapshot();
+  expect(wrapper).toMatchSnapshot('dark');
+  expect(wrapper.find('ContextConsumer').dive()).toMatchSnapshot('dark icon');
+
+  wrapper.setProps({ size: undefined });
+  expect(wrapper.find('ContextConsumer').dive().prop('size')).toBe(12);
 });

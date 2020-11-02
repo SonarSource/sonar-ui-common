@@ -56,7 +56,11 @@ export default function HelpTooltip({ size = 12, ...props }: Props) {
 export function DarkHelpTooltip({ size = 12, ...props }: Omit<Props, 'children'>) {
   return (
     <HelpTooltip {...props}>
-      <HelpIcon fill="rgba(0,0,0,0.25)" fillInner="white" size={size} />
+      <ThemeConsumer>
+        {({ colors }) => (
+          <HelpIcon fill={colors.transparentBlack} fillInner={colors.white} size={size} />
+        )}
+      </ThemeConsumer>
     </HelpTooltip>
   );
 }
