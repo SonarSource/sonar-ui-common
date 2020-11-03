@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.0.26
+
 - SC-2527 Add DarkHelpTooltip component and allow to customize inner question mark color of HelpIcon
 
 ## 1.0.25
