@@ -22,7 +22,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import testTheme from '../../../config/jest/testTheme';
 import { ThemeProvider } from '../../theme';
-import HelpTooltip from '../HelpTooltip';
+import HelpTooltip, { DarkHelpTooltip } from '../HelpTooltip';
 
 it('should render properly', () => {
   const wrapper = shallow(<HelpTooltip overlay={<div className="my-overlay" />} />, {
@@ -31,5 +31,23 @@ it('should render properly', () => {
       theme: testTheme,
     },
   });
-  expect(wrapper).toMatchSnapshot();
+  expect(wrapper).toMatchSnapshot('default');
+  expect(wrapper.find('ContextConsumer').dive()).toMatchSnapshot('default icon');
+
+  wrapper.setProps({ size: 18 });
+  expect(wrapper.find('ContextConsumer').dive().prop('size')).toBe(18);
+});
+
+it('should render dark helptooltip properly', () => {
+  const wrapper = shallow(<DarkHelpTooltip overlay={<div className="my-overlay" />} size={14} />, {
+    wrappingComponent: ThemeProvider,
+    wrappingComponentProps: {
+      theme: testTheme,
+    },
+  });
+  expect(wrapper).toMatchSnapshot('dark');
+  expect(wrapper.find('ContextConsumer').dive()).toMatchSnapshot('dark icon');
+
+  wrapper.setProps({ size: undefined });
+  expect(wrapper.find('ContextConsumer').dive().prop('size')).toBe(12);
 });

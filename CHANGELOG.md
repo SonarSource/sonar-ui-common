@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- SC-2527 Add DarkHelpTooltip component and allow to customize inner question mark color of HelpIcon
+
 ## 1.0.25
 
 - SONAR-13925 Make SearchBox maximum length configurable
