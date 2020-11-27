@@ -35,13 +35,13 @@
   text-decoration: none;
   cursor: pointer;
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
 .button:hover,
 .button.button-active {
   background: var(--darkBlue);
-  color: #fff;
+  color: var(--white);
 }
 
 .button:active {
@@ -54,11 +54,17 @@
 
 .button-primary {
   background: var(--darkBlue);
-  color: #fff;
+  color: var(--white);
 }
 
 .button-primary:hover {
   background: var(--veryDarkBlue);
+  border-color: var(--veryDarkBlue);
+}
+
+.button-primary.button-light:hover {
+  background: var(--blue);
+  border-color: var(--blue);
 }
 
 .button.disabled {
@@ -78,7 +84,7 @@
 .button-red:hover,
 .button-red.active {
   background: var(--red);
-  color: #fff;
+  color: var(--white);
 }
 
 .button-red:focus {
@@ -96,7 +102,7 @@
 .button-success:hover,
 .button-success.active {
   background: var(--green);
-  color: #fff;
+  color: var(--white);
 }
 
 .button-success:focus {
@@ -170,8 +176,8 @@
   padding: calc(2 * var(--gridSize));
   width: 200px;
   height: 200px;
-  background-color: #fff;
-  border: solid 1px #fff;
+  background-color: var(--white);
+  border: solid 1px var(--white);
   border-radius: 3px;
   transition: all 0.2s ease;
   box-shadow: 0 1px 1px 1px var(--barBorderColor);
@@ -180,7 +186,7 @@
 .button-huge:hover,
 .button-huge:focus,
 .button-huge:active {
-  background-color: #fff;
+  background-color: var(--white);
   color: var(--darkBlue);
   box-shadow: var(--defaultShadow);
   transform: translateY(-2px);
@@ -278,7 +284,7 @@
 
 .button-icon:not(.disabled):hover svg,
 .button-icon:not(.disabled):focus svg {
-  color: #fff;
+  color: var(--white);
 }
 
 .button.button-icon.disabled {
