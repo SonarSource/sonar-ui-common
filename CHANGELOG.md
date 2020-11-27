@@ -2,9 +2,12 @@
 
 ## Unreleased
 
+- SC-2661 Add Light version of button primary
+
 ## 1.0.26
 
 - SC-2527 Add DarkHelpTooltip component and allow to customize inner question mark color of HelpIcon
+- SC-2527 Add "white" and "transparentBlack" to the theme
 
 ## 1.0.25
 
