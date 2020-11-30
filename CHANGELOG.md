@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.0.27
+
 - SC-2661 Add Light version of button primary
 
 ## 1.0.26
