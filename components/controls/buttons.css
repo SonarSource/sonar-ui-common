@@ -54,6 +54,7 @@
 
 .button-primary {
   background: var(--darkBlue);
+  border-color: var(--darkBlue);
   color: var(--white);
 }
 
@@ -62,9 +63,15 @@
   border-color: var(--veryDarkBlue);
 }
 
-.button-primary.button-light:hover {
+.button-primary.button-light {
   background: var(--blue);
   border-color: var(--blue);
+  color: var(--white);
+}
+
+.button-primary.button-light:hover {
+  background: var(--darkBlue);
+  border-color: var(--darkBlue);
 }
 
 .button.disabled {
