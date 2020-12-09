@@ -1,6 +1,6 @@
 {
   "name": "sonar-ui-common",
-  "version": "1.0.27",
+  "version": "1.0.28",
   "description": "Common UI lib for SonarQube and SonarCloud",
   "repository": "SonarSource/sonar-ui-common",
   "license": "LGPL-3.0",

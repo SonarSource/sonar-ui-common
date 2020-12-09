@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.0.28
+
 - SC-2661 Improve styling of light version of primary button
 
 ## 1.0.27
