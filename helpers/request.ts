@@ -20,15 +20,8 @@
 import { isNil, omitBy } from 'lodash';
 import { stringify } from 'querystring';
 import { getCookie } from './cookies';
-import { getRequestOptions, getUrlContext } from './init';
+import { getUrlContext } from './init';
 import { translate } from './l10n';
-
-export interface RequestOptions {
-  onVersionChange?: () => boolean;
-}
-
-/** Current application version. Can be changed if a newer version is deployed. */
-let currentApplicationVersion: string | undefined;
 
 export function getCSRFTokenName(): string {
   return 'X-XSRF-TOKEN';
@@ -153,39 +146,19 @@ export function corsRequest(url: string, mode: RequestMode = 'cors'): Request {
   return request;
 }
 
-function reload() {
-  window.location.reload();
-  return false;
-}
-
-function checkApplicationVersion(response: Response): boolean {
-  const version = response.headers.get('Sonar-Version');
-  if (version) {
-    if (currentApplicationVersion && currentApplicationVersion !== version) {
-      const { onVersionChange = reload } = getRequestOptions();
-      return onVersionChange();
-    } else {
-      currentApplicationVersion = version;
-    }
-  }
-  return true;
-}
-
 /**
  * Check that response status is ok
  */
 export function checkStatus(response: Response, bypassRedirect?: boolean): Promise<Response> {
   return new Promise((resolve, reject) => {
-    if (checkApplicationVersion(response)) {
-      if (response.status === HttpStatus.Unauthorized && !bypassRedirect) {
-        import('./handleRequiredAuthentication')
-          .then((i) => i.default())
-          .then(reject, reject);
-      } else if (isSuccessStatus(response.status)) {
-        resolve(response);
-      } else {
-        reject(response);
-      }
+    if (response.status === HttpStatus.Unauthorized && !bypassRedirect) {
+      import('./handleRequiredAuthentication')
+        .then((i) => i.default())
+        .then(reject, reject);
+    } else if (isSuccessStatus(response.status)) {
+      resolve(response);
+    } else {
+      reject(response);
     }
   });
 }

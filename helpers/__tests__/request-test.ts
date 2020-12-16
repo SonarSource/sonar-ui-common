@@ -19,7 +19,6 @@
  */
 
 import handleRequiredAuthentication from '../handleRequiredAuthentication';
-import { getRequestOptions } from '../init';
 import {
   checkStatus,
   getJSON,
@@ -321,33 +320,7 @@ describe('checkStatus', () => {
       expect(response).toEqual(mockedResponse);
     });
   });
-
-  it('should reload the page when version is changing', async () => {
-    const reload = jest.fn();
-    delete window.location;
-    (window as any).location = { reload };
-
-    await checkStatus(mockResponse({ 'Sonar-Version': '6.7' }));
-    expect(reload).not.toBeCalled();
-    await checkStatus(mockResponse({ 'Sonar-Version': '6.7' }));
-    expect(reload).not.toBeCalled();
-    checkStatus(mockResponse({ 'Sonar-Version': '7.9' }));
-    expect(reload).toBeCalled();
-  });
-
-  it('should notify when version is changing', async () => {
-    const onVersionChange = jest.fn().mockReturnValue(true);
-    (getRequestOptions as jest.Mock).mockReturnValue({
-      onVersionChange,
-    });
-
-    await checkStatus(mockResponse({ 'Sonar-Version': '6.7' }));
-    checkStatus(mockResponse({ 'Sonar-Version': '7.9' }));
-
-    expect(onVersionChange).toBeCalled();
-  });
 });
-
 it('should export status codes', () => {
   expect(HttpStatus.NotFound).toEqual(404);
 });
