@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- SONAR-14212 Remove obsolete Sonar-Version HTTP header
+
 ## 1.0.28
 
 - SC-2661 Improve styling of light version of primary button
