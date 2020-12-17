@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.0.29
+
 - SONAR-14212 Remove obsolete Sonar-Version HTTP header
 
 ## 1.0.28
