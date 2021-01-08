@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- SONAR-14317 Replacement patterns unescaped in replace method
+
 ## 1.0.29
 
 - SONAR-14212 Remove obsolete Sonar-Version HTTP header
