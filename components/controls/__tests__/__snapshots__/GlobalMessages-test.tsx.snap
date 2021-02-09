@@ -31,12 +31,29 @@ exports[`should render correctly with a message 2`] = `
 <Styled(div)
   data-test="global-message__ERROR"
   level="ERROR"
+  role="alert"
 >
   Test
   <Styled(ClearButton)
     className="button-small"
     color="#fff"
     level="ERROR"
+    onClick={[Function]}
+  />
+</Styled(div)>
+`;
+
+exports[`should render correctly with a message 3`] = `
+<Styled(div)
+  data-test="global-message__SUCCESS"
+  level="SUCCESS"
+  role="status"
+>
+  Test 2
+  <Styled(ClearButton)
+    className="button-small"
+    color="#fff"
+    level="SUCCESS"
     onClick={[Function]}
   />
 </Styled(div)>
@@ -138,6 +155,7 @@ exports[`should render with correct css 1`] = `
   <div
     class="emotion-1"
     data-test="global-message__ERROR"
+    role="alert"
   >
     Test
     <button
@@ -165,6 +183,7 @@ exports[`should render with correct css 1`] = `
   <div
     class="emotion-3"
     data-test="global-message__SUCCESS"
+    role="status"
   >
     Test 2
     <button
