@@ -68,7 +68,10 @@ export class GlobalMessage extends React.PureComponent<{
   render() {
     const { message } = this.props;
     return (
-      <Message data-test={`global-message__${message.level}`} level={message.level}>
+      <Message
+        data-test={`global-message__${message.level}`}
+        level={message.level}
+        role={message.level === 'SUCCESS' ? 'status' : 'alert'}>
         {cutLongWords(message.message)}
         <CloseButton
           className="button-small"

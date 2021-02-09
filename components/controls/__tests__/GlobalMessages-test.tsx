@@ -33,6 +33,7 @@ it('should render correctly with a message', () => {
   const wrapper = shallowRender();
   expect(wrapper).toMatchSnapshot();
   expect(wrapper.find('GlobalMessage').first().dive()).toMatchSnapshot();
+  expect(wrapper.find('GlobalMessage').last().dive()).toMatchSnapshot();
 });
 
 it('should render with correct css', () => {
