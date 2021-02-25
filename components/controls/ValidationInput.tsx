@@ -20,6 +20,7 @@
 import * as React from 'react';
 import AlertErrorIcon from '../icons/AlertErrorIcon';
 import AlertSuccessIcon from '../icons/AlertSuccessIcon';
+import MandatoryFieldMarker from '../ui/MandatoryFieldMarker';
 import HelpTooltip from './HelpTooltip';
 
 interface Props {
@@ -42,7 +43,7 @@ export default function ValidationInput(props: Props) {
       <label htmlFor={props.id}>
         <span className="text-middle">
           <strong>{props.label}</strong>
-          {props.required && <em className="mandatory">*</em>}
+          {props.required && <MandatoryFieldMarker />}
         </span>
         {props.help && <HelpTooltip className="spacer-left" overlay={props.help} />}
       </label>
