@@ -11,11 +11,7 @@ exports[`should render 1`] = `
       <strong>
         Field label
       </strong>
-      <em
-        className="mandatory"
-      >
-        *
-      </em>
+      <MandatoryFieldMarker />
     </span>
     <HelpTooltip
       className="spacer-left"
@@ -46,11 +42,7 @@ exports[`should render when valid 1`] = `
       <strong>
         Field label
       </strong>
-      <em
-        className="mandatory"
-      >
-        *
-      </em>
+      <MandatoryFieldMarker />
     </span>
   </label>
   <div

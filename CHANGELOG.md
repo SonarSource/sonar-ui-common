@@ -2,7 +2,11 @@
 
 ## Unreleased
 
+- SONAR-12056 Indicate required fields for forms 
+
 ## 1.0.31
+
+- SONAR-12180 Add a ARIA role to all global success and error messages
 
 ## 1.0.30
 
