@@ -31,11 +31,11 @@ it('should render properly', () => {
   const wrapper = shallow(
     <ColorGradientLegend
       className="measure-details-treemap-legend"
-      colorNA={colors.secondFontColor}
       colorScale={colorScale}
+      showColorNA={true}
       height={20}
       width={200}
     />
   );
-  expect(wrapper).toMatchSnapshot();
+  expect(wrapper.dive()).toMatchSnapshot();
 });
