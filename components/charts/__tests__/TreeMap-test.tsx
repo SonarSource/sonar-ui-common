@@ -26,7 +26,13 @@ it('should render correctly', () => {
   const items = [
     { key: '1', size: 10, color: '#777', label: 'SonarQube :: Server' },
     { key: '2', size: 30, color: '#777', label: 'SonarQube :: Web' },
-    { key: '3', size: 20, color: '#777', label: 'SonarQube :: Search' },
+    {
+      key: '3',
+      size: 20,
+      gradient: '#777',
+      label: 'SonarQube :: Search',
+      metric: { key: 'coverage', type: 'PERCENT' },
+    },
   ];
   const onRectClick = jest.fn();
   const chart = mount(

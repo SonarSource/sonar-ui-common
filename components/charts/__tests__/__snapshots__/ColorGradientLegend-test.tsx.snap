@@ -36,6 +36,110 @@ exports[`should render properly 1`] = `
         stopColor="#d4333f"
       />
     </linearGradient>
+    <pattern
+      height="30"
+      id="stripes"
+      patternTransform="rotate(45 0 0)"
+      patternUnits="userSpaceOnUse"
+      width="30"
+    >
+      <line
+        style={
+          Object {
+            "stroke": "#b4b4b4",
+            "strokeWidth": 4,
+          }
+        }
+        x1={0}
+        x2={0}
+        y1="0"
+        y2="30"
+      />
+      <line
+        style={
+          Object {
+            "stroke": "#999",
+            "strokeWidth": 4,
+          }
+        }
+        x1={4}
+        x2={4}
+        y1="0"
+        y2="30"
+      />
+      <line
+        style={
+          Object {
+            "stroke": "#b4b4b4",
+            "strokeWidth": 4,
+          }
+        }
+        x1={8}
+        x2={8}
+        y1="0"
+        y2="30"
+      />
+      <line
+        style={
+          Object {
+            "stroke": "#999",
+            "strokeWidth": 4,
+          }
+        }
+        x1={12}
+        x2={12}
+        y1="0"
+        y2="30"
+      />
+      <line
+        style={
+          Object {
+            "stroke": "#b4b4b4",
+            "strokeWidth": 4,
+          }
+        }
+        x1={16}
+        x2={16}
+        y1="0"
+        y2="30"
+      />
+      <line
+        style={
+          Object {
+            "stroke": "#999",
+            "strokeWidth": 4,
+          }
+        }
+        x1={20}
+        x2={20}
+        y1="0"
+        y2="30"
+      />
+      <line
+        style={
+          Object {
+            "stroke": "#b4b4b4",
+            "strokeWidth": 4,
+          }
+        }
+        x1={24}
+        x2={24}
+        y1="0"
+        y2="30"
+      />
+      <line
+        style={
+          Object {
+            "stroke": "#999",
+            "strokeWidth": 4,
+          }
+        }
+        x1={28}
+        x2={28}
+        y1="0"
+        y2="30"
+      />
+    </pattern>
   </defs>
   <g
     transform="translate(0, 12)"
@@ -97,7 +201,7 @@ exports[`should render properly 1`] = `
     transform="translate(176, 12)"
   >
     <rect
-      fill="#777"
+      fill="url(#stripes)"
       height={8}
       width={20}
       x={4}

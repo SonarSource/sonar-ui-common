@@ -27,6 +27,7 @@
   border-bottom: 1px solid #fff;
   box-sizing: border-box;
   text-align: center;
+  overflow: hidden;
 }
 
 .sonar-d3 .treemap-cell:focus {
@@ -39,9 +40,11 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  padding: 0 4px;
+  padding: var(--gridSize);
   box-sizing: border-box;
   line-height: 1.2;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 2px;
 }
 
 .sonar-d3 .treemap-inner .treemap-icon {
@@ -52,12 +55,22 @@
   margin-top: 2px;
 }
 
+.sonar-d3 .treemap-inner .treemap-icon svg path {
+  fill: var(--barBackgroundColor) !important;
+}
+
 .sonar-d3 .treemap-inner .treemap-text {
   flex-shrink: 1;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  text-align: left;
+  text-align: center;
+  color: var(--barBackgroundColor);
+}
+
+.sonar-d3 .treemap-inner .treemap-text-suffix {
+  color: var(--barBorderColor);
+  font-size: var(--smallFontSize);
 }
 
 .sonar-d3 .treemap-link {

@@ -28,7 +28,8 @@ import LinkIcon from '../icons/LinkIcon';
 const SIZE_SCALE = scaleLinear().domain([3, 15]).range([11, 18]).clamp(true);
 
 interface Props {
-  fill: string;
+  fill?: string;
+  gradient?: string;
   height: number;
   icon?: React.ReactNode;
   itemKey: string;
@@ -38,11 +39,16 @@ interface Props {
   placement?: Placement;
   prefix: string;
   tooltip?: React.ReactNode;
+  value?: React.ReactNode;
   width: number;
   x: number;
   y: number;
 }
 
+const TEXT_VISIBLE_AT_WIDTH = 80;
+const TEXT_VISIBLE_AT_HEIGHT = 50;
+const ICON_VISIBLE_AT_WIDTH = 60;
+const ICON_VISIBLE_AT_HEIGHT = 30;
 export default class TreeMapRect extends React.PureComponent<Props> {
   handleLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.stopPropagation();
@@ -74,12 +80,16 @@ export default class TreeMapRect extends React.PureComponent<Props> {
       width: this.props.width,
       height: this.props.height,
       backgroundColor: this.props.fill,
+      backgroundImage: this.props.gradient,
+      backgroundSize: '12px 12px',
       fontSize: SIZE_SCALE(this.props.width / this.props.label.length),
       lineHeight: `${this.props.height}px`,
       cursor: this.props.onClick != null ? 'pointer' : 'default',
     };
-    const isTextVisible = this.props.width >= 40 && this.props.height >= 45;
-    const isIconVisible = this.props.width >= 24 && this.props.height >= 26;
+    const isTextVisible =
+      this.props.width >= TEXT_VISIBLE_AT_WIDTH && this.props.height >= TEXT_VISIBLE_AT_HEIGHT;
+    const isIconVisible =
+      this.props.width >= ICON_VISIBLE_AT_WIDTH && this.props.height >= ICON_VISIBLE_AT_HEIGHT;
 
     return (
       <div
@@ -88,23 +98,34 @@ export default class TreeMapRect extends React.PureComponent<Props> {
         role="treeitem"
         style={cellStyles}
         tabIndex={0}>
-        <div className="treemap-inner" style={{ maxWidth: this.props.width }}>
-          {isIconVisible && (
-            <span className={classNames('treemap-icon', { 'spacer-right': isTextVisible })}>
-              {this.props.icon}
-            </span>
-          )}
-          {isTextVisible &&
-            (this.props.prefix ? (
-              <span className="treemap-text">
-                {this.props.prefix}
-                <br />
-                {this.props.label.substr(this.props.prefix.length)}
-              </span>
+        {isTextVisible && (
+          <div className="treemap-inner" style={{ maxWidth: this.props.width }}>
+            {this.props.prefix || this.props.value ? (
+              <div className="treemap-text">
+                <div>
+                  {isIconVisible && (
+                    <span className={classNames('treemap-icon', { 'spacer-right': isTextVisible })}>
+                      {this.props.icon}
+                    </span>
+                  )}
+
+                  {this.props.prefix && (
+                    <>
+                      {this.props.prefix}
+                      <br />
+                    </>
+                  )}
+
+                  {this.props.label.substr(this.props.prefix.length)}
+                </div>
+
+                <div className="treemap-text-suffix little-spacer-top">{this.props.value}</div>
+              </div>
             ) : (
-              <span className="treemap-text">{this.props.label}</span>
-            ))}
-        </div>
+              <div className="treemap-text">{this.props.label}</div>
+            )}
+          </div>
+        )}
         {this.renderLink()}
       </div>
     );

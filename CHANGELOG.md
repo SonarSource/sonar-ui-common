@@ -3,6 +3,7 @@
 ## Unreleased
 
 - SONAR-12056 Indicate required fields for forms 
+- SONAR-11959 Colorblind-friendly coverage treemaps
 
 ## 1.0.31
 

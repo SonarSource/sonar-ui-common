@@ -19,16 +19,20 @@
  */
 import { hierarchy as d3Hierarchy, treemap as d3Treemap } from 'd3-hierarchy';
 import * as React from 'react';
+import { formatMeasure, localizeMetric } from '../../helpers/measures';
 import { Location } from '../../helpers/urls';
 import './TreeMap.css';
 import TreeMapRect from './TreeMapRect';
 
 export interface TreeMapItem {
-  color: string;
+  color?: string;
+  gradient?: string;
   icon?: React.ReactNode;
   key: string;
   label: string;
   link?: string | Location;
+  measureValue?: string;
+  metric?: { key: string; type: string };
   size: number;
   tooltip?: React.ReactNode;
 }
@@ -77,6 +81,7 @@ export default class TreeMap extends React.PureComponent<Props> {
           {nodes.map((node) => (
             <TreeMapRect
               fill={node.data.color}
+              gradient={node.data.gradient}
               height={node.y1 - node.y0}
               icon={node.data.icon}
               itemKey={node.data.key}
@@ -86,6 +91,16 @@ export default class TreeMap extends React.PureComponent<Props> {
               onClick={this.props.onRectangleClick}
               placement={node.x0 === 0 || node.x1 < halfWidth ? 'right' : 'left'}
               prefix={prefix}
+              value={
+                node.data.metric && (
+                  <>
+                    {formatMeasure(node.data.measureValue, node.data.metric.type)}
+                    <span className="little-spacer-left">
+                      {localizeMetric(node.data.metric.key)}
+                    </span>
+                  </>
+                )
+              }
               tooltip={node.data.tooltip}
               width={node.x1 - node.x0}
               x={node.x0}
