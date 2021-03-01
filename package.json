@@ -1,6 +1,6 @@
 {
   "name": "sonar-ui-common",
-  "version": "1.0.32",
+  "version": "1.0.33",
   "description": "Common UI lib for SonarQube and SonarCloud",
   "repository": "SonarSource/sonar-ui-common",
   "license": "LGPL-3.0",
@@ -30,7 +30,7 @@
     "@emotion/core": "^10.0.17",
     "@emotion/styled": "^10.0.17",
     "emotion-theming": "^10.0.19",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   },
@@ -74,7 +74,7 @@
     "globby": "10.0.1",
     "jest": "25.4.0",
     "jest-emotion": "10.0.32",
-    "lodash": "4.17.20",
+    "lodash": "4.17.21",
     "prettier": "2.0.4",
     "react": "16.8.6",
     "react-dom": "16.8.6",

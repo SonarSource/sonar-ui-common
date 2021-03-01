@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 1.0.33
+
+- Upgrade to lodash@4.17.21
+
 ## 1.0.32
 
 - SONAR-12056 Indicate required fields for forms 
